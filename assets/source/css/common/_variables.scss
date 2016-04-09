@@ -1,0 +1,57 @@
+
+// -------------------------------------------------------------------------
+// Global settings
+// -------------------------------------------------------------------------
+
+$susy: (
+	columns: 24,
+	gutters: 20px / 26px,
+	gutter-position: inside,
+	global-box-sizing: border-box,
+);
+
+$breakpoints: (
+	xs:  0,
+	sm:  rem-calc( 572px ),
+	md:  rem-calc( 756px ),
+	lg:  rem-calc( 940px ),
+	xl:  rem-calc( 1124px ),
+);
+
+
+// -------------------------------------------------------------------------
+// Colors
+// -------------------------------------------------------------------------
+
+// Brand
+$brand-primary:        #d2202f;
+$brand-secondary:      #aeb6b4;
+$brand-tertiary:       #f4f4f4;
+$brand-success:        #58b956;
+$brand-info:           #58c0e0;
+$brand-warning:        #f1ae42;
+$brand-danger:         #ca2026;
+
+// Content
+$body-color:           #555;
+$link-color:           #0071bc;
+
+
+// -------------------------------------------------------------------------
+// Typography
+// -------------------------------------------------------------------------
+
+$font-family-base:    'Open Sans', sans-serif;
+
+$font-size-base:      rem-calc( 14px );
+$font-size-nav-item:  rem-calc( 16px );
+$font-size-title:     rem-calc( 18px );
+$font-size-heading:   rem-calc( 20px );
+
+
+// -------------------------------------------------------------------------
+// Icons
+// -------------------------------------------------------------------------
+
+$fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts';
+$fa-css-prefix: 'icon';

@@ -8,21 +8,25 @@
  * Please note that missing files will produce a fatal error.
  *
  * @link https://github.com/roots/sage/pull/1042
+ *
+ * @package BLR_Base_Theme/Includes
  */
+
 $sage_includes = [
-  'lib/assets.php',    // Scripts and stylesheets
-  'lib/extras.php',    // Custom functions
-  'lib/setup.php',     // Theme setup
-  'lib/titles.php',    // Page titles
-  'lib/wrapper.php',   // Theme wrapper class
-  'lib/customizer.php' // Theme customizer
+	'lib/assets.php',     // Scripts and stylesheets.
+	'lib/extras.php',     // Custom functions.
+	'lib/setup.php',      // Theme setup.
+	'lib/titles.php',     // Page titles.
+	'lib/wrapper.php',    // Theme wrapper class.
+	'lib/customizer.php', // Theme customizer.
 ];
 
-foreach ($sage_includes as $file) {
-  if (!$filepath = locate_template($file)) {
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'sage'), $file), E_USER_ERROR);
-  }
+foreach ( $sage_includes as $file ) {
+	if ( ! $filepath = locate_template( $file ) ) {
+		$error_message = sprintf( __( 'Error locating %s for inclusion', 'sage' ), $file );
+		trigger_error( esc_html( $error_message ), E_USER_ERROR );
+	}
 
-  require_once $filepath;
+	require_once $filepath;
 }
-unset($file, $filepath);
+unset( $file, $filepath );

@@ -1,5 +1,15 @@
-<?php use Roots\Sage\Titles; ?>
+<?php
+/**
+ * Page header template.
+ *
+ * @package BLR_Base_Theme/Templates
+ */
+
+use Roots\Sage\Titles;
+?>
 
 <div class="page-header">
-  <h1><?= Titles\title(); ?></h1>
+	<h1>
+		<?php echo esc_html( Titles\title() ); ?>
+	</h1>
 </div>
