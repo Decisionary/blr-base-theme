@@ -1,0 +1,85 @@
+button {
+	padding: 5px 20px;
+	border:2px solid;
+	font-size: rem-calc(16px);
+	background:#fff;
+	&.info {
+		color: $brand-info;
+		border-color:$brand-info;
+		&:hover {
+			background: $brand-info;
+			color:#fff;
+			}
+		}
+
+	&.alert {
+		color: $brand-warning;
+		border-color:$brand-warning;
+		&:hover {
+			background: $brand-warning;
+			color:#fff;
+			}
+		}
+
+	&.success {
+		color: $brand-success;
+		border-color:$brand-success;
+		&:hover {
+			background: $brand-success;
+			color:#fff;
+			}
+		}
+
+	&.error {
+		color: $brand-danger;
+		border-color:$brand-danger;
+		&:hover {
+			background: $brand-danger;
+			color:#fff;
+			}
+		}
+	}
+
+a.button {
+	display:inline-block;
+	padding: 5px 20px;
+	font-size: rem-calc(16px);
+	border:2px solid;
+	background:#fff;
+	text-decoration:none;
+
+		&.error {
+			color: $brand-danger;
+			border-color:$brand-danger;
+			&:hover {
+				background: $brand-danger;
+				color:#fff;
+				}
+			}
+	&.info {
+		color: $brand-info;
+		border-color:$brand-info;
+		&:hover {
+			background: $brand-info;
+			color:#fff;
+			}
+		}
+
+	&.alert {
+		color: $brand-warning;
+		border-color:$brand-warning;
+		&:hover {
+			background: $brand-warning;
+			color:#fff;
+			}
+		}
+
+	&.success {
+		color: $brand-success;
+		border-color:$brand-success;
+		&:hover {
+			background: $brand-success;
+			color:#fff;
+			}
+		}
+	}

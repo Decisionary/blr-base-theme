@@ -1,0 +1,7 @@
+#right-content-sidebar {
+	@include span(last 7);
+	}
+
+#left-content-nav {
+	@include span(first 5);
+	}

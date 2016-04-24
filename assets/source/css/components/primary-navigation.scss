@@ -1,3 +1,19 @@
 .nav-primary {
-	background-color:#666;
+	background-color: $primary-nav-background;
+	ul {
+		@include susy-clearfix;
+		padding:0;
+		list-style:none;
+
+		li {
+			padding:rem-calc(5px) rem-calc(25px);
+			float:left;
+
+			a {
+				font-size: $font-size-nav-item;
+				color:#fff;
+				text-decoration: none;
+				}
+			}
+		}
 	}

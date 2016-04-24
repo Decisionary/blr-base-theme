@@ -26,6 +26,7 @@ class GulpTasks {
 				outputStyle: 'expanded',
 				precision: 10,
 				includePaths: [ 'bower_components', 'node_modules' ],
+				errorLogToConsole: true,
 			},
 			autoprefixer: {
 				browsers: [
@@ -42,8 +43,9 @@ class GulpTasks {
 	get files() {
 		return {
 			css: {
-				source: 'assets/source/css/**/*.scss',
-				dest:   'assets/dist/css/'
+				source: 'assets/source/css/main.scss',
+				dest:   'assets/dist/css/',
+				all: 'assets/source/css/**/*.scss',
 			},
 			js: {
 				source: 'assets/source/js/**/*.js',
@@ -107,8 +109,8 @@ class GulpTasks {
 	}
 
 	watch() {
-		gulp.watch( this.files.js.source, this.buildJS() );
-		gulp.watch( this.files.css.source, this.buildCSS() );
+		gulp.watch( this.files.js.source, this.buildJS );
+		gulp.watch( this.files.css.all, this.buildCSS );
 	}
 
 	default() {

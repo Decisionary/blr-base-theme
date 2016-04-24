@@ -1,0 +1,25 @@
+html {font-size: $font-size-base}
+body {
+	font-family: $font-family-base;
+	@include container(1124px);
+	font-size: $font-size-base;
+	&.left-nav-active.right-sidebar-active {
+		main {
+			@include span(12 of 24);
+			}
+		}
+	&.left-nav-active {
+		main {
+			@include span(19 of 24);
+			@include last;
+			}
+		}
+	&.right-sidebar-active {
+		main {
+			@include span(17 of 24);
+			@include first;
+			}
+
+		}
+	}
+

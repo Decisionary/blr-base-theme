@@ -36,14 +36,19 @@ use Roots\Sage\Wrapper;
 		?>
 		<div class="wrap container" role="document">
 			<div class="content row">
+				<?php if ( is_active_sidebar('nav-1') ) : ?>
+					<div id="left-content-nav" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'nav-1' ); ?>
+					</div>
+				<?php endif ?>
 				<main class="main">
 					<?php include Wrapper\template_path(); ?>
 				</main><!-- /.main -->
-				<?php if ( Setup\display_sidebar() ) : ?>
-					<aside class="sidebar">
-						<?php include Wrapper\sidebar_path(); ?>
-					</aside><!-- /.sidebar -->
-				<?php endif; ?>
+				<?php if ( is_active_sidebar('sidebar-1') ) : ?>
+					<div id="right-content-sidebar" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'sidebar-1' ); ?>
+					</div>
+				<?php endif ?>
 			</div><!-- /.content -->
 		</div><!-- /.wrap -->
 		<?php

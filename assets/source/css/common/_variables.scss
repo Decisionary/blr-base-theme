@@ -6,7 +6,7 @@
 $susy: (
 	columns: 24,
 	gutters: 20px / 26px,
-	gutter-position: inside,
+	gutter-position: split,
 	global-box-sizing: border-box,
 );
 
@@ -31,6 +31,8 @@ $brand-success:        #58b956;
 $brand-info:           #58c0e0;
 $brand-warning:        #f1ae42;
 $brand-danger:         #ca2026;
+
+$primary-nav-background: #393939;
 
 // Content
 $body-color:           #555;

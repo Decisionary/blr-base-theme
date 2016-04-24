@@ -11,7 +11,7 @@
  *
  * @package BLR_Base_Theme/Includes
  */
-
+define('THEME_NAME','blr-base-theme');
 $sage_includes = [
 	'lib/assets.php',     // Scripts and stylesheets.
 	'lib/extras.php',     // Custom functions.
@@ -30,3 +30,43 @@ foreach ( $sage_includes as $file ) {
 	require_once $filepath;
 }
 unset( $file, $filepath );
+
+
+function blr_base_theme_register_sidebars() {
+	register_sidebar(
+		[
+			'name' => __('Left Nav', THEME_NAME),
+			'id' => 'nav-1',
+			'description' => __('The left navigation sidebar in a BLR theme',THEME_NAME),
+			'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+			'after_widget' => '</aside>'
+		]
+	);
+
+	register_sidebar(
+		[
+			'name' => __('Right Sidebar', THEME_NAME),
+			'id' => 'sidebar-1',
+			'description' => __('The right sidebar sidebar in a BLR theme',THEME_NAME),
+			'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+			'after_widget' => '</aside>'
+		]
+	);
+
+	unregister_sidebar('sidebar-primary');
+}
+
+function blr_base_theme_add_sidebar_body_classes($classes){
+	if(is_active_sidebar('nav-1')) {
+		$classes[] = 'left-nav-active';
+	}
+
+	if(is_active_sidebar('sidebar-1')) {
+		$classes[] = 'right-sidebar-active';
+	}
+
+	return $classes;
+}
+
+add_action( 'widgets_init', 'blr_base_theme_register_sidebars' );
+add_action('body_class','blr_base_theme_add_sidebar_body_classes');
