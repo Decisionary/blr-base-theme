@@ -46,7 +46,7 @@ function setup() {
 
 	// Use main stylesheet for visual editor.
 	// To add custom styles edit `/assets/styles/layouts/_tinymce.scss`.
-	add_editor_style( Assets\asset_path( 'styles/main.css' ) );
+	add_editor_style( Assets\asset_path( 'css/app.css' ) );
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
@@ -95,7 +95,7 @@ function display_sidebar() {
  * Theme assets
  */
 function assets() {
-	wp_enqueue_style( 'sage/css', Assets\asset_path( 'styles/main.css' ), false, null );
+	wp_enqueue_style( 'sage/css', Assets\asset_path( 'css/app.css' ), false, null );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
