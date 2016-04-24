@@ -23,3 +23,15 @@ body {
 		}
 	}
 
+a {
+	color: $link-color;
+	text-decoration:none;
+	font-size: $font-size-base;
+	&:hover {
+		text-decoration: underline;
+		}
+	&:visited {
+		color: $visited-link-color;
+		}
+	}
+

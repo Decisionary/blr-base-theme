@@ -3,6 +3,13 @@ button {
 	border:2px solid;
 	font-size: rem-calc(16px);
 	background:#fff;
+
+	color: $brand-primary;
+	border-color: $brand-primary;
+	&:hover {
+		color:#fff;
+		background-color:$brand-primary;
+		}
 	&.info {
 		color: $brand-info;
 		border-color:$brand-info;
@@ -47,6 +54,21 @@ a.button {
 	border:2px solid;
 	background:#fff;
 	text-decoration:none;
+
+	color: $brand-primary;
+	border-color: $brand-primary;
+
+	&:hover {
+		text-decoration:none;
+		color:#fff;
+		background-color: $brand-primary;
+		&:visited {
+			color: #fff;
+			}
+		}
+	&:visited {
+		color: $brand-primary;
+		}
 
 		&.error {
 			color: $brand-danger;
