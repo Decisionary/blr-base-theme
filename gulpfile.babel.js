@@ -25,7 +25,10 @@ class GulpTasks {
 			sass: {
 				outputStyle: 'expanded',
 				precision: 10,
-				includePaths: [ 'bower_components', 'node_modules' ],
+				includePaths: [
+					'bower_components',
+					'node_modules'
+				],
 				errorLogToConsole: true,
 			},
 			autoprefixer: {
@@ -43,9 +46,11 @@ class GulpTasks {
 	get files() {
 		return {
 			css: {
-				source: 'assets/source/css/main.scss',
-				dest:   'assets/dist/css/',
-				all: 'assets/source/css/**/*.scss',
+				source: [
+					'assets/source/css/**/*.scss',
+					'!assets/source/css/**/_*.scss',
+				],
+				dest:   'assets/dist/css/'
 			},
 			js: {
 				source: 'assets/source/js/**/*.js',

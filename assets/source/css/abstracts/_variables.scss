@@ -1,6 +1,6 @@
 
 // -------------------------------------------------------------------------
-// Global settings
+// Grid / Layout
 // -------------------------------------------------------------------------
 
 $susy: (
@@ -8,7 +8,7 @@ $susy: (
 	gutters: 20px / 26px,
 	gutter-position: split,
 	global-box-sizing: border-box,
-);
+) !default;
 
 $breakpoints: (
 	xs:  0,
@@ -16,44 +16,46 @@ $breakpoints: (
 	md:  rem-calc( 756px ),
 	lg:  rem-calc( 940px ),
 	xl:  rem-calc( 1124px ),
-);
+) !default;
+
+
 
 
 // -------------------------------------------------------------------------
 // Colors
 // -------------------------------------------------------------------------
 
-// Brand
-$brand-primary:        #d2202f;
-$brand-secondary:      #aeb6b4;
-$brand-tertiary:       #f4f4f4;
-$brand-success:        #58b956;
-$brand-info:           #58c0e0;
-$brand-warning:        #f1ae42;
-$brand-danger:         #ca2026;
+$brand-primary:        #d2202f !default;
+$brand-secondary:      #aeb6b4 !default;
+$brand-tertiary:       #f4f4f4 !default;
+$brand-success:        #58b956 !default;
+$brand-info:           #58c0e0 !default;
+$brand-warning:        #f1ae42 !default;
+$brand-danger:         #ca2026 !default;
 
-$primary-nav-background: #393939;
+$primary-nav-background: #393939 !default;
 
 // Content
-$body-color:           #555;
-$link-color:           #0071bc;
-$visited-link-color:   #663399;
+$body-color:           #555 !default;
+$link-color:           #0071bc !default;
+$visited-link-color:   #663399 !default;
 
 // -------------------------------------------------------------------------
 // Typography
 // -------------------------------------------------------------------------
 
-$font-family-base:    'Open Sans', sans-serif;
+$font-family-base:    'Open Sans', sans-serif !default;
 
-$font-size-base:      rem-calc( 14px );
-$font-size-nav-item:  rem-calc( 16px );
-$font-size-title:     rem-calc( 18px );
-$font-size-heading:   rem-calc( 20px );
+$font-size-base:      rem-calc( 14px ) !default;
+$font-size-nav-item:  rem-calc( 16px ) !default;
+$font-size-title:     rem-calc( 18px ) !default;
+$font-size-heading:   rem-calc( 20px ) !default;
+
 
 
 // -------------------------------------------------------------------------
 // Icons
 // -------------------------------------------------------------------------
 
-$fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts';
-$fa-css-prefix: 'icon';
+$fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts' !default;
+$fa-css-prefix: 'icon' !default;
