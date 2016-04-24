@@ -8,7 +8,9 @@
 		li {
 			padding:rem-calc(5px) rem-calc(25px);
 			float:left;
-
+			&:hover {
+				background-color:#000;
+				}
 			a {
 				font-size: $font-size-nav-item;
 				color:#fff;

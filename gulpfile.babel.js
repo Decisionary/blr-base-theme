@@ -115,7 +115,7 @@ class GulpTasks {
 
 	watch() {
 		gulp.watch( this.files.js.source, this.buildJS );
-		gulp.watch( this.files.css.all, this.buildCSS );
+		gulp.watch( this.files.css.source[0], this.buildCSS );
 	}
 
 	default() {

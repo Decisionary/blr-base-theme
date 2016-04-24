@@ -1,2 +1,23 @@
 
 @include global-box-sizing( border-box, true );
+
+body {
+	font-family: $font-family-base;
+	@include container(1124px);
+	font-size:   $font-size-base;
+	}
+
+html {font-size: $font-size-base}
+
+
+a {
+	color: $link-color;
+	text-decoration:none;
+	font-size: $font-size-base;
+	&:hover {
+		text-decoration: underline;
+		}
+	&:visited {
+		color: $visited-link-color;
+		}
+	}

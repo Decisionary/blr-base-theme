@@ -97,12 +97,12 @@ function display_sidebar() {
 function assets() {
 
 	wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css' );
-	wp_enqueue_style( 'blr/main', Assets\asset_path( 'styles/main.css' ), false, null );
+	wp_enqueue_style( 'blr/main', Assets\asset_path( 'css/app.css' ), false, null );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_script( 'blr/main', Assets\asset_path( 'scripts/main.js' ), [ 'jquery' ], null, true );
+	wp_enqueue_script( 'blr/main', Assets\asset_path( 'js/app.js' ), [ 'jquery' ], null, true );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );
