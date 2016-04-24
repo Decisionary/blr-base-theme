@@ -6,7 +6,7 @@
 	@include span(first 5 of 24);
 
 	ul.menu {
-		margin:0;
+		margin:0 0 0 20px;
 		background-color: $brand-primary;
 		padding:15px 0 0 0;
 		color:#fff;

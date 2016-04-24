@@ -63,20 +63,100 @@ function blr_base_theme_register_sidebars() {
 		]
 	);
 
+	register_sidebar(
+		[
+			'name' => __('Pre-Header', THEME_NAME),
+			'id' => 'preheader-1',
+			'description' => __('The space above the header in a BLR theme',THEME_NAME),
+			'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+			'after_widget' => '</aside>'
+		]
+	);
+
+	register_sidebar(
+		[
+			'name' => __('Post-Footer', THEME_NAME),
+			'id' => 'postfooter-1',
+			'description' => __('The area after the footer in a BLR theme',THEME_NAME),
+			'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+			'after_widget' => '</aside>'
+		]
+	);
+
 	unregister_sidebar('sidebar-primary');
 }
 
 function blr_base_theme_add_sidebar_body_classes($classes){
-	if(is_active_sidebar('nav-1')) {
-		$classes[] = 'left-nav-active';
-	}
-
-	if(is_active_sidebar('sidebar-1')) {
-		$classes[] = 'right-sidebar-active';
+	if(is_active_sidebar('nav-1') && is_active_sidebar('sidebar-1')) {
+		$classes[] = 'three-column';
+	}else if(is_active_sidebar('sidebar-1')) {
+		$classes[] = 'right-column';
+	} else if (is_active_sidebar('nav-1')) {
+		$classes[] = 'left-column';
 	}
 
 	return $classes;
 }
 
-add_action( 'widgets_init', 'blr_base_theme_register_sidebars' );
-add_action('body_class','blr_base_theme_add_sidebar_body_classes');
+function blr_base_theme_customizer( $wp_customizer ) {
+	$wp_customizer->add_section( 'blr_base_theme_header_logo', array(
+			'title' => __('Header Logo', THEME_NAME),
+			'priority' => 30,
+			'description' => "Upload the primary logo for the header"
+		)
+	);
+
+	$wp_customizer->add_setting('blr_base_theme_primary_logo', array(
+		'default' => get_bloginfo('template_directory') . '/images/primary-logo.png',
+	));
+
+	$wp_customizer->add_control( new WP_Customize_Image_Control($wp_customizer, 'blr_base_theme_primary_logo',array(
+		'label' => __('Primary Logo', THEME_NAME),
+		'section' => 'blr_base_theme_header_logo',
+		'settings' => 'blr_base_theme_primary_logo'
+	)));
+
+	$wp_customizer->add_section( 'blr_base_theme_search_logo', array(
+			'title' => __('Search Logo', THEME_NAME),
+			'priority' => 30,
+			'description' => "Upload the search logo for the header"
+		)
+	);
+
+	$wp_customizer->add_setting('blr_base_theme_search_logo', array(
+		'default' => get_bloginfo('template_directory') . '/images/search-logo.png',
+	));
+
+	$wp_customizer->add_control( new WP_Customize_Image_Control($wp_customizer, 'blr_base_theme_search_logo',array(
+		'label' => __('Search Logo', THEME_NAME),
+		'section' => 'blr_base_theme_search_logo',
+		'settings' => 'blr_base_theme_search_logo'
+	)));
+
+	$wp_customizer->add_section( 'blr_base_theme_footer_logo', array(
+			'title' => __('Footer Logo', THEME_NAME),
+			'priority' => 30,
+			'description' => "Upload the footer logo for the header"
+		)
+	);
+
+	$wp_customizer->add_setting('blr_base_theme_footer_logo', array(
+		'default' => get_bloginfo('template_directory') . '/images/footer-logo.png',
+	));
+
+	$wp_customizer->add_control( new WP_Customize_Image_Control($wp_customizer, 'blr_base_theme_footer_logo',array(
+		'label' => __('Footer Logo', THEME_NAME),
+		'section' => 'blr_base_theme_footer_logo',
+		'settings' => 'blr_base_theme_footer_logo'
+	)));
+}
+
+function blr_base_theme_register_menus() {
+	register_nav_menu('footer-menu', __('Footer Menu', THEME_NAME ) );
+	register_nav_menu('search-menu', __('Search Menu', THEME_NAME ) );
+}
+
+add_action( 'init', 'blr_base_theme_register_menus' );
+add_action( 'widgets_init' , 'blr_base_theme_register_sidebars' );
+add_action( 'body_class' , 'blr_base_theme_add_sidebar_body_classes' );
+add_action( 'customize_register' , 'blr_base_theme_customizer' );

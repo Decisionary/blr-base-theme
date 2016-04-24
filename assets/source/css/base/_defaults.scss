@@ -5,9 +5,13 @@ body {
 	font-family: $font-family-base;
 	@include container(1124px);
 	font-size:   $font-size-base;
+	background-color:#f4f4f4;
 	}
 
-html {font-size: $font-size-base}
+html {
+	font-size: $font-size-base;
+	background-color: #f4f4f4;
+	}
 
 
 a {
@@ -20,4 +24,19 @@ a {
 	&:visited {
 		color: $visited-link-color;
 		}
+	}
+
+.row {
+	@include susy-clearfix;
+	}
+
+body > .container, .banner, .content {
+	background:#fff;
+	}
+
+body > .container {
+	border: 1px solid #e3e3e3;
+	border-top:none;
+	border-bottom:none;
+	padding-top:20px;
 	}

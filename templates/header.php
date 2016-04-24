@@ -9,9 +9,15 @@
 
 <header class="banner">
 	<div class="container">
-		<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<?php bloginfo( 'name' ); ?>
-		</a>
+		<div>
+			<?php
+				if ( get_theme_mod( 'blr_base_theme_primary_logo' ) ) :
+					echo '<img src="' . esc_url( get_theme_mod( 'blr_base_theme_primary_logo' ) ) . '">';
+				else:
+					echo get_bloginfo('name') . '<span>' . get_bloginfo('description') . '</span>';
+				endif;
+			?>
+		</div>
 		<nav class="nav-primary">
 			<?php
 			if ( has_nav_menu( 'primary_navigation' ) ) :

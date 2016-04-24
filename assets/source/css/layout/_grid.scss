@@ -1,16 +1,16 @@
 body {
-	&.left-nav-active.right-sidebar-active {
+	&.three-column {
 		main {
 			@include span(12 of 24);
 			}
 		}
-	&.left-nav-active {
+	&.left-column {
 		main {
 			@include span(19 of 24);
 			@include last;
 			}
 		}
-	&.right-sidebar-active {
+	&.right-column {
 		main {
 			@include span(17 of 24);
 			@include first;
