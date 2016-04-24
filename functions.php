@@ -53,6 +53,16 @@ function blr_base_theme_register_sidebars() {
 		]
 	);
 
+	register_sidebar(
+		[
+			'name' => __('Breadcrumb', THEME_NAME),
+			'id' => 'breadcrumb-1',
+			'description' => __('The breadcrumb in a BLR theme',THEME_NAME),
+			'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+			'after_widget' => '</aside>'
+		]
+	);
+
 	unregister_sidebar('sidebar-primary');
 }
 

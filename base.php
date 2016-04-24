@@ -34,6 +34,13 @@ use Roots\Sage\Wrapper;
 		do_action( 'get_header' );
 		get_template_part( 'templates/header' );
 		?>
+		<div class="content row">
+			<?php if ( is_active_sidebar('breadcrumb-1') ) : ?>
+				<div id="main-breadcrumb" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'breadcrumb-1' ); ?>
+					</div>
+			<?php endif ?>
+		</div>
 		<div class="wrap container" role="document">
 			<div class="content row">
 				<?php if ( is_active_sidebar('nav-1') ) : ?>
