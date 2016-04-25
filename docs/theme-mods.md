@@ -1,5 +1,7 @@
 # Theme Mods
 
+The following theme mods are most easily accessed and edited through the 'customizer' interface on the front end of the site.
+
 ## Primary Logo
 Displayed in the header on the left, this is the primary logo for the site.
 
@@ -8,6 +10,9 @@ Sets the 'search logo' in the header.  Often used for a 'powered by BLR|HCPro' b
 
 ## Footer Logo
 Usually an HCPro or BLR logo, this is displayed in the footer.
+
+## Copyright Text
+This is the text that is displayed in the footer, beneath the footer navigation.
 
 ## Sidebars
 
