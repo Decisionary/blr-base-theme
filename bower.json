@@ -26,5 +26,16 @@
     "susy": "^2.2.12",
     "font-awesome": "^4.5.0",
     "normalize-css": "^4.1.0"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "./scss/font-awesome.scss",
+        "./fonts/*"
+      ]
+    }
+  },
+  "dependencies": {
+    "font-awesome": "^4.6.1"
   }
 }

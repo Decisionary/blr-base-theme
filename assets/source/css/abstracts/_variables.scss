@@ -64,4 +64,11 @@ $body-background:		#FFF !default;
 $header-background:		#FFF !default;
 $content-background:	#F4F4F4 !default;
 
-$footer-menu-color: #fff;
+$footer-menu-color: #fff !default;
+$footer-menu-size: rem-calc(14px) !default;
+
+$search-menu-color: #555 !default;
+$search-menu-size: rem-calc(14px) !default;
+
+$footer-copyright-color: #666 !default;
+$footer-copyright-size: rem-calc(13px) !default;

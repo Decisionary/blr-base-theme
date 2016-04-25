@@ -1,4 +1,5 @@
 @import 'susy/sass/susy';
+
 // Abstracts
 @import 'abstracts/functions';
 @import 'abstracts/variables';
@@ -22,6 +23,7 @@
 @import 'components/primary-navigation';
 @import 'components/footer-navigation';
 @import 'components/search-navigation';
+@import 'components/header-search';
 @import 'components/breadcrumb';
 @import 'components/buttons';
 @import 'components/comments';

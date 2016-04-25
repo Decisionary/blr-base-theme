@@ -149,6 +149,27 @@ function blr_base_theme_customizer( $wp_customizer ) {
 		'section' => 'blr_base_theme_footer_logo',
 		'settings' => 'blr_base_theme_footer_logo'
 	)));
+
+	$wp_customizer->add_section( 'blr_base_theme_copyright', array(
+			'title' => __('Footer Copyright Statement', THEME_NAME),
+			'priority' => 30,
+			'description' => "Set the copyright text for the footer"
+		)
+	);
+
+	$wp_customizer->add_setting('blr_base_theme_copyright_text', array(
+		'default' =>  'Copyright &copy; ' . date('Y') . '&mdash; Business &amp Legal Resources.  All rights reserved.',
+	));
+
+	$wp_customizer->add_control(
+		'copyright_textbox',
+		array(
+			'label' => __( 'Copyright text', THEME_NAME ),
+			'section' => 'blr_base_theme_copyright',
+			'type' => 'text',
+			'settings' => 'blr_base_theme_copyright_text'
+		)
+	);
 }
 
 function blr_base_theme_register_menus() {

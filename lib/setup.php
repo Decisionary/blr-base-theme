@@ -97,6 +97,7 @@ function display_sidebar() {
 function assets() {
 
 	wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css' );
+	wp_enqueue_style( 'fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' );
 	wp_enqueue_style( 'blr/main', Assets\asset_path( 'css/app.css' ), false, null );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {

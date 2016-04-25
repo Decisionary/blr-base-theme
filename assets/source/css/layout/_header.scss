@@ -1,3 +1,28 @@
+.banner {
+	@include susy-clearfix;
+	.logo {
+		@include span(12 of 24);
+		}
+	.header-right {
+		@include susy-clearfix;
+		@include span(last 12 of 24);
+		padding-top: 20px;
+		.menu-search-in-header-container {
+			float:right;
+			}
+		form.search-form {
+			clear:right;
+			}
+		div.search {
+			float:right;
+			}
+		div.search-logo {
+			float:right;
+			margin-left: 30px;
+			width:73px;
+			}
+		}
+	}
 img {
 	margin: 15px 0;
 	}
