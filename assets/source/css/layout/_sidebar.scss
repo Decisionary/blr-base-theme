@@ -1,0 +1,31 @@
+#right-content-sidebar {
+	@include span(last 7 of 24);
+	}
+
+#left-content-nav {
+	@include span(first 5 of 24);
+
+	ul.menu {
+		margin:0 0 0 20px;
+		background-color: $brand-primary;
+		padding:15px 0 0 0;
+		color:#fff;
+		list-style:none;
+		font-size: $font-size-nav-item;
+		li{
+			padding:5px 15px;
+			&.current-menu-item {
+				background-color: #3a3939;
+
+					}
+
+			}
+			a {
+				color:#fff;
+				&:visited {
+					color:#fff;
+					}
+
+				}
+		}
+	}

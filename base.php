@@ -15,7 +15,7 @@ use Roots\Sage\Wrapper;
 	<?php get_template_part( 'templates/head' ); ?>
 	<body <?php body_class(); ?>>
 		<!--[if IE]>
-			<div class="alert alert-warning">
+		<div class="alert alert-warning">
 				<?php
 				printf(
 					esc_html__(
@@ -28,28 +28,39 @@ use Roots\Sage\Wrapper;
 					'</a>'
 				);
 				?>
-			</div>
-		<![endif]-->
+			</div>		<![endif]-->
 		<?php
 		do_action( 'get_header' );
 		get_template_part( 'templates/header' );
 		?>
+		<div class="content row">
+			<?php if ( is_active_sidebar( 'breadcrumb-1' ) ) : ?>
+				<div id="main-breadcrumb" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'breadcrumb-1' ); ?>
+					</div>
+			<?php endif ?>
+		</div>
 		<div class="wrap container" role="document">
 			<div class="content row">
+				<?php if ( is_active_sidebar( 'nav-1' ) ) : ?>
+					<div id="left-content-nav" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'nav-1' ); ?>
+					</div>
+				<?php endif ?>
 				<main class="main">
 					<?php include Wrapper\template_path(); ?>
 				</main><!-- /.main -->
-				<?php if ( Setup\display_sidebar() ) : ?>
-					<aside class="sidebar">
-						<?php include Wrapper\sidebar_path(); ?>
-					</aside><!-- /.sidebar -->
-				<?php endif; ?>
+				<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
+					<div id="right-content-sidebar" class="widget-area" role="complementary">
+						<?php dynamic_sidebar( 'sidebar-1' ); ?>
+					</div>
+				<?php endif ?>
 			</div><!-- /.content -->
 		</div><!-- /.wrap -->
 		<?php
-			do_action( 'get_footer' );
-			get_template_part( 'templates/footer' );
-			wp_footer();
+		do_action( 'get_footer' );
+		get_template_part( 'templates/footer' );
+		wp_footer();
 		?>
 	</body>
 </html>

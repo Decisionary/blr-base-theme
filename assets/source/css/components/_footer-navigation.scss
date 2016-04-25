@@ -1,0 +1,38 @@
+footer {
+	.footer-copyright {
+		font-size: $footer-copyright-size;
+		color: $footer-copyright-color;
+		}
+	}
+.menu-footer-menu-container {
+
+	ul {
+		@include susy-clearfix;
+		list-style: none;
+		margin:0 0 10px 0;
+		padding:0;
+		li {
+			float:left;
+			padding: 0 10px 0 5px;
+			margin:0 0 0 5px;
+			border-right: 1px solid $footer-menu-color;
+			font-size: $footer-menu-size;
+
+			&:last-of-type {
+				border:none;
+				}
+			&:first-of-type {
+				padding-left:0;
+				margin-left:0;
+				}
+
+			a {
+				color:$footer-menu-color;
+				font-size:$footer-menu-size;
+				&:visited {
+					color:$footer-menu-color;
+					}
+				}
+			}
+		}
+	}

@@ -1,0 +1,21 @@
+.nav-primary {
+	background-color: $primary-nav-background;
+	ul {
+		@include susy-clearfix;
+		padding:0;
+		list-style:none;
+		margin:0;
+		li {
+			padding:rem-calc(5px) rem-calc(25px);
+			float:left;
+			&:hover {
+				background-color:#000;
+				}
+			a {
+				font-size: $font-size-nav-item;
+				color:#fff;
+				text-decoration: none;
+				}
+			}
+		}
+	}

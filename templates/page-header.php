@@ -6,6 +6,7 @@
  */
 
 use Roots\Sage\Titles;
+
 ?>
 
 <div class="page-header">

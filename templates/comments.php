@@ -21,7 +21,8 @@ if ( post_password_required() ) {
 					get_comments_number(),
 					'comments title',
 					'sage'
-				) ),
+				)
+				),
 				esc_html( number_format_i18n( get_comments_number() ) ),
 				'<span>' . get_the_title() . '</span>'
 			); ?>
@@ -46,8 +47,7 @@ if ( post_password_required() ) {
 					<?php endif; ?>
 				</ul>
 			</nav>
-		<?php endif; ?>
-	<?php endif; ?>
+		<?php endif; ?><?php endif; ?>
 
 	<?php if ( ! comments_open() && '0' !== get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<div class="alert alert-warning">

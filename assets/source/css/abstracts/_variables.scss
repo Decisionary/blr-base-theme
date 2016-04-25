@@ -6,7 +6,7 @@
 $susy: (
 	columns: 24,
 	gutters: 20px / 26px,
-	gutter-position: inside,
+	gutter-position: split,
 	global-box-sizing: border-box,
 ) !default;
 
@@ -33,9 +33,12 @@ $brand-info:           #58c0e0 !default;
 $brand-warning:        #f1ae42 !default;
 $brand-danger:         #ca2026 !default;
 
-$body-color:           #555    !default;
-$link-color:           #0071bc !default;
+$primary-nav-background: #393939 !default;
 
+// Content
+$body-color:           #555 !default;
+$link-color:           #0071bc !default;
+$visited-link-color:   #663399 !default;
 
 // -------------------------------------------------------------------------
 // Typography
@@ -56,3 +59,16 @@ $font-size-heading:   rem-calc( 20px ) !default;
 
 $fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts' !default;
 $fa-css-prefix: 'icon' !default;
+
+$body-background:		#FFF !default;
+$header-background:		#FFF !default;
+$content-background:	#F4F4F4 !default;
+
+$footer-menu-color: #fff !default;
+$footer-menu-size: rem-calc(14px) !default;
+
+$search-menu-color: #555 !default;
+$search-menu-size: rem-calc(14px) !default;
+
+$footer-copyright-color: #666 !default;
+$footer-copyright-size: rem-calc(13px) !default;
