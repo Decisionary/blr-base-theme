@@ -7,11 +7,11 @@
 
 	ul.menu {
 		margin:0 0 0 20px;
-		background-color: $brand-primary;
+		background-color: map-get( $theme-colors, 'primary' );
 		padding:15px 0 0 0;
 		color:#fff;
 		list-style:none;
-		font-size: $font-size-nav-item;
+		font-size: map-get( $font-sizes, 'nav' );
 		li{
 			padding:5px 15px;
 			&.current-menu-item {

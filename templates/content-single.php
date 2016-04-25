@@ -2,7 +2,7 @@
 /**
  * Entry content template for single posts, pages, and custom post type entries.
  *
- * @package BLR_Base_Theme/Templates
+ * @package BLR_Base_Theme\Templates
  */
 
 ?>
@@ -18,11 +18,10 @@
 		</div>
 		<footer>
 			<?php
-			wp_link_pages( [
-				'before' => '<nav class="page-nav"><p>' . __( 'Pages:', 'sage' ),
+			wp_link_pages([
+				'before' => '<nav class="page-nav"><p>' . __( 'Pages:', 'blr-base-theme' ),
 				'after'  => '</p></nav>',
-			]
-			);
+			]);
 			?>
 		</footer>
 		<?php comments_template( '/templates/comments.php' ); ?>

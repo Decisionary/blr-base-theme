@@ -1,0 +1,63 @@
+////
+/// Custom Mixins
+///
+/// @group Abstracts
+////
+
+
+///
+/// Media query helper mixin.
+///
+/// @param
+///
+@mixin breakpoint( $breakpoint, $min-max: 'min' ) {
+	@if not variable-exists( breakpoints )
+	 or not map-has-key( $breakpoints, $breakpoint ) {
+		@warn "`#{$breakpoint}` is not a valid breakpoint name. Please check \
+			your spelling, or if this is a custom breakpoint, add it to the \
+			`$breakpoints` map defined in _variables.scss";
+	} @else {
+		$type:  'min-width';
+		$width: map-get( $breakpoints, $breakpoint );
+
+		@if 'max-width' == $min-max {
+			$type:  'max-width';
+			$width: $width - 0.0001rem;
+		}
+
+		@media( $type: $width ) {
+			@content;
+		}
+	}
+}
+
+@mixin alpha-attribute( $attribute, $color, $background: #fff ) {
+
+	$percent: alpha( $color ) * 100%;
+
+	@if ( $percent < 100% ) {
+		#{$attribute}: mix( opacify( $color, 1 ), $background, $percent );
+	}
+
+	#{$attribute}: $color;
+}
+
+@mixin button-style( $style ) {
+	@if map-has-key( $button-variants, $variant ) {
+		@include button-color( map-get( $button-variants, $variant ) );
+	} @else {
+		@warn "`#{$variant}` is not a valid button variant.";
+	}
+}
+
+@mixin button-color( $color ) {
+	color: $color;
+	border-color: $color;
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: auto-text-color( $color );
+		background-color: $color;
+	}
+}

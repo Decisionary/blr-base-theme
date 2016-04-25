@@ -82,7 +82,7 @@ class GulpTasks {
 	build( done ) {
 		this.buildCSS();
 		this.buildJS();
-		return done();
+		done();
 	}
 
 	buildCSS() {
@@ -118,8 +118,8 @@ class GulpTasks {
 		gulp.watch( this.files.css.source[0], this.buildCSS );
 	}
 
-	default() {
-		return gulp.series( this.build );
+	default( done ) {
+		return this.build( done );
 	}
 }
 

@@ -1,22 +1,41 @@
 <?php
+/**
+ * Theme wrapper functionality.
+ *
+ * @package BLR_Base_Theme\Wrapper
+ */
 
-namespace Roots\Sage\Wrapper;
+namespace BLR_Base_Theme\Wrapper;
+
 
 /**
- * Theme wrapper.
+ * Returns the main template file path.
  *
- * @link https://roots.io/sage/docs/theme-wrapper/
- * @link http://scribu.net/wordpress/theme-wrappers.html
+ * @since 0.1.0
+ *
+ * @return string
  */
 function template_path() {
-	return SageWrapping::$main_template;
+	return ThemeWrapper::$main_template;
 }
 
+/**
+ * Returns the sidebar template file path.
+ *
+ * @since 0.1.0
+ *
+ * @return string
+ */
 function sidebar_path() {
-	return new SageWrapping( 'templates/sidebar.php' );
+	return new ThemeWrapper( 'templates/sidebar.php' );
 }
 
-class SageWrapping {
+/**
+ * Theme wrapper class.
+ *
+ * @since 0.1.0
+ */
+class ThemeWrapper {
 
 	/**
 	 * Stores the full path to the main template file.
@@ -24,18 +43,21 @@ class SageWrapping {
 	 * @var string
 	 */
 	public static $main_template;
+
 	/**
 	 * Stores the base name of the template file; e.g. 'page' for 'page.php' etc.
 	 *
 	 * @var string
 	 */
 	public static $base;
+
 	/**
 	 * Basename of template file.
 	 *
 	 * @var string
 	 */
 	public $slug;
+
 	/**
 	 * Array of templates.
 	 *
@@ -43,6 +65,11 @@ class SageWrapping {
 	 */
 	public $templates;
 
+	/**
+	 * Class constructor.
+	 *
+	 * @param string $template Optional. A template file to wrap.
+	 */
 	public function __construct( $template = 'base.php' ) {
 		$this->slug = basename( $template, '.php' );
 		$this->templates = [ $template ];
@@ -53,7 +80,29 @@ class SageWrapping {
 		}
 	}
 
+	/**
+	 * Returns the wrapped template path when the class instance is converted
+	 * or casted to a string.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		$this->templates = apply_filters( 'blr-base-theme/wrap_' . $this->slug, $this->templates );
+		return locate_template( $this->templates );
+	}
+
+	/**
+	 * Wrap the main template file.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  string $main The template file.
+	 * @return ThemeWrapper
+	 */
 	public static function wrap( $main ) {
+
 		// Check for other filters returning null.
 		if ( ! is_string( $main ) ) {
 			return $main;
@@ -66,13 +115,8 @@ class SageWrapping {
 			self::$base = false;
 		}
 
-		return new SageWrapping();
-	}
-
-	public function __toString() {
-		$this->templates = apply_filters( 'sage/wrap_' . $this->slug, $this->templates );
-		return locate_template( $this->templates );
+		return new ThemeWrapper();
 	}
 }
 
-add_filter( 'template_include', [ __NAMESPACE__ . '\\SageWrapping', 'wrap' ], 109 );
+add_filter( 'template_include', [ __NAMESPACE__ . '\\ThemeWrapper', 'wrap' ], 109 );

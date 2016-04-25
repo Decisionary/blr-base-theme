@@ -1,6 +1,10 @@
 {
-  "name": "sage",
-  "homepage": "https://github.com/wesm87/wp-starter-kit",
+  "name": "blr-base-theme",
+  "private": true,
+  "version": "0.2.0",
+  "description": "A base theme for BLR WordPress sites. Based on Sage by Roots.",
+  "homepage": "https://github.com/Decisionary/blr-base-theme",
+  "license": "MIT",
   "authors": [
     "Wes Moberly <wes.moberly@decisionarytech.com>"
   ],
@@ -13,8 +17,6 @@
     "plugin",
     "starter"
   ],
-  "license": "ISC",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",

@@ -1,16 +1,12 @@
 {
   "name": "decisionary/blr-base-theme",
   "type": "wordpress-theme",
-  "version": "0.1.0",
-  "license": "MIT",
+  "version": "0.2.0",
   "description": "A base theme for BLR WordPress sites. Based on Sage by Roots.",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
+  "license": "MIT",
   "authors": [
-    {
-      "name": "Wes Moberly",
-      "email": "wes.moberly@decisionary.com",
-      "homepage": "https://github.com/wesm87"
-    }
+    "Wes Moberly <wes.moberly@decisionarytech.com>"
   ],
   "keywords": [
     "WordPress",

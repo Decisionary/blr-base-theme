@@ -2,7 +2,7 @@
 /**
  * Search page content template.
  *
- * @package BLR_Base_Theme/Templates
+ * @package BLR_Base_Theme\Templates
  */
 
 ?>

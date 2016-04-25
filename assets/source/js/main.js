@@ -10,11 +10,11 @@
  * always reference jQuery with $, even when in .noConflict() mode.
  * ======================================================================== */
 
-(function($) {
+;(function( $ ) {
 
 	// Use this variable to set up the common and page specific functions. If you
 	// rename this variable, you will also need to rename the namespace below.
-	var Sage = {
+	var BLR_Base_Theme = {
 
 		// All pages
 		'common': {
@@ -49,14 +49,14 @@
 	var UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire;
-			var namespace = Sage;
+			var namespace = BLR_Base_Theme;
 			funcname = ( funcname === undefined ) ? 'init' : funcname;
 			fire = func !== '';
 			fire = fire && namespace[func];
 			fire = fire && typeof namespace[func][funcname] === 'function';
 
 			if ( fire ) {
-				namespace[func][funcname](args);
+				namespace[ func ][ funcname ]( args );
 			}
 		},
 		loadEvents: function() {
@@ -71,11 +71,11 @@
 			});
 
 			// Fire common finalize JS
-			UTIL.fire('common', 'finalize');
+			UTIL.fire( 'common', 'finalize' );
 		}
 	};
 
 	// Load Events
-	$(document).ready(UTIL.loadEvents);
+	$( document ).ready( UTIL.loadEvents );
 
-})(jQuery); // Fully reference jQuery after this point.
+})( jQuery ); // Fully reference jQuery after this point.

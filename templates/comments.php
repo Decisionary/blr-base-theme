@@ -2,7 +2,7 @@
 /**
  * Comments template.
  *
- * @package BLR_Base_Theme/Templates
+ * @package BLR_Base_Theme\Templates
  */
 
 if ( post_password_required() ) {
@@ -20,9 +20,8 @@ if ( post_password_required() ) {
 					'%1$s responses to &ldquo;%2$s&rdquo;',
 					get_comments_number(),
 					'comments title',
-					'sage'
-				)
-				),
+					'blr-base-theme'
+				) ),
 				esc_html( number_format_i18n( get_comments_number() ) ),
 				'<span>' . get_the_title() . '</span>'
 			); ?>
@@ -37,12 +36,12 @@ if ( post_password_required() ) {
 				<ul class="pager">
 					<?php if ( get_previous_comments_link() ) : ?>
 						<li class="previous">
-							<?php previous_comments_link( __( '&larr; Older comments', 'sage' ) ); ?>
+							<?php previous_comments_link( __( '&larr; Older comments', 'blr-base-theme' ) ); ?>
 						</li>
 					<?php endif; ?>
 					<?php if ( get_next_comments_link() ) : ?>
 						<li class="next">
-							<?php next_comments_link( __( 'Newer comments &rarr;', 'sage' ) ); ?>
+							<?php next_comments_link( __( 'Newer comments &rarr;', 'blr-base-theme' ) ); ?>
 						</li>
 					<?php endif; ?>
 				</ul>
@@ -51,7 +50,7 @@ if ( post_password_required() ) {
 
 	<?php if ( ! comments_open() && '0' !== get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<div class="alert alert-warning">
-			<?php esc_html_e( 'Comments are closed.', 'sage' ); ?>
+			<?php esc_html_e( 'Comments are closed.', 'blr-base-theme' ); ?>
 		</div>
 	<?php endif; ?>
 

@@ -2,29 +2,47 @@
 // http://codex.wordpress.org/CSS#WordPress_Generated_Classes
 
 // Media alignment
-.alignnone {
-	max-width: 100%;
-	height: auto;
-	margin-left: 0;
-	margin-right: 0;
-}
-
-.aligncenter {
-	display: block;
-	height: auto;
-}
-
+.alignnone,
+.aligncenter,
 .alignleft,
 .alignright {
+	float: none;
+	display: inline-block;
+	max-width: 100%;
 	height: auto;
+	margin: 0.5rem auto;
 }
 
-@media ( min-width: 48em ) {
+@include breakpoint( md ) {
+	.alignnone {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
 	.alignleft {
 		float: left;
+		margin-left: 0;
+		margin-right: 0.5rem;
 	}
 
 	.alignright {
 		float: right;
+		margin-left: 0.5rem;
+		margin-right: 0;
 	}
+}
+
+// Captions
+.wp-caption {
+	// @extend .thumbnail;
+}
+
+.wp-caption-text {
+	padding: 0.5rem;
+}
+
+// Text meant only for screen readers
+.screen-reader-text {
+	// @extend .sr-only;
+	// @extend .sr-only-focusable;
 }
