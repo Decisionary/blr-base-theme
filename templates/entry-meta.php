@@ -5,7 +5,7 @@
  * @package BLR_Base_Theme/Templates
  */
 
-$post_time  = get_post_time( 'c', true );
+$post_time = get_post_time( 'c', true );
 $author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
 ?>
 

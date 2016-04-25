@@ -17,9 +17,9 @@
 		<?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?>
 		<div class="footer-copyright">
 			<?php
-				if ( get_theme_mod( 'blr_base_theme_copyright_text' ) ) :
-					echo  get_theme_mod( 'blr_base_theme_copyright_text' );
-				endif;
+			if ( get_theme_mod( 'blr_base_theme_copyright_text' ) ) :
+				echo get_theme_mod( 'blr_base_theme_copyright_text' );
+			endif;
 			?>
 		</div>
 		<?php dynamic_sidebar( 'sidebar-footer' ); ?>
