@@ -1,15 +1,20 @@
 <?php
+/**
+ * Theme setup.
+ *
+ * @package BLR_Base_Theme\Setup
+ */
 
-namespace Roots\Sage\Setup;
+namespace BLR_Base_Theme\Setup;
 
-use Roots\Sage\Assets;
+use BLR_Base_Theme\Assets;
 
 /**
  * Theme setup
  */
 function setup() {
-	// Enable features from Soil when plugin is activated
-	// https://roots.io/plugins/soil/
+
+	// Enable features from Soil when plugin is activated.
 	add_theme_support( 'soil-clean-up' );
 	add_theme_support( 'soil-nav-walker' );
 	add_theme_support( 'soil-nice-search' );
@@ -17,37 +22,27 @@ function setup() {
 	add_theme_support( 'soil-relative-urls' );
 
 	// Make theme available for translation.
-	// Community translations can be found at https://github.com/roots/sage-translations
-	load_theme_textdomain( 'sage', get_template_directory() . '/lang' );
+	load_theme_textdomain( 'blr-base-theme', get_template_directory() . '/lang' );
 
 	// Enable plugins to manage the document title.
-	// http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
 	add_theme_support( 'title-tag' );
 
 	// Register wp_nav_menu() menus.
-	// http://codex.wordpress.org/Function_Reference/register_nav_menus
-	register_nav_menus( [
-		'primary_navigation' => __( 'Primary Navigation', 'sage' ),
-	]
-	);
+	register_nav_menus([
+		'primary_navigation' => __( 'Primary Navigation', 'blr-base-theme' ),
+	]);
 
 	// Enable post thumbnails.
-	// http://codex.wordpress.org/Post_Thumbnails
-	// http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
-	// http://codex.wordpress.org/Function_Reference/add_image_size
 	add_theme_support( 'post-thumbnails' );
 
 	// Enable post formats.
-	// http://codex.wordpress.org/Post_Formats
 	add_theme_support( 'post-formats', [ 'aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio' ] );
 
 	// Enable HTML5 markup support.
-	// http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
 	add_theme_support( 'html5', [ 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form' ] );
 
 	// Use main stylesheet for visual editor.
-	// To add custom styles edit `/assets/styles/layouts/_tinymce.scss`.
-	add_editor_style( Assets\asset_path( 'css/app.css' ) );
+	add_editor_style( Assets\asset_url( 'css/app.css' ) );
 }
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
@@ -56,25 +51,23 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
  * Register sidebars
  */
 function widgets_init() {
-	register_sidebar( [
-		'name'          => __( 'Primary', 'sage' ),
+	register_sidebar([
+		'name'          => __( 'Primary', 'blr-base-theme' ),
 		'id'            => 'sidebar-primary',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>',
-	]
-	);
+	]);
 
-	register_sidebar( [
-		'name'          => __( 'Footer', 'sage' ),
+	register_sidebar([
+		'name'          => __( 'Footer', 'blr-base-theme' ),
 		'id'            => 'sidebar-footer',
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>',
-	]
-	);
+	]);
 }
 
 add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
@@ -85,16 +78,16 @@ add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
 function display_sidebar() {
 	static $display;
 
-	isset( $display ) || $display = ! in_array( true, [
-		// The sidebar will NOT be displayed if ANY of the following return true.
-		// https://codex.wordpress.org/Conditional_Tags
+	// The sidebar will NOT be displayed if ANY of the following return true.
+	$criteria = [
 		is_404(),
 		is_front_page(),
 		is_page_template( 'template-custom.php' ),
-	], true
-	);
+	];
 
-	return apply_filters( 'sage/display_sidebar', $display );
+	isset( $display ) || $display = ! in_array( true, $criteria, true );
+
+	return apply_filters( 'blr-base-theme/display_sidebar', $display );
 }
 
 /**
@@ -104,13 +97,13 @@ function assets() {
 
 	wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css' );
 	wp_enqueue_style( 'fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' );
-	wp_enqueue_style( 'blr/main', Assets\asset_path( 'css/app.css' ), false, null );
+	wp_enqueue_style( 'blr/main', Assets\asset_url( 'css/app.css' ), false, null );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_script( 'blr/main', Assets\asset_path( 'js/app.js' ), [ 'jquery' ], null, true );
+	wp_enqueue_script( 'blr/main', Assets\asset_url( 'js/app.js' ), [ 'jquery' ], null, true );
 }
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );

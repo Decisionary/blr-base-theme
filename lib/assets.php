@@ -1,61 +1,27 @@
 <?php
+/**
+ * Asset functions.
+ *
+ * @package BLR_Base_Theme\Assets
+ */
 
-namespace Roots\Sage\Assets;
+namespace BLR_Base_Theme\Assets;
 
 /**
- * Get paths for assets
+ * The URL to the `assets` directory.
+ *
+ * @since 0.1.0
+ *
+ * @var string
  */
-class JsonManifest {
-	private $manifest;
+define( 'ASSETS_URL', get_template_directory_uri() . '/assets' );
 
-	public function __construct( $manifest_path ) {
-		if ( file_exists( $manifest_path ) ) {
-			$this->manifest = json_decode( file_get_contents( $manifest_path ), true );
-		}
-		else {
-			$this->manifest = [ ];
-		}
-	}
-
-	public function get() {
-		return $this->manifest;
-	}
-
-	public function getPath( $key = '', $default = null ) {
-		$collection = $this->manifest;
-		if ( is_null( $key ) ) {
-			return $collection;
-		}
-		if ( isset( $collection[ $key ] ) ) {
-			return $collection[ $key ];
-		}
-		foreach ( explode( '.', $key ) as $segment ) {
-			if ( ! isset( $collection[ $segment ] ) ) {
-				return $default;
-			}
-			else {
-				$collection = $collection[ $segment ];
-			}
-		}
-		return $collection;
-	}
-}
-
-function asset_path( $filename ) {
-	$dist_path = get_template_directory_uri() . '/assets/dist/';
-	$directory = dirname( $filename ) . '/';
-	$file = basename( $filename );
-	static $manifest;
-
-	if ( empty( $manifest ) ) {
-		$manifest_path = get_template_directory() . '/dist/assets.json';
-		$manifest = new JsonManifest( $manifest_path );
-	}
-
-	if ( array_key_exists( $file, $manifest->get() ) ) {
-		return $dist_path . $directory . $manifest->get()[ $file ];
-	}
-	else {
-		return $dist_path . $directory . $file;
-	}
+/**
+ * Get the URL to an asset file.
+ *
+ * @param  string $rel_path Relative path to the file (e.g. 'js/main.js').
+ * @return string
+ */
+function asset_url( $rel_path ) {
+	return ASSETS_URL . '/dist/' . $rel_path;
 }

@@ -1,42 +1,44 @@
 
 @include global-box-sizing( border-box, true );
 
+html,
 body {
+	background-color: map-get( $theme-colors, 'tertiary' );
 	font-family: $font-family-base;
-	@include container(1124px);
-	font-size:   $font-size-base;
-	background-color:#f4f4f4;
-	}
+	font-size: map-get( $font-sizes, 'base' );
+}
 
-html {
-	font-size: $font-size-base;
-	background-color: #f4f4f4;
-	}
-
+body {
+	@include container( 1124px );
+}
 
 a {
-	color: $link-color;
-	text-decoration:none;
-	font-size: $font-size-base;
+	text-decoration: none;
+	color: map-get( $theme-colors, 'link' );
+	font-size: map-get( $font-sizes, 'base' );
+
 	&:hover {
 		text-decoration: underline;
-		}
-	&:visited {
-		color: $visited-link-color;
-		}
 	}
+
+	&:visited {
+		color: map-get( $theme-colors, 'link-visited' );
+	}
+}
 
 .row {
 	@include susy-clearfix;
-	}
+}
 
-body > .container, .banner, .content {
-	background:#fff;
-	}
+body > .container,
+.banner,
+.content {
+	background: map-get( $theme-colors, 'light' );
+}
 
 body > .container {
 	border: 1px solid #e3e3e3;
-	border-top:none;
-	border-bottom:none;
-	padding-top:20px;
-	}
+	border-top: 0;
+	border-bottom: 0;
+	padding-top: rem-calc( 20px );
+}

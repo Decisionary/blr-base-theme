@@ -1,22 +1,42 @@
+////
+/// @group Abstracts
+////
+
+
 
 // -------------------------------------------------------------------------
 // Grid / Layout
 // -------------------------------------------------------------------------
 
-$susy: (
+// Susy global config
+$susy-default: (
 	columns: 24,
 	gutters: 20px / 26px,
 	gutter-position: split,
 	global-box-sizing: border-box,
-) !default;
+);
+$susy: $susy-default !default;
+$susy: map-extend( $susy-default, $susy );
 
-$breakpoints: (
-	xs:  0,
-	sm:  rem-calc( 572px ),
-	md:  rem-calc( 756px ),
-	lg:  rem-calc( 940px ),
-	xl:  rem-calc( 1124px ),
-) !default;
+// Breakpoints
+$breakpoints-default: (
+	xs: 0,
+	sm: rem-calc( 572px ),
+	md: rem-calc( 756px ),
+	lg: rem-calc( 940px ),
+	xl: rem-calc( 1124px ),
+);
+$breakpoints: $breakpoints-default !default;
+$breakpoints: map-extend( $breakpoints-default, $breakpoints );
+
+// Page template layouts
+$grid-cols-default: (
+	main-content: 24,
+	sidebar-primary: 5,
+	sidebar-secondary: 7,
+);
+$grid-cols: $grid-cols-default !default;
+$grid-cols: map-extend( $grid-cols-default, $grid-cols );
 
 
 
@@ -25,50 +45,91 @@ $breakpoints: (
 // Colors
 // -------------------------------------------------------------------------
 
-$brand-primary:        #d2202f !default;
-$brand-secondary:      #aeb6b4 !default;
-$brand-tertiary:       #f4f4f4 !default;
-$brand-success:        #58b956 !default;
-$brand-info:           #58c0e0 !default;
-$brand-warning:        #f1ae42 !default;
-$brand-danger:         #ca2026 !default;
+// Theme
+$theme-colors-default: (
+	primary:      #d2202f,
+	secondary:    #aeb6b4,
+	tertiary:     #f4f4f4,
+	success:      #58b956,
+	error:        #ca2026,
+	info:         #58c0e0,
+	alert:        #f1ae42,
+	light:        #fff,
+	dark:         #222,
+	body:         #555,
+	link:         #0071bc,
+	link-visited: #639,
+	nav-bg:       #393939,
+	button-bg:    #fff,
+);
+$theme-colors: $theme-colors-default !default;
+$theme-colors: map-extend( $theme-colors-default, $theme-colors );
 
-$primary-nav-background: #393939 !default;
+// Buttons
+$button-colors: $theme-colors !default;
+$button-colors: map-extend( $theme-colors, $button-colors );
+
+// States - form validation, alerts, modals, table rows / cells, etc.
+$state-colors: $theme-colors !default;
+$state-colors: map-extend( $theme-colors, $state-colors );
 
 // Content
-$body-color:           #555 !default;
-$link-color:           #0071bc !default;
-$visited-link-color:   #663399 !default;
+$body-color:             map-get( $theme-colors, 'body' );
+$link-color:             map-get( $theme-colors, 'link' );
+$visited-link-color:     map-get( $theme-colors, 'link-visited' );
+$body-background:        map-get( $theme-colors, 'light' );
+$header-background:      map-get( $theme-colors, 'light' );
+$primary-nav-background: map-get( $theme-colors, 'nav-bg' );
+$content-background:     map-get( $theme-colors, 'tertiary' );
+$footer-menu-color:      map-get( $theme-colors, 'light' );
+$search-menu-color:      map-get( $theme-colors, 'body' );
+$footer-copyright-color: map-get( $theme-colors, 'body' );
 
 // -------------------------------------------------------------------------
 // Typography
 // -------------------------------------------------------------------------
 
-$font-family-base:    'Open Sans', sans-serif !default;
+// Font family stacks
+$font-stacks-default: (
+	sans:  ( 'Open Sans', sans-serif ),
+	serif: ( Georgia, Times, serif ),
+	mono:  ( monaco, Consolas, monospace ),
+);
+$font-stacks: $font-stacks-default !default;
+$font-stacks: map-extend( $font-stacks-default, $font-stacks );
 
-$font-size-base:      rem-calc( 14px ) !default;
-$font-size-nav-item:  rem-calc( 16px ) !default;
-$font-size-title:     rem-calc( 18px ) !default;
-$font-size-heading:   rem-calc( 20px ) !default;
+// Default font family
+$font-family-base: map-get( $font-stacks, 'sans' ) !default;
 
+// Font sizes
+$font-sizes-default: (
+	base:    rem-calc( 14px ),
+	small:   rem-calc( 13px ),
+	large:   rem-calc( 16px ),
+	nav:     rem-calc( 16px ),
+	title:   rem-calc( 18px ),
+	heading: rem-calc( 20px ),
+);
+$font-sizes: $font-sizes-default !default;
+$font-sizes: map-extend( $font-sizes-default, $font-sizes );
+
+// Default font size
+$font-size-base: map-get( $font-sizes, 'base' );
+
+// Content
+$body-background:       map-get( $theme-colors, 'light' );
+$header-background:     map-get( $theme-colors, 'light' );
+$content-background:    map-get( $theme-colors, 'tertiary' );
+$footer-menu-color:     map-get( $theme-colors, 'light' );
+$footer-menu-size:      map-get( $font-sizes, 'base' );
+$search-menu-size:      map-get( $font-sizes, 'base' );
+$footer-copyright-size: map-get( $font-sizes, 'small' );
 
 
 // -------------------------------------------------------------------------
 // Icons
 // -------------------------------------------------------------------------
 
+// FontAwesome
 $fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts' !default;
 $fa-css-prefix: 'icon' !default;
-
-$body-background:		#FFF !default;
-$header-background:		#FFF !default;
-$content-background:	#F4F4F4 !default;
-
-$footer-menu-color: #fff !default;
-$footer-menu-size: rem-calc(14px) !default;
-
-$search-menu-color: #555 !default;
-$search-menu-size: rem-calc(14px) !default;
-
-$footer-copyright-color: #666 !default;
-$footer-copyright-size: rem-calc(13px) !default;

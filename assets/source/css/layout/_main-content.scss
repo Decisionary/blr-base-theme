@@ -1,2 +1,29 @@
 
+/// --------------------
+/// Main content section
+/// --------------------
 
+$main-content-cols:      map-get( $grid-cols, 'main-content' );
+$sidebar-primary-cols:   map-get( $grid-cols, 'sidebar-primary' );
+$sidebar-secondary-cols: map-get( $grid-cols, 'sidebar-secondary' );
+
+.main-content,
+.sidebar {
+	@include span( $main-content-cols );
+}
+
+@include breakpoint( lg ) {
+	.main-content {
+		.layout--three-column & {
+			@include span( $main-content-cols - $sidebar-primary-cols - $sidebar-secondary-cols );
+		}
+
+		.layout--right-column & {
+			@include span( $main-content-cols - $sidebar-primary-cols );
+		}
+
+		.layout--left-column & {
+			@include span( $main-content-cols - $sidebar-secondary-cols );
+		}
+	}
+}

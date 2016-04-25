@@ -2,14 +2,12 @@
 /**
  * Base theme template.
  *
- * @package BLR_Base_Theme/Bootstrap
+ * @package BLR_Base_Theme\Bootstrap
  */
 
-use Roots\Sage\Setup;
-use Roots\Sage\Wrapper;
-
+use BLR_Base_Theme\Setup;
+use BLR_Base_Theme\Wrapper;
 ?>
-
 <!doctype html>
 <html <?php language_attributes(); ?>>
 	<?php get_template_part( 'templates/head' ); ?>
@@ -20,7 +18,7 @@ use Roots\Sage\Wrapper;
 				printf(
 					esc_html__(
 						'You are using an %1$s outdated %2$s browser. Please %3$s upgrade your browser %4$s to improve your experience.',
-						'sage'
+						'blr-base-theme'
 					),
 					'<strong>',
 					'</strong>',

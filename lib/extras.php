@@ -1,11 +1,20 @@
 <?php
+/**
+ * Theme extras.
+ *
+ * @package BLR_Base_Theme\Extras
+ */
 
-namespace Roots\Sage\Extras;
+namespace BLR_Base_Theme\Extras;
 
-use Roots\Sage\Setup;
+use BLR_Base_Theme\Setup;
 
 /**
- * Add <body> classes
+ * Add <body> classes.
+ *
+ * @since 0.1.0
+ *
+ * @param array $classes The current set of <body> classes.
  */
 function body_class( $classes ) {
 	// Add page slug if it doesn't exist.
@@ -29,7 +38,7 @@ add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
  * Clean up the_excerpt()
  */
 function excerpt_more() {
-	return ' &hellip; <a href="' . get_permalink() . '">' . __( 'Continued', 'sage' ) . '</a>';
+	return ' &hellip; <a href="' . get_permalink() . '">' . __( 'Continued', 'blr-base-theme' ) . '</a>';
 }
 
 add_filter( 'excerpt_more', __NAMESPACE__ . '\\excerpt_more' );

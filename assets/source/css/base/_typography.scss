@@ -1,11 +1,11 @@
 body {
-	color: $body-color;
-	}
+	color: map-get( $theme-colors, 'body' );
+}
 
 h1 {
-	font-size: $font-size-heading;
-	}
+	font-size: map-get( $font-sizes, 'heading' );
+}
 
 h2 {
-	font-size: $font-size-title;
-	}
+	font-size: map-get( $font-sizes, 'title' );
+}
