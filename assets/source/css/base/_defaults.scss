@@ -3,41 +3,38 @@
 
 html,
 body {
-	background-color: map-get( $theme-colors, 'tertiary' );
-	font-family: $font-family-base;
-	font-size: map-get( $font-sizes, 'base' );
+	background-color: $bg-color-body;
 }
 
 body {
-	@include container( 1124px );
+	font-family: $font-family-base;
+	font-size: $font-size-base;
 }
 
 a {
 	text-decoration: none;
-	color: map-get( $theme-colors, 'link' );
-	font-size: map-get( $font-sizes, 'base' );
+	color: $color-link;
+	font-size: $font-size-base;
 
-	&:hover {
+	&:hover,
+	&:active,
+	&:focus {
 		text-decoration: underline;
 	}
 
 	&:visited {
-		color: map-get( $theme-colors, 'link-visited' );
+		color: $color-link-visited;
 	}
 }
 
-.row {
-	@include susy-clearfix;
-}
-
-body > .container,
+.container,
 .banner,
 .content {
-	background: map-get( $theme-colors, 'light' );
+	background: $bg-color-content;
 }
 
-body > .container {
-	border: 1px solid #e3e3e3;
+.container {
+	border: 1px solid darken( $bg-color-content, 10% );
 	border-top: 0;
 	border-bottom: 0;
 	padding-top: rem-calc( 20px );

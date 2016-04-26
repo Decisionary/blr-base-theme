@@ -10,7 +10,7 @@ namespace BLR_Base_Theme\Customizer;
 function blr_base_theme_customizer( $wp_customizer ) {
 
 	$wp_customizer->add_section( 'blr_base_theme_header_logo', array(
-		'title'       => __( 'Header Logo', THEME_NAME ),
+		'title'       => __( 'Header Logo', 'blr-base-theme' ),
 		'priority'    => 30,
 		'description' => 'Upload the primary logo for the header',
 	));
@@ -24,7 +24,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 			$wp_customizer,
 			'blr_base_theme_primary_logo',
 			array(
-				'label'    => __( 'Primary Logo', THEME_NAME ),
+				'label'    => __( 'Primary Logo', 'blr-base-theme' ),
 				'section'  => 'blr_base_theme_header_logo',
 				'settings' => 'blr_base_theme_primary_logo',
 			)
@@ -32,7 +32,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_section( 'blr_base_theme_search_logo', array(
-		'title'       => __( 'Search Logo', THEME_NAME ),
+		'title'       => __( 'Search Logo', 'blr-base-theme' ),
 		'priority'    => 30,
 		'description' => 'Upload the search logo for the header',
 	));
@@ -46,7 +46,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 			$wp_customizer,
 			'blr_base_theme_search_logo',
 			array(
-				'label'    => __( 'Search Logo', THEME_NAME ),
+				'label'    => __( 'Search Logo', 'blr-base-theme' ),
 				'section'  => 'blr_base_theme_search_logo',
 				'settings' => 'blr_base_theme_search_logo',
 			)
@@ -54,7 +54,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_section( 'blr_base_theme_footer_logo', array(
-		'title'       => __( 'Footer Logo', THEME_NAME ),
+		'title'       => __( 'Footer Logo', 'blr-base-theme' ),
 		'priority'    => 30,
 		'description' => 'Upload the footer logo for the header',
 	));
@@ -68,7 +68,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 			$wp_customizer,
 			'blr_base_theme_footer_logo',
 			array(
-				'label'    => __( 'Footer Logo', THEME_NAME ),
+				'label'    => __( 'Footer Logo', 'blr-base-theme' ),
 				'section'  => 'blr_base_theme_footer_logo',
 				'settings' => 'blr_base_theme_footer_logo',
 			)
@@ -76,7 +76,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_section( 'blr_base_theme_copyright', array(
-		'title'       => __( 'Footer Copyright Statement', THEME_NAME ),
+		'title'       => __( 'Footer Copyright Statement', 'blr-base-theme' ),
 		'priority'    => 30,
 		'description' => 'Set the copyright text for the footer',
 	));
@@ -88,7 +88,7 @@ function blr_base_theme_customizer( $wp_customizer ) {
 	$wp_customizer->add_control(
 		'copyright_textbox',
 		array(
-			'label'    => __( 'Copyright text', THEME_NAME ),
+			'label'    => __( 'Copyright text', 'blr-base-theme' ),
 			'section'  => 'blr_base_theme_copyright',
 			'type'     => 'text',
 			'settings' => 'blr_base_theme_copyright_text',

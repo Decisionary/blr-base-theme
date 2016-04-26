@@ -1,34 +1,43 @@
 .banner {
 	@include susy-clearfix;
+
 	.logo {
-		@include span(12 of 24);
-		}
+		@include span( 12 );
+	}
+
 	.header-right {
 		@include susy-clearfix;
-		@include span(last 12 of 24);
+		@include span( last 12 );
+
 		padding-top: 20px;
+
 		.menu-search-in-header-container {
-			float:right;
-			}
-		form.search-form {
-			clear:right;
-			}
-		div.search {
-			float:right;
-			}
-		div.search-logo {
-			float:right;
-			margin-left: 30px;
-			width:73px;
+			float: right;
+		}
+
+		.search-form {
+			clear: right;
+		}
+
+		.search {
+			float: right;
+		}
+
+		.search-logo {
+			float: right;
+			margin-left: rem-calc( 30px );
+			width: rem-calc( 73px );
+
 			img {
-				padding:0;
-				margin:19px 0 0 0;
-				position:relative;
-				bottom:0;
-				}
+				position: relative;
+				bottom: 0;
+				margin: rem-calc( 19px ) 0 0;
+				padding: 0;
 			}
 		}
 	}
-img {
-	margin: 15px 0;
+
+	img {
+		margin: 15px 0;
 	}
+}

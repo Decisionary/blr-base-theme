@@ -3,27 +3,27 @@
 /// Main content section
 /// --------------------
 
-$main-content-cols:      map-get( $grid-cols, 'main-content' );
-$sidebar-primary-cols:   map-get( $grid-cols, 'sidebar-primary' );
-$sidebar-secondary-cols: map-get( $grid-cols, 'sidebar-secondary' );
-
-.main-content,
+main,
 .sidebar {
-	@include span( $main-content-cols );
+	@include span( $grid-cols-main-content );
 }
 
 @include breakpoint( lg ) {
-	.main-content {
+	main {
 		.layout--three-column & {
-			@include span( $main-content-cols - $sidebar-primary-cols - $sidebar-secondary-cols );
+			@include span(
+				$grid-cols-main-content
+					- $grid-cols-sidebar-primary
+					- $grid-cols-sidebar-secondary
+			);
 		}
 
 		.layout--right-column & {
-			@include span( $main-content-cols - $sidebar-primary-cols );
+			@include span( $grid-cols-main-content - $grid-cols-sidebar-primary );
 		}
 
 		.layout--left-column & {
-			@include span( $main-content-cols - $sidebar-secondary-cols );
+			@include span( $grid-cols-main-content - $grid-cols-sidebar-secondary );
 		}
 	}
 }

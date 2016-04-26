@@ -26,22 +26,21 @@ use BLR_Base_Theme\Wrapper;
 					'</a>'
 				);
 				?>
-			</div>		<![endif]-->
+			</div>
+		<![endif]-->
 		<?php
 		do_action( 'get_header' );
 		get_template_part( 'templates/header' );
 		?>
-		<div class="content row">
-			<?php if ( is_active_sidebar( 'breadcrumb-1' ) ) : ?>
-				<div id="main-breadcrumb" class="widget-area" role="complementary">
-						<?php dynamic_sidebar( 'breadcrumb-1' ); ?>
-					</div>
-			<?php endif ?>
-		</div>
 		<div class="wrap container" role="document">
+			<?php if ( is_active_sidebar( 'breadcrumb-1' ) ) : ?>
+				<div id="main-breadcrumb" class="widget-area breadcrumbs" role="complementary">
+					<?php dynamic_sidebar( 'breadcrumb-1' ); ?>
+				</div>
+			<?php endif ?>
 			<div class="content row">
 				<?php if ( is_active_sidebar( 'nav-1' ) ) : ?>
-					<div id="left-content-nav" class="widget-area" role="complementary">
+					<div id="left-content-nav" class="widget-area sidebar-primary" role="complementary">
 						<?php dynamic_sidebar( 'nav-1' ); ?>
 					</div>
 				<?php endif ?>
@@ -49,7 +48,7 @@ use BLR_Base_Theme\Wrapper;
 					<?php include Wrapper\template_path(); ?>
 				</main><!-- /.main -->
 				<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-					<div id="right-content-sidebar" class="widget-area" role="complementary">
+					<div id="right-content-sidebar" class="widget-area sidebar-secondary" role="complementary">
 						<?php dynamic_sidebar( 'sidebar-1' ); ?>
 					</div>
 				<?php endif ?>

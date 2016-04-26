@@ -48,6 +48,15 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
 /**
+ * Register nav menus.
+ */
+function register_nav_menus() {
+	register_nav_menu( 'footer-menu', __( 'Footer Menu', 'blr-base-theme' ) );
+	register_nav_menu( 'search-menu', __( 'Search Menu', 'blr-base-theme' ) );
+}
+add_action( 'init', __NAMESPACE__ . '\\register_nav_menus' );
+
+/**
  * Register sidebars
  */
 function widgets_init() {
@@ -67,6 +76,46 @@ function widgets_init() {
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Left Nav', 'blr-base-theme' ),
+		'id'            => 'nav-1',
+		'description'   => __( 'The left navigation sidebar in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+		'after_widget'  => '</aside>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Right Sidebar', 'blr-base-theme' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'The right sidebar sidebar in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+		'after_widget'  => '</aside>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Breadcrumb', 'blr-base-theme' ),
+		'id'            => 'breadcrumb-1',
+		'description'   => __( 'The breadcrumb in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+		'after_widget'  => '</aside>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Pre-Header', 'blr-base-theme' ),
+		'id'            => 'preheader-1',
+		'description'   => __( 'The space above the header in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+		'after_widget'  => '</aside>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Post-Footer', 'blr-base-theme' ),
+		'id'            => 'postfooter-1',
+		'description'   => __( 'The area after the footer in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
+		'after_widget'  => '</aside>',
 	]);
 }
 
@@ -96,8 +145,6 @@ function display_sidebar() {
 function assets() {
 
 	wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css' );
-	wp_enqueue_style( 'fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' );
-	wp_enqueue_style( 'blr/main', Assets\asset_url( 'css/app.css' ), false, null );
 
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

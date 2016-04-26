@@ -1,11 +1,8 @@
-body {
-	color: map-get( $theme-colors, 'body' );
-}
 
 h1 {
-	font-size: map-get( $font-sizes, 'heading' );
+	font-size: $font-size-heading;
 }
 
 h2 {
-	font-size: map-get( $font-sizes, 'title' );
+	font-size: $font-size-title;
 }

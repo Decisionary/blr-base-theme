@@ -1,20 +1,18 @@
-body {
-	&.three-column {
-		main {
-			@include span(12 of 24);
-			}
-		}
-	&.left-column {
-		main {
-			@include span(19 of 24);
-			@include last;
-			}
-		}
-	&.right-column {
-		main {
-			@include span(17 of 24);
-			@include first;
-			}
+.root-container {
+	@include container( 100% );
 
+	@each $key, $value in $breakpoints {
+		@include breakpoint( $key ) {
+			@if $value > 0 {
+				max-width: map-get( $container-widths, $key );
+			}
 		}
 	}
+}
+
+.row,
+.container,
+.banner,
+.content {
+	@include susy-clearfix;
+}

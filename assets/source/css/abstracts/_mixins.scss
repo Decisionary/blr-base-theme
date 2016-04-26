@@ -11,22 +11,25 @@
 /// @param
 ///
 @mixin breakpoint( $breakpoint, $min-max: 'min' ) {
-	@if not variable-exists( breakpoints )
-	 or not map-has-key( $breakpoints, $breakpoint ) {
-		@warn "`#{$breakpoint}` is not a valid breakpoint name. Please check \
-			your spelling, or if this is a custom breakpoint, add it to the \
-			`$breakpoints` map defined in _variables.scss";
-	} @else {
-		$type:  'min-width';
-		$width: map-get( $breakpoints, $breakpoint );
 
-		@if 'max-width' == $min-max {
-			$type:  'max-width';
-			$width: $width - 0.0001rem;
-		}
+	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
+	$width: get-breakpoint( $breakpoint, $min-max );
 
+	@if $width {
 		@media( $type: $width ) {
 			@content;
+		}
+	}
+}
+
+@mixin icon( $icon-content: null ) {
+	@include fa-icon;
+
+	text-align: center;
+
+	@if $icon-content {
+		&::before {
+			content: $icon-content;
 		}
 	}
 }
@@ -51,13 +54,13 @@
 }
 
 @mixin button-color( $color ) {
-	color: $color;
 	border-color: $color;
+	color: $color;
 
 	&:active,
 	&:focus,
 	&:hover {
-		color: auto-text-color( $color );
 		background-color: $color;
+		color: ensure-contrast( $color );
 	}
 }
