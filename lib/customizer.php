@@ -7,93 +7,91 @@
 
 namespace BLR_Base_Theme\Customizer;
 
-function blr_base_theme_customizer( $wp_customizer ) {
+/**
+ * Sets up our custom sections, settings, and controls for WP Customizer.
+ *
+ * @param \WP_Customize_Manager $wp_customizer The customizer instance.
+ */
+function setup( $wp_customizer ) {
 
-	$wp_customizer->add_section( 'blr_base_theme_header_logo', array(
-		'title'       => __( 'Header Logo', 'blr-base-theme' ),
-		'priority'    => 30,
-		'description' => 'Upload the primary logo for the header',
-	));
+	$logo_button_labels = [
+		'select'       => __( 'Select logo' ),
+		'change'       => __( 'Change logo' ),
+		'remove'       => __( 'Remove' ),
+		'default'      => __( 'Default' ),
+		'placeholder'  => __( 'No logo selected' ),
+		'frame_title'  => __( 'Select logo' ),
+		'frame_button' => __( 'Choose logo' ),
+	];
 
-	$wp_customizer->add_setting( 'blr_base_theme_primary_logo', array(
-		'default' => get_bloginfo( 'template_directory' ) . '/images/primary-logo.png',
-	));
-
-	$wp_customizer->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customizer,
-			'blr_base_theme_primary_logo',
-			array(
-				'label'    => __( 'Primary Logo', 'blr-base-theme' ),
-				'section'  => 'blr_base_theme_header_logo',
-				'settings' => 'blr_base_theme_primary_logo',
-			)
-		)
-	);
-
-	$wp_customizer->add_section( 'blr_base_theme_search_logo', array(
-		'title'       => __( 'Search Logo', 'blr-base-theme' ),
-		'priority'    => 30,
-		'description' => 'Upload the search logo for the header',
-	));
-
-	$wp_customizer->add_setting( 'blr_base_theme_search_logo', array(
-		'default' => get_bloginfo( 'template_directory' ) . '/images/search-logo.png',
-	));
-
-	$wp_customizer->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customizer,
-			'blr_base_theme_search_logo',
-			array(
-				'label'    => __( 'Search Logo', 'blr-base-theme' ),
-				'section'  => 'blr_base_theme_search_logo',
-				'settings' => 'blr_base_theme_search_logo',
-			)
-		)
-	);
-
-	$wp_customizer->add_section( 'blr_base_theme_footer_logo', array(
-		'title'       => __( 'Footer Logo', 'blr-base-theme' ),
-		'priority'    => 30,
-		'description' => 'Upload the footer logo for the header',
-	));
-
-	$wp_customizer->add_setting( 'blr_base_theme_footer_logo', array(
-		'default' => get_bloginfo( 'template_directory' ) . '/images/footer-logo.png',
-	));
-
-	$wp_customizer->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customizer,
-			'blr_base_theme_footer_logo',
-			array(
-				'label'    => __( 'Footer Logo', 'blr-base-theme' ),
-				'section'  => 'blr_base_theme_footer_logo',
-				'settings' => 'blr_base_theme_footer_logo',
-			)
-		)
-	);
-
-	$wp_customizer->add_section( 'blr_base_theme_copyright', array(
-		'title'       => __( 'Footer Copyright Statement', 'blr-base-theme' ),
-		'priority'    => 30,
-		'description' => 'Set the copyright text for the footer',
-	));
-
-	$wp_customizer->add_setting( 'blr_base_theme_copyright_text', array(
+	$wp_customizer->add_setting( 'blr_base_theme_copyright_text', [
 		'default' => 'Copyright &copy; ' . date( 'Y' ) . '&mdash; Business &amp Legal Resources.  All rights reserved.',
-	));
+	]);
+
+	$wp_customizer->add_control( 'copyright_textbox', [
+		'label'    => __( 'Copyright text', 'blr-base-theme' ),
+		'section'  => 'title_tagline',
+		'priority' => 10,
+		'type'     => 'text',
+		'settings' => 'blr_base_theme_copyright_text',
+	]);
+
+	$wp_customizer->add_setting( 'blr_base_theme_logo_header_primary', [
+		'default' => get_bloginfo( 'template_directory' ) . '/images/primary-logo.png',
+	]);
 
 	$wp_customizer->add_control(
-		'copyright_textbox',
-		array(
-			'label'    => __( 'Copyright text', 'blr-base-theme' ),
-			'section'  => 'blr_base_theme_copyright',
-			'type'     => 'text',
-			'settings' => 'blr_base_theme_copyright_text',
+		new \WP_Customize_Cropped_Image_Control(
+			$wp_customizer,
+			'blr_base_theme_logo_header_primary',
+			[
+				'label'         => __( 'Header Logo', 'blr-base-theme' ),
+				'section'       => 'title_tagline',
+				'priority'      => 60,
+				'flex_height'   => true,
+				'flex_width'    => true,
+				'button_labels' => $logo_button_labels,
+			]
+		)
+	);
+
+	$wp_customizer->add_setting( 'blr_base_theme_logo_header_search', [
+		'default' => get_bloginfo( 'template_directory' ) . '/images/search-logo.png',
+	]);
+
+	$wp_customizer->add_control(
+		new \WP_Customize_Cropped_Image_Control(
+			$wp_customizer,
+			'blr_base_theme_logo_header_search',
+			[
+				'label'         => __( 'Search Logo', 'blr-base-theme' ),
+				'section'       => 'title_tagline',
+				'priority'      => 60,
+				'flex_height'   => true,
+				'flex_width'    => true,
+				'button_labels' => $logo_button_labels,
+			]
+		)
+	);
+
+	$wp_customizer->add_setting( 'blr_base_theme_logo_footer', [
+		'default' => get_bloginfo( 'template_directory' ) . '/images/footer-logo.png',
+	]);
+
+	$wp_customizer->add_control(
+		new \WP_Customize_Cropped_Image_Control(
+			$wp_customizer,
+			'blr_base_theme_logo_footer',
+			[
+				'label'         => __( 'Footer Logo', 'blr-base-theme' ),
+				'section'       => 'title_tagline',
+				'priority'      => 60,
+				'flex_height'   => true,
+				'flex_width'    => true,
+				'button_labels' => $logo_button_labels,
+			]
 		)
 	);
 }
 
-add_action( 'customize_register', __NAMESPACE__ . '\\blr_base_theme_customizer' );
+add_action( 'customize_register', __NAMESPACE__ . '\\setup' );
