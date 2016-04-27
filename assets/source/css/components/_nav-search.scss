@@ -1,0 +1,16 @@
+////
+/// Header Search Nav
+///
+/// @group Components
+////
+
+.nav--search {
+	@extend %nav-horizontal-with-dividers;
+	@include nav-variant( 'search' );
+
+	text-align: right;
+
+	.menu {
+		float: right;
+	}
+}

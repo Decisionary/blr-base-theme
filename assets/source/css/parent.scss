@@ -1,14 +1,16 @@
 @charset 'utf-8';
 
-// Abstracts
+// Functions & Variables
 @import 'abstracts/functions';
 @import 'abstracts/variables';
-@import 'abstracts/mixins';
-@import 'abstracts/placeholders';
 
 // Vendor packages
 @import 'susy/sass/susy';
 @import 'font-awesome/scss/font-awesome';
+
+// Mixins & placeholders
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
 
 // Base styles
 @import 'base/defaults';
@@ -24,13 +26,14 @@
 @import 'layout/footer';
 
 // Components
-@import 'components/primary-navigation';
-@import 'components/footer-navigation';
-@import 'components/search-navigation';
-@import 'components/header-search';
-@import 'components/breadcrumb';
 @import 'components/buttons';
 @import 'components/comments';
+@import 'components/search-header';
+@import 'components/breadcrumb';
+@import 'components/nav-primary';
+@import 'components/nav-search';
+@import 'components/nav-sidebar';
+@import 'components/nav-footer';
 
 // Pages
 @import 'pages/page';

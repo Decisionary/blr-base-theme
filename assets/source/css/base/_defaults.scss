@@ -1,9 +1,14 @@
+////
+/// Default styles
+///
+/// @group Base
+////
 
 @include global-box-sizing( border-box, true );
 
 html,
 body {
-	background-color: $bg-color-body;
+	background-color: $color-bg-body;
 }
 
 body {
@@ -11,7 +16,9 @@ body {
 	font-size: $font-size-base;
 }
 
-a {
+// Attribute selectors have the same specificity as classes. This way we don't
+// have to override the hover/active/focus/visited styles for UI links.
+[href^="#"] {
 	text-decoration: none;
 	color: $color-link;
 	font-size: $font-size-base;
@@ -27,15 +34,26 @@ a {
 	}
 }
 
-.container,
-.banner,
-.content {
-	background: $bg-color-content;
+.page-header-container {
+	background-color: $color-bg-header;
+	color: $color-header;
 }
 
-.container {
-	border: 1px solid darken( $bg-color-content, 10% );
-	border-top: 0;
-	border-bottom: 0;
-	padding-top: rem-calc( 20px );
+.page-nav-container {
+	background-color: $color-bg-nav-primary;
+	color: $color-nav-primary;
+}
+
+.page-content {
+	background-color: $color-bg-content;
+	color: $color-content;
+}
+
+.page-footer-container {
+	background-color: $color-bg-footer;
+	color: $color-footer;
+}
+
+.page-content {
+	border: 1px solid darken( $color-bg-content, 10% );
 }

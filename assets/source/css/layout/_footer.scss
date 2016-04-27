@@ -1,9 +1,10 @@
-footer {
-	background: $bg-color-nav-primary;
-	padding: rem-calc( 20px );
+////
+/// Footer
+///
+/// @group Layout
+////
 
-	.logo {
-		margin: 0;
-		padding-bottom: rem-calc( 20px );
-	}
+.page-footer-container {
+	padding-top: $gutter-height;
+	padding-bottom: $gutter-height;
 }

@@ -1,0 +1,10 @@
+////
+/// Footer Nav
+///
+/// @group Components
+////
+
+.nav--footer {
+	@extend %nav-horizontal-with-dividers;
+	@include nav-variant( 'footer' );
+}

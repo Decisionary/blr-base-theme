@@ -1,3 +1,8 @@
+////
+/// Placeholders
+///
+/// @group Abstracts
+////
 
 %button {
 	display: inline-block;
@@ -17,5 +22,82 @@
 	%button-#{$key} {
 		@extend %button;
 		@include button-color( $value );
+	}
+}
+
+%nav {
+	display: block;
+	font-size: $font-size-nav;
+
+	%menu {
+		@include susy-clearfix;
+
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	%menu {
+		display: block;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: inline-block;
+		border-color: inherit;
+		line-height: 1;
+		color: inherit;
+		font-size: inherit;
+	}
+
+	%menu__item {
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+
+	%menu__link {
+		text-decoration: none;
+	}
+}
+
+%nav-horizontal {
+
+	%menu__item {
+		float: left;
+	}
+
+	%menu__link {
+		padding-right: 0.75em;
+		padding-left: 0.75em;
+	}
+}
+
+%nav-horizontal-with-dividers {
+	@extend %nav-horizontal;
+
+	%menu__item + %menu__item {
+		%menu__link {
+			border-left-width: 1px;
+			border-left-style: solid;
+		}
+	}
+}
+
+%nav-vertical {
+
+	%menu__item {
+		display: block;
+		float: none;
+	}
+}
+
+%nav-vertical-with-dividers {
+	@extend %nav-vertical;
+
+	%menu__item + %menu__item {
+		%menu__link {
+			border-top-width: 1px;
+			border-top-style: solid;
+		}
 	}
 }

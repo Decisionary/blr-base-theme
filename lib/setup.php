@@ -16,7 +16,6 @@ function setup() {
 
 	// Enable features from Soil when plugin is activated.
 	add_theme_support( 'soil-clean-up' );
-	add_theme_support( 'soil-nav-walker' );
 	add_theme_support( 'soil-nice-search' );
 	add_theme_support( 'soil-jquery-cdn' );
 	add_theme_support( 'soil-relative-urls' );
@@ -29,7 +28,10 @@ function setup() {
 
 	// Register wp_nav_menu() menus.
 	register_nav_menus([
-		'primary_navigation' => __( 'Primary Navigation', 'blr-base-theme' ),
+		'nav-primary' => __( 'Header Primary Menu', 'blr-base-theme' ),
+		'nav-search'  => __( 'Header Search Menu', 'blr-base-theme' ),
+		'nav-sidebar' => __( 'Sidebar Menu', 'blr-base-theme' ),
+		'nav-footer'  => __( 'Footer Menu', 'blr-base-theme' ),
 	]);
 
 	// Enable post thumbnails.
@@ -48,21 +50,34 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
 /**
- * Register nav menus.
- */
-function register_nav_menus() {
-	register_nav_menu( 'footer-menu', __( 'Footer Menu', 'blr-base-theme' ) );
-	register_nav_menu( 'search-menu', __( 'Search Menu', 'blr-base-theme' ) );
-}
-add_action( 'init', __NAMESPACE__ . '\\register_nav_menus' );
-
-/**
  * Register sidebars
  */
 function widgets_init() {
+
 	register_sidebar([
 		'name'          => __( 'Primary', 'blr-base-theme' ),
 		'id'            => 'sidebar-primary',
+		'description'   => __( 'The left navigation sidebar in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Secondary', 'blr-base-theme' ),
+		'id'            => 'sidebar-secondary',
+		'description'   => __( 'The right sidebar sidebar in a BLR theme', 'blr-base-theme' ),
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>',
+	]);
+
+	register_sidebar([
+		'name'          => __( 'Pre-Header', 'blr-base-theme' ),
+		'id'            => 'sidebar-pre-header',
+		'description'   => __( 'The space above the header in a BLR theme', 'blr-base-theme' ),
 		'before_widget' => '<section class="widget %1$s %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h3>',
@@ -79,64 +94,56 @@ function widgets_init() {
 	]);
 
 	register_sidebar([
-		'name'          => __( 'Left Nav', 'blr-base-theme' ),
-		'id'            => 'nav-1',
-		'description'   => __( 'The left navigation sidebar in a BLR theme', 'blr-base-theme' ),
-		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
-		'after_widget'  => '</aside>',
-	]);
-
-	register_sidebar([
-		'name'          => __( 'Right Sidebar', 'blr-base-theme' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'The right sidebar sidebar in a BLR theme', 'blr-base-theme' ),
-		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
-		'after_widget'  => '</aside>',
-	]);
-
-	register_sidebar([
-		'name'          => __( 'Breadcrumb', 'blr-base-theme' ),
-		'id'            => 'breadcrumb-1',
-		'description'   => __( 'The breadcrumb in a BLR theme', 'blr-base-theme' ),
-		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
-		'after_widget'  => '</aside>',
-	]);
-
-	register_sidebar([
-		'name'          => __( 'Pre-Header', 'blr-base-theme' ),
-		'id'            => 'preheader-1',
-		'description'   => __( 'The space above the header in a BLR theme', 'blr-base-theme' ),
-		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
-		'after_widget'  => '</aside>',
-	]);
-
-	register_sidebar([
 		'name'          => __( 'Post-Footer', 'blr-base-theme' ),
-		'id'            => 'postfooter-1',
+		'id'            => 'sidebar-post-footer',
 		'description'   => __( 'The area after the footer in a BLR theme', 'blr-base-theme' ),
-		'before_widget' => '<aside id="%1$s" class="widget-%2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<section class="widget %1$s %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h3>',
+		'after_title'   => '</h3>',
 	]);
 }
 
 add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
 
 /**
- * Determine which pages should NOT display the sidebar
+ * Determine whether to show a specific sidebar.
+ *
+ * @param string $sidebar (optional) The sidebar ID. Defaults to 'sidebar-primary'.
  */
-function display_sidebar() {
+function display_sidebar( $sidebar = 'sidebar-primary' ) {
+
 	static $display;
 
-	// The sidebar will NOT be displayed if ANY of the following return true.
-	$criteria = [
+	// Sidebar will be hidden if any of the following is true.
+	$hide_criteria = [
+		( ! is_active_sidebar( $sidebar ) ),
 		is_404(),
 		is_front_page(),
-		is_page_template( 'template-custom.php' ),
 	];
 
-	isset( $display ) || $display = ! in_array( true, $criteria, true );
+	isset( $display ) || $display = ( ! in_array( true, $hide_criteria, true ) );
 
-	return apply_filters( 'blr-base-theme/display_sidebar', $display );
+	return apply_filters( 'blr-base-theme/display_sidebar', $sidebar, $display );
+}
+
+/**
+ * Determine whether to show a specific nav menu.
+ *
+ * @param string $menu (optional) The nav menu ID. Defaults to 'nav-primary'.
+ */
+function display_nav_menu( $menu = 'nav-primary' ) {
+
+	static $display;
+
+	// Nav menu will be hidden if any of the following is true.
+	$hide_criteria = [
+		( ! has_nav_menu( $menu ) ),
+	];
+
+	isset( $display ) || $display = ( ! in_array( true, $hide_criteria, true ) );
+
+	return apply_filters( 'blr-base-theme/display_nav_menu', $menu, $display );
 }
 
 /**
@@ -149,8 +156,6 @@ function assets() {
 	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	wp_enqueue_script( 'blr/main', Assets\asset_url( 'js/app.js' ), [ 'jquery' ], null, true );
 }
 
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100 );

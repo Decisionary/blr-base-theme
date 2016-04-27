@@ -1,5 +1,26 @@
+////
+/// Breadcrumbs
+///
+/// @group Components
+////
+
 .breadcrumbs {
-	margin-top: rem-calc( 20px );
+	@include susy-clearfix;
+	@include span( full );
+
+	margin-top: $gutter-height;
+	margin-bottom: $gutter-height;
 	border: 1px solid darken( $color-light, 10% );
+	background-color: $color-light;
 	padding: rem-calc( 15px ) 0;
+	list-style: none;
+}
+
+.breadcrumb__icon {
+	background-color: $color-brand-primary;
+	color: ensure-contrast( $color-brand-primary );
+}
+
+.breadcrumb__link {
+	color: $color-brand-primary;
 }

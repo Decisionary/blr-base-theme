@@ -1,4 +1,6 @@
 ////
+/// Variables
+///
 /// @group Abstracts
 ////
 
@@ -31,6 +33,10 @@ $breakpoints: map-extend( $breakpoints-default, $breakpoints );
 
 // Container widths
 $container-widths: $breakpoints;
+
+// Grid / content gutters
+$gutter-width: rem-calc( 20px ) !default;
+$gutter-height: $gutter-width !default;
 
 // Page template layouts
 $grid-cols-main-content: 24;
@@ -72,26 +78,43 @@ $color-button-error:     $color-state-error     !default;
 $color-button-info:      $color-state-info      !default;
 $color-button-alert:     $color-state-alert     !default;
 
-$button-variants: (
-	primary:   $color-button-primary,
-	secondary: $color-button-secondary,
-	tertiary:  $color-button-tertiary,
-	success:   $color-button-success,
-	error:     $color-button-error,
-	info:      $color-button-info,
-	alert:     $color-button-alert,
-);
+// Page sections
+$color-body:        $color-base           !default;
+$color-header:      $color-base           !default;
+$color-content:     $color-base           !default;
+$color-footer:      $color-light          !default;
 
-// Content
-$color-body:             $color-base           !default;
-$color-nav-primary:      $color-light          !default;
-$color-footer-nav:       $color-light          !default;
-$color-search-nav:       $color-base           !default;
-$color-footer-copyright: $color-base           !default;
-$bg-color-body:          $color-brand-tertiary !default;
-$bg-color-content:       $color-light          !default;
-$bg-color-header:        $color-light          !default;
-$bg-color-nav-primary:   $color-dark           !default;
+$color-bg-body:     $color-brand-tertiary !default;
+$color-bg-header:   $color-light          !default;
+$color-bg-content:  $color-light          !default;
+$color-bg-footer:   $color-dark           !default;
+
+// Nav menus
+$color-nav-primary:           $color-light              !default;
+$color-nav-primary-hover:     $color-nav-primary        !default;
+$color-nav-primary-active:    $color-nav-primary        !default;
+$color-nav-search:            $color-header             !default;
+$color-nav-search-hover:      $color-nav-search         !default;
+$color-nav-search-active:     $color-nav-search         !default;
+$color-nav-sidebar:           $color-light              !default;
+$color-nav-sidebar-hover:     $color-nav-sidebar        !default;
+$color-nav-sidebar-active:    $color-nav-sidebar        !default;
+$color-nav-footer:            $color-nav-primary        !default;
+$color-nav-footer-hover:      $color-nav-primary-hover  !default;
+$color-nav-footer-active:     $color-nav-primary-active !default;
+
+$color-bg-nav-primary:        $color-dark                  !default;
+$color-bg-nav-primary-hover:  darken( $color-dark, 20% )   !default;
+$color-bg-nav-primary-active: $color-bg-nav-primary-hover  !default;
+$color-bg-nav-search:         $color-bg-header             !default;
+$color-bg-nav-search-hover:   $color-bg-nav-search         !default;
+$color-bg-nav-search-active:  $color-bg-nav-search         !default;
+$color-bg-nav-sidebar:        $color-brand-primary         !default;
+$color-bg-nav-sidebar-hover:  $color-bg-nav-sidebar        !default;
+$color-bg-nav-sidebar-active: $color-dark                  !default;
+$color-bg-nav-footer:         $color-bg-nav-primary        !default;
+$color-bg-nav-footer-hover:   $color-bg-nav-footer         !default;
+$color-bg-nav-footer-active:  $color-bg-nav-footer         !default;
 
 
 
@@ -114,8 +137,10 @@ $font-size-heading:          rem-calc( 20px ) !default;
 
 // Content
 $font-size-nav:              $font-size-large !default;
-$font-size-search-nav:       $font-size-base  !default;
-$font-size-footer-nav:       $font-size-base  !default;
+$font-size-nav-primary:      $font-size-nav   !default;
+$font-size-nav-search:       $font-size-base  !default;
+$font-size-nav-sidebar:      $font-size-nav   !default;
+$font-size-nav-footer:       $font-size-base  !default;
 $font-size-footer-copyright: $font-size-small !default;
 
 
@@ -126,3 +151,61 @@ $font-size-footer-copyright: $font-size-small !default;
 
 // FontAwesome
 $fa-css-prefix: 'icon' !default;
+
+
+
+// -------------------------------------------------------------------------
+// Component Variants
+// -------------------------------------------------------------------------
+
+$button-variants: (
+	primary:   $color-button-primary,
+	secondary: $color-button-secondary,
+	tertiary:  $color-button-tertiary,
+	success:   $color-button-success,
+	error:     $color-button-error,
+	info:      $color-button-info,
+	alert:     $color-button-alert,
+);
+
+$nav-variants: (
+	primary: (
+		color:           $color-nav-primary,
+		color-hover:     $color-nav-primary-hover,
+		color-active:    $color-nav-primary-active,
+		color-bg:        $color-bg-nav-primary,
+		color-bg-hover:  $color-bg-nav-primary-hover,
+		color-bg-active: $color-bg-nav-primary-active,
+		font-size:       $font-size-nav-primary,
+	),
+
+	search: (
+		color:           $color-nav-search,
+		color-hover:     $color-nav-search-hover,
+		color-active:    $color-nav-search-active,
+		color-bg:        $color-bg-nav-search,
+		color-bg-hover:  $color-bg-nav-search-hover,
+		color-bg-active: $color-bg-nav-search-active,
+		font-size:       $font-size-nav-search,
+	),
+
+	sidebar: (
+		color:           $color-nav-sidebar,
+		color-hover:     $color-nav-sidebar-hover,
+		color-active:    $color-nav-sidebar-active,
+		color-bg:        $color-bg-nav-sidebar,
+		color-bg-hover:  $color-bg-nav-sidebar-hover,
+		color-bg-active: $color-bg-nav-sidebar-active,
+		font-size:       $font-size-nav-sidebar,
+	),
+
+	footer: (
+		color:           $color-nav-footer,
+		color-hover:     $color-nav-footer-hover,
+		color-active:    $color-nav-footer-active,
+		color-bg:        $color-bg-nav-footer,
+		color-bg-hover:  $color-bg-nav-footer-hover,
+		color-bg-active: $color-bg-nav-footer-active,
+		font-size:       $font-size-nav-footer,
+	),
+);

@@ -1,0 +1,10 @@
+////
+/// Primary Nav
+///
+/// @group Components
+////
+
+.nav--primary {
+	@extend %nav-horizontal;
+	@include nav-variant( 'primary' );
+}

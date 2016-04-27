@@ -1,7 +1,14 @@
+////
+/// Main Content
+///
+/// @group Layout
+////
 
-/// --------------------
-/// Main content section
-/// --------------------
+.page-content-container,
+.page-content {
+	padding-top: $gutter-height;
+	padding-bottom: $gutter-height;
+}
 
 main,
 .sidebar {
@@ -10,20 +17,20 @@ main,
 
 @include breakpoint( lg ) {
 	main {
-		.layout--three-column & {
+		.has-sidebar-primary & {
+			@include span( $grid-cols-main-content - $grid-cols-sidebar-primary );
+		}
+
+		.has-sidebar-secondary & {
+			@include span( $grid-cols-main-content - $grid-cols-sidebar-secondary );
+		}
+
+		.has-sidebar-primary.has-sidebar-secondary & {
 			@include span(
 				$grid-cols-main-content
 					- $grid-cols-sidebar-primary
 					- $grid-cols-sidebar-secondary
 			);
-		}
-
-		.layout--right-column & {
-			@include span( $grid-cols-main-content - $grid-cols-sidebar-primary );
-		}
-
-		.layout--left-column & {
-			@include span( $grid-cols-main-content - $grid-cols-sidebar-secondary );
 		}
 	}
 }

@@ -6,29 +6,29 @@
 .aligncenter,
 .alignleft,
 .alignright {
-	float: none;
 	display: inline-block;
+	float: none;
+	margin: ( $gutter-width / 2 ) auto;
 	max-width: 100%;
 	height: auto;
-	margin: 0.5rem auto;
 }
 
 @include breakpoint( md ) {
 	.alignnone {
-		margin-left: 0;
 		margin-right: 0;
+		margin-left: 0;
 	}
 
 	.alignleft {
 		float: left;
+		margin-right: ( $gutter-width / 2 );
 		margin-left: 0;
-		margin-right: 0.5rem;
 	}
 
 	.alignright {
 		float: right;
-		margin-left: 0.5rem;
 		margin-right: 0;
+		margin-left: ( $gutter-width / 2 );
 	}
 }
 
@@ -38,7 +38,7 @@
 }
 
 .wp-caption-text {
-	padding: 0.5rem;
+	padding: ( $gutter-width / 2 );
 }
 
 // Text meant only for screen readers

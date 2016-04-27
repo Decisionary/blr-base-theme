@@ -20,14 +20,15 @@ function template_path() {
 }
 
 /**
- * Returns the sidebar template file path.
+ * Returns the template file path for the specified sidebar.
  *
  * @since 0.1.0
  *
+ * @param  string $sidebar (optional) The sidebar ID. Defaults to 'sidebar-primary'.
  * @return string
  */
-function sidebar_path() {
-	return new ThemeWrapper( 'templates/sidebar.php' );
+function sidebar_path( $sidebar = 'sidebar-primary' ) {
+	return new ThemeWrapper( "templates/{$sidebar}.php" );
 }
 
 /**
@@ -89,7 +90,12 @@ class ThemeWrapper {
 	 * @return string
 	 */
 	public function __toString() {
-		$this->templates = apply_filters( 'blr-base-theme/wrap_' . $this->slug, $this->templates );
+
+		$this->templates = apply_filters(
+			'blr-base-theme/wrap_' . $this->slug,
+			$this->templates
+		);
+
 		return locate_template( $this->templates );
 	}
 

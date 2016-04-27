@@ -10,14 +10,15 @@
  * @package BLR_Base_Theme\Includes
  */
 
-define( 'THEME_NAME', 'blr-base-theme' );
+namespace BLR_Base_Theme;
 
 $includes = [
-	'lib/assets.php',  // Scripts and stylesheets.
-	'lib/extras.php',  // Custom functions.
-	'lib/setup.php',   // Theme setup.
-	'lib/titles.php',  // Page titles.
-	'lib/wrapper.php', // Theme wrapper class.
+	'lib/assets.php',     // Scripts and stylesheets.
+	'lib/extras.php',     // Custom functions.
+	'lib/nav-mods.php',   // Nav menu mods.
+	'lib/setup.php',      // Theme setup.
+	'lib/titles.php',     // Page titles.
+	'lib/wrapper.php',    // Theme wrapper class.
 	'lib/customizer.php', // Theme customizer.
 ];
 
@@ -32,4 +33,5 @@ foreach ( $includes as $file ) {
 
 	require_once $file_path;
 }
+
 unset( $file, $file_path );

@@ -7,15 +7,20 @@
 
 ?>
 
-<article <?php post_class(); ?>>
-	<header>
-		<h2 class="entry-title">
-			<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-		</h2>
-		<?php get_template_part( 'templates/entry-meta' ); ?>
-	</header>
+<article <?php post_class( 'entry' ); ?>>
 
-	<div class="entry-summary">
+	<header class="entry__header">
+		<h2 class="entry__title">
+			<a class="entry__permalink" href="<?php the_permalink(); ?>">
+				<?php the_title(); ?>
+			</a>
+		</h2>
+
+		<?php get_template_part( 'templates/entry-meta' ); ?>
+	</header><!-- /.entry__header -->
+
+	<div class="entry__content entry__content--summary">
 		<?php the_excerpt(); ?>
-	</div>
+	</div><!-- /.entry__content -->
+
 </article>

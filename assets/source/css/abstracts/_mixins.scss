@@ -1,5 +1,5 @@
 ////
-/// Custom Mixins
+/// Mixins
 ///
 /// @group Abstracts
 ////
@@ -34,17 +34,6 @@
 	}
 }
 
-@mixin alpha-attribute( $attribute, $color, $background: #fff ) {
-
-	$percent: alpha( $color ) * 100%;
-
-	@if ( $percent < 100% ) {
-		#{$attribute}: mix( opacify( $color, 1 ), $background, $percent );
-	}
-
-	#{$attribute}: $color;
-}
-
 @mixin button-style( $style ) {
 	@if map-has-key( $button-variants, $variant ) {
 		@include button-color( map-get( $button-variants, $variant ) );
@@ -63,4 +52,46 @@
 		background-color: $color;
 		color: ensure-contrast( $color );
 	}
+}
+
+@mixin nav-variant( $variant: null ) {
+
+	@include susy-clearfix;
+
+	@if not $variant or not map-has-key( $nav-variants, $variant ) {
+		@warn "`#{$variant} is not a valid nav menu variant.`"
+	} @else {
+		$theme: map-get( $nav-variants, $variant );
+
+		border-color: map-get( $theme, 'color' );
+		background-color: map-get( $theme, 'color-bg' );
+		color: map-get( $theme, 'color' );
+		font-size: map-get( $theme, 'font-size' );
+
+		.menu__item {
+			border-color: map-get( $theme, 'color' );
+
+			&:hover,
+			&:focus {
+				background-color: map-get( $theme, 'color-bg-hover' );
+				color: map-get( $theme, 'color-hover' );
+			}
+
+			&.is-active {
+				background-color: map-get( $theme, 'color-bg-active' );
+				color: map-get( $theme, 'color-active' );
+			}
+		}
+	}
+}
+
+@mixin alpha-attribute( $attribute, $color, $background: #fff ) {
+
+	$percent: alpha( $color ) * 100%;
+
+	@if ( $percent < 100% ) {
+		#{$attribute}: mix( opacify( $color, 1 ), $background, $percent );
+	}
+
+	#{$attribute}: $color;
 }

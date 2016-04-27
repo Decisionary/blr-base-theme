@@ -1,29 +1,14 @@
-.sidebar-secondary {
-	@include span( last $grid-cols-sidebar-secondary );
+////
+/// Sidebars
+///
+/// @group Layout
+////
+
+
+.sidebar--primary {
+	@include span( first $grid-cols-sidebar-primary );
 }
 
-.sidebar-primary {
-	@include span( first $grid-cols-sidebar-primary );
-
-	.menu {
-		margin: 0 0 0 rem-calc( 20px );
-		background-color: $color-brand-primary;
-		padding: rem-calc( 15px ) 0 0;
-		list-style: none;
-		color: $color-light;
-		font-size: $font-size-nav;
-	}
-
-	li {
-		padding: rem-calc( 5px ) rem-calc( 15px );
-	}
-
-	.current-menu-item {
-		background-color: $color-dark;
-	}
-
-	a,
-	a:visited {
-		color: $color-light;
-	}
+.sidebar--secondary {
+	@include span( last $grid-cols-sidebar-secondary );
 }

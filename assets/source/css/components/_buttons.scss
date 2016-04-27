@@ -1,3 +1,10 @@
+////
+/// Buttons
+///
+/// @group Components
+////
+
+
 @each $key, $value in $button-variants {
 	.button-#{$key} {
 		@extend %button-#{$key};

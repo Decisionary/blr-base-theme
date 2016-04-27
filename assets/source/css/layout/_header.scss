@@ -1,43 +1,28 @@
-.banner {
+////
+/// Header
+///
+/// @group Layout
+////
+
+.page-header {
+	padding-bottom: ( $gutter-height * 0.75 );
+}
+
+.branding--header {
+	@include span( 50% );
+}
+
+.search--header {
 	@include susy-clearfix;
+	@include span( last 50% );
+}
 
-	.logo {
-		@include span( 12 );
-	}
+.search--header {
+	float: right;
+}
 
-	.header-right {
-		@include susy-clearfix;
-		@include span( last 12 );
-
-		padding-top: 20px;
-
-		.menu-search-in-header-container {
-			float: right;
-		}
-
-		.search-form {
-			clear: right;
-		}
-
-		.search {
-			float: right;
-		}
-
-		.search-logo {
-			float: right;
-			margin-left: rem-calc( 30px );
-			width: rem-calc( 73px );
-
-			img {
-				position: relative;
-				bottom: 0;
-				margin: rem-calc( 19px ) 0 0;
-				padding: 0;
-			}
-		}
-	}
-
-	img {
-		margin: 15px 0;
-	}
+.logo--search {
+	float: right;
+	margin-left: rem-calc( 30px );
+	width: rem-calc( 73px );
 }

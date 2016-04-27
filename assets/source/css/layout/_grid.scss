@@ -1,18 +1,22 @@
-.root-container {
-	@include container( 100% );
+////
+/// Grid
+///
+/// @group Layout
+////
+
+.page-header,
+.page-nav,
+.page-content,
+.page-footer {
+	@include susy-clearfix;
+	@include container;
+	@include gutters;
 
 	@each $key, $value in $breakpoints {
-		@include breakpoint( $key ) {
-			@if $value > 0 {
+		@if $value > 0 {
+			@include breakpoint( $key ) {
 				max-width: map-get( $container-widths, $key );
 			}
 		}
 	}
-}
-
-.row,
-.container,
-.banner,
-.content {
-	@include susy-clearfix;
 }

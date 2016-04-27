@@ -1,6 +1,6 @@
 <?php
 /**
- * Page header template.
+ * Page title template.
  *
  * @package BLR_Base_Theme\Templates
  */
@@ -8,8 +8,8 @@
 use BLR_Base_Theme\Titles;
 ?>
 
-<div class="page-header">
-	<h1>
+<header class="page-heading">
+	<h1 class="page-title">
 		<?php echo esc_html( Titles\title() ); ?>
 	</h1>
-</div>
+</header>
