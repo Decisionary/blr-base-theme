@@ -1,21 +1,25 @@
 {
   "name": "blr-base-theme",
-  "private": true,
+  "description": "A base theme for WordPress sites. Based on Sage by Roots.",
   "version": "0.2.0",
-  "description": "A base theme for BLR WordPress sites. Based on Sage by Roots.",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Decisionary/blr-wppm.git"
+  },
   "authors": [
-    "Wes Moberly <wes.moberly@decisionarytech.com>"
+    "Wes Moberly <wes.moberly@decisionarytech.com> (http://decisionarytech.com)",
+    "Jc Murray <jc@decisionarytech.com> (http://decisionarytech.com)"
   ],
   "keywords": [
     "WordPress",
-    "Vagrant",
-    "VVV",
     "development",
+    "starter",
+    "base",
     "theme",
-    "plugin",
-    "starter"
+    "BLR"
   ],
   "ignore": [
     "**/.*",
@@ -26,18 +30,6 @@
   ],
   "devDependencies": {
     "susy": "^2.2.12",
-    "font-awesome": "^4.5.0",
-    "normalize-css": "^4.1.0"
-  },
-  "overrides": {
-    "font-awesome": {
-      "main": [
-        "./scss/font-awesome.scss",
-        "./fonts/*"
-      ]
-    }
-  },
-  "dependencies": {
     "font-awesome": "^4.6.1"
   }
 }
