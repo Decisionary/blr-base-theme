@@ -4,11 +4,10 @@
 /// @group Layout
 ////
 
-
 .sidebar--primary {
-	@include span( first $grid-cols-sidebar-primary );
+	@include span( $span-sidebar-primary );
 }
 
 .sidebar--secondary {
-	@include span( last $grid-cols-sidebar-secondary );
+	@include span( $span-sidebar-secondary );
 }

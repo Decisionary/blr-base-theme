@@ -50,12 +50,9 @@
 		font-size: inherit;
 	}
 
-	%menu__item {
+	%menu__link {
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
-	}
-
-	%menu__link {
 		text-decoration: none;
 	}
 }
@@ -75,6 +72,20 @@
 %nav-horizontal-with-dividers {
 	@extend %nav-horizontal;
 
+	%menu__item {
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+
+	%menu__link {
+		padding-top: 0;
+		padding-bottom: 0;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	%menu__item + %menu__item {
 		%menu__link {
 			border-left-width: 1px;
@@ -93,6 +104,10 @@
 
 %nav-vertical-with-dividers {
 	@extend %nav-vertical;
+
+	%menu__link:hover {
+		text-decoration: underline;
+	}
 
 	%menu__item + %menu__item {
 		%menu__link {

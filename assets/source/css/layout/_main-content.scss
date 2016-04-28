@@ -12,24 +12,24 @@
 
 main,
 .sidebar {
-	@include span( $grid-cols-main-content );
+	@include span( $span-main-content );
 }
 
 @include breakpoint( lg ) {
 	main {
 		.has-sidebar-primary & {
-			@include span( $grid-cols-main-content - $grid-cols-sidebar-primary );
+			@include span( $span-main-content - $span-sidebar-primary );
 		}
 
 		.has-sidebar-secondary & {
-			@include span( $grid-cols-main-content - $grid-cols-sidebar-secondary );
+			@include span( $span-main-content - $span-sidebar-secondary );
 		}
 
 		.has-sidebar-primary.has-sidebar-secondary & {
 			@include span(
-				$grid-cols-main-content
-					- $grid-cols-sidebar-primary
-					- $grid-cols-sidebar-secondary
+				$span-main-content
+					- $span-sidebar-primary
+					- $span-sidebar-secondary
 			);
 		}
 	}
