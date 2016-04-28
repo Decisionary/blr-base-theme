@@ -1,0 +1,21 @@
+////
+/// Default Nav Styles
+///
+/// @group Layout
+////
+
+.nav {
+	@extend %nav;
+}
+
+.menu {
+	@extend %menu;
+}
+
+.menu__item {
+	@extend %menu__item;
+}
+
+.menu__link {
+	@extend %menu__link;
+}

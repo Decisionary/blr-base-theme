@@ -1,44 +1,59 @@
+////
+/// Default styles
+///
+/// @group Base
+////
 
 @include global-box-sizing( border-box, true );
 
 html,
 body {
-	background-color: map-get( $theme-colors, 'tertiary' );
-	font-family: $font-family-base;
-	font-size: map-get( $font-sizes, 'base' );
+	background-color: $color-bg-body;
 }
 
 body {
-	@include container( 1124px );
+	font-family: $font-family-base;
+	font-size: $font-size-base;
 }
 
-a {
+// Attribute selectors have the same specificity as classes. This way we don't
+// have to override the hover/active/focus/visited styles for UI links.
+[href^="#"] {
 	text-decoration: none;
-	color: map-get( $theme-colors, 'link' );
-	font-size: map-get( $font-sizes, 'base' );
+	color: $color-link;
+	font-size: $font-size-base;
 
-	&:hover {
+	&:hover,
+	&:active,
+	&:focus {
 		text-decoration: underline;
 	}
 
 	&:visited {
-		color: map-get( $theme-colors, 'link-visited' );
+		color: $color-link-visited;
 	}
 }
 
-.row {
-	@include susy-clearfix;
+.page-header-container {
+	background-color: $color-bg-header;
+	color: $color-header;
 }
 
-body > .container,
-.banner,
-.content {
-	background: map-get( $theme-colors, 'light' );
+.page-nav-container {
+	background-color: $color-bg-nav-primary;
+	color: $color-nav-primary;
 }
 
-body > .container {
-	border: 1px solid #e3e3e3;
-	border-top: 0;
-	border-bottom: 0;
-	padding-top: rem-calc( 20px );
+.page-content {
+	background-color: $color-bg-content;
+	color: $color-content;
+}
+
+.page-footer-container {
+	background-color: $color-bg-footer;
+	color: $color-footer;
+}
+
+.page-content {
+	border: 1px solid darken( $color-bg-content, 10% );
 }

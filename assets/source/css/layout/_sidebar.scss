@@ -1,31 +1,13 @@
-#right-content-sidebar {
-	@include span(last 7 of 24);
-	}
+////
+/// Sidebars
+///
+/// @group Layout
+////
 
-#left-content-nav {
-	@include span(first 5 of 24);
+.sidebar--primary {
+	@include span( $span-sidebar-primary );
+}
 
-	ul.menu {
-		margin:0 0 0 20px;
-		background-color: map-get( $theme-colors, 'primary' );
-		padding:15px 0 0 0;
-		color:#fff;
-		list-style:none;
-		font-size: map-get( $font-sizes, 'nav' );
-		li{
-			padding:5px 15px;
-			&.current-menu-item {
-				background-color: #3a3939;
-
-					}
-
-			}
-			a {
-				color:#fff;
-				&:visited {
-					color:#fff;
-					}
-
-				}
-		}
-	}
+.sidebar--secondary {
+	@include span( $span-sidebar-secondary );
+}

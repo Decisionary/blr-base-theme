@@ -5,23 +5,36 @@
  * @package BLR_Base_Theme\Templates
  */
 
+use BLR_Base_Theme\Setup;
 ?>
 
-<footer class="content-info">
-	<div class="container">
-		<?php
-		if ( get_theme_mod( 'blr_base_theme_footer_logo' ) ) :
-			echo '<img class="logo" src="' . esc_url( get_theme_mod( 'blr_base_theme_footer_logo' ) ) . '">';
-		endif;
-		?>
-		<?php wp_nav_menu( array( 'theme_location' => 'footer-menu' ) ); ?>
-		<div class="footer-copyright">
-			<?php
-			if ( get_theme_mod( 'blr_base_theme_copyright_text' ) ) :
-				echo get_theme_mod( 'blr_base_theme_copyright_text' );
-			endif;
-			?>
-		</div>
-		<?php dynamic_sidebar( 'sidebar-footer' ); ?>
+<?php if ( get_theme_mod( 'blr_base_theme_footer_logo' ) ) : ?>
+	<div class="logo logo--footer">
+		<img class="logo__image" src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_footer_logo' ) ) ?>" alt="BLR Footer Logo">
 	</div>
-</footer>
+<?php endif; ?>
+
+
+<div class="site-info" role="contentinfo">
+
+	<?php if ( has_nav_menu( 'nav-footer' ) ) : ?>
+		<nav class="nav nav--footer">
+			<?php
+			wp_nav_menu( [ 'theme_location' => 'nav-footer' ] );
+			?>
+		</nav><!-- /.nav -->
+	<?php endif; ?>
+
+	<?php if ( get_theme_mod( 'blr_base_theme_copyright_text' ) ) : ?>
+		<p class="copyright">
+			<?php echo esc_html( get_theme_mod( 'blr_base_theme_copyright_text' ) ); ?>
+		</p>
+	<?php endif; ?>
+
+</div><!-- /.site-info -->
+
+<?php if ( Setup\display_sidebar( 'sidebar-footer' ) ) : ?>
+	<aside class="sidebar sidebar--footer" role="complementary">
+		<?php get_template_part( 'templates/sidebar', 'footer' ); ?>
+	</aside><!-- /.sidebar -->
+<?php endif; ?>

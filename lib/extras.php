@@ -17,6 +17,7 @@ use BLR_Base_Theme\Setup;
  * @param array $classes The current set of <body> classes.
  */
 function body_class( $classes ) {
+
 	// Add page slug if it doesn't exist.
 	if ( is_single() || is_page() && ! is_front_page() ) {
 		if ( ! in_array( basename( get_permalink() ), $classes, true ) ) {
@@ -24,9 +25,12 @@ function body_class( $classes ) {
 		}
 	}
 
-	// Add class if sidebar is active.
-	if ( Setup\display_sidebar() ) {
-		$classes[] = 'sidebar-primary';
+	// Add page layout classes.
+	if ( Setup\display_sidebar( 'sidebar-primary' ) ) {
+		$classes[] = 'has-sidebar-primary';
+	}
+	if ( Setup\display_sidebar( 'sidebar-secondary' ) ) {
+		$classes[] = 'has-sidebar-secondary';
 	}
 
 	return $classes;

@@ -1,4 +1,6 @@
 ////
+/// Variables
+///
 /// @group Abstracts
 ////
 
@@ -7,16 +9,6 @@
 // -------------------------------------------------------------------------
 // Grid / Layout
 // -------------------------------------------------------------------------
-
-// Susy global config
-$susy-default: (
-	columns: 24,
-	gutters: 20px / 26px,
-	gutter-position: split,
-	global-box-sizing: border-box,
-);
-$susy: $susy-default !default;
-$susy: map-extend( $susy-default, $susy );
 
 // Breakpoints
 $breakpoints-default: (
@@ -29,15 +21,30 @@ $breakpoints-default: (
 $breakpoints: $breakpoints-default !default;
 $breakpoints: map-extend( $breakpoints-default, $breakpoints );
 
-// Page template layouts
-$grid-cols-default: (
-	main-content: 24,
-	sidebar-primary: 5,
-	sidebar-secondary: 7,
-);
-$grid-cols: $grid-cols-default !default;
-$grid-cols: map-extend( $grid-cols-default, $grid-cols );
+// Container widths
+$container-widths: $breakpoints;
 
+// Grid settings
+$grid-cols:      24 !default;
+$grid-width:     rem-calc( 1124px ) !default;
+$grid-col-width: rem-calc( 26px ) !default;
+$gutter-width:   rem-calc( 20px ) !default;
+$gutter-height:  $gutter-width !default;
+
+// Page layouts
+$span-main-content:      24 !default;
+$span-sidebar-primary:   5  !default;
+$span-sidebar-secondary: 7  !default;
+
+// Susy global config
+$susy-default: (
+	columns: $grid-cols,
+	gutters: $gutter-width / $grid-col-width,
+	gutter-position: inside,
+	global-box-sizing: border-box,
+);
+$susy: $susy-default !default;
+$susy: map-extend( $susy-default, $susy );
 
 
 
@@ -45,85 +52,100 @@ $grid-cols: map-extend( $grid-cols-default, $grid-cols );
 // Colors
 // -------------------------------------------------------------------------
 
-// Theme
-$theme-colors-default: (
-	primary:      #d2202f,
-	secondary:    #aeb6b4,
-	tertiary:     #f4f4f4,
-	success:      #58b956,
-	error:        #ca2026,
-	info:         #58c0e0,
-	alert:        #f1ae42,
-	light:        #fff,
-	dark:         #222,
-	body:         #555,
-	link:         #0071bc,
-	link-visited: #639,
-	nav-bg:       #393939,
-	button-bg:    #fff,
-);
-$theme-colors: $theme-colors-default !default;
-$theme-colors: map-extend( $theme-colors-default, $theme-colors );
+// Generic
+$color-base:             #555 !default;
+$color-light:            #fff !default;
+$color-dark:             #393939 !default;
+
+// Branding
+$color-brand-primary:    #d2202f !default;
+$color-brand-secondary:  #aeb6b4 !default;
+$color-brand-tertiary:   #f4f4f4 !default;
+
+// States
+$color-state-success:    #58b956 !default;
+$color-state-error:      #ca2026 !default;
+$color-state-info:       #58c0e0 !default;
+$color-state-alert:      #f1ae42 !default;
+
+// Links
+$color-link:             #0071bc !default;
+$color-link-visited:     #639 !default;
 
 // Buttons
-$button-colors: $theme-colors !default;
-$button-colors: map-extend( $theme-colors, $button-colors );
+$color-button-primary:   $color-brand-primary !default;
+$color-button-secondary: $color-brand-secondary !default;
+$color-button-tertiary:  $color-brand-tertiary !default;
+$color-button-success:   $color-state-success !default;
+$color-button-error:     $color-state-error !default;
+$color-button-info:      $color-state-info !default;
+$color-button-alert:     $color-state-alert !default;
 
-// States - form validation, alerts, modals, table rows / cells, etc.
-$state-colors: $theme-colors !default;
-$state-colors: map-extend( $theme-colors, $state-colors );
+// Page sections
+$color-body:        $color-base !default;
+$color-header:      $color-base !default;
+$color-content:     $color-base !default;
+$color-footer:      $color-light !default;
 
-// Content
-$body-color:             map-get( $theme-colors, 'body' );
-$link-color:             map-get( $theme-colors, 'link' );
-$visited-link-color:     map-get( $theme-colors, 'link-visited' );
-$body-background:        map-get( $theme-colors, 'light' );
-$header-background:      map-get( $theme-colors, 'light' );
-$primary-nav-background: map-get( $theme-colors, 'nav-bg' );
-$content-background:     map-get( $theme-colors, 'tertiary' );
-$footer-menu-color:      map-get( $theme-colors, 'light' );
-$search-menu-color:      map-get( $theme-colors, 'body' );
-$footer-copyright-color: map-get( $theme-colors, 'body' );
+$color-bg-body:     $color-brand-tertiary !default;
+$color-bg-header:   $color-light !default;
+$color-bg-content:  $color-light !default;
+$color-bg-footer:   $color-dark !default;
+
+// Nav menus
+$color-nav-primary:           $color-light !default;
+$color-nav-primary-hover:     $color-nav-primary !default;
+$color-nav-primary-active:    $color-nav-primary !default;
+$color-nav-search:            $color-header !default;
+$color-nav-search-hover:      $color-nav-search !default;
+$color-nav-search-active:     $color-nav-search !default;
+$color-nav-sidebar:           $color-light !default;
+$color-nav-sidebar-hover:     $color-nav-sidebar !default;
+$color-nav-sidebar-active:    $color-nav-sidebar !default;
+$color-nav-footer:            $color-nav-primary !default;
+$color-nav-footer-hover:      $color-nav-primary-hover !default;
+$color-nav-footer-active:     $color-nav-primary-active !default;
+
+$color-bg-nav-primary:        $color-dark !default;
+$color-bg-nav-primary-hover:  darken( $color-bg-nav-primary, 20% ) !default;
+$color-bg-nav-primary-active: $color-bg-nav-primary-hover !default;
+$color-bg-nav-search:         $color-bg-header !default;
+$color-bg-nav-search-hover:   $color-bg-nav-search !default;
+$color-bg-nav-search-active:  $color-bg-nav-search !default;
+$color-bg-nav-sidebar:        $color-brand-primary !default;
+$color-bg-nav-sidebar-hover:  darken( $color-bg-nav-sidebar, 20% ) !default;
+$color-bg-nav-sidebar-active: $color-dark !default;
+$color-bg-nav-footer:         $color-bg-nav-primary !default;
+$color-bg-nav-footer-hover:   $color-bg-nav-footer !default;
+$color-bg-nav-footer-active:  $color-bg-nav-footer !default;
+
+
 
 // -------------------------------------------------------------------------
 // Typography
 // -------------------------------------------------------------------------
 
-// Font family stacks
-$font-stacks-default: (
-	sans:  ( 'Open Sans', sans-serif ),
-	serif: ( Georgia, Times, serif ),
-	mono:  ( monaco, Consolas, monospace ),
-);
-$font-stacks: $font-stacks-default !default;
-$font-stacks: map-extend( $font-stacks-default, $font-stacks );
-
-// Default font family
-$font-family-base: map-get( $font-stacks, 'sans' ) !default;
+// Font families
+$font-family-sans:           'Open Sans', sans-serif !default;
+$font-family-serif:          Georgia, Times, serif !default;
+$font-family-mono:           monaco, Consolas, monospace !default;
+$font-family-base:           $font-family-sans !default;
 
 // Font sizes
-$font-sizes-default: (
-	base:    rem-calc( 14px ),
-	small:   rem-calc( 13px ),
-	large:   rem-calc( 16px ),
-	nav:     rem-calc( 16px ),
-	title:   rem-calc( 18px ),
-	heading: rem-calc( 20px ),
-);
-$font-sizes: $font-sizes-default !default;
-$font-sizes: map-extend( $font-sizes-default, $font-sizes );
-
-// Default font size
-$font-size-base: map-get( $font-sizes, 'base' );
+$font-size-base:             rem-calc( 14px ) !default;
+$font-size-small:            rem-calc( 13px ) !default;
+$font-size-large:            rem-calc( 16px ) !default;
+$font-size-title:            rem-calc( 18px ) !default;
+$font-size-heading:          rem-calc( 20px ) !default;
 
 // Content
-$body-background:       map-get( $theme-colors, 'light' );
-$header-background:     map-get( $theme-colors, 'light' );
-$content-background:    map-get( $theme-colors, 'tertiary' );
-$footer-menu-color:     map-get( $theme-colors, 'light' );
-$footer-menu-size:      map-get( $font-sizes, 'base' );
-$search-menu-size:      map-get( $font-sizes, 'base' );
-$footer-copyright-size: map-get( $font-sizes, 'small' );
+$font-size-nav:              $font-size-large !default;
+$font-size-nav-primary:      $font-size-nav !default;
+$font-size-nav-search:       $font-size-base !default;
+$font-size-nav-sidebar:      $font-size-nav !default;
+$font-size-nav-footer:       $font-size-base !default;
+$font-size-footer-copyright: $font-size-small !default;
+
 
 
 // -------------------------------------------------------------------------
@@ -131,5 +153,62 @@ $footer-copyright-size: map-get( $font-sizes, 'small' );
 // -------------------------------------------------------------------------
 
 // FontAwesome
-$fa-font-path:  'https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts' !default;
 $fa-css-prefix: 'icon' !default;
+
+
+
+// -------------------------------------------------------------------------
+// Component Variants
+// -------------------------------------------------------------------------
+
+$button-variants: (
+	primary:   $color-button-primary,
+	secondary: $color-button-secondary,
+	tertiary:  $color-button-tertiary,
+	success:   $color-button-success,
+	error:     $color-button-error,
+	info:      $color-button-info,
+	alert:     $color-button-alert,
+);
+
+$nav-variants: (
+	primary: (
+		color:           $color-nav-primary,
+		color-hover:     $color-nav-primary-hover,
+		color-active:    $color-nav-primary-active,
+		color-bg:        $color-bg-nav-primary,
+		color-bg-hover:  $color-bg-nav-primary-hover,
+		color-bg-active: $color-bg-nav-primary-active,
+		font-size:       $font-size-nav-primary,
+	),
+
+	search: (
+		color:           $color-nav-search,
+		color-hover:     $color-nav-search-hover,
+		color-active:    $color-nav-search-active,
+		color-bg:        $color-bg-nav-search,
+		color-bg-hover:  $color-bg-nav-search-hover,
+		color-bg-active: $color-bg-nav-search-active,
+		font-size:       $font-size-nav-search,
+	),
+
+	sidebar: (
+		color:           $color-nav-sidebar,
+		color-hover:     $color-nav-sidebar-hover,
+		color-active:    $color-nav-sidebar-active,
+		color-bg:        $color-bg-nav-sidebar,
+		color-bg-hover:  $color-bg-nav-sidebar-hover,
+		color-bg-active: $color-bg-nav-sidebar-active,
+		font-size:       $font-size-nav-sidebar,
+	),
+
+	footer: (
+		color:           $color-nav-footer,
+		color-hover:     $color-nav-footer-hover,
+		color-active:    $color-nav-footer-active,
+		color-bg:        $color-bg-nav-footer,
+		color-bg-hover:  $color-bg-nav-footer-hover,
+		color-bg-active: $color-bg-nav-footer-active,
+		font-size:       $font-size-nav-footer,
+	),
+);

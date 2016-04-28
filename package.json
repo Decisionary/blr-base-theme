@@ -1,13 +1,10 @@
 {
   "name": "@decisionary/blr-base-theme",
-  "private": true,
+  "description": "A base theme for WordPress sites. Based on Sage by Roots.",
   "version": "0.2.0",
-  "description": "A base theme for BLR WordPress sites. Based on Sage by Roots.",
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
-  "license": "MIT",
-  "authors": [
-    "Wes Moberly <wes.moberly@decisionarytech.com>"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Decisionary/blr-base-theme.git"
@@ -15,13 +12,17 @@
   "bugs": {
     "url": "https://github.com/Decisionary/blr-base-theme/issues"
   },
+  "contributors": [
+    "Wes Moberly <wes.moberly@decisionarytech.com> (http://decisionarytech.com)",
+    "Jc Murray <jc@decisionarytech.com> (http://decisionarytech.com)"
+  ],
   "keywords": [
     "WordPress",
     "development",
     "starter",
     "base",
     "theme",
-    "blr"
+    "BLR"
   ],
   "main": "gulpfile.babel.js",
   "engines": {
@@ -32,13 +33,16 @@
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
+    "babel-eslint": "^6.0.4",
+    "babel-polyfill": "^6.7.4",
     "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-3": "^6.5.0",
+    "eslint": "^2.8.0",
     "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
-    "gulp-jshint": "^1.12.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",

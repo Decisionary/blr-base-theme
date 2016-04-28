@@ -1,8 +1,10 @@
-;(function( $ ) {
+( function( $, wp ) {
+
 	// Site title
-	wp.customize( 'blogname', function( value ) {
-		value.bind(function( to ) {
+	wp.customize( 'blogname', value => {
+		value.bind( to => {
 			$( '.brand' ).text( to );
 		});
 	});
-})( jQuery );
+
+})( window.jQuery, window.wp );

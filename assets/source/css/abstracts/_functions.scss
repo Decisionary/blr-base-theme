@@ -1,25 +1,47 @@
 ////
-/// Custom functions.
+/// Functions.
 ///
 /// @group Abstracts
 ///
 /// scss-lint:disable ZeroUnit ColorVariable
 ////
 
+
+/// Takes a valid breakpoint name and returns its width.
+/// Returns null if the breakpoint is not defined.
 ///
+/// @param {String} $breakpoint
+///
+/// @return {Number}
+@function get-breakpoint( $breakpoint, $min-max: 'min' ) {
+
+	@if not map-has-key( $breakpoints, $breakpoint ) {
+		@warn "`#{$breakpoint}` is not a valid breakpoint name.";
+		@return null;
+	}
+
+	$width: map-get( $breakpoints, $breakpoint );
+
+	@if 'max' == $min-max {
+		$width: $width - 0.000001rem;
+	}
+
+	@return $width;
+}
+
+
 /// Takes a color, determines whether it's dark or light, and returns a color
 /// that contrasts it. For example, if the color is dark, a light color is
 /// returned, and vice-versa. Used for things like alert boxes and buttons to
 /// ensure that the text color is readable against the background color.
 ///
-/// @param {Color} $bg-color
+/// @param {Color} $base  The base color to contrast against.
+/// @param {Color} $dark  [$color-dark]  The dark color to use.
+/// @param {Color} $light [$color-light] The light color to use.
 ///
-@function ensure-contrast( $base-color, $color-dark: null, $color-light: null ) {
-	@return if(
-		lightness( $base-color ) > 40,
-		$color-dark or map-get( $theme-colors, dark ),
-		$color-light or map-get( $theme-colors, light )
-	);
+/// @return {Color}
+@function ensure-contrast( $base, $dark: $color-dark, $light: $color-light ) {
+	@return if( lightness( $base ) > 40, $dark, $light );
 }
 
 
@@ -37,8 +59,9 @@
 
 /// Slightly darken a color.
 ///
-/// @param {Color} $color - color to shade
-/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @param {Color} $color       - The color to shade.
+/// @param {Number} $percentage - The percentage of `$color` in the returned color.
+///
 /// @return {Color}
 @function shade( $color, $percentage ) {
 	@return mix( #000, $color, $percentage );

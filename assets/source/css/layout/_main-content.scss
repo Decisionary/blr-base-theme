@@ -1,29 +1,36 @@
+////
+/// Main Content
+///
+/// @group Layout
+////
 
-/// --------------------
-/// Main content section
-/// --------------------
+.page-content-container,
+.page-content {
+	padding-top: $gutter-height;
+	padding-bottom: $gutter-height;
+}
 
-$main-content-cols:      map-get( $grid-cols, 'main-content' );
-$sidebar-primary-cols:   map-get( $grid-cols, 'sidebar-primary' );
-$sidebar-secondary-cols: map-get( $grid-cols, 'sidebar-secondary' );
-
-.main-content,
+main,
 .sidebar {
-	@include span( $main-content-cols );
+	@include span( $span-main-content );
 }
 
 @include breakpoint( lg ) {
-	.main-content {
-		.layout--three-column & {
-			@include span( $main-content-cols - $sidebar-primary-cols - $sidebar-secondary-cols );
+	main {
+		.has-sidebar-primary & {
+			@include span( $span-main-content - $span-sidebar-primary );
 		}
 
-		.layout--right-column & {
-			@include span( $main-content-cols - $sidebar-primary-cols );
+		.has-sidebar-secondary & {
+			@include span( $span-main-content - $span-sidebar-secondary );
 		}
 
-		.layout--left-column & {
-			@include span( $main-content-cols - $sidebar-secondary-cols );
+		.has-sidebar-primary.has-sidebar-secondary & {
+			@include span(
+				$span-main-content
+					- $span-sidebar-primary
+					- $span-sidebar-secondary
+			);
 		}
 	}
 }

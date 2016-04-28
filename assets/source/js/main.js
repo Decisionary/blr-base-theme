@@ -1,81 +1,99 @@
-/* ========================================================================
+
+/**
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
  *
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
- *
- * .noConflict()
- * The routing is enclosed within an anonymous function so that you can
- * always reference jQuery with $, even when in .noConflict() mode.
- * ======================================================================== */
+ */
+( function( $ ) {
 
-;(function( $ ) {
+	// Use this variable to set up the common and page specific functions. If
+	// you rename this variable, you'll also need to rename the namespace below.
+	const routes = {
 
-	// Use this variable to set up the common and page specific functions. If you
-	// rename this variable, you will also need to rename the namespace below.
-	var BLR_Base_Theme = {
+		// All pages.
+		common: {
 
-		// All pages
-		'common': {
-			init: function() {
-				// JavaScript to be fired on all pages
+			init() {
+
+				// Code goes here.
 			},
-			finalize: function() {
-				// JavaScript to be fired on all pages, after page specific JS is fired
-			}
+
+			finalize() {
+
+				// Code goes here.
+			},
+
 		},
 
 		// Home page
-		'home': {
-			init: function() {
-				// JavaScript to be fired on the home page
+		home: {
+
+			init() {
+
+				// Code goes here.
 			},
-			finalize: function() {
-				// JavaScript to be fired on the home page, after the init JS
-			}
+
+			finalize() {
+
+				// Code goes here.
+			},
+
 		},
 
-		// About us page, note the change from about-us to about_us.
-		'about_us': {
-			init: function() {
-				// JavaScript to be fired on the about us page
-			}
-		}
+		// About us page.
+		about_us: {
+
+			init() {
+
+				// Code goes here.
+			},
+
+		},
+
 	};
 
-	// The routing fires all common scripts, followed by the page specific scripts.
-	// Add additional events for more control over timing e.g. a finalize event
-	var UTIL = {
-		fire: function( func, funcname, args ) {
-			var fire;
-			var namespace = BLR_Base_Theme;
-			funcname = ( funcname === undefined ) ? 'init' : funcname;
-			fire = func !== '';
-			fire = fire && namespace[func];
-			fire = fire && typeof namespace[func][funcname] === 'function';
+	// Fires all common scripts, followed by the page specific scripts.
+	const router = {
 
-			if ( fire ) {
-				namespace[ func ][ funcname ]( args );
+		route( fn, fnName = 'init', ...args ) {
+
+			let trigger;
+
+			trigger = ( '' !== fn );
+			trigger = ( trigger && routes[ fn ] );
+			trigger = ( trigger && 'function' === typeof routes[ fn ][ fnName ] );
+
+			if ( trigger ) {
+				routes[ fn ][ fnName ]( args );
 			}
-		},
-		loadEvents: function() {
-			// Fire common init JS
-			UTIL.fire( 'common' );
 
-			// Fire page-specific init JS, and then finalize JS
-			var pages = document.body.className.replace( /-/g, '_' ).split( /\s+/ );
-			$.each( pages, function( i, classnm ) {
-				UTIL.fire( classnm );
-				UTIL.fire( classnm, 'finalize' );
+		},
+
+		loadRoutes() {
+
+			// Fire common init JS.
+			router.route( 'common' );
+
+			// Fire page-specific init JS, and then finalize JS.
+			const pages = document.body.className
+				.replace( /-/g, '_' )
+				.split( /\s+/ );
+
+			$.each( pages, ( i, className ) => {
+				router.route( className );
+				router.route( className, 'finalize' );
 			});
 
 			// Fire common finalize JS
-			UTIL.fire( 'common', 'finalize' );
-		}
+			router.route( 'common', 'finalize' );
+
+		},
+
 	};
 
-	// Load Events
-	$( document ).ready( UTIL.loadEvents );
+	// Load Events on domReady.
+	$( router.loadRoutes );
 
-})( jQuery ); // Fully reference jQuery after this point.
+})( window.jQuery );

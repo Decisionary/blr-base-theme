@@ -1,0 +1,17 @@
+////
+/// Sidebar Nav
+///
+/// @group Components
+////
+
+.nav--sidebar {
+	@extend %nav-vertical;
+	@include nav-variant( 'sidebar' );
+
+	padding: ( $gutter-height * 0.75 ) 0;
+
+	.menu__link {
+		padding-right: ( $gutter-width * 0.75 );
+		padding-left: ( $gutter-width * 0.75 );
+	}
+}

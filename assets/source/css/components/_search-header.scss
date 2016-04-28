@@ -1,0 +1,46 @@
+////
+/// Header Search Form
+///
+/// @group Components
+////
+
+.search-form {
+	@include susy-clearfix;
+
+	position: relative;
+	text-align: right;
+}
+
+.search-form__label,
+.search-form__input,
+.search-form__button {
+	display: inline-block;
+}
+
+.search-form__label {
+	float: right;
+}
+
+.search-form__input {
+	width: rem-calc( 300px );
+	height: rem-calc( 34px );
+}
+
+.search-form__button {
+	position: absolute;
+	right: 0;
+	outline: 0;
+	border: 0;
+	background-color: $color-base;
+	padding: 0;
+	width: rem-calc( 34px );
+	height: rem-calc( 34px );
+	text-align: center;
+	line-height: rem-calc( 34px );
+	color: ensure-contrast( $color-base );
+	font-size: rem-calc( 20px );
+}
+
+.search-form__icon {
+	@include icon( $fa-var-search );
+}

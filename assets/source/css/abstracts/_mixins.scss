@@ -1,5 +1,5 @@
 ////
-/// Custom Mixins
+/// Mixins
 ///
 /// @group Abstracts
 ////
@@ -11,22 +11,76 @@
 /// @param
 ///
 @mixin breakpoint( $breakpoint, $min-max: 'min' ) {
-	@if not variable-exists( breakpoints )
-	 or not map-has-key( $breakpoints, $breakpoint ) {
-		@warn "`#{$breakpoint}` is not a valid breakpoint name. Please check \
-			your spelling, or if this is a custom breakpoint, add it to the \
-			`$breakpoints` map defined in _variables.scss";
-	} @else {
-		$type:  'min-width';
-		$width: map-get( $breakpoints, $breakpoint );
 
-		@if 'max-width' == $min-max {
-			$type:  'max-width';
-			$width: $width - 0.0001rem;
-		}
+	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
+	$width: get-breakpoint( $breakpoint, $min-max );
 
+	@if $width {
 		@media( $type: $width ) {
 			@content;
+		}
+	}
+}
+
+@mixin icon( $icon-content: null ) {
+	@include fa-icon;
+
+	text-align: center;
+
+	@if $icon-content {
+		&::before {
+			content: $icon-content;
+		}
+	}
+}
+
+@mixin button-style( $style ) {
+	@if map-has-key( $button-variants, $variant ) {
+		@include button-color( map-get( $button-variants, $variant ) );
+	} @else {
+		@warn "`#{$variant}` is not a valid button variant.";
+	}
+}
+
+@mixin button-color( $color ) {
+	border-color: $color;
+	color: $color;
+
+	&:active,
+	&:focus,
+	&:hover {
+		background-color: $color;
+		color: ensure-contrast( $color );
+	}
+}
+
+@mixin nav-variant( $variant: null ) {
+
+	@include susy-clearfix;
+
+	@if not $variant or not map-has-key( $nav-variants, $variant ) {
+		@warn "`#{$variant} is not a valid nav menu variant.`"
+	} @else {
+		$theme: map-get( $nav-variants, $variant );
+
+		border-color: map-get( $theme, 'color' );
+		background-color: map-get( $theme, 'color-bg' );
+		color: map-get( $theme, 'color' );
+		font-size: map-get( $theme, 'font-size' );
+
+		.menu__item {
+			border-color: map-get( $theme, 'color' );
+
+			&:hover,
+			&:focus {
+				background-color: map-get( $theme, 'color-bg-hover' );
+				color: map-get( $theme, 'color-hover' );
+			}
+
+			&.is-active {
+				background-color: map-get( $theme, 'color-bg-active' );
+				color: map-get( $theme, 'color-active' );
+			}
 		}
 	}
 }
@@ -40,24 +94,4 @@
 	}
 
 	#{$attribute}: $color;
-}
-
-@mixin button-style( $style ) {
-	@if map-has-key( $button-variants, $variant ) {
-		@include button-color( map-get( $button-variants, $variant ) );
-	} @else {
-		@warn "`#{$variant}` is not a valid button variant.";
-	}
-}
-
-@mixin button-color( $color ) {
-	color: $color;
-	border-color: $color;
-
-	&:active,
-	&:focus,
-	&:hover {
-		color: auto-text-color( $color );
-		background-color: $color;
-	}
 }

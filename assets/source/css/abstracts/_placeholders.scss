@@ -1,21 +1,118 @@
+////
+/// Placeholders
+///
+/// @group Abstracts
+////
 
 %button {
 	display: inline-block;
+	border: 2px solid transparent;
+	background-color: $color-light;
+	cursor: pointer;
+	user-select: none;
 	padding: 5px 20px;
-	font-size: map-get( $font-sizes, 'large' );
+	vertical-align: middle;
 	text-align: center;
 	white-space: nowrap;
-	vertical-align: middle;
-	cursor: pointer;
-	background-color: map-get( $theme-colors, 'button-bg' );
-	border: 2px solid transparent;
-	user-select: none;
+	color: $color-base;
+	font-size: $font-size-large;
 }
 
-
-@each $key, $value in $button-colors {
+@each $key, $value in $button-variants {
 	%button-#{$key} {
 		@extend %button;
 		@include button-color( $value );
+	}
+}
+
+%nav {
+	display: block;
+	font-size: $font-size-nav;
+
+	%menu {
+		@include susy-clearfix;
+
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	%menu {
+		display: block;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: inline-block;
+		border-color: inherit;
+		line-height: 1;
+		color: inherit;
+		font-size: inherit;
+	}
+
+	%menu__link {
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+		text-decoration: none;
+	}
+}
+
+%nav-horizontal {
+
+	%menu__item {
+		float: left;
+	}
+
+	%menu__link {
+		padding-right: 0.75em;
+		padding-left: 0.75em;
+	}
+}
+
+%nav-horizontal-with-dividers {
+	@extend %nav-horizontal;
+
+	%menu__item {
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+
+	%menu__link {
+		padding-top: 0;
+		padding-bottom: 0;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	%menu__item + %menu__item {
+		%menu__link {
+			border-left-width: 1px;
+			border-left-style: solid;
+		}
+	}
+}
+
+%nav-vertical {
+
+	%menu__item {
+		display: block;
+		float: none;
+	}
+}
+
+%nav-vertical-with-dividers {
+	@extend %nav-vertical;
+
+	%menu__link:hover {
+		text-decoration: underline;
+	}
+
+	%menu__item + %menu__item {
+		%menu__link {
+			border-top-width: 1px;
+			border-top-style: solid;
+		}
 	}
 }

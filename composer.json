@@ -6,7 +6,18 @@
   "homepage": "https://github.com/Decisionary/blr-base-theme",
   "license": "MIT",
   "authors": [
-    "Wes Moberly <wes.moberly@decisionarytech.com>"
+    {
+      "name": "Wes Moberly",
+      "email": "wes.moberly@decisionarytech.com",
+      "homepage": "http://decisionarytech.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Jc Murray",
+      "email": "jc@decisionarytech.com",
+      "homepage": "http://decisionarytech.com",
+      "role": "Developer"
+    }
   ],
   "keywords": [
     "WordPress",

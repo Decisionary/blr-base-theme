@@ -10,55 +10,71 @@ use BLR_Base_Theme\Wrapper;
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 	<?php get_template_part( 'templates/head' ); ?>
+
 	<body <?php body_class(); ?>>
-		<!--[if IE]>
-		<div class="alert alert-warning">
+
+		<header class="page-header-container">
+			<div class="page-header">
 				<?php
-				printf(
-					esc_html__(
-						'You are using an %1$s outdated %2$s browser. Please %3$s upgrade your browser %4$s to improve your experience.',
-						'blr-base-theme'
-					),
-					'<strong>',
-					'</strong>',
-					'<a href="http://browsehappy.com/">',
-					'</a>'
-				);
+				do_action( 'header_before' );
+				get_template_part( 'templates/header' );
+				do_action( 'header_after' );
 				?>
-			</div>		<![endif]-->
-		<?php
-		do_action( 'get_header' );
-		get_template_part( 'templates/header' );
-		?>
-		<div class="content row">
-			<?php if ( is_active_sidebar( 'breadcrumb-1' ) ) : ?>
-				<div id="main-breadcrumb" class="widget-area" role="complementary">
-						<?php dynamic_sidebar( 'breadcrumb-1' ); ?>
-					</div>
-			<?php endif ?>
-		</div>
-		<div class="wrap container" role="document">
-			<div class="content row">
-				<?php if ( is_active_sidebar( 'nav-1' ) ) : ?>
-					<div id="left-content-nav" class="widget-area" role="complementary">
-						<?php dynamic_sidebar( 'nav-1' ); ?>
-					</div>
+			</div><!-- /.page-header -->
+		</header><!-- /.page-header-container -->
+
+		<?php if ( Setup\display_nav_menu( 'nav-primary' ) ) : ?>
+			<div class="page-nav-container">
+				<nav class="nav page-nav nav--primary">
+					<?php
+					do_action( 'nav_before' );
+					wp_nav_menu( [ 'theme_location' => 'nav-primary' ] );
+					do_action( 'nav_after' );
+					?>
+				</nav><!-- /.page-nav -->
+			</div><!-- /.page-nav-container -->
+		<?php endif; ?>
+
+
+		<div class="page-content-container" role="document">
+			<div class="page-content">
+
+				<?php do_action( 'content_before' ); ?>
+
+				<?php if ( Setup\display_sidebar( 'sidebar-primary' ) ) : ?>
+					<aside class="sidebar sidebar--primary" role="complementary">
+						<?php include Wrapper\sidebar_path( 'sidebar-primary' ); ?>
+					</aside><!-- /.sidebar -->
 				<?php endif ?>
-				<main class="main">
+
+				<main class="main-content">
 					<?php include Wrapper\template_path(); ?>
-				</main><!-- /.main -->
-				<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-					<div id="right-content-sidebar" class="widget-area" role="complementary">
-						<?php dynamic_sidebar( 'sidebar-1' ); ?>
-					</div>
+				</main><!-- /.main-content -->
+
+				<?php if ( Setup\display_sidebar( 'sidebar-secondary' ) ) : ?>
+					<aside class="sidebar sidebar--secondary" role="complementary">
+						<?php include Wrapper\sidebar_path( 'sidebar-secondary' ); ?>
+					</aside><!-- /.sidebar -->
 				<?php endif ?>
-			</div><!-- /.content -->
-		</div><!-- /.wrap -->
-		<?php
-		do_action( 'get_footer' );
-		get_template_part( 'templates/footer' );
-		wp_footer();
-		?>
+
+				<?php do_action( 'content_after' ); ?>
+
+			</div><!-- /.page-content -->
+		</div><!-- /.page-content-container -->
+
+
+		<div class="page-footer-container">
+			<div class="page-footer">
+				<?php
+				do_action( 'footer_before' );
+				get_template_part( 'templates/footer' );
+				do_action( 'footer_after' );
+				?>
+			</div><!-- /.page-footer -->
+		</div><!-- /.page-footer-container -->
+
+		<?php wp_footer(); ?>
 	</body>
 </html>

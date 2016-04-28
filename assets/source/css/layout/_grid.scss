@@ -1,20 +1,22 @@
-body {
-	&.three-column {
-		main {
-			@include span(12 of 24);
-			}
-		}
-	&.left-column {
-		main {
-			@include span(19 of 24);
-			@include last;
-			}
-		}
-	&.right-column {
-		main {
-			@include span(17 of 24);
-			@include first;
-			}
+////
+/// Grid
+///
+/// @group Layout
+////
 
+.page-header,
+.page-nav,
+.page-content,
+.page-footer {
+	@include susy-clearfix;
+	@include container;
+	@include gutters;
+
+	@each $key, $value in $breakpoints {
+		@if $value > 0 {
+			@include breakpoint( $key ) {
+				max-width: map-get( $container-widths, $key );
+			}
 		}
 	}
+}
