@@ -84,7 +84,7 @@
 			$.each( pages, ( i, className ) => {
 				router.route( className );
 				router.route( className, 'finalize' );
-			});
+			} );
 
 			// Fire common finalize JS
 			router.route( 'common', 'finalize' );
@@ -96,4 +96,4 @@
 	// Load Events on domReady.
 	$( router.loadRoutes );
 
-})( window.jQuery );
+} )( window.jQuery );

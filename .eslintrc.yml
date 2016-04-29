@@ -150,7 +150,7 @@
       - error
       - allowParens: true
     no-console:
-      - warn
+      - off
     no-const-assign:
       - error
     no-continue:
@@ -352,8 +352,6 @@
     space-in-parens:
       - error
       - always
-      - exceptions:
-          - '{}'
     space-infix-ops:
       - error
     space-unary-ops:
