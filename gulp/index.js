@@ -1,9 +1,17 @@
-/**
- * @module gulp
- */
 
-import 'babel-polyfill';
+const path       = require.main.require( 'path' );
+const requireDir = require.main.require( 'require-dir' );
 
-import requireDir from 'require-dir';
+if ( ! process.env.gulpDir ) {
+	process.env.gulpDir = path.resolve( './gulp' );
+}
 
-export default requireDir( '.', { recurse: true, camelcase: true } );
+global.__require     = pkg  => require.main.require( pkg );
+global.__requireTask = task => require.main.require(
+	path.join( process.env.gulpDir, 'tasks', task )
+);
+
+module.exports = requireDir( process.env.gulpDir, {
+	recurse:   true,
+	camelcase: true,
+} );

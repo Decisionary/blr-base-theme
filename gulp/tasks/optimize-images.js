@@ -1,19 +1,18 @@
+
+// Gulp
+const gulp = __require( 'gulp' );
+
+// Files
+const fs   = __require( 'fs-extra' );
+
+
 /**
- * @module gulp/tasks/optimize-images
+ * Gulp callback for `optimize-images` task.
  */
-
-import gulp from 'gulp';
-import fs   from 'fs-extra';
-
-
-/**
- * Optimizes images.
- */
-const gulpOptimizeImages = () => {
+export const callback = () => {
 	fs.copySync( 'assets/source/images', 'assets/dist/images' );
 };
 
-// Register the task.
-gulp.task( 'optimize-images', gulpOptimizeImages );
 
-export default gulpOptimizeImages;
+// Register the task.
+gulp.task( 'optimize-images', callback );

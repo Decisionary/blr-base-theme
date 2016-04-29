@@ -356,6 +356,9 @@
       - error
     space-unary-ops:
       - error
+      - overrides:
+          '!': true
+          '!!': true
     spaced-comment:
       - error
     strict:

@@ -1,0 +1,4 @@
+---
+  globals:
+    __require: false
+    __requireTask: false

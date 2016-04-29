@@ -1,29 +1,31 @@
-/**
- * @module gulp/tasks/build-js
- */
 
 // Gulp
-import gulp       from 'gulp';
+const gulp       = __require( 'gulp' );
 
 // Files
-import rename     from 'gulp-rename';
-import concat     from 'gulp-concat';
-import sourcemaps from 'gulp-sourcemaps';
+const rename     = __require( 'gulp-rename' );
+const concat     = __require( 'gulp-concat' );
+const sourcemaps = __require( 'gulp-sourcemaps' );
 
 // JS
-import babel      from 'gulp-babel';
-import uglify     from 'gulp-uglify';
+const babel      = __require( 'gulp-babel' );
+const uglify     = __require( 'gulp-uglify' );
 
-// Config
-import files      from '../files/build-js';
+
+// Task files.
+export const files = {
+	watch:  'assets/source/js/**/*.js',
+	source: 'assets/source/js/**/*.js',
+	dest:   'assets/dist/js',
+};
 
 
 /**
- * Compiles theme JS.
+ * Gulp callback for `build-js` task.
  *
  * @return {Function}
  */
-const gulpBuildJS = () =>
+export const callback = () =>
 	gulp.src( files.source )
 		.pipe( sourcemaps.init() )
 		.pipe( babel() )
@@ -34,7 +36,6 @@ const gulpBuildJS = () =>
 		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( gulp.dest( files.dest ) );
 
-// Register the task.
-gulp.task( 'build-js', gulpBuildJS );
 
-export default gulpBuildJS;
+// Register the task.
+gulp.task( 'build-js', callback );

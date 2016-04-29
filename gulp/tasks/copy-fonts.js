@@ -1,20 +1,19 @@
+
+// Gulp
+const gulp = __require( 'gulp' );
+
+// Files
+const fs   = __require( 'fs-extra' );
+
+
 /**
- * @module gulp/tasks/copy-fonts
+ * Gulp callback for `copy-fonts` task.
  */
-
-import gulp from 'gulp';
-import fs   from 'fs-extra';
-
-
-/**
- * Copies FontAwsome fonts into theme fonts directory.
- */
-const gulpCopyFonts = () => {
+export const callback = () => {
 	fs.copySync( 'assets/source/fonts', 'assets/dist/fonts' );
 	fs.copySync( 'bower_components/font-awesome/fonts', 'assets/dist/fonts' );
 };
 
-// Register the task.
-gulp.task( 'copy-fonts', gulpCopyFonts );
 
-export default gulpCopyFonts;
+// Register the task.
+gulp.task( 'copy-fonts', callback );
