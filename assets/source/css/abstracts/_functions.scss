@@ -1,16 +1,15 @@
 ////
-/// Functions.
-///
 /// @group Abstracts
-///
-/// scss-lint:disable ZeroUnit ColorVariable
 ////
+
+// scss-lint:disable ZeroUnit ColorVariable
 
 
 /// Takes a valid breakpoint name and returns its width.
 /// Returns null if the breakpoint is not defined.
 ///
-/// @param {String} $breakpoint
+/// @param {String} $breakpoint - The breakpoint to get the width for.
+/// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
 ///
 /// @return {Number}
 @function get-breakpoint( $breakpoint, $min-max: 'min' ) {
@@ -35,9 +34,9 @@
 /// returned, and vice-versa. Used for things like alert boxes and buttons to
 /// ensure that the text color is readable against the background color.
 ///
-/// @param {Color} $base  The base color to contrast against.
-/// @param {Color} $dark  [$color-dark]  The dark color to use.
-/// @param {Color} $light [$color-light] The light color to use.
+/// @param {Color} $base  - The base color to contrast against.
+/// @param {Color} $dark  [$color-dark]  - The dark color to use.
+/// @param {Color} $light [$color-light] - The light color to use.
 ///
 /// @return {Color}
 @function ensure-contrast( $base, $dark: $color-dark, $light: $color-light ) {

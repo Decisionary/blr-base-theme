@@ -6,6 +6,10 @@ assets/dist/js/*
 !assets/dist/css/.gitkeep
 !assets/dist/js/.gitkeep
 
+# Documentation
+docs/php/*
+!docs/php/.gitkeep
+
 ### Package Managers ###
 
 # Composer

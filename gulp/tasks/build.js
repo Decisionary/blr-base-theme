@@ -1,30 +1,25 @@
-/**
- * @module gulp/tasks/build
- */
 
 // Gulp
-import gulp      from 'gulp';
+const gulp = __require( 'gulp' );
 
-// Sub-tasks
-import buildCSS  from './build-css';
-import buildJS   from './build-js';
-import copyFonts from './copy-fonts';
+// Tasks
+const buildCSS  = __requireTask( 'build-css' );
+const buildJS   = __requireTask( 'build-js' );
+const copyFonts = __requireTask( 'copy-fonts' );
 
 /**
- * Build task.
+ * Gulp callback for `build` task.
  *
  * @param {Function} done Async callback.
  */
-const gulpBuild = async done => {
+export const callback = async done => {
 
-	await buildCSS();
-	await buildJS();
-	await copyFonts();
+	await buildCSS.callback();
+	await buildJS.callback();
+	await copyFonts.callback();
 
 	done();
 };
 
 // Register the task.
-gulp.task( 'build', gulpBuild );
-
-export default gulpBuild;
+gulp.task( 'build', callback );

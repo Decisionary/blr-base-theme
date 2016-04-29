@@ -1,28 +1,20 @@
-/**
- * @module gulp/tasks/watch
- */
 
 // Gulp
-import gulp     from 'gulp';
+const gulp = __require( 'gulp' );
 
 // Tasks
-import buildCSS from './build-css';
-import buildJS  from './build-js';
-
-// Files
-import cssFiles from '../files/build-css';
-import jsFiles  from '../files/build-js';
+const buildCSS = __requireTask( 'build-css' );
+const buildJS  = __requireTask( 'build-js' );
 
 
 /**
- * Watch task.
+ * Gulp callback for `watch` task.
  */
-const gulpWatch = () => {
-	gulp.watch( cssFiles.watch, buildCSS );
-	gulp.watch( jsFiles.watch, buildJS );
+export const callback = () => {
+	gulp.watch( buildCSS.files.watch, buildCSS.callback );
+	gulp.watch( buildJS.files.watch, buildJS.callback );
 };
 
-// Register the task.
-gulp.task( 'watch', gulpWatch );
 
-export default gulpWatch;
+// Register the task.
+gulp.task( 'watch', callback );

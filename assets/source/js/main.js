@@ -1,15 +1,22 @@
 
 /**
- * DOM-based Routing
- * Based on http://goo.gl/EUTi53 by Paul Irish
+ * DOM-based Routing.
  *
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
+ * Based on {@link http://goo.gl/EUTi53} by Paul Irish.
+ *
+ * @since 0.1.0
  */
 ( function( $ ) {
 
-	// Use this variable to set up the common and page specific functions. If
-	// you rename this variable, you'll also need to rename the namespace below.
+	/**
+	 * Define your routes and callbacks here.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @type {Object}
+	 */
 	const routes = {
 
 		// All pages.
@@ -54,39 +61,59 @@
 
 	};
 
-	// Fires all common scripts, followed by the page specific scripts.
+	/**
+	 * Triggers callbacks for the 'common' route on all pages, followed by any
+	 * routes that match the current page.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @type {Object}
+	 */
 	const router = {
 
-		route( fn, fnName = 'init', ...args ) {
+		/**
+		 * Triggers a route callback.
+		 *
+		 * @param  {String}   route  The name of the route to trigger.
+		 * @param  {Function} [callback = 'init'] The callback to trigger.
+		 * @param  {...*}     [args] Arguments to pass to the callback.
+		 */
+		route( route, callback = 'init', ...args ) {
 
 			let trigger;
 
-			trigger = ( '' !== fn );
-			trigger = ( trigger && routes[ fn ] );
-			trigger = ( trigger && 'function' === typeof routes[ fn ][ fnName ] );
+			trigger = ( '' !== route );
+			trigger = ( trigger && routes[ route ] );
+			trigger = ( trigger && 'function' === typeof routes[ route ][ callback ] );
 
 			if ( trigger ) {
-				routes[ fn ][ fnName ]( args );
+				routes[ route ][ callback ]( args );
 			}
 
 		},
 
+		/**
+		 * Loads routes for the current page and triggers any matching callbacks.
+		 *
+		 * @since 0.1.0
+		 */
 		loadRoutes() {
 
-			// Fire common init JS.
+			// Fire init event for common route.
 			router.route( 'common' );
 
-			// Fire page-specific init JS, and then finalize JS.
+			// Extract page-specific routes from body class.
 			const pages = document.body.className
 				.replace( /-/g, '_' )
 				.split( /\s+/ );
 
+			// Fire init and finalize events for page-specific routes.
 			$.each( pages, ( i, className ) => {
 				router.route( className );
 				router.route( className, 'finalize' );
 			} );
 
-			// Fire common finalize JS
+			// Fire finalize event for common route.
 			router.route( 'common', 'finalize' );
 
 		},

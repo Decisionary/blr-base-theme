@@ -1,15 +1,14 @@
 ////
-/// Mixins
-///
 /// @group Abstracts
 ////
 
 
-///
 /// Media query helper mixin.
 ///
-/// @param
+/// @param {String} $breakpoint - The breakpoint you want to target.
+/// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
 ///
+/// @content The styles you want to apply the media query to.
 @mixin breakpoint( $breakpoint, $min-max: 'min' ) {
 
 	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
@@ -22,7 +21,10 @@
 	}
 }
 
-@mixin icon( $icon-content: null ) {
+/// Adds the required styles for a FontAwesome icon.
+///
+/// @param {String} $icon-code [''] - The icon's UTF code.
+@mixin icon( $icon-code: '' ) {
 	@include fa-icon;
 
 	text-align: center;
@@ -34,7 +36,10 @@
 	}
 }
 
-@mixin button-style( $style ) {
+/// Button variant mixin.
+///
+/// @param {String} $variant - The button variant.
+@mixin button-variant( $variant ) {
 	@if map-has-key( $button-variants, $variant ) {
 		@include button-color( map-get( $button-variants, $variant ) );
 	} @else {
@@ -42,6 +47,9 @@
 	}
 }
 
+/// Creates a basic colored button.
+///
+/// @param {Color} $color - The button color you want to use.
 @mixin button-color( $color ) {
 	border-color: $color;
 	color: $color;
@@ -54,6 +62,9 @@
 	}
 }
 
+/// Nav variant mixin.
+///
+/// @param {String} $variant - The nav variant.
 @mixin nav-variant( $variant: null ) {
 
 	@include susy-clearfix;
@@ -85,13 +96,19 @@
 	}
 }
 
-@mixin alpha-attribute( $attribute, $color, $background: #fff ) {
+/// Takes a CSS property, an rgba color, and optional background color, and
+/// calculates a fallback color to use in browsers that don't support rgba.
+///
+/// @param {String} $property - The property you want to set (e.g. background-color).
+/// @param {Color}  $color - The color you want to generate a fallback for.
+/// @param {Color}  $background [#fff] - The background color.
+@mixin alpha-property( $property, $color, $background: #fff ) {
 
 	$percent: alpha( $color ) * 100%;
 
 	@if ( $percent < 100% ) {
-		#{$attribute}: mix( opacify( $color, 1 ), $background, $percent );
+		#{$property}: mix( opacify( $color, 1 ), $background, $percent );
 	}
 
-	#{$attribute}: $color;
+	#{$property}: $color;
 }

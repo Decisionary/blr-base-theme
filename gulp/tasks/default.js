@@ -1,23 +1,19 @@
-/**
- * @module gulp/tasks/default
- */
 
 // Gulp
-import gulp  from 'gulp';
+const gulp = __require( 'gulp' );
 
 // Tasks
-import build from './build';
+const build = __requireTask( 'build' );
 
 
 /**
- * Gulp 'default' task.
+ * Gulp callback for 'default' task.
  *
  * @param  {Function} done Async callback.
  * @return {Function}
  */
-const gulpDefault = done => build( done );
+export const callback = done => build.callback( done );
+
 
 // Register the task.
-gulp.task( 'default', gulpDefault );
-
-export default gulpDefault;
+gulp.task( 'default', callback );
