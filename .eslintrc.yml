@@ -21,7 +21,6 @@
     array-bracket-spacing:
       - error
       - always
-      - singleValue: false
     array-callback-return:
       - warn
     arrow-body-style:

@@ -1,8 +1,22 @@
 ////
-/// Placeholders
-///
 /// @group Abstracts
 ////
+
+%content-link {
+	text-decoration: none;
+	color: $color-link;
+	font-size: $font-size-base;
+
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	&:visited {
+		color: $color-link-visited;
+	}
+}
 
 %button {
 	display: inline-block;
@@ -51,8 +65,10 @@
 	}
 
 	%menu__link {
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
 		text-decoration: none;
 	}
 }
@@ -64,8 +80,10 @@
 	}
 
 	%menu__link {
-		padding-right: 0.75em;
-		padding-left: 0.75em;
+		padding: {
+			right: 0.75em;
+			left: 0.75em;
+		}
 	}
 }
 
@@ -73,13 +91,17 @@
 	@extend %nav-horizontal;
 
 	%menu__item {
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
 	}
 
 	%menu__link {
-		padding-top: 0;
-		padding-bottom: 0;
+		padding: {
+			top: 0;
+			bottom: 0;
+		}
 
 		&:hover {
 			text-decoration: underline;
@@ -88,8 +110,10 @@
 
 	%menu__item + %menu__item {
 		%menu__link {
-			border-left-width: 1px;
-			border-left-style: solid;
+			border-left: {
+				width: 1px;
+				style: solid;
+			}
 		}
 	}
 }
@@ -111,8 +135,10 @@
 
 	%menu__item + %menu__item {
 		%menu__link {
-			border-top-width: 1px;
-			border-top-style: solid;
+			border-top: {
+				width: 1px;
+				style: solid;
+			}
 		}
 	}
 }

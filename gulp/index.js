@@ -1,17 +1,17 @@
 
-const path       = require.main.require( 'path' );
-const requireDir = require.main.require( 'require-dir' );
+require( 'babel-polyfill' );
 
-if ( ! process.env.gulpDir ) {
-	process.env.gulpDir = path.resolve( './gulp' );
-}
+const path    = require( 'path' );
+const gulpDir = process.env.gulpDir || path.resolve( './gulp' );
 
 global.__require     = pkg  => require.main.require( pkg );
 global.__requireTask = task => require.main.require(
-	path.join( process.env.gulpDir, 'tasks', task )
+	path.join( gulpDir, 'tasks', task )
 );
 
-module.exports = requireDir( process.env.gulpDir, {
+const requireDir = require.main.require( 'require-dir' );
+
+module.exports = requireDir( gulpDir, {
 	recurse:   true,
 	camelcase: true,
 } );

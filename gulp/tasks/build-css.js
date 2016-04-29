@@ -12,6 +12,7 @@ const sass         = __require( 'gulp-sass' );
 const cssmin       = __require( 'gulp-cssmin' );
 const autoprefixer = __require( 'gulp-autoprefixer' );
 
+
 // Task config
 export const config = {
 
@@ -37,6 +38,7 @@ export const config = {
 
 };
 
+
 // Task files
 export const files = {
 	watch:  'assets/source/css/**/*.scss',
@@ -50,8 +52,10 @@ export const files = {
 
 /**
  * Gulp callback for `build-css` task.
+ *
+ * @return {Function}
  */
-export const callback = () => {
+export const callback = () =>
 	gulp.src( files.source )
 		.pipe( sourcemaps.init() )
 		.pipe( sass( config.sass ) )
@@ -62,7 +66,6 @@ export const callback = () => {
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( gulp.dest( files.dest ) );
-};
 
 
 // Register the task.

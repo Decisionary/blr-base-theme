@@ -16,21 +16,12 @@ body {
 	font-size: $font-size-base;
 }
 
-// Attribute selectors have the same specificity as classes. This way we don't
+// Only apply the default link styles to entry content areas. This way we don't
 // have to override the hover/active/focus/visited styles for UI links.
-[href^="#"] {
-	text-decoration: none;
-	color: $color-link;
-	font-size: $font-size-base;
-
-	&:hover,
-	&:active,
-	&:focus {
-		text-decoration: underline;
-	}
-
-	&:visited {
-		color: $color-link-visited;
+.entry,
+.entry-content {
+	a {
+		@extend %content-link;
 	}
 }
 
