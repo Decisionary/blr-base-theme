@@ -16,10 +16,20 @@ body {
 	font-size: $font-size-base;
 }
 
+a {
+	&,
+	&:hover,
+	&:active,
+	&:focus,
+	&:visited {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
 // Only apply the default link styles to entry content areas. This way we don't
 // have to override the hover/active/focus/visited styles for UI links.
-.entry,
-.entry-content {
+.entry__content {
 	a {
 		@extend %content-link;
 	}

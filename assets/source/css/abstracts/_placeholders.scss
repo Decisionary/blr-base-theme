@@ -2,6 +2,7 @@
 /// @group Abstracts
 ////
 
+/// @todo Add `$text-decoration-link` and `$text-decoration-link-*` variables.
 %content-link {
 	text-decoration: none;
 	color: $color-link;
@@ -13,8 +14,32 @@
 		text-decoration: underline;
 	}
 
+	&:hover {
+		color: $color-link-hover;
+	}
+
+	&:active {
+		color: $color-link-active;
+	}
+
+	&:focus {
+		color: $color-link-focus;
+	}
+
 	&:visited {
 		color: $color-link-visited;
+
+		&:hover {
+			color: $color-link-visited-hover;
+		}
+
+		&:active {
+			color: $color-link-visited-active;
+		}
+
+		&:focus {
+			color: $color-link-visited-focus;
+		}
 	}
 }
 
@@ -121,8 +146,12 @@
 %nav-vertical {
 
 	%menu__item {
-		display: block;
 		float: none;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: block;
 	}
 }
 

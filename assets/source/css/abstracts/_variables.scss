@@ -35,12 +35,12 @@ $container-widths: map-extend( $breakpoints, $container-widths );
 /// The number of columns to use for the grid.
 ///
 /// @type {Number}
-$grid-cols:      24 !default;
+$grid-cols: 24 !default;
 
 /// The width of the grid.
 ///
 /// @type {Number}
-$grid-width:     rem-calc( 1124px ) !default;
+$grid-width: rem-calc( 1124px ) !default;
 
 /// The width of a grid column.
 ///
@@ -50,23 +50,23 @@ $grid-col-width: rem-calc( 26px ) !default;
 /// The width of the gutter between grid columns.
 ///
 /// @type {Number}
-$gutter-width:   rem-calc( 20px ) !default;
+$gutter-width: rem-calc( 20px ) !default;
 
 /// The height of the gutter between grid rows.
 ///
 /// @type {Number}
-$gutter-height:  $gutter-width !default;
+$gutter-height: $gutter-width !default;
 
 
 /// The number of columns the main content section spans with no sidebars.
 ///
 /// @type {Number}
-$span-main-content:      24 !default;
+$span-main-content: 24 !default;
 
 /// The number of columns the primary column spans.
 ///
 /// @type {Number}
-$span-sidebar-primary:   5  !default;
+$span-sidebar-primary: 5  !default;
 
 /// The number of columns the secondary column spans.
 ///
@@ -99,62 +99,92 @@ $susy: map-extend( $_susy, $susy );
 /// The default color.
 ///
 /// @type {Color}
-$color-base:             #555 !default;
+$color-base: #555 !default;
 
 /// The default light color.
 ///
 /// @type {Color}
-$color-light:            #fff !default;
+$color-light: #fff !default;
 
 /// The default dark color.
 ///
 /// @type {Color}
-$color-dark:             #393939 !default;
+$color-dark: #393939 !default;
 
 /// Primary branding color.
 ///
 /// @type {Color}
-$color-brand-primary:    #d2202f !default;
+$color-brand-primary: #d2202f !default;
 
 /// Secondary branding color.
 ///
 /// @type {Color}
-$color-brand-secondary:  #aeb6b4 !default;
+$color-brand-secondary: #aeb6b4 !default;
 
 /// Tertiary branding color.
 ///
 /// @type {Color}
-$color-brand-tertiary:   #f4f4f4 !default;
+$color-brand-tertiary: #f4f4f4 !default;
 
 /// Success state color.
 ///
 /// @type {Color}
-$color-state-success:    #58b956 !default;
+$color-state-success: #58b956 !default;
 
 /// Error state color.
 ///
 /// @type {Color}
-$color-state-error:      #ca2026 !default;
+$color-state-error: #ca2026 !default;
 
 /// Info state color.
 ///
 /// @type {Color}
-$color-state-info:       #58c0e0 !default;
+$color-state-info: #58c0e0 !default;
 
 /// Alert state color.
 ///
 /// @type {Color}
-$color-state-alert:      #f1ae42 !default;
+$color-state-alert: #f1ae42 !default;
 
 /// Link color.
 ///
 /// @type {Color}
-$color-link:             #0071bc !default;
+$color-link: #0071bc !default;
+
+/// Link hover color.
+///
+/// @type {Color}
+$color-link-hover: darken( $color-link, 10% ) !default;
+
+/// Link active color.
+///
+/// @type {Color}
+$color-link-active: $color-link-hover !default;
+
+/// Link focus color.
+///
+/// @type {Color}
+$color-link-focus: $color-link-hover !default;
 
 /// Visited link color.
 ///
 /// @type {Color}
-$color-link-visited:     #639 !default;
+$color-link-visited: #639 !default;
+
+/// Visited link hover color.
+///
+/// @type {Color}
+$color-link-visited-hover: darken( $color-link-visited, 10% ) !default;
+
+/// Visited link active color.
+///
+/// @type {Color}
+$color-link-visited-active: $color-link-visited-hover !default;
+
+/// Visited link focus color.
+///
+/// @type {Color}
+$color-link-visited-focus: $color-link-visited-hover !default;
 
 /// Primary branding button color.
 ///
@@ -169,137 +199,137 @@ $color-button-secondary: $color-brand-secondary !default;
 /// Tertiary branding button color.
 ///
 /// @type {Color}
-$color-button-tertiary:  $color-brand-tertiary !default;
+$color-button-tertiary: $color-brand-tertiary !default;
 
 /// Success state button color.
 ///
 /// @type {Color}
-$color-button-success:   $color-state-success !default;
+$color-button-success: $color-state-success !default;
 
 /// Error state button color.
 ///
 /// @type {Color}
-$color-button-error:     $color-state-error !default;
+$color-button-error: $color-state-error !default;
 
 /// Info state button color.
 ///
 /// @type {Color}
-$color-button-info:      $color-state-info !default;
+$color-button-info: $color-state-info !default;
 
 /// Alert state button color.
 ///
 /// @type {Color}
-$color-button-alert:     $color-state-alert !default;
+$color-button-alert: $color-state-alert !default;
 
 /// Body text color.
 ///
 /// @type {Color}
-$color-body:        $color-base !default;
+$color-body: $color-base !default;
 
 /// Header text color.
 ///
 /// @type {Color}
-$color-header:      $color-base !default;
+$color-header: $color-base !default;
 
 /// Main content text color.
 ///
 /// @type {Color}
-$color-content:     $color-base !default;
+$color-content: $color-base !default;
 
 /// Footer text color.
 ///
 /// @type {Color}
-$color-footer:      $color-light !default;
+$color-footer: $color-light !default;
 
 /// Body background color.
 ///
 /// @type {Color}
-$color-bg-body:     $color-brand-tertiary !default;
+$color-bg-body: $color-brand-tertiary !default;
 
 /// Header background color.
 ///
 /// @type {Color}
-$color-bg-header:   $color-light !default;
+$color-bg-header: $color-light !default;
 
 /// Main content background color.
 ///
 /// @type {Color}
-$color-bg-content:  $color-light !default;
+$color-bg-content: $color-light !default;
 
 /// Footer background color.
 ///
 /// @type {Color}
-$color-bg-footer:   $color-dark !default;
+$color-bg-footer: $color-dark !default;
 
 /// Primary nav menu text color.
 ///
 /// @type {Color}
-$color-nav-primary:           $color-light !default;
+$color-nav-primary: $color-light !default;
 
 /// Primary nav menu hover text color.
 ///
 /// @type {Color}
-$color-nav-primary-hover:     $color-nav-primary !default;
+$color-nav-primary-hover: $color-nav-primary !default;
 
 /// Primary nav menu active text color.
 ///
 /// @type {Color}
-$color-nav-primary-active:    $color-nav-primary !default;
+$color-nav-primary-active: $color-nav-primary !default;
 
 /// Search nav menu text color.
 ///
 /// @type {Color}
-$color-nav-search:            $color-header !default;
+$color-nav-search: $color-header !default;
 
 /// Search nav menu hover text color.
 ///
 /// @type {Color}
-$color-nav-search-hover:      $color-nav-search !default;
+$color-nav-search-hover: $color-nav-search !default;
 
 /// Search nav menu active text color.
 ///
 /// @type {Color}
-$color-nav-search-active:     $color-nav-search !default;
+$color-nav-search-active: $color-nav-search !default;
 
 /// Sidebar nav menu text color.
 ///
 /// @type {Color}
-$color-nav-sidebar:           $color-light !default;
+$color-nav-sidebar: $color-light !default;
 
 /// Sidebar nav menu hover text color.
 ///
 /// @type {Color}
-$color-nav-sidebar-hover:     $color-nav-sidebar !default;
+$color-nav-sidebar-hover: $color-nav-sidebar !default;
 
 /// Sidebar nav menu active text color.
 ///
 /// @type {Color}
-$color-nav-sidebar-active:    $color-nav-sidebar !default;
+$color-nav-sidebar-active: $color-nav-sidebar !default;
 
 /// Footer nav menu text color.
 ///
 /// @type {Color}
-$color-nav-footer:            $color-nav-primary !default;
+$color-nav-footer: $color-nav-primary !default;
 
 /// Footer nav menu hover text color.
 ///
 /// @type {Color}
-$color-nav-footer-hover:      $color-nav-primary-hover !default;
+$color-nav-footer-hover: $color-nav-primary-hover !default;
 
 /// Footer nav menu active text color.
 ///
 /// @type {Color}
-$color-nav-footer-active:     $color-nav-primary-active !default;
+$color-nav-footer-active: $color-nav-primary-active !default;
 
 /// Primary nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-primary:        $color-dark !default;
+$color-bg-nav-primary: $color-dark !default;
 
 /// Primary nav menu hover background color.
 ///
 /// @type {Color}
-$color-bg-nav-primary-hover:  darken( $color-bg-nav-primary, 20% ) !default;
+$color-bg-nav-primary-hover: darken( $color-bg-nav-primary, 20% ) !default;
 
 /// Primary nav menu active background color.
 ///
@@ -309,27 +339,27 @@ $color-bg-nav-primary-active: $color-bg-nav-primary-hover !default;
 /// Search nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-search:         $color-bg-header !default;
+$color-bg-nav-search: $color-bg-header !default;
 
 /// Search nav menu hover background color.
 ///
 /// @type {Color}
-$color-bg-nav-search-hover:   $color-bg-nav-search !default;
+$color-bg-nav-search-hover: $color-bg-nav-search !default;
 
 /// Search nav menu active background color.
 ///
 /// @type {Color}
-$color-bg-nav-search-active:  $color-bg-nav-search !default;
+$color-bg-nav-search-active: $color-bg-nav-search !default;
 
 /// Sidebar nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar:        $color-brand-primary !default;
+$color-bg-nav-sidebar: $color-brand-primary !default;
 
 /// Sidebar nav menu hover background color.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar-hover:  darken( $color-bg-nav-sidebar, 20% ) !default;
+$color-bg-nav-sidebar-hover: darken( $color-bg-nav-sidebar, 20% ) !default;
 
 /// Sidebar nav menu active background color.
 ///
@@ -339,17 +369,17 @@ $color-bg-nav-sidebar-active: $color-dark !default;
 /// Footer nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-footer:         $color-bg-nav-primary !default;
+$color-bg-nav-footer: $color-bg-nav-primary !default;
 
 /// Footer nav menu hover background color.
 ///
 /// @type {Color}
-$color-bg-nav-footer-hover:   $color-bg-nav-footer !default;
+$color-bg-nav-footer-hover: $color-bg-nav-footer !default;
 
 /// Footer nav menu active background color.
 ///
 /// @type {Color}
-$color-bg-nav-footer-active:  $color-bg-nav-footer !default;
+$color-bg-nav-footer-active: $color-bg-nav-footer !default;
 
 
 
@@ -360,72 +390,72 @@ $color-bg-nav-footer-active:  $color-bg-nav-footer !default;
 /// Default sans-serif font stack.
 ///
 /// @type {List}
-$font-family-sans:           'Open Sans', sans-serif !default;
+$font-family-sans: 'Open Sans', sans-serif !default;
 
 /// Default serif font stack.
 ///
 /// @type {List}
-$font-family-serif:          Georgia, Times, serif !default;
+$font-family-serif: Georgia, Times, serif !default;
 
 /// Default monospace font stack.
 ///
 /// @type {List}
-$font-family-mono:           monaco, Consolas, monospace !default;
+$font-family-mono: monaco, Consolas, monospace !default;
 
 /// Default font stack.
 ///
 /// @type {List}
-$font-family-base:           $font-family-sans !default;
+$font-family-base: $font-family-sans !default;
 
 /// Default font size.
 ///
 /// @type {Number}
-$font-size-base:             rem-calc( 14px ) !default;
+$font-size-base: rem-calc( 14px ) !default;
 
 /// Small font size.
 ///
 /// @type {Number}
-$font-size-small:            rem-calc( 13px ) !default;
+$font-size-small: rem-calc( 13px ) !default;
 
 /// Large font size.
 ///
 /// @type {Number}
-$font-size-large:            rem-calc( 16px ) !default;
+$font-size-large: rem-calc( 16px ) !default;
 
 /// Title font size.
 ///
 /// @type {Number}
-$font-size-title:            rem-calc( 18px ) !default;
+$font-size-title: rem-calc( 18px ) !default;
 
 /// Heading font size.
 ///
 /// @type {Number}
-$font-size-heading:          rem-calc( 20px ) !default;
+$font-size-heading: rem-calc( 20px ) !default;
 
 /// Default nav menu font size.
 ///
 /// @type {Number}
-$font-size-nav:              $font-size-large !default;
+$font-size-nav: $font-size-large !default;
 
 /// Primary nav menu font size.
 ///
 /// @type {Number}
-$font-size-nav-primary:      $font-size-nav !default;
+$font-size-nav-primary: $font-size-nav !default;
 
 /// Search nav menu font size.
 ///
 /// @type {Number}
-$font-size-nav-search:       $font-size-base !default;
+$font-size-nav-search: $font-size-base !default;
 
 /// Sidebar nav menu font size.
 ///
 /// @type {Number}
-$font-size-nav-sidebar:      $font-size-nav !default;
+$font-size-nav-sidebar: $font-size-nav !default;
 
 /// Footer nav menu font size.
 ///
 /// @type {Number}
-$font-size-nav-footer:       $font-size-base !default;
+$font-size-nav-footer: $font-size-base !default;
 
 /// Footer copyright info font size.
 ///
