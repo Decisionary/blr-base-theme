@@ -1,11 +1,12 @@
 
 // Gulp
-const gulp         = __require( 'gulp' );
+const gulp = __require( 'gulp' );
 
 // Files
-const rename       = __require( 'gulp-rename' );
-const concat       = __require( 'gulp-concat' );
-const sourcemaps   = __require( 'gulp-sourcemaps' );
+const size       = __require( 'gulp-size' );
+const rename     = __require( 'gulp-rename' );
+const concat     = __require( 'gulp-concat' );
+const sourcemaps = __require( 'gulp-sourcemaps' );
 
 // CSS / Sass
 const sass         = __require( 'gulp-sass' );
@@ -36,6 +37,10 @@ export const config = {
 		],
 	},
 
+	size: {
+		title: 'Sass:',
+	},
+
 };
 
 
@@ -51,7 +56,7 @@ export const files = {
 
 
 /**
- * Gulp callback for `build-css` task.
+ * Gulp callback for `build/css` task.
  *
  * @return {Function}
  */
@@ -63,10 +68,11 @@ export const callback = () =>
 		.pipe( autoprefixer( config.autoprefixer ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( cssmin() )
+		.pipe( size( config.size ) )
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( gulp.dest( files.dest ) );
 
 
 // Register the task.
-gulp.task( 'build-css', callback );
+gulp.task( 'build/css', callback );

@@ -9,10 +9,11 @@ const build = __requireTask( 'build' );
 /**
  * Gulp callback for 'default' task.
  *
- * @param  {Function} done Async callback.
- * @return {Function}
+ * @param {Function} done Async callback.
  */
-export const callback = done => build.callback( done );
+export const callback = done => {
+	build.callback( done );
+};
 
 
 // Register the task.

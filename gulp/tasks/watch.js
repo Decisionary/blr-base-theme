@@ -3,16 +3,16 @@
 const gulp = __require( 'gulp' );
 
 // Tasks
-const buildCSS = __requireTask( 'build-css' );
-const buildJS  = __requireTask( 'build-js' );
+const css = __requireTask( 'build-css' );
+const js  = __requireTask( 'build-js' );
 
 
 /**
  * Gulp callback for `watch` task.
  */
 export const callback = () => {
-	gulp.watch( buildCSS.files.watch, buildCSS.callback );
-	gulp.watch( buildJS.files.watch, buildJS.callback );
+	gulp.watch( css.files.watch, css.callback );
+	gulp.watch( js.files.watch, js.callback );
 };
 
 
