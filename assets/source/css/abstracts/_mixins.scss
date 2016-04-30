@@ -29,9 +29,9 @@
 
 	text-align: center;
 
-	@if $icon-content {
+	@if $icon-code {
 		&::before {
-			content: $icon-content;
+			content: $icon-code;
 		}
 	}
 }
