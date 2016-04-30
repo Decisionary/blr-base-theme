@@ -3,20 +3,22 @@
 const gulp = __require( 'gulp' );
 
 // Tasks
-const buildCSS  = __requireTask( 'build-css' );
-const buildJS   = __requireTask( 'build-js' );
-const copyFonts = __requireTask( 'copy-fonts' );
+const css    = __requireTask( 'build-css' );
+const js     = __requireTask( 'build-js' );
+const images = __requireTask( 'build-images' );
+const fonts  = __requireTask( 'build-fonts' );
 
 /**
  * Gulp callback for `build` task.
  *
  * @param {Function} done Async callback.
  */
-export const callback = async done => {
+export const callback = done => {
 
-	await buildCSS.callback();
-	await buildJS.callback();
-	await copyFonts.callback();
+	css.callback();
+	js.callback();
+	images.callback();
+	fonts.callback();
 
 	done();
 };

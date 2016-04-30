@@ -9,9 +9,9 @@
 
 <div class="branding branding--header">
 	<div class="logo logo--header">
-		<?php if ( get_theme_mod( 'blr_base_theme_primary_logo' ) ) : ?>
+		<?php if ( get_theme_mod( 'blr_base_theme_logo_primary' ) ) : ?>
 			<img class="logo__image"
-				src="<?php esc_url( get_theme_mod( 'blr_base_theme_primary_logo' ) ) ?>"
+				src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_primary' ) ) ?>"
 				alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 		<?php else : ?>
 			<span class="logo__text">
@@ -35,9 +35,9 @@
 	<?php echo get_search_form(); ?>
 
 	<div class="logo logo--search">
-		<?php if ( get_theme_mod( 'blr_base_theme_search_logo' ) ) : ?>
+		<?php if ( get_theme_mod( 'blr_base_theme_logo_search' ) ) : ?>
 			<img class="logo__image"
-				src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_search_logo' ) ); ?>"
+				src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_search' ) ); ?>"
 				alt="Powered by BLR">
 		<?php endif; ?>
 	</div><!-- /.logo -->

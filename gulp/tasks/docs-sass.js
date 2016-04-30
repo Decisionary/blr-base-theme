@@ -1,6 +1,6 @@
 
 // Gulp
-const gulp    = __require( 'gulp' );
+const gulp = __require( 'gulp' );
 
 // SassDoc
 const sassdoc = __require( 'sassdoc' );
@@ -23,7 +23,7 @@ export const files = {
 
 
 /**
- * Gulp callback for `sassdoc` task.
+ * Gulp callback for `docs/sass` task.
  *
  * @return {Function}
  */
@@ -33,4 +33,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'sassdoc', callback );
+gulp.task( 'docs/sass', callback );

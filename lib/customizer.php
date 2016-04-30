@@ -7,6 +7,8 @@
 
 namespace BLR_Base_Theme\Customizer;
 
+use BLR_Base_Theme\Assets;
+
 /**
  * Sets up our custom sections, settings, and controls for WP Customizer.
  *
@@ -36,14 +38,14 @@ function setup( $wp_customizer ) {
 		'settings' => 'blr_base_theme_copyright_text',
 	]);
 
-	$wp_customizer->add_setting( 'blr_base_theme_logo_header_primary', [
-		'default' => get_bloginfo( 'template_directory' ) . '/images/primary-logo.png',
+	$wp_customizer->add_setting( 'blr_base_theme_logo_primary', [
+		'default' => Assets\asset_url( 'images/logo-primary.png' ),
 	]);
 
 	$wp_customizer->add_control(
 		new \WP_Customize_Cropped_Image_Control(
 			$wp_customizer,
-			'blr_base_theme_logo_header_primary',
+			'blr_base_theme_logo_primary',
 			[
 				'label'         => __( 'Header Logo', 'blr-base-theme' ),
 				'section'       => 'title_tagline',
@@ -55,14 +57,14 @@ function setup( $wp_customizer ) {
 		)
 	);
 
-	$wp_customizer->add_setting( 'blr_base_theme_logo_header_search', [
-		'default' => get_bloginfo( 'template_directory' ) . '/images/search-logo.png',
+	$wp_customizer->add_setting( 'blr_base_theme_logo_search', [
+		'default' => Assets\asset_url( 'images/logo-search.png' ),
 	]);
 
 	$wp_customizer->add_control(
 		new \WP_Customize_Cropped_Image_Control(
 			$wp_customizer,
-			'blr_base_theme_logo_header_search',
+			'blr_base_theme_logo_search',
 			[
 				'label'         => __( 'Search Logo', 'blr-base-theme' ),
 				'section'       => 'title_tagline',
@@ -75,7 +77,7 @@ function setup( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_footer', [
-		'default' => get_bloginfo( 'template_directory' ) . '/images/footer-logo.png',
+		'default' => Assets\asset_url( 'images/logo-footer.png' ),
 	]);
 
 	$wp_customizer->add_control(

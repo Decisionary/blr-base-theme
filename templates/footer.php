@@ -8,9 +8,11 @@
 use BLR_Base_Theme\Setup;
 ?>
 
-<?php if ( get_theme_mod( 'blr_base_theme_footer_logo' ) ) : ?>
+<?php if ( get_theme_mod( 'blr_base_theme_logo_footer' ) ) : ?>
 	<div class="logo logo--footer">
-		<img class="logo__image" src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_footer_logo' ) ) ?>" alt="BLR Footer Logo">
+		<img class="logo__image"
+			src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_footer' ) ) ?>"
+			alt="BLR Footer Logo">
 	</div>
 <?php endif; ?>
 
