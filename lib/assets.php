@@ -8,6 +8,15 @@
 namespace BLR_Base_Theme\Assets;
 
 /**
+ * The path to the `assets` directory.
+ *
+ * @since 0.4.0
+ *
+ * @var string
+ */
+define( 'ASSETS_PATH', get_template_directory() . '/assets' );
+
+/**
  * The URL to the `assets` directory.
  *
  * @since 0.1.0
@@ -17,7 +26,21 @@ namespace BLR_Base_Theme\Assets;
 define( 'ASSETS_URL', get_template_directory_uri() . '/assets' );
 
 /**
- * Get the URL to an asset file.
+ * Returns the path to an asset file.
+ *
+ * @since 0.4.0
+ *
+ * @param  string $rel_path Relative path to the file (e.g. 'js/main.js').
+ * @return string
+ */
+function asset_path( $rel_path ) {
+	return ASSETS_PATH . '/dist/' . $rel_path;
+}
+
+/**
+ * Returns the URL to an asset file.
+ *
+ * @since 0.1.0
  *
  * @param  string $rel_path Relative path to the file (e.g. 'js/main.js').
  * @return string
