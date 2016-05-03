@@ -16,6 +16,15 @@ body {
 	font-size: $font-size-base;
 }
 
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+	outline: none !important;
+}
+
 a {
 	&,
 	&:hover,
@@ -27,11 +36,109 @@ a {
 	}
 }
 
+ol,
+ul,
+dl {
+	margin: {
+		top: 0;
+		bottom: 1rem;
+	}
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+	margin-bottom: 0;
+}
+
+dd {
+	margin: {
+		bottom: 0.5rem;
+		left: 0;
+	}
+}
+
+blockquote {
+	margin: 0 0 1rem;
+}
+
+pre {
+	margin: {
+		top: 0;
+		bottom: 1rem;
+	}
+}
+
+img {
+	vertical-align: middle;
+}
+
+[role="button"] {
+	cursor: pointer;
+}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+	touch-action: manipulation;
+}
+
+label {
+	display: inline-block;
+}
+
+// Work around a Firefox/IE bug where the transparent `button` background
+// results in a loss of the default `button` focus styles.
+//
+// Credit: https://github.com/suitcss/base/
+button:focus {
+	outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+input,
+button,
+select,
+textarea {
+	margin: 0;
+	border-radius: 0;
+	line-height: inherit;
+}
+
+textarea {
+	resize: vertical;
+}
+
+fieldset {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+// Always hide an element with the `hidden` HTML attribute (from PureCSS).
+[hidden] {
+	display: none !important;
+}
+
 // Only apply the default link styles to entry content areas. This way we don't
 // have to override the hover/active/focus/visited styles for UI links.
-.entry__content {
+.entry__content,
+.widget__content {
 	a {
 		@extend %content-link;
+	}
+
+	:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -46,6 +153,7 @@ a {
 }
 
 .page-content {
+	border: 1px solid $color-border-content;
 	background-color: $color-bg-content;
 	color: $color-content;
 }
@@ -53,8 +161,4 @@ a {
 .page-footer-container {
 	background-color: $color-bg-footer;
 	color: $color-footer;
-}
-
-.page-content {
-	border: 1px solid darken( $color-bg-content, 10% );
 }
