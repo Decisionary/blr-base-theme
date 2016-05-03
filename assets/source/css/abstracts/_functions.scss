@@ -34,13 +34,48 @@
 /// returned, and vice-versa. Used for things like alert boxes and buttons to
 /// ensure that the text color is readable against the background color.
 ///
-/// @param {Color} $base  - The base color to contrast against.
+/// @param {Color} $base                 - The base color to contrast against.
 /// @param {Color} $dark  [$color-dark]  - The dark color to use.
 /// @param {Color} $light [$color-light] - The light color to use.
 ///
 /// @return {Color}
 @function ensure-contrast( $base, $dark: $color-dark, $light: $color-light ) {
-	@return if( lightness( $base ) > 40, $dark, $light );
+	@return if( brightness( $base ) < 65%, $light, $dark );
+}
+
+
+/// Takes a color and returns the overall brightness as a percentage.
+///
+/// @source https://gist.github.com/jlong/f06f5843104ee10006fe
+///
+/// @param {Color} $color - The color to calculate the brightness of.
+///
+/// @return {Number} The brightness as a percentage.
+@function brightness( $color ) {
+
+	// Magic numbers used in calculations.
+	$red-magic-number:   241;
+	$green-magic-number: 691;
+	$blue-magic-number:  68;
+	$brightness-divisor: $red-magic-number + $green-magic-number + $blue-magic-number;
+
+	// Extract color components.
+	$red-component:   red( $color );
+	$green-component: green( $color );
+	$blue-component:  blue( $color );
+
+	// Calculate base brightness values for each color component.
+	$base-red:   $red-component * $red-component * $red-magic-number;
+	$base-green: $green-component * $green-component * $green-magic-number;
+	$base-blue:  $blue-component * $blue-component * $blue-magic-number;
+
+	// Calculate the overall brightness value in 3d color space between 0 and 255.
+	$number: sqrt( ( $base-red + $base-green + $base-blue ) / $brightness-divisor );
+
+	// Convert to percentage.
+	$percentage: 100% * $number / 255;
+
+	@return $percentage;
 }
 
 
@@ -228,6 +263,8 @@
 /// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
 /// Copied from Foundation.
 ///
+/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
+///
 /// @param {Number} $num - Number to strip unit from.
 ///
 /// @return {Number} The same number, sans unit.
@@ -238,21 +275,24 @@
 /// Converts pixel value into matching rem value.
 /// Adapted from Foundation's `rem-calc` function.
 ///
+/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
+///
 /// @param {Number} $value - Value to convert.
-/// @param {Number} $base [null] - The base value to use when calculating the `rem`. If this parameter is `null`, the function will reference the `$base-font-size` variable as the base.
+/// @param {Number} $base [16px] - The base value to use for `1rem`.
 ///
 /// @return {Number} The converted value.
-@function rem-calc( $value, $base: null ) {
+@function rem-calc( $value, $base: 16px ) {
 
 	// Check if the value is a number
 	@if type-of( $value ) != 'number' {
-		@warn inspect( $value ) + ' was passed to rem-calc(), which is not a number.';
+		@warn inspect( $value ) + ' was passed to rem-calc() as the first argument, which is not a number.';
 		@return $value;
 	}
 
-	// If no base is defined, defer to the default font size
-	@if $base == null {
-		$base: 16px;
+	// Check if the base `rem` value is a number
+	@if type-of( $base ) != 'number' {
+		@warn inspect( $base ) + ' was passed to rem-calc() as the second argument, which is not a number.';
+		@return $value;
 	}
 
 	// If the base font size is a %, then multiply it by 16px
