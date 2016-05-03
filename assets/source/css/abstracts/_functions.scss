@@ -31,70 +31,61 @@
 
 /// Takes a color, determines whether it's dark or light, and returns a color
 /// that contrasts it. For example, if the color is dark, a light color is
-/// returned, and vice-versa. Used for things like alert boxes and buttons to
-/// ensure that the text color is readable against the background color.
+/// returned, and vice-versa. Useful for when you need to ensure an element's
+/// text is readable against its background color.
 ///
-/// @param {Color} $base                 - The base color to contrast against.
+/// @source https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/utilities/color/_contrast.scss
+///
+/// @param {Color} $color                - The base color to contrast against.
 /// @param {Color} $dark  [$color-dark]  - The dark color to use.
 /// @param {Color} $light [$color-light] - The light color to use.
 ///
 /// @return {Color}
-@function ensure-contrast( $base, $dark: $color-dark, $light: $color-light ) {
-	@return if( brightness( $base ) < 65%, $light, $dark );
+@function contrast-color( $color, $dark: $color-dark, $light: $color-light ) {
+
+	$diff-light: abs( brightness( $color ) - brightness( $light ) );
+	$diff-dark:  abs( brightness( $color ) - brightness( $dark ) );
+
+	@return if( $diff-light > $diff-dark, $light, $dark );
 }
 
 
 /// Takes a color and returns the overall brightness as a percentage.
 ///
-/// @source https://gist.github.com/jlong/f06f5843104ee10006fe
+/// @source https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/utilities/color/_brightness.scss
 ///
 /// @param {Color} $color - The color to calculate the brightness of.
 ///
 /// @return {Number} The brightness as a percentage.
 @function brightness( $color ) {
 
-	// Magic numbers used in calculations.
-	$red-magic-number:   241;
-	$green-magic-number: 691;
-	$blue-magic-number:  68;
-	$brightness-divisor: $red-magic-number + $green-magic-number + $blue-magic-number;
+	@if type-of( $color ) == color {
 
-	// Extract color components.
-	$red-component:   red( $color );
-	$green-component: green( $color );
-	$blue-component:  blue( $color );
+		$base: ( red( $color ) * 0.299 )
+		     + ( green( $color ) * 0.587 )
+		     + ( blue( $color ) * 0.114 );
 
-	// Calculate base brightness values for each color component.
-	$base-red:   $red-component * $red-component * $red-magic-number;
-	$base-green: $green-component * $green-component * $green-magic-number;
-	$base-blue:  $blue-component * $blue-component * $blue-magic-number;
-
-	// Calculate the overall brightness value in 3d color space between 0 and 255.
-	$number: sqrt( ( $base-red + $base-green + $base-blue ) / $brightness-divisor );
-
-	// Convert to percentage.
-	$percentage: 100% * $number / 255;
-
-	@return $percentage;
+		@return $base / 255 * 100%;
+	}
 }
 
 
-/// Slightly lighten a color.
+/// Lighten a color.
 ///
 /// @access public
 ///
 /// @param {Color}  $color      - The color to tint.
-/// @param {Number} $percentage - The percentage of `$color` in the returned color.
+/// @param {Number} $percentage - The percentage of white in the returned color.
 ///
 /// @return {Color}
 @function tint( $color, $percentage ) {
 	@return mix( #fff, $color, $percentage );
 }
 
-/// Slightly darken a color.
+/// Darken a color.
 ///
 /// @param {Color} $color       - The color to shade.
-/// @param {Number} $percentage - The percentage of `$color` in the returned color.
+/// @param {Number} $percentage - The percentage of black in the returned color.
 ///
 /// @return {Color}
 @function shade( $color, $percentage ) {
@@ -261,7 +252,6 @@
 
 
 /// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
-/// Copied from Foundation.
 ///
 /// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
 ///
@@ -273,7 +263,6 @@
 }
 
 /// Converts pixel value into matching rem value.
-/// Adapted from Foundation's `rem-calc` function.
 ///
 /// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
 ///
