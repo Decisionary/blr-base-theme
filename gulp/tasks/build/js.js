@@ -1,3 +1,6 @@
+/**
+ * @module gulp/tasks/build/js
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );
@@ -23,7 +26,6 @@ export const config = {
 
 // Task files.
 export const files = {
-	watch:  'assets/source/js/**/*.js',
 	source: 'assets/source/js/**/*.js',
 	dest:   'assets/dist/js',
 };

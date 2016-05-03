@@ -1,3 +1,6 @@
+/**
+ * @module gulp/tasks/build/images
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );
@@ -19,7 +22,7 @@ export const config = {
 
 // Task files.
 export const files = {
-	source: 'assets/source/images/**/*',
+	source: 'assets/source/images/*',
 	dest:   'assets/dist/images',
 };
 

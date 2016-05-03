@@ -1,3 +1,6 @@
+/**
+ * @module gulp/tasks/build/fonts
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );

@@ -1,3 +1,6 @@
+/**
+ * @module gulp/tasks/default
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );

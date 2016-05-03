@@ -1,18 +1,21 @@
+/**
+ * @module gulp/tasks/docs
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );
 
 // Tasks
-const sass = __requireTask( 'docs-sass' );
+const sass = __requireTask( 'docs/sass' );
 
 /**
  * Gulp callback for `docs` task.
  *
  * @param {Function} done Async callback.
  */
-export const callback = async done => {
+export const callback = done => {
 
-	await sass.callback();
+	sass.callback();
 
 	done();
 };

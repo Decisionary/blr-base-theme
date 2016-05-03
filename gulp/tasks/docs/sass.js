@@ -1,3 +1,6 @@
+/**
+ * @module gulp/tasks/docs/sass
+ */
 
 // Gulp
 const gulp = __require( 'gulp' );
