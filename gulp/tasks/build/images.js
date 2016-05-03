@@ -34,8 +34,8 @@ export const files = {
 export const callback = () =>
 	gulp.src( files.source )
 		.pipe( imagemin() )
-		.pipe( gulp.dest( files.dest ) )
-		.pipe( size( config.size ) );
+		.pipe( size( config.size ) )
+		.pipe( gulp.dest( files.dest ) );
 
 
 // Register the task.
