@@ -1,0 +1,17 @@
+{
+	"source": {
+		"include": [ "assets/source/js", "gulp/tasks" ]
+	},
+	"plugins": [ "plugins/markdown" ],
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true,
+		"default": {
+			"includeDate": false
+		}
+	},
+	"opts": {
+		"destination": "./docs/js",
+		"recurse": true
+	}
+}
