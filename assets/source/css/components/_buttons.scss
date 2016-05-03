@@ -4,9 +4,12 @@
 /// @group Components
 ////
 
+.button {
+	@extend %button;
+}
 
 @each $key, $value in $button-variants {
-	.button-#{$key} {
-		@extend %button-#{$key};
+	.button--#{$key} {
+		@extend %button--#{$key};
 	}
 }

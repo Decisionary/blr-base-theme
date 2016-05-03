@@ -2,42 +2,42 @@
 /// @group Abstracts
 ////
 
-/// @todo Add `$text-decoration-link` and `$text-decoration-link-*` variables.
 %content-link {
-	text-decoration: none;
+	text-decoration: $text-decoration-link;
 	color: $color-link;
 	font-size: $font-size-base;
 
-	&:hover,
-	&:active,
-	&:focus {
-		text-decoration: underline;
-	}
-
 	&:hover {
+		text-decoration: $text-decoration-link-hover;
 		color: $color-link-hover;
 	}
 
 	&:active {
+		text-decoration: $text-decoration-link-active;
 		color: $color-link-active;
 	}
 
 	&:focus {
+		text-decoration: $text-decoration-link-focus;
 		color: $color-link-focus;
 	}
 
 	&:visited {
+		text-decoration: $text-decoration-link-visited;
 		color: $color-link-visited;
 
 		&:hover {
+			text-decoration: $text-decoration-link-visited-hover;
 			color: $color-link-visited-hover;
 		}
 
 		&:active {
+			text-decoration: $text-decoration-link-visited-active;
 			color: $color-link-visited-active;
 		}
 
 		&:focus {
+			text-decoration: $text-decoration-link-visited-focus;
 			color: $color-link-visited-focus;
 		}
 	}
@@ -58,7 +58,7 @@
 }
 
 @each $key, $value in $button-variants {
-	%button-#{$key} {
+	%button--#{$key} {
 		@extend %button;
 		@include button-color( $value );
 	}
