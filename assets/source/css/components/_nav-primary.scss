@@ -5,6 +5,6 @@
 ////
 
 .nav--primary {
-	@extend %nav-horizontal;
-	@include nav-variant( 'primary' );
+	@extend %nav-bar;
+	@include nav-variant( primary );
 }

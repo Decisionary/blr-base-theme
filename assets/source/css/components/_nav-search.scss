@@ -5,10 +5,8 @@
 ////
 
 .nav--search {
-	@extend %nav-horizontal-with-dividers;
-	@include nav-variant( 'search' );
-
-	text-align: right;
+	@extend %nav-links;
+	@include nav-variant( search, $align: right );
 
 	.menu {
 		float: right;
