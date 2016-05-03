@@ -7,38 +7,38 @@
 	color: $color-link;
 	font-size: $font-size-base;
 
-	&:hover {
+	@include hover {
 		text-decoration: $text-decoration-link-hover;
 		color: $color-link-hover;
 	}
 
-	&:active {
-		text-decoration: $text-decoration-link-active;
-		color: $color-link-active;
-	}
-
-	&:focus {
+	@include focus {
 		text-decoration: $text-decoration-link-focus;
 		color: $color-link-focus;
 	}
 
-	&:visited {
+	@include active {
+		text-decoration: $text-decoration-link-active;
+		color: $color-link-active;
+	}
+
+	@include visited {
 		text-decoration: $text-decoration-link-visited;
 		color: $color-link-visited;
 
-		&:hover {
+		@include hover {
 			text-decoration: $text-decoration-link-visited-hover;
 			color: $color-link-visited-hover;
 		}
 
-		&:active {
-			text-decoration: $text-decoration-link-visited-active;
-			color: $color-link-visited-active;
-		}
-
-		&:focus {
+		@include focus {
 			text-decoration: $text-decoration-link-visited-focus;
 			color: $color-link-visited-focus;
+		}
+
+		@include active {
+			text-decoration: $text-decoration-link-visited-active;
+			color: $color-link-visited-active;
 		}
 	}
 }
@@ -70,13 +70,8 @@
 
 	%menu {
 		@include susy-clearfix;
+		@include list-unstyled;
 
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	%menu {
 		display: block;
 	}
 
@@ -90,15 +85,11 @@
 	}
 
 	%menu__link {
-		padding: {
-			top: 0.5em;
-			bottom: 0.5em;
-		}
 		text-decoration: none;
 	}
 }
 
-%nav-horizontal {
+%nav-orient-horizontal {
 
 	%menu__item {
 		float: left;
@@ -112,38 +103,7 @@
 	}
 }
 
-%nav-horizontal-with-dividers {
-	@extend %nav-horizontal;
-
-	%menu__item {
-		padding: {
-			top: 0.5em;
-			bottom: 0.5em;
-		}
-	}
-
-	%menu__link {
-		padding: {
-			top: 0;
-			bottom: 0;
-		}
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	%menu__item + %menu__item {
-		%menu__link {
-			border-left: {
-				width: 1px;
-				style: solid;
-			}
-		}
-	}
-}
-
-%nav-vertical {
+%nav-orient-vertical {
 
 	%menu__item {
 		float: none;
@@ -155,19 +115,128 @@
 	}
 }
 
-%nav-vertical-with-dividers {
-	@extend %nav-vertical;
+%nav-style-block {
 
-	%menu__link:hover {
-		text-decoration: underline;
+	%menu__link {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
 	}
+}
+
+%nav-style-text {
+
+	%menu {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
+	}
+
+	%menu__link {
+		@include hover-focus-active {
+			text-decoration: underline;
+		}
+	}
+}
+
+%nav-bar {
+	@extend %nav-orient-horizontal;
+	@extend %nav-style-block;
+}
+
+%nav-links {
+	@extend %nav-orient-horizontal;
+	@extend %nav-style-text;
 
 	%menu__item + %menu__item {
 		%menu__link {
-			border-top: {
+			border-left: {
 				width: 1px;
 				style: solid;
 			}
 		}
+	}
+}
+
+%nav-section {
+	@extend %nav-orient-vertical;
+	@extend %nav-style-block;
+
+	padding: {
+		top: $padding-base;
+		bottom: $padding-base;
+	}
+
+	.menu__link {
+		padding: {
+			right: $padding-base;
+			left: $padding-base;
+		}
+	}
+}
+
+%image-fluid {
+	@include image-fluid;
+}
+
+%image-thumbnail {
+	@include image-fluid;
+
+	transition: all 0.2s ease-in-out;
+	border: 1px solid $color-border-content;
+	border-radius: 4px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
+	background-color: $color-bg-content;
+	padding: $padding-base;
+	line-height: 1;
+}
+
+%sr-content {
+	@include sr-content;
+}
+
+%sr-content-focusable {
+	@include sr-content( $is-focusable: true );
+}
+
+%widget {
+	position: relative;
+	margin-bottom: $gutter-height;
+	border: 1px solid $color-border-widget;
+	background-color: $color-bg-widget;
+	padding: {
+		top: $padding-base;
+		bottom: $padding-base;
+	};
+	color: $color-widget;
+
+	&::before {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin: {
+			top: -1px;
+			right: -1px;
+			left: -1px;
+		}
+		background-color: $color-widget-divider;
+		height: 4px;
+		content: '';
+	}
+
+	%widget__title,
+	%widget__content {
+		padding: {
+			right: $padding-base;
+			left: $padding-base;
+		}
+	}
+
+	%widget__title {
+		color: $color-widget-header;
 	}
 }
