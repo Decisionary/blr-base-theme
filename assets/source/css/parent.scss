@@ -19,14 +19,14 @@
 // Layout
 @import 'layout/grid';
 @import 'layout/nav';
-@import 'layout/forms';
+@import 'layout/form';
 @import 'layout/header';
 @import 'layout/main-content';
 @import 'layout/sidebar';
 @import 'layout/footer';
 
 // Components
-@import 'components/buttons';
+@import 'components/button';
 @import 'components/comments';
 @import 'components/search-header';
 @import 'components/breadcrumb';
@@ -34,6 +34,8 @@
 @import 'components/nav-search';
 @import 'components/nav-sidebar';
 @import 'components/nav-footer';
+@import 'components/entry';
+@import 'components/widget';
 
 // Pages
 @import 'pages/page';
