@@ -37,7 +37,7 @@
 	height: rem-calc( 34px );
 	text-align: center;
 	line-height: rem-calc( 34px );
-	color: ensure-contrast( $color-base );
+	color: contrast-color( $color-base );
 	font-size: rem-calc( 20px );
 }
 

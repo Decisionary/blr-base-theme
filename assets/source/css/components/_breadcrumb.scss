@@ -18,7 +18,7 @@
 
 .breadcrumb__icon {
 	background-color: $color-brand-primary;
-	color: ensure-contrast( $color-brand-primary );
+	color: contrast-color( $color-brand-primary );
 }
 
 .breadcrumb__link {

@@ -58,7 +58,7 @@
 	&:focus,
 	&:hover {
 		background-color: $color;
-		color: ensure-contrast( $color );
+		color: contrast-color( $color );
 	}
 }
 
