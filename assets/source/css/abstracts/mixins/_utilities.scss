@@ -1,0 +1,17 @@
+
+/// Takes a CSS property, an rgba color, and optional background color, and
+/// calculates a fallback color to use in browsers that don't support rgba.
+///
+/// @param {String} $property - The property you want to set (e.g. background-color).
+/// @param {Color}  $color - The color you want to generate a fallback for.
+/// @param {Color}  $background [#fff] - The background color.
+@mixin alpha-property( $property, $color, $background: #fff ) {
+
+	$percent: alpha( $color ) * 100%;
+
+	@if ( $percent < 100% ) {
+		#{$property}: mix( opacify( $color, 1 ), $background, $percent );
+	}
+
+	#{$property}: $color;
+}

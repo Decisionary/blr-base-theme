@@ -2,113 +2,12 @@
 /// @group Abstracts
 ////
 
-
-/// Media query helper mixin.
-///
-/// @param {String} $breakpoint - The breakpoint you want to target.
-/// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
-///
-/// @content The styles you want to apply the media query to.
-@mixin breakpoint( $breakpoint, $min-max: 'min' ) {
-
-	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
-	$width: get-breakpoint( $breakpoint, $min-max );
-
-	@if $width {
-		@media( $type: $width ) {
-			@content;
-		}
-	}
-}
-
-/// Adds the required styles for a FontAwesome icon.
-///
-/// @param {String} $icon-code [''] - The icon's UTF code.
-@mixin icon( $icon-code: '' ) {
-	@include fa-icon;
-
-	text-align: center;
-
-	@if $icon-code {
-		&::before {
-			content: $icon-code;
-		}
-	}
-}
-
-/// Button variant mixin.
-///
-/// @param {String} $variant - The button variant.
-@mixin button-variant( $variant ) {
-	@if map-has-key( $button-variants, $variant ) {
-		@include button-color( map-get( $button-variants, $variant ) );
-	} @else {
-		@warn "`#{$variant}` is not a valid button variant.";
-	}
-}
-
-/// Creates a basic colored button.
-///
-/// @param {Color} $color - The button color you want to use.
-@mixin button-color( $color ) {
-	border-color: $color;
-	color: $color;
-
-	&:active,
-	&:focus,
-	&:hover {
-		background-color: $color;
-		color: contrast-color( $color );
-	}
-}
-
-/// Nav variant mixin.
-///
-/// @param {String} $variant - The nav variant.
-@mixin nav-variant( $variant: null ) {
-
-	@include susy-clearfix;
-
-	@if not $variant or not map-has-key( $nav-variants, $variant ) {
-		@warn "`#{$variant} is not a valid nav menu variant.`"
-	} @else {
-		$theme: map-get( $nav-variants, $variant );
-
-		border-color: map-get( $theme, 'color' );
-		background-color: map-get( $theme, 'color-bg' );
-		color: map-get( $theme, 'color' );
-		font-size: map-get( $theme, 'font-size' );
-
-		.menu__item {
-			border-color: map-get( $theme, 'color' );
-
-			&:hover,
-			&:focus {
-				background-color: map-get( $theme, 'color-bg-hover' );
-				color: map-get( $theme, 'color-hover' );
-			}
-
-			&.is-active {
-				background-color: map-get( $theme, 'color-bg-active' );
-				color: map-get( $theme, 'color-active' );
-			}
-		}
-	}
-}
-
-/// Takes a CSS property, an rgba color, and optional background color, and
-/// calculates a fallback color to use in browsers that don't support rgba.
-///
-/// @param {String} $property - The property you want to set (e.g. background-color).
-/// @param {Color}  $color - The color you want to generate a fallback for.
-/// @param {Color}  $background [#fff] - The background color.
-@mixin alpha-property( $property, $color, $background: #fff ) {
-
-	$percent: alpha( $color ) * 100%;
-
-	@if ( $percent < 100% ) {
-		#{$property}: mix( opacify( $color, 1 ), $background, $percent );
-	}
-
-	#{$property}: $color;
-}
+@import 'abstracts/mixins/utilities';
+@import 'abstracts/mixins/responsive';
+@import 'abstracts/mixins/a11y';
+@import 'abstracts/mixins/links';
+@import 'abstracts/mixins/images';
+@import 'abstracts/mixins/lists';
+@import 'abstracts/mixins/icons';
+@import 'abstracts/mixins/buttons';
+@import 'abstracts/mixins/nav';

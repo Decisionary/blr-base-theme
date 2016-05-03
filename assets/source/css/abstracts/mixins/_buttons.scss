@@ -1,0 +1,26 @@
+
+/// Button variant mixin.
+///
+/// @param {String} $variant - The button variant.
+@mixin button-variant( $variant ) {
+	@if map-has-key( $button-variants, $variant ) {
+		@include button-color( map-get( $button-variants, $variant ) );
+	} @else {
+		@warn "`#{$variant}` is not a valid button variant.";
+	}
+}
+
+/// Creates a basic colored button.
+///
+/// @param {Color} $color - The button color you want to use.
+@mixin button-color( $color ) {
+	border-color: $color;
+	color: $color;
+
+	&:active,
+	&:focus,
+	&:hover {
+		background-color: $color;
+		color: contrast-color( $color );
+	}
+}

@@ -1,0 +1,7 @@
+
+/// Makes a fluid image that will never be wider than its container.
+@mixin image-fluid {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+}

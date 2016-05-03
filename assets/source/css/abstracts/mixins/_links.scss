@@ -1,0 +1,149 @@
+@mixin hover( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover {
+			@content;
+		}
+	} @else {
+		&:hover {
+			@content;
+		}
+	}
+}
+
+@mixin focus( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:focus {
+			@content;
+		}
+	} @else {
+		&:focus {
+			@content;
+		}
+	}
+}
+
+@mixin active( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:active {
+			@content;
+		}
+	} @else {
+		&:active {
+			@content;
+		}
+	}
+}
+
+@mixin visited( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:visited {
+			@content;
+		}
+	} @else {
+		&:visited {
+			@content;
+		}
+	}
+}
+
+@mixin hover-focus( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:focus {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:focus {
+			@content;
+		}
+	}
+}
+
+@mixin hover-active( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:active {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:active {
+			@content;
+		}
+	}
+}
+
+@mixin hover-visited( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:visited {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:visited {
+			@content;
+		}
+	}
+}
+
+@mixin hover-focus-active( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:focus,
+		&:active {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:focus,
+		&:active {
+			@content;
+		}
+	}
+}
+
+@mixin hover-focus-visited( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:focus,
+		&:visited {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:focus,
+		&:visited {
+			@content;
+		}
+	}
+}
+
+@mixin hover-focus-active-visited( $include-parent: false ) {
+	@if $include-parent {
+		&,
+		&:hover,
+		&:focus,
+		&:active,
+		&:visited {
+			@content;
+		}
+	} @else {
+		&:hover,
+		&:focus,
+		&:active,
+		&:visited {
+			@content;
+		}
+	}
+}
