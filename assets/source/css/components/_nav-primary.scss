@@ -4,7 +4,24 @@
 /// @group Components
 ////
 
+.page-nav-container {
+	background-color: $color-bg-nav-primary;
+	color: $color-nav-primary;
+}
+
 .nav--primary {
 	@extend %nav-bar;
 	@include nav-variant( primary );
+
+	.menu--user {
+		float: right;
+
+		.menu__item--trial {
+			background-color: $color-state-info;
+		}
+
+		.menu__item--login {
+			background-color: $color-dark;
+		}
+	}
 }

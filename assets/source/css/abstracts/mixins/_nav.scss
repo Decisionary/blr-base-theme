@@ -3,7 +3,7 @@
 ///
 /// @param {String} $variant [null] - The nav variant.
 /// @param {String} $align   [left] - The nav alignment. Can be left or right.
-@mixin nav-variant( $variant: null, $style: block, $align: left ) {
+@mixin nav-variant( $variant: null, $align: left ) {
 
 	@include susy-clearfix;
 
@@ -12,25 +12,41 @@
 	} @else {
 		$theme: map-get( $nav-variants, $variant );
 
+		@include susy-clearfix;
+
+		z-index: map-get( $z-index-levels, 'nav' );
 		border-color: map-get( $theme, 'color' );
 		background-color: map-get( $theme, 'color-bg' );
 		text-align: $align;
 		color: map-get( $theme, 'color' );
 		font-size: map-get( $theme, 'font-size' );
 
+		.menu {
+			float: $align;
+		}
+
 		.menu__item {
 			border-color: map-get( $theme, 'color' );
 
-			&:hover,
-			&:focus {
+			&:hover {
 				background-color: map-get( $theme, 'color-bg-hover' );
 				color: map-get( $theme, 'color-hover' );
+			}
+
+			&:focus {
+				background-color: map-get( $theme, 'color-bg-focus' );
+				color: map-get( $theme, 'color-focus' );
 			}
 
 			&.is-active {
 				background-color: map-get( $theme, 'color-bg-active' );
 				color: map-get( $theme, 'color-active' );
 			}
+		}
+
+		.sub-menu {
+			z-index: map-get( $z-index-levels, 'nav-menu' );
+			background-color: map-get( $theme, 'color-bg' );
 		}
 	}
 }

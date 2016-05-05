@@ -6,5 +6,5 @@
 
 .nav--sidebar {
 	@extend %nav-section;
-	@include nav-variant( sidebar );
+	@include nav-variant( sidebar, none );
 }

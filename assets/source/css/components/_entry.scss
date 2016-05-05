@@ -1,12 +1,4 @@
 
-.entry {
-	margin-bottom: $gutter-height;
-
-	+ .entry {
-		margin-top: $gutter-height;
-	}
-}
-
 .posts-navigation {
 	margin: {
 		top: $gutter-height;

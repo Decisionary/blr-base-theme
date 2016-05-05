@@ -42,10 +42,10 @@ h6 {
 p {
 	margin: {
 		top: 0;
-		bottom: 0;
+		bottom: $margin-base;
 	}
+}
 
-	+ p {
-		margin-top: $margin-base;
-	}
+:last-child {
+	margin-bottom: 0;
 }

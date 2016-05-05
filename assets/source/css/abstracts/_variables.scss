@@ -8,6 +8,14 @@
 // Grid / Layout
 // -------------------------------------------------------------------------
 
+/// Z-index map.
+///
+/// @type {Map}
+$z-index-levels: (
+	nav: 10,
+	nav-menu: 20,
+);
+
 /// Default breakpoints.
 ///
 /// @type {Map}
@@ -98,8 +106,9 @@ $span-sidebar-secondary: 7  !default;
 /// @access private
 $_susy: (
 	columns: $grid-cols,
+	column-width: $grid-col-width,
 	gutters: $gutter-width / $grid-col-width,
-	gutter-position: inside,
+	gutter-position: inside-static,
 	global-box-sizing: border-box,
 );
 
@@ -210,40 +219,80 @@ $color-link-visited-focus: darken( $color-link-visited, 10% ) !default;
 /// @type {Color}
 $color-button-default: $color-base !default;
 
+/// Default button hover color.
+///
+/// @type {Color}
+$color-button-default-hover: $color-light !default;
+
 /// Primary branding button color.
 ///
 /// @type {Color}
 $color-button-primary: $color-brand-primary !default;
+
+/// Primary branding button hover color.
+///
+/// @type {Color}
+$color-button-primary-hover: $color-button-default-hover !default;
 
 /// Secondary branding button color.
 ///
 /// @type {Color}
 $color-button-secondary: $color-brand-secondary !default;
 
+/// Secondary branding button hover color.
+///
+/// @type {Color}
+$color-button-secondary-hover: $color-button-default-hover !default;
+
 /// Tertiary branding button color.
 ///
 /// @type {Color}
 $color-button-tertiary: $color-brand-tertiary !default;
+
+/// Tertiary branding button hover color.
+///
+/// @type {Color}
+$color-button-tertiary-hover: $color-button-default-hover !default;
 
 /// Success state button color.
 ///
 /// @type {Color}
 $color-button-success: $color-state-success !default;
 
+/// Success state button hover color.
+///
+/// @type {Color}
+$color-button-success-hover: $color-button-default-hover !default;
+
 /// Error state button color.
 ///
 /// @type {Color}
 $color-button-error: $color-state-error !default;
+
+/// Error state button hover color.
+///
+/// @type {Color}
+$color-button-error-hover: $color-button-default-hover !default;
 
 /// Info state button color.
 ///
 /// @type {Color}
 $color-button-info: $color-state-info !default;
 
+/// Info state button hover color.
+///
+/// @type {Color}
+$color-button-info-hover: $color-button-default-hover !default;
+
 /// Alert state button color.
 ///
 /// @type {Color}
 $color-button-alert: $color-state-alert !default;
+
+/// Alert state button hover color.
+///
+/// @type {Color}
+$color-button-alert-hover: $color-button-default-hover !default;
 
 /// Body text color.
 ///
@@ -551,6 +600,11 @@ $font-family-mono: monaco, Consolas, monospace !default;
 /// @type {List}
 $font-family-base: $font-family-sans !default;
 
+/// Button font stack.
+///
+/// @type {List}
+$font-family-button: $font-family-base !default;
+
 /// Default font size.
 ///
 /// @type {Number}
@@ -619,7 +673,7 @@ $text-decoration-link-hover: underline !default;
 /// Link text decoration - active state.
 ///
 /// @type {String}
-$text-decoration-link-active: none !default;
+$text-decoration-link-active: underline !default;
 
 /// Link text decoration - focus state.
 ///
@@ -639,7 +693,7 @@ $text-decoration-link-visited-hover: underline !default;
 /// Visited link text decoration - active state.
 ///
 /// @type {String}
-$text-decoration-link-visited-active: none !default;
+$text-decoration-link-visited-active: underline !default;
 
 /// Visited link text decoration - focus state.
 ///
@@ -668,14 +722,38 @@ $fa-css-prefix: 'icon' !default;
 /// @type {Map}
 /// @access private
 $button-variants: (
-	default:   $color-button-default,
-	primary:   $color-button-primary,
-	secondary: $color-button-secondary,
-	tertiary:  $color-button-tertiary,
-	success:   $color-button-success,
-	error:     $color-button-error,
-	info:      $color-button-info,
-	alert:     $color-button-alert,
+	default: (
+		color:       $color-button-default,
+		color-hover: $color-button-default-hover,
+	),
+	primary: (
+		color:       $color-button-primary,
+		color-hover: $color-button-primary-hover,
+	),
+	secondary: (
+		color:       $color-button-secondary,
+		color-hover: $color-button-secondary-hover,
+	),
+	tertiary:  (
+		color:       $color-button-tertiary,
+		color-hover: $color-button-tertiary-hover,
+	),
+	success:   (
+		color:       $color-button-success,
+		color-hover: $color-button-success-hover,
+	),
+	error:     (
+		color:       $color-button-error,
+		color-hover: $color-button-error-hover,
+	),
+	info:      (
+		color:       $color-button-info,
+		color-hover: $color-button-info-hover,
+	),
+	alert:     (
+		color:       $color-button-alert,
+		color-hover: $color-button-alert-hover,
+	),
 );
 
 /// Nav variants

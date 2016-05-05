@@ -2,6 +2,10 @@
 	@extend %widget;
 }
 
+.widget--boxed {
+	@extend %widget--boxed;
+}
+
 .widget__title {
 	@extend %widget__title;
 }

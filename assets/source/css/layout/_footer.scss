@@ -5,6 +5,10 @@
 ////
 
 .page-footer-container {
-	padding-top: $gutter-height;
-	padding-bottom: $gutter-height;
+	background-color: $color-bg-footer;
+	padding: {
+		top: $gutter-height;
+		bottom: $gutter-height;
+	}
+	color: $color-footer;
 }

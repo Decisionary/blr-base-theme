@@ -4,6 +4,10 @@
 /// @group Components
 ////
 
+.button-group {
+	@extend %button-group;
+}
+
 .button {
 	@extend %button;
 }
