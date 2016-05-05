@@ -2,7 +2,7 @@
 /**
  * HTML <head> section template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
 ?>

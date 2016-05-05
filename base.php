@@ -2,11 +2,11 @@
 /**
  * Base theme template.
  *
- * @package BLR_Base_Theme\Bootstrap
+ * @package BLR\Base_Theme\Bootstrap
  */
 
-use BLR_Base_Theme\Setup;
-use BLR_Base_Theme\Wrapper;
+use BLR\Base_Theme\Setup;
+use BLR\Base_Theme\Wrapper;
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -30,7 +30,7 @@ use BLR_Base_Theme\Wrapper;
 				<nav class="nav page-nav nav--primary">
 					<?php
 					do_action( 'nav_before' );
-					wp_nav_menu( [ 'theme_location' => 'nav-primary' ] );
+					get_template_part( 'templates/nav-primary' );
 					do_action( 'nav_after' );
 					?>
 				</nav><!-- /.page-nav -->

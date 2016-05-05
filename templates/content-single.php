@@ -2,26 +2,22 @@
 /**
  * Entry content template for single posts, pages, and custom post type entries.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
 ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<article <?php post_class(); ?>>
+	<article <?php post_class( 'entry entry--single' ); ?>>
 
 		<header class="entry__header">
-			<h1 class="entry__title">
-				<?php the_title(); ?>
-			</h1>
+			<?php get_template_part( 'templates/entry-title', 'single' ); ?>
 
-			<?php get_template_part( 'templates/entry-meta' ); ?>
+			<?php get_template_part( 'templates/entry-meta', 'single' ); ?>
 		</header><!-- /.entry__header -->
 
-		<div class="entry__content">
-			<?php the_content(); ?>
-		</div><!-- /.entry__content -->
+		
 
 		<footer class="entry__footer">
 			<?php

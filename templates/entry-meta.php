@@ -2,7 +2,7 @@
 /**
  * Entry metadata template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
 $post_time = get_post_time( 'c', true );
