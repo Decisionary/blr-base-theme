@@ -2,12 +2,12 @@
 /**
  * Theme extras.
  *
- * @package BLR_Base_Theme\Extras
+ * @package BLR\Base_Theme\Extras
  */
 
-namespace BLR_Base_Theme\Extras;
+namespace BLR\Base_Theme\Extras;
 
-use BLR_Base_Theme\Setup;
+use BLR\Base_Theme\Setup;
 
 /**
  * Add <body> classes.

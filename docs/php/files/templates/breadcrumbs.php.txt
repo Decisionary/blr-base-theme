@@ -2,10 +2,10 @@
 /**
  * Comments template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
-namespace BLR_Base_Theme\Templates;
+namespace BLR\Base_Theme\Templates;
 ?>
 
 <ul class="breadcrumbs">

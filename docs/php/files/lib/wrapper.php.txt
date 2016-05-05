@@ -2,10 +2,10 @@
 /**
  * Theme wrapper functionality.
  *
- * @package BLR_Base_Theme\Wrapper
+ * @package BLR\Base_Theme\Wrapper
  */
 
-namespace BLR_Base_Theme\Wrapper;
+namespace BLR\Base_Theme\Wrapper;
 
 
 /**

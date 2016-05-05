@@ -2,10 +2,10 @@
 /**
  * Cleans up the nav menu markup.
  *
- * @package BLR_Base_Theme\Nav
+ * @package BLR\Base_Theme\Nav
  */
 
-namespace BLR_Base_Theme\Nav;
+namespace BLR\Base_Theme\Nav;
 
 add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\\nav_menu_args' );
 add_filter( 'nav_menu_item_id', '__return_null' );

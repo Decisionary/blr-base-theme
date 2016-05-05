@@ -2,10 +2,10 @@
 /**
  * Entry content template for single posts, pages, and custom post type entries.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
-namespace BLR_Base_Theme\Templates;
+namespace BLR\Base_Theme\Templates;
 ?>
 
 <?php while ( have_posts() ) : the_post(); ?>

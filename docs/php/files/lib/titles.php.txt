@@ -2,10 +2,10 @@
 /**
  * Page titles.
  *
- * @package BLR_Base_Theme\Titles
+ * @package BLR\Base_Theme\Titles
  */
 
-namespace BLR_Base_Theme\Titles;
+namespace BLR\Base_Theme\Titles;
 
 /**
  * Page titles.

@@ -2,13 +2,13 @@
 /**
  * Base theme template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
-namespace BLR_Base_Theme\Templates;
+namespace BLR\Base_Theme\Templates;
 
-use BLR_Base_Theme\Setup;
-use BLR_Base_Theme\Wrapper;
+use BLR\Base_Theme\Setup;
+use BLR\Base_Theme\Wrapper;
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>

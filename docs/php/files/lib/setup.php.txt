@@ -2,12 +2,12 @@
 /**
  * Theme setup.
  *
- * @package BLR_Base_Theme\Setup
+ * @package BLR\Base_Theme\Setup
  */
 
-namespace BLR_Base_Theme\Setup;
+namespace BLR\Base_Theme\Setup;
 
-use BLR_Base_Theme\Assets;
+use BLR\Base_Theme\Assets;
 
 /**
  * Theme setup
