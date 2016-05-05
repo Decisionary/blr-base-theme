@@ -2,12 +2,12 @@
 /**
  * Theme setup.
  *
- * @package BLR_Base_Theme\Setup
+ * @package BLR\Base_Theme\Setup
  */
 
-namespace BLR_Base_Theme\Setup;
+namespace BLR\Base_Theme\Setup;
 
-use BLR_Base_Theme\Assets;
+use BLR\Base_Theme\Assets;
 
 /**
  * Theme setup
@@ -55,7 +55,7 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 function widgets_init() {
 
 	$defaults = [
-		'before_widget' => '<section class="widget %1$s %2$s">',
+		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
 		'after_title'   => '</h3><div class="widget__content">',
 		'after_widget'  => '</div></section>',
@@ -107,38 +107,35 @@ add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
  * Determine whether to show a specific sidebar.
  *
  * @param string $sidebar (optional) The sidebar ID. Defaults to 'sidebar-primary'.
+ * @return bool
  */
 function display_sidebar( $sidebar = 'sidebar-primary' ) {
 
-	static $display;
-
 	// Sidebar will be hidden if any of the following is true.
 	$hide_criteria = [
-		( ! is_active_sidebar( $sidebar ) ),
+		( ! is_active_sidebar( $sidebar ) && 'sidebar-secondary' !== $sidebar ),
 		is_404(),
-		is_front_page(),
 	];
 
-	isset( $display ) || $display = ( ! in_array( true, $hide_criteria, true ) );
+	$display = ( ! in_array( true, $hide_criteria, true ) );
 
-	return apply_filters( 'blr-base-theme/display_sidebar', $sidebar, $display );
+	return apply_filters( 'blr-base-theme/display_sidebar', $display, $sidebar );
 }
 
 /**
  * Determine whether to show a specific nav menu.
  *
  * @param string $menu (optional) The nav menu ID. Defaults to 'nav-primary'.
+ * @return bool
  */
 function display_nav_menu( $menu = 'nav-primary' ) {
-
-	static $display;
 
 	// Nav menu will be hidden if any of the following is true.
 	$hide_criteria = [
 		( ! has_nav_menu( $menu ) ),
 	];
 
-	isset( $display ) || $display = ( ! in_array( true, $hide_criteria, true ) );
+	$display = ( ! in_array( true, $hide_criteria, true ) );
 
 	return apply_filters( 'blr-base-theme/display_nav_menu', $menu, $display );
 }

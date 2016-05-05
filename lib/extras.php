@@ -2,12 +2,12 @@
 /**
  * Theme extras.
  *
- * @package BLR_Base_Theme\Extras
+ * @package BLR\Base_Theme\Extras
  */
 
-namespace BLR_Base_Theme\Extras;
+namespace BLR\Base_Theme\Extras;
 
-use BLR_Base_Theme\Setup;
+use BLR\Base_Theme\Setup;
 
 /**
  * Add <body> classes.
@@ -37,6 +37,22 @@ function body_class( $classes ) {
 }
 
 add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
+
+/**
+ * Add post classes.
+ *
+ * @since 0.1.0
+ *
+ * @param array $classes The current set of post classes.
+ */
+function post_class( $classes ) {
+
+	$classes[] = 'entry';
+
+	return $classes;
+}
+
+add_filter( 'post_class', __NAMESPACE__ . '\\post_class' );
 
 /**
  * Clean up the_excerpt()

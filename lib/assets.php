@@ -2,10 +2,10 @@
 /**
  * Asset functions.
  *
- * @package BLR_Base_Theme\Assets
+ * @package BLR\Base_Theme\Assets
  */
 
-namespace BLR_Base_Theme\Assets;
+namespace BLR\Base_Theme\Assets;
 
 /**
  * The path to the `assets` directory.
