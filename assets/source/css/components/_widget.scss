@@ -1,0 +1,15 @@
+.widget {
+	@extend %widget;
+}
+
+.widget--boxed {
+	@extend %widget--boxed;
+}
+
+.widget__title {
+	@extend %widget__title;
+}
+
+.widget__content {
+	@extend %widget__content;
+}

@@ -4,6 +4,11 @@
 /// @group Layout
 ////
 
+.page-header-container {
+	background-color: $color-bg-header;
+	color: $color-header;
+}
+
 .page-header {
 	padding-bottom: ( $gutter-height * 0.75 );
 }

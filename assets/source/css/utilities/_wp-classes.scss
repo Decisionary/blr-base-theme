@@ -6,43 +6,46 @@
 .aligncenter,
 .alignleft,
 .alignright {
-	display: inline-block;
+	@extend %image-fluid;
+
 	float: none;
-	margin: ( $gutter-width / 2 ) auto;
-	max-width: 100%;
-	height: auto;
+	margin: {
+		right: auto;
+		left: auto;
+	}
 }
 
 @include breakpoint( md ) {
+
 	.alignnone {
-		margin-right: 0;
-		margin-left: 0;
+		@include h-spacing( 0 );
 	}
 
 	.alignleft {
+		@include h-spacing-right;
+		@include h-spacing-left( 0 );
+
 		float: left;
-		margin-right: ( $gutter-width / 2 );
-		margin-left: 0;
 	}
 
 	.alignright {
+		@include h-spacing-left;
+		@include h-spacing-right( 0 );
+
 		float: right;
-		margin-right: 0;
-		margin-left: ( $gutter-width / 2 );
 	}
 }
 
 // Captions
 .wp-caption {
-	// @extend .thumbnail;
+	@extend %image-thumbnail;
 }
 
 .wp-caption-text {
-	padding: ( $gutter-width / 2 );
+	// padding-top: $line-spacing-base;
 }
 
 // Text meant only for screen readers
 .screen-reader-text {
-	// @extend .sr-only;
-	// @extend .sr-only-focusable;
+	@extend %sr-content-focusable;
 }

@@ -1,0 +1,18 @@
+<?php
+/**
+ * Page title template.
+ *
+ * @package BLR\Base_Theme\Templates
+ */
+
+namespace BLR\Base_Theme\Templates;
+
+use BLR\Base_Theme\Titles;
+?>
+
+<header class="page-heading">
+	<h1 class="page-title">
+		<?php echo esc_html( Titles\title() ); ?>
+	</h1>
+</header>
+

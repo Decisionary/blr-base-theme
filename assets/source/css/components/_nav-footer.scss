@@ -5,6 +5,6 @@
 ////
 
 .nav--footer {
-	@extend %nav-horizontal-with-dividers;
-	@include nav-variant( 'footer' );
+	@extend %nav-links;
+	@include nav-variant( footer );
 }

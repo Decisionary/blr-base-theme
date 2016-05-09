@@ -1,0 +1,28 @@
+
+/// Only display content to screen readers.
+///
+/// @link http://a11yproject.com/posts/how-to-hide-content/
+///
+/// @param {Boolean} $is-focusable [false] - If true, content will be shown when focused.
+@mixin sr-content( $is-focusable: false ) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+
+	@if $is-focusable {
+		&:active,
+		&:focus {
+			position: static;
+			margin: 0;
+			width: auto;
+			height: auto;
+			overflow: visible;
+			clip: auto;
+		}
+	}
+}

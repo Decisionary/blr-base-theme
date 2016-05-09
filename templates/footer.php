@@ -2,10 +2,10 @@
 /**
  * Default footer template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
-use BLR_Base_Theme\Setup;
+use BLR\Base_Theme\Setup;
 ?>
 
 <?php if ( get_theme_mod( 'blr_base_theme_logo_footer' ) ) : ?>

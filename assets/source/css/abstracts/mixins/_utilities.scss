@@ -1,0 +1,60 @@
+
+/// Takes a CSS property, an rgba color, and optional background color, and
+/// calculates a fallback color to use in browsers that don't support rgba.
+///
+/// @param {String} $property - The property you want to set (e.g. background-color).
+/// @param {Color}  $color - The color you want to generate a fallback for.
+/// @param {Color}  $background [#fff] - The background color.
+@mixin alpha-property( $property, $color, $background: #fff ) {
+
+	$percent: alpha( $color ) * 100%;
+
+	@if ( $percent < 100% ) {
+		#{$property}: mix( opacify( $color, 1 ), $background, $percent );
+	}
+
+	#{$property}: $color;
+}
+
+@mixin v-spacing( $spacing: $line-spacing-base, $sides: both ) {
+
+	@if top == $sides or both == $sides {
+		margin-top: $spacing;
+	}
+
+	@if bottom == $sides or both == $sides {
+		margin-bottom: $spacing;
+	}
+}
+
+@mixin v-spacing-top( $spacing: $line-spacing-base ) {
+	@include v-spacing( $spacing, top );
+}
+
+@mixin v-spacing-bottom( $spacing: $line-spacing-base ) {
+	@include v-spacing( $spacing, bottom );
+}
+
+@mixin h-spacing( $spacing: $line-spacing-base, $sides: both ) {
+
+	@if right == $sides or both == $sides {
+		margin-right: $spacing;
+	}
+
+	@if left == $sides or both == $sides {
+		margin-left: $spacing;
+	}
+}
+
+@mixin h-spacing-right( $spacing: $line-spacing-base ) {
+	@include h-spacing( $spacing, right );
+}
+
+@mixin h-spacing-left( $spacing: $line-spacing-base ) {
+	@include h-spacing( $spacing, left );
+}
+
+@mixin spacing( $spacing: $line-spacing-base ) {
+	@include v-spacing( $spacing );
+	@include h-spacing( $spacing );
+}

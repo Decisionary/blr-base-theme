@@ -2,12 +2,12 @@
 /**
  * WordPress customizer setup.
  *
- * @package BLR_Base_Theme\Customizer
+ * @package BLR\Base_Theme\Customizer
  */
 
-namespace BLR_Base_Theme\Customizer;
+namespace BLR\Base_Theme\Customizer;
 
-use BLR_Base_Theme\Assets;
+use BLR\Base_Theme\Assets;
 
 /**
  * Sets up our custom sections, settings, and controls for WP Customizer.

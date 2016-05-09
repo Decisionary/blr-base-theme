@@ -7,10 +7,10 @@
  *
  * Please note that missing files will produce a fatal error.
  *
- * @package BLR_Base_Theme\Includes
+ * @package BLR\Base_Theme\Includes
  */
 
-namespace BLR_Base_Theme;
+namespace BLR\Base_Theme;
 
 $includes = [
 	'lib/assets.php',     // Scripts and stylesheets.

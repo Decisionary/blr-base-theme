@@ -2,10 +2,10 @@
 /**
  * Primary sidebar template.
  *
- * @package BLR_Base_Theme\Templates
+ * @package BLR\Base_Theme\Templates
  */
 
-use BLR_Base_Theme\Setup;
+use BLR\Base_Theme\Setup;
 ?>
 
 <?php if ( Setup\display_nav_menu( 'nav-sidebar' ) ) : ?>

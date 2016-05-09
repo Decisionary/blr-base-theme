@@ -10,9 +10,26 @@
 	padding-bottom: $gutter-height;
 }
 
+.page-content {
+	border: 1px solid $color-border-content;
+	background-color: $color-bg-content;
+	color: $color-content;
+}
+
 main,
 .sidebar {
-	@include span( $span-main-content );
+	@include span( 100% );
+}
+
+
+.content-section {
+	@extend %content-section;
+}
+
+.entry__header,
+.entry__content,
+.entry__footer {
+	@extend %content-sub-section;
 }
 
 @include breakpoint( lg ) {

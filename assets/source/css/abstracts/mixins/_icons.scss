@@ -1,0 +1,15 @@
+
+/// Adds the required styles for a FontAwesome icon.
+///
+/// @param {String} $icon-code [''] - The icon's UTF code.
+@mixin icon( $icon-code: '' ) {
+	@include fa-icon;
+
+	text-align: center;
+
+	@if $icon-code {
+		&::before {
+			content: $icon-code;
+		}
+	}
+}

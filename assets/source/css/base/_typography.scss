@@ -4,10 +4,95 @@
 /// @group Base
 ////
 
+// Set header font sizes.
 h1 {
 	font-size: $font-size-heading;
 }
 
 h2 {
 	font-size: $font-size-title;
+}
+
+h3 {
+	font-size: $font-size-large;
+}
+
+h4 {
+	font-size: $font-size-base;
+}
+
+h5,
+h6 {
+	font-size: $font-size-small;
+}
+
+// Override margins added by normalize.css.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+// Establish a vertical rhythm.
+* {
+	margin: 0;
+	line-height: $line-height-base;
+}
+
+ul,
+ol,
+dl {
+	padding: 0;
+}
+
+.entry__content,
+.widget__content {
+
+	* {
+		// Default line spacing.
+		+ * {
+			@include v-spacing-top;
+		}
+
+		// Sub-headings.
+		+ h2,
+		+ h3 {
+			@include v-spacing-top( $line-spacing-heading );
+		}
+
+		// List items.
+		+ li,
+		+ dt,
+		+ dd {
+			@include v-spacing-top( $line-spacing-list-item );
+		}
+
+		// Inline elements.
+		+ a,
+		+ span,
+		+ strong,
+		+ em,
+		+ b,
+		+ i,
+		+ input,
+		+ button,
+		+ %button {
+			@include v-spacing-top( 0 );
+		}
+	}
+
+	ul,
+	ol,
+	dl {
+		@include h-spacing-left( 0.5 );
+
+		list-style-position: inside;
+	}
+
+	dt {
+		font-weight: bold;
+	}
 }

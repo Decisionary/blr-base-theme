@@ -29,43 +29,81 @@
 }
 
 
+/// Takes a color and returns the overall brightness as a percentage.
+///
+/// @source https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/utilities/color/_brightness.scss
+///
+/// @param {Color} $color - The color to calculate the brightness of.
+///
+/// @return {Number} The brightness as a percentage.
+@function brightness( $color ) {
+
+	@if type-of( $color ) == color {
+
+		$base: ( red( $color ) * 0.299 )
+		     + ( green( $color ) * 0.587 )
+		     + ( blue( $color ) * 0.114 );
+
+		@return $base / 255 * 100%;
+	}
+}
+
 /// Takes a color, determines whether it's dark or light, and returns a color
 /// that contrasts it. For example, if the color is dark, a light color is
-/// returned, and vice-versa. Used for things like alert boxes and buttons to
-/// ensure that the text color is readable against the background color.
+/// returned, and vice-versa. Useful for when you need to ensure an element's
+/// text is readable against its background color.
 ///
-/// @param {Color} $base  - The base color to contrast against.
+/// @source https://github.com/Compass/compass/blob/stable/core/stylesheets/compass/utilities/color/_contrast.scss
+///
+/// @param {Color} $color                - The base color to contrast against.
 /// @param {Color} $dark  [$color-dark]  - The dark color to use.
 /// @param {Color} $light [$color-light] - The light color to use.
 ///
 /// @return {Color}
-@function ensure-contrast( $base, $dark: $color-dark, $light: $color-light ) {
-	@return if( lightness( $base ) > 40, $dark, $light );
+@function contrast-color( $color, $dark: $color-dark, $light: $color-light ) {
+
+	$diff-light: abs( brightness( $color ) - brightness( $light ) );
+	$diff-dark:  abs( brightness( $color ) - brightness( $dark ) );
+
+	@return if( $diff-light > $diff-dark, $light, $dark );
 }
 
 
-/// Slightly lighten a color.
+/// Lighten a color.
 ///
 /// @access public
 ///
-/// @param {Color}  $color      - The color to tint.
-/// @param {Number} $percentage - The percentage of `$color` in the returned color.
+/// @param {Color}  $color            - The color to tint.
+/// @param {Number} $percentage [50%] - The amount of tint to apply.
 ///
 /// @return {Color}
-@function tint( $color, $percentage ) {
+@function tint( $color, $percentage: 50% ) {
 	@return mix( #fff, $color, $percentage );
 }
 
-/// Slightly darken a color.
+/// Darken a color.
 ///
-/// @param {Color} $color       - The color to shade.
-/// @param {Number} $percentage - The percentage of `$color` in the returned color.
+/// @param {Color} $color             - The color to shade.
+/// @param {Number} $percentage [50%] - The amount of shade to apply.
 ///
 /// @return {Color}
-@function shade( $color, $percentage ) {
+@function shade( $color, $percentage: 50% ) {
 	@return mix( #000, $color, $percentage );
 }
 
+/// Automatically tint or shade a color depending on the color's brightness.
+///
+/// @access public
+///
+/// @param {Color} $color             - The color to tint or shade.
+/// @param {Number} $percentage [50%] - The amount of tint or shade to apply.
+@function tint-or-shade( $color, $percentage: 50% ) {
+
+	$dark:  shade( $color, $percentage );
+	$light: tint( $color, $percentage );
+
+	@return contrast-color( $color, $dark, $light );
+}
 
 /// Fetch a nested map value.
 ///
@@ -226,7 +264,8 @@
 
 
 /// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
-/// Copied from Foundation.
+///
+/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
 ///
 /// @param {Number} $num - Number to strip unit from.
 ///
@@ -236,23 +275,25 @@
 }
 
 /// Converts pixel value into matching rem value.
-/// Adapted from Foundation's `rem-calc` function.
+///
+/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
 ///
 /// @param {Number} $value - Value to convert.
-/// @param {Number} $base [null] - The base value to use when calculating the `rem`. If this parameter is `null`, the function will reference the `$base-font-size` variable as the base.
+/// @param {Number} $base [16px] - The base value to use for `1rem`.
 ///
 /// @return {Number} The converted value.
-@function rem-calc( $value, $base: null ) {
+@function rem-calc( $value, $base: 16px ) {
 
 	// Check if the value is a number
 	@if type-of( $value ) != 'number' {
-		@warn inspect( $value ) + ' was passed to rem-calc(), which is not a number.';
+		@warn inspect( $value ) + ' was passed to rem-calc() as the first argument, which is not a number.';
 		@return $value;
 	}
 
-	// If no base is defined, defer to the default font size
-	@if $base == null {
-		$base: 16px;
+	// Check if the base `rem` value is a number
+	@if type-of( $base ) != 'number' {
+		@warn inspect( $base ) + ' was passed to rem-calc() as the second argument, which is not a number.';
+		@return $value;
 	}
 
 	// If the base font size is a %, then multiply it by 16px

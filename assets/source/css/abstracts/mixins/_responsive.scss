@@ -1,0 +1,18 @@
+
+/// Media query helper mixin.
+///
+/// @param {String} $breakpoint - The breakpoint you want to target.
+/// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
+///
+/// @content The styles you want to apply the media query to.
+@mixin breakpoint( $breakpoint, $min-max: 'min' ) {
+
+	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
+	$width: get-breakpoint( $breakpoint, $min-max );
+
+	@if $width {
+		@media( $type: $width ) {
+			@content;
+		}
+	}
+}

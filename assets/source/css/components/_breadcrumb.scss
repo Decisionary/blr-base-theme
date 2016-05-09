@@ -5,20 +5,21 @@
 ////
 
 .breadcrumbs {
-	@include susy-clearfix;
-	@include span( full );
+	@extend %content-section;
+
+	@include span( 100% );
 
 	margin-top: $gutter-height;
 	margin-bottom: $gutter-height;
-	border: 1px solid darken( $color-light, 10% );
-	background-color: $color-light;
+	border: 1px solid $color-border-content;
+	background-color: $color-bg-content;
 	padding: rem-calc( 15px ) 0;
 	list-style: none;
 }
 
 .breadcrumb__icon {
 	background-color: $color-brand-primary;
-	color: ensure-contrast( $color-brand-primary );
+	color: contrast-color( $color-brand-primary );
 }
 
 .breadcrumb__link {

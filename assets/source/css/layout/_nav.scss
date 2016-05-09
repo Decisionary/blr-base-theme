@@ -12,10 +12,21 @@
 	@extend %menu;
 }
 
+.sub-menu {
+	@extend %sub-menu;
+}
+
 .menu__item {
 	@extend %menu__item;
 }
 
 .menu__link {
 	@extend %menu__link;
+
+	.sub-menu > .has-children > &::after {
+		@include icon();
+
+		margin-left: 1em;
+		content: $fa-var-angle-right;
+	}
 }
