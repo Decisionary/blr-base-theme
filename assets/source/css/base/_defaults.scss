@@ -66,41 +66,9 @@ a {
 	}
 }
 
-ol,
-ul,
-dl {
-	margin: {
-		top: 0;
-		bottom: 1rem;
-	}
-}
-
-ol ol,
-ul ul,
-ol ul,
-ul ol {
-	margin-bottom: 0;
-}
-
-dd {
-	margin: {
-		bottom: 0.5rem;
-		left: 0;
-	}
-}
-
-blockquote {
-	margin: 0 0 1rem;
-}
-
-pre {
-	margin: {
-		top: 0;
-		bottom: 1rem;
-	}
-}
-
 img {
+	@extend %image-fluid;
+
 	vertical-align: middle;
 }
 
@@ -125,20 +93,26 @@ label {
 	display: inline-block;
 }
 
-// Work around a Firefox/IE bug where the transparent `button` background
-// results in a loss of the default `button` focus styles.
-//
-// Credit: https://github.com/suitcss/base/
-button:focus {
-	outline: 1px dotted;
-	outline: 5px auto -webkit-focus-ring-color;
+
+button {
+	border: 0;
+	background: transparent;
+	padding: 0;
+
+	// Work around a Firefox/IE bug where the transparent `button` background
+	// results in a loss of the default `button` focus styles.
+	//
+	// Credit: https://github.com/suitcss/base/
+	&:focus {
+		outline: 1px dotted;
+		outline: 5px auto -webkit-focus-ring-color;
+	}
 }
 
 input,
 button,
 select,
 textarea {
-	margin: 0;
 	border-radius: 0;
 	line-height: inherit;
 }
@@ -148,19 +122,24 @@ textarea {
 }
 
 fieldset {
-	margin: 0;
 	border: 0;
 	padding: 0;
 	min-width: 0;
 }
 
+// Fix font-size issue present in most browsers where the browser shrinks the
+// font size of any monospaced elements or any elements where the `font-family`
+// is set to `monospace`. We fix the issue by:
+//
+//   (1) Using either a custom font stack or just `monospace, monospace`.
+//   (2) Setting the font-size to `1em`.
 pre,
 code,
 kbd,
 samp,
 tt {
-	font-family: monospace, monospace;
-	font-size: 1em;
+	font-family: $font-family-mono; // (1)
+	font-size: 1em; // (2)
 }
 
 // Always hide an element with the `hidden` HTML attribute (from PureCSS).

@@ -14,10 +14,6 @@
 	border: 1px solid $color-border-content;
 	background-color: $color-bg-content;
 	color: $color-content;
-
-	img {
-		@extend %image-fluid;
-	}
 }
 
 main,
@@ -25,15 +21,15 @@ main,
 	@include span( 100% );
 }
 
-.content-header,
-.content-footer,
-.content-section,
-.entry {
-	margin-bottom: $gutter-height;
+
+.content-section {
+	@extend %content-section;
 }
 
-.entry {
-	@include susy-clearfix;
+.entry__header,
+.entry__content,
+.entry__footer {
+	@extend %content-sub-section;
 }
 
 @include breakpoint( lg ) {

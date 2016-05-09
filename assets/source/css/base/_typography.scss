@@ -4,6 +4,7 @@
 /// @group Base
 ////
 
+// Set header font sizes.
 h1 {
 	font-size: $font-size-heading;
 }
@@ -25,27 +26,73 @@ h6 {
 	font-size: $font-size-small;
 }
 
+// Override margins added by normalize.css.
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: {
-		top: 0;
-		bottom: 0;
-	}
-	padding-bottom: $margin-heading;
-	line-height: 1;
+	margin: 0;
 }
 
-p {
-	margin: {
-		top: 0;
-		bottom: $margin-base;
-	}
+// Establish a vertical rhythm.
+* {
+	margin: 0;
+	line-height: $line-height-base;
 }
 
-:last-child {
-	margin-bottom: 0;
+ul,
+ol,
+dl {
+	padding: 0;
+}
+
+.entry__content,
+.widget__content {
+
+	* {
+		// Default line spacing.
+		+ * {
+			@include v-spacing-top;
+		}
+
+		// Sub-headings.
+		+ h2,
+		+ h3 {
+			@include v-spacing-top( $line-spacing-heading );
+		}
+
+		// List items.
+		+ li,
+		+ dt,
+		+ dd {
+			@include v-spacing-top( $line-spacing-list-item );
+		}
+
+		// Inline elements.
+		+ a,
+		+ span,
+		+ strong,
+		+ em,
+		+ b,
+		+ i,
+		+ input,
+		+ button,
+		+ %button {
+			@include v-spacing-top( 0 );
+		}
+	}
+
+	ul,
+	ol,
+	dl {
+		@include h-spacing-left( 0.5 );
+
+		list-style-position: inside;
+	}
+
+	dt {
+		font-weight: bold;
+	}
 }

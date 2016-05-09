@@ -29,6 +29,7 @@ function body_class( $classes ) {
 	if ( Setup\display_sidebar( 'sidebar-primary' ) ) {
 		$classes[] = 'has-sidebar-primary';
 	}
+
 	if ( Setup\display_sidebar( 'sidebar-secondary' ) ) {
 		$classes[] = 'has-sidebar-secondary';
 	}
@@ -48,6 +49,7 @@ add_filter( 'body_class', __NAMESPACE__ . '\\body_class' );
 function post_class( $classes ) {
 
 	$classes[] = 'entry';
+	$classes[] = 'content-section';
 
 	return $classes;
 }

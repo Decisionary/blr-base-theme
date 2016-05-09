@@ -9,25 +9,30 @@
 	@extend %image-fluid;
 
 	float: none;
-	margin: $margin-base auto;
+	margin: {
+		right: auto;
+		left: auto;
+	}
 }
 
 @include breakpoint( md ) {
+
 	.alignnone {
-		margin-right: 0;
-		margin-left: 0;
+		@include h-spacing( 0 );
 	}
 
 	.alignleft {
+		@include h-spacing-right;
+		@include h-spacing-left( 0 );
+
 		float: left;
-		margin-right: $margin-base;
-		margin-left: 0;
 	}
 
 	.alignright {
+		@include h-spacing-left;
+		@include h-spacing-right( 0 );
+
 		float: right;
-		margin-right: 0;
-		margin-left: $margin-base;
 	}
 }
 
@@ -37,7 +42,7 @@
 }
 
 .wp-caption-text {
-	padding: $padding-base;
+	// padding-top: $line-spacing-base;
 }
 
 // Text meant only for screen readers

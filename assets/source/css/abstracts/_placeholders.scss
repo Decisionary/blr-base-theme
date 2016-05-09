@@ -9,10 +9,8 @@
 	word-spacing: -1ch;
 	font-family: monospace, monospace;
 
-	%button {
-		+ %button {
-			margin-left: $padding-base;
-		}
+	%button + %button {
+		margin-left: $padding-base;
 	}
 }
 
@@ -35,9 +33,25 @@
 	}
 }
 
+%button-block {
+	@extend %button;
+
+	display: block;
+
+	* + & {
+		@include v-spacing;
+	}
+}
+
 @each $key, $value in $button-variants {
+
 	%button--#{$key} {
 		@extend %button;
+		@include button-color( $value );
+	}
+
+	%button-block--#{$key} {
+		@extend %button-block;
 		@include button-color( $value );
 	}
 }
@@ -202,7 +216,7 @@
 	border-radius: 4px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
 	background-color: $color-bg-content;
-	padding: $padding-base;
+	padding: $line-spacing-base;
 	line-height: 1;
 }
 
@@ -214,10 +228,30 @@
 	@include sr-content( $is-focusable: true );
 }
 
+%content-section {
+	@include susy-clearfix;
+
+	+ %content-section {
+		@include v-spacing-top( $gutter-height );
+	}
+}
+
+%content-sub-section {
+	+ %content-sub-section {
+		@include v-spacing-top;
+	}
+}
+
 %widget {
+	@extend %content-section;
+
 	position: relative;
-	margin-bottom: $gutter-height;
 	color: $color-widget;
+
+	%widget__title,
+	%widget__content {
+		@extend %content-sub-section;
+	}
 
 	%widget__title {
 		color: $color-widget-header;
