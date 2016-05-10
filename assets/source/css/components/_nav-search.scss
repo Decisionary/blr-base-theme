@@ -7,4 +7,8 @@
 .nav--search {
 	@extend %nav-links;
 	@include nav-variant( search, $align: right );
+
+	.menu {
+		float: right;
+	}
 }

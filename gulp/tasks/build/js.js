@@ -26,8 +26,11 @@ export const config = {
 
 // Task files.
 export const files = {
-	source: 'assets/source/js/**/*.js',
-	dest:   'assets/dist/js',
+	source: [
+		'../blr-base-theme/assets/source/js/**/*.js',
+		'assets/source/js/**/*.js',
+	],
+	dest: 'assets/dist/js',
 };
 
 

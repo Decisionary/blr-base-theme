@@ -249,6 +249,7 @@
         allow:
           - cb
           - done
+          - event
           - resolve
           - reject
     no-shadow-restricted-names:
