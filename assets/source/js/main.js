@@ -11,6 +11,19 @@
 ( function( $ ) {
 
 	/**
+	 * Toggles an element attribute value.
+	 *
+	 * @since 0.5.1
+	 *
+	 * @param  {Number} index Element index.
+	 * @param  {Bool}   val   Current attribute value.
+	 * @return {Bool}         The updated attribute value.
+	 */
+	function toggleAttr( index, val ) {
+		return 'true' !== val;
+	}
+
+	/**
 	 * Define your routes and callbacks here.
 	 *
 	 * @since 0.1.0
@@ -27,9 +40,84 @@
 				// Code goes here.
 			},
 
-			finalize() {
+			onReady() {
 
-				// Code goes here.
+				// Make sure the nav menu block exists.
+				const $nav = $( '.nav--primary' );
+
+				if ( ! $nav.length ) {
+					return;
+				}
+
+				// Hide / show the nav menu when the toggle button is clicked.
+				const $toggleButton = $nav.find( '.nav-toggle' ).first();
+
+				if ( $toggleButton.length ) {
+					$toggleButton.on( 'click', event => {
+						event.preventDefault();
+
+						$nav.slideToggle();
+						$toggleButton.toggleClass( 'active' )
+							.attr( 'aria-expanded', toggleAttr );
+					} );
+				}
+
+				// Toggle sub-menus when the parent menu item is clicked.
+				const $menuLinks = $nav.find( '.menu > li > a' );
+
+				if ( $menuLinks.length ) {
+					$menuLinks.on( 'click', event => {
+						const $subMenu = $( event.currentTarget ).siblings( '.sub-menu' );
+
+						if ( $subMenu.length ) {
+							event.preventDefault();
+
+							let menuBlockHeight = $nav.outerHeight();
+
+							if ( $subMenu.hasClass( 'is-expanded' ) ) {
+								menuBlockHeight -= $subMenu.outerHeight();
+							} else {
+								$subMenu.css( 'max-height', 'none' );
+								menuBlockHeight += $subMenu.outerHeight();
+								$subMenu.css( 'max-height', '0' );
+							}
+
+							$nav.css( 'max-height', menuBlockHeight );
+
+							$subMenu.slideToggle()
+								.parent()
+								.attr( 'aria-expanded', toggleAttr )
+								.siblings()
+								.removeClass( 'is-expanded' )
+								.attr( 'aria-expanded', false )
+								.find( '.menu' )
+								.slideUp();
+						}
+					} );
+				}
+
+				const collapsibles = $( '.section-group.is-collapsible' );
+
+				if ( collapsibles.length ) {
+					const firstSection = collapsibles.find( '.section' ).first();
+
+					if ( firstSection.hasClass( 'is-expanded' ) ) {
+						firstSection.find( '.section__title' ).addClass( 'is-expanded' );
+						firstSection.find( '.section__content' ).slideDown();
+					}
+
+					collapsibles.find( '.section__title' )
+						.on( 'click', event => {
+							event.preventDefault();
+
+							const $this = $( event.currentTarget );
+
+							$this.toggleClass( 'is-expanded' )
+								.siblings( '.section__content' )
+								.slideToggle()
+								.attr( 'aria-expanded', toggleAttr );
+						} );
+				}
 			},
 
 		},
@@ -42,7 +130,7 @@
 				// Code goes here.
 			},
 
-			finalize() {
+			onReady() {
 
 				// Code goes here.
 			},
@@ -107,14 +195,15 @@
 				.replace( /-/g, '_' )
 				.split( /\s+/ );
 
-			// Fire init and finalize events for page-specific routes.
+			// Fire init and onReady events for page-specific routes.
 			$.each( pages, ( i, className ) => {
 				router.route( className );
-				router.route( className, 'finalize' );
+
+				$( () => router.route( className, 'onReady' ) );
 			} );
 
-			// Fire finalize event for common route.
-			router.route( 'common', 'finalize' );
+			// Fire onReady event for common route.
+			$( () => router.route( 'common', 'onReady' ) );
 
 		},
 

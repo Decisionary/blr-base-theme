@@ -21,10 +21,6 @@
 		color: map-get( $theme, 'color' );
 		font-size: map-get( $theme, 'font-size' );
 
-		.menu {
-			float: $align;
-		}
-
 		.menu__item {
 			border-color: map-get( $theme, 'color' );
 
