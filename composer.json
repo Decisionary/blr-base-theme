@@ -1,7 +1,7 @@
 {
   "name": "decisionary/blr-base-theme",
   "type": "wordpress-theme",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A base theme for BLR WordPress sites. Based on Sage by Roots.",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
   "license": "MIT",
