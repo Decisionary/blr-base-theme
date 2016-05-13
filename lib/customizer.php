@@ -17,13 +17,13 @@ use BLR\Base_Theme\Assets;
 function setup( $wp_customizer ) {
 
 	$logo_button_labels = [
-		'select'       => __( 'Select logo' ),
-		'change'       => __( 'Change logo' ),
-		'remove'       => __( 'Remove' ),
-		'default'      => __( 'Default' ),
-		'placeholder'  => __( 'No logo selected' ),
-		'frame_title'  => __( 'Select logo' ),
-		'frame_button' => __( 'Choose logo' ),
+		'select'       => __( 'Select logo', 'blr-base-theme' ),
+		'change'       => __( 'Change logo', 'blr-base-theme' ),
+		'remove'       => __( 'Remove', 'blr-base-theme' ),
+		'default'      => __( 'Default', 'blr-base-theme' ),
+		'placeholder'  => __( 'No logo selected', 'blr-base-theme' ),
+		'frame_title'  => __( 'Select logo', 'blr-base-theme' ),
+		'frame_button' => __( 'Choose logo', 'blr-base-theme' ),
 	];
 
 	$wp_customizer->add_setting( 'blr_base_theme_copyright_text', [

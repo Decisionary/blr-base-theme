@@ -26,6 +26,9 @@ function setup() {
 	// Enable plugins to manage the document title.
 	add_theme_support( 'title-tag' );
 
+	// Enable Selective Refresh in the Customizer.
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
 	// Register wp_nav_menu() menus.
 	register_nav_menus([
 		'nav-primary' => __( 'Header Primary Menu', 'blr-base-theme' ),
@@ -118,8 +121,10 @@ function display_sidebar( $sidebar = 'sidebar-primary' ) {
 	];
 
 	$display = ( ! in_array( true, $hide_criteria, true ) );
+	$display = apply_filters( 'blr-base-theme/display_sidebar', $display, $sidebar );
+	$display = apply_filters( 'blr/display_sidebar', $display, $sidebar );
 
-	return apply_filters( 'blr-base-theme/display_sidebar', $display, $sidebar );
+	return $display;
 }
 
 /**
@@ -136,8 +141,10 @@ function display_nav_menu( $menu = 'nav-primary' ) {
 	];
 
 	$display = ( ! in_array( true, $hide_criteria, true ) );
+	$display = apply_filters( 'blr-base-theme/display_nav_menu', $display, $menu );
+	$display = apply_filters( 'blr/display_nav_menu', $display, $menu );
 
-	return apply_filters( 'blr-base-theme/display_nav_menu', $menu, $display );
+	return $display;	
 }
 
 /**
