@@ -29,7 +29,7 @@
     "tests"
   ],
   "devDependencies": {
-    "susy": "^2.2.12",
-    "font-awesome": "^4.6.1"
+    "font-awesome": "^4.6.1",
+    "susy": "^2.2.12"
   }
 }

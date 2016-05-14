@@ -53,6 +53,7 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
+    "jigsass-generic-normalize": "^1.0.6",
     "require-dir": "^0.3.0",
     "sassdoc": "^2.1.20"
   }
