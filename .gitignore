@@ -5,7 +5,7 @@ assets/dist/**/*
 !assets/dist/**/.gitkeep
 
 # Cache files
-docs/php/phpdoc-cache-*
+docs/php/cache/
 
 ### Package Managers ###
 
