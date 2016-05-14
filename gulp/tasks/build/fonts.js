@@ -6,7 +6,19 @@
 const gulp = __require( 'gulp' );
 
 
-// Task files.
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build/fonts';
+
+
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	source: [
 		'assets/source/fonts/*',
@@ -27,4 +39,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'build/fonts', callback );
+gulp.task( task, callback );

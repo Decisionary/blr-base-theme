@@ -12,7 +12,19 @@ const size = __require( 'gulp-size' );
 const imagemin = __require( 'gulp-imagemin' );
 
 
-// Task config
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build/images';
+
+
+/**
+ * Task config.
+ *
+ * @type {Object}
+ */
 export const config = {
 	size: {
 		title: 'Images:',
@@ -20,11 +32,16 @@ export const config = {
 };
 
 
-// Task files.
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	source: 'assets/source/images/*',
 	dest:   'assets/dist/images',
 };
+
 
 /**
  * Gulp callback for `build/images` task.
@@ -39,4 +56,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'build/images', callback );
+gulp.task( task, callback );

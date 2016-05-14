@@ -9,7 +9,19 @@ const gulp = __require( 'gulp' );
 const sassdoc = __require( 'sassdoc' );
 
 
-// Task config.
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'docs/sass';
+
+
+/**
+ * Task config.
+ *
+ * @type {Object}
+ */
 export const config = {
 	basePath: 'https://github.com/Decisionary/blr-base-theme/tree/master',
 	dest:     'docs/sass',
@@ -19,7 +31,11 @@ export const config = {
 };
 
 
-// Task files
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	source: 'assets/source/css/**/*.scss',
 };
@@ -36,4 +52,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'docs/sass', callback );
+gulp.task( task, callback );

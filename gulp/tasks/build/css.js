@@ -17,7 +17,19 @@ const cssmin       = __require( 'gulp-cssmin' );
 const autoprefixer = __require( 'gulp-autoprefixer' );
 
 
-// Task config
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build/css';
+
+
+/**
+ * Task config.
+ *
+ * @type {Object}
+ */
 export const config = {
 
 	sass: {
@@ -47,7 +59,11 @@ export const config = {
 };
 
 
-// Task files
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	watch:  'assets/source/css/**/*.scss',
 	source: [
@@ -78,4 +94,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'build/css', callback );
+gulp.task( task, callback );

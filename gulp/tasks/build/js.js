@@ -16,7 +16,19 @@ const babel  = __require( 'gulp-babel' );
 const uglify = __require( 'gulp-uglify' );
 
 
-// Task config
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build/js';
+
+
+/**
+ * Task config.
+ *
+ * @type {Object}
+ */
 export const config = {
 	size: {
 		title: 'JS:',
@@ -24,7 +36,11 @@ export const config = {
 };
 
 
-// Task files.
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	source: [
 		'../blr-base-theme/assets/source/js/**/*.js',
@@ -53,4 +69,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'build/js', callback );
+gulp.task( task, callback );
