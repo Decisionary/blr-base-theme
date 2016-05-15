@@ -1,8 +1,8 @@
 {
+  "private": true,
   "name": "@decisionary/blr-base-theme",
   "description": "A base theme for WordPress sites. Based on Sage by Roots.",
   "version": "0.5.2",
-  "private": true,
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
   "repository": {
@@ -11,6 +11,11 @@
   },
   "bugs": {
     "url": "https://github.com/Decisionary/blr-base-theme/issues"
+  },
+  "author": {
+    "name": "Decisionary Tech",
+    "email": "projects@decisionarytech.com",
+    "url": "http://decisionarytech.com"
   },
   "contributors": [
     "Wes Moberly <wes.moberly@decisionarytech.com> (http://decisionarytech.com)",
@@ -31,7 +36,7 @@
   "scripts": {
     "build": "gulp build",
     "docs": "gulp docs",
-    "release": "gulp build && gulp docs"
+    "release": "gulp release"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
@@ -40,7 +45,6 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-3": "^6.5.0",
     "eslint": "^2.8.0",
-    "fs-extra": "^0.30.0",
     "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^6.1.2",
