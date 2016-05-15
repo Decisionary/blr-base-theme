@@ -7,21 +7,47 @@
 .breadcrumbs {
 	@extend %content-section;
 
-	@include span( 100% );
-
-	margin-top: $gutter-height;
-	margin-bottom: $gutter-height;
-	border: 1px solid $color-border-content;
-	background-color: $color-bg-content;
-	padding: rem-calc( 15px ) 0;
+	display: table;
+	background-color: $background-color-content;
+	width: 100%;
 	list-style: none;
 }
 
-.breadcrumb__icon {
-	background-color: $color-brand-primary;
-	color: contrast-color( $color-brand-primary );
+.breadcrumb {
+	display: table-cell;
+	border: 1px solid $border-color-content;
+	border-bottom: 0;
+	border-left: 0;
+	padding: rem-calc( 15px );
+	width: 1%;
+
+	&:last-child {
+		width: auto;
+	}
+
+	a {
+		@include style-link {
+			color: inherit;
+		}
+	}
 }
 
-.breadcrumb__link {
+.breadcrumb--icon {
+	border-left-width: 1px;
+	border-color: $color-brand-primary;
+	background-color: $color-brand-primary;
+	color: contrast-color( $color-brand-primary );
+	font-size: rem-calc( 18px );
+}
+
+.breadcrumb--section {
+	text-transform: uppercase;
 	color: $color-brand-primary;
+	font-weight: bold;
+}
+
+.breadcrumb--trail {
+	[property="itemListElement"] > [property="name"] {
+		font-weight: bold;
+	}
 }

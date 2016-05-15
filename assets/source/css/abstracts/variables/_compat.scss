@@ -1,0 +1,130 @@
+////
+/// @group Abstracts
+/// @deprecated
+////
+
+
+/// Default button background color.
+///
+/// @type {Color}
+$color-bg-button-default: $color-light !default;
+
+/// Body background color.
+///
+/// @type {Color}
+$color-bg-body: $color-brand-tertiary !default;
+
+/// Header background color.
+///
+/// @type {Color}
+$color-bg-header: $color-light !default;
+
+/// Main content background color.
+///
+/// @type {Color}
+$color-bg-content: $color-light !default;
+
+/// Footer background color.
+///
+/// @type {Color}
+$color-bg-footer: $color-dark !default;
+
+/// Default nav menu background color.
+///
+/// @type {Color}
+$color-bg-nav-default: inherit !default;
+
+/// Default nav menu background color - hover state.
+///
+/// @type {Color}
+$color-bg-nav-default-hover: $color-bg-nav-default !default;
+
+/// Default nav menu background color - focus state.
+///
+/// @type {Color}
+$color-bg-nav-default-focus: $color-bg-nav-default !default;
+
+/// Default nav menu background color - active state.
+///
+/// @type {Color}
+$color-bg-nav-default-active: $color-bg-nav-default !default;
+
+/// Primary nav menu background color.
+///
+/// @type {Color}
+$color-bg-nav-primary: $color-dark !default;
+
+/// Primary nav menu background color - hover state.
+///
+/// @type {Color}
+$color-bg-nav-primary-hover: $color-black !default;
+
+/// Primary nav menu background color - focus state.
+///
+/// @type {Color}
+$color-bg-nav-primary-focus: $color-bg-nav-primary-hover !default;
+
+/// Primary nav menu background color - active state.
+///
+/// @type {Color}
+$color-bg-nav-primary-active: $color-bg-nav-primary-hover !default;
+
+/// Search nav menu background color.
+///
+/// @type {Color}
+$color-bg-nav-search: $color-bg-header !default;
+
+/// Search nav menu background color - hover state.
+///
+/// @type {Color}
+$color-bg-nav-search-hover: $color-bg-nav-search !default;
+
+/// Search nav menu background color - focus state.
+///
+/// @type {Color}
+$color-bg-nav-search-focus: $color-bg-nav-search-hover !default;
+
+/// Search nav menu background color - active state.
+///
+/// @type {Color}
+$color-bg-nav-search-active: $color-bg-nav-search-hover !default;
+
+/// Sidebar nav menu background color.
+///
+/// @type {Color}
+$color-bg-nav-sidebar: $color-brand-primary !default;
+
+/// Sidebar nav menu background color - hover state.
+///
+/// @type {Color}
+$color-bg-nav-sidebar-hover: tint-or-shade( $color-bg-nav-sidebar, 20% ) !default;
+
+/// Sidebar nav menu background color - focus state.
+///
+/// @type {Color}
+$color-bg-nav-sidebar-focus: $color-bg-nav-sidebar-hover !default;
+
+/// Sidebar nav menu background color - active state.
+///
+/// @type {Color}
+$color-bg-nav-sidebar-active: $color-dark !default;
+
+/// Footer nav menu background color.
+///
+/// @type {Color}
+$color-bg-nav-footer: $color-dark !default;
+
+/// Footer nav menu background color - hover state.
+///
+/// @type {Color}
+$color-bg-nav-footer-hover: $color-bg-nav-footer !default;
+
+/// Footer nav menu background color - focus state.
+///
+/// @type {Color}
+$color-bg-nav-footer-focus: $color-bg-nav-footer-hover !default;
+
+/// Footer nav menu background color - active state.
+///
+/// @type {Color}
+$color-bg-nav-footer-active: $color-bg-nav-footer-hover !default;

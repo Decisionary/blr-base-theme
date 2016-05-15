@@ -8,7 +8,7 @@
 
 html,
 body {
-	background-color: $color-bg-body;
+	background-color: $background-color-body;
 }
 
 body {
@@ -58,5 +58,5 @@ a {
 }
 
 img {
-	@extend %image-fluid;
+	@extend %image--fluid;
 }

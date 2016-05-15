@@ -4,13 +4,32 @@
 /// @group Layout
 ////
 
+
+
+// Grid helper classes.
+.grid,
+.grid-row {
+	@extend %content-section;
+}
+
+.grid-col {
+	@include span( 100% );
+}
+
+@for $i from 1 through 25 {
+	.grid-col--span-#{$i} {
+		@include span( $i );
+	}
+}
+
+
 .page-header,
 .page-nav,
+.page-breadcrumbs,
 .page-content,
 .page-footer {
 	@include susy-clearfix;
 	@include container;
-	@include gutters;
 
 	@each $key, $value in $breakpoints {
 		@if $value > 0 {
@@ -19,4 +38,11 @@
 			}
 		}
 	}
+}
+
+.page-header,
+.page-nav,
+.page-content,
+.page-footer {
+	@include gutters;
 }

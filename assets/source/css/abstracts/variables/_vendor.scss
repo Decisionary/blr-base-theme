@@ -1,0 +1,25 @@
+////
+/// @group Abstracts
+////
+
+
+
+// -------------------------------------------------------------------------
+// Font Awesome
+// -------------------------------------------------------------------------
+
+/// The prefix to use for FontAwesome icons.
+///
+/// @type {String}
+$fa-css-prefix: 'icon' !default;
+
+
+
+// -------------------------------------------------------------------------
+// JigSass Normalize
+// -------------------------------------------------------------------------
+
+$jigsass-normalize-default-font-family: $font-family-base;
+$jigsass-normalize-h1: false;
+$jigsass-normalize-fig-margins: false;
+$jigsass-normalize-fieldset: false;

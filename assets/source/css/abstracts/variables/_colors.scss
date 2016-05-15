@@ -1,8 +1,16 @@
+////
+/// @group Abstracts
+////
 
+
+
+// -------------------------------------------------------------------------
 // Greyscale
+// -------------------------------------------------------------------------
+
 $color-white:               #fff;
 $color-grey-zircon:         #f4f8ff;
-$color-grey-smoke:          #f4f4f4;
+$color-grey-white-smoke:    #f4f4f4;
 $color-grey-gallery:        #eee;
 $color-grey-alto:           #ddd;
 $color-grey-light:          #ccc;
@@ -29,7 +37,12 @@ $color-grey-nero:           #222;
 $color-grey-cod:            #111;
 $color-black:               #000;
 
+
+
+// -------------------------------------------------------------------------
 // Reds
+// -------------------------------------------------------------------------
+
 $color-red:             #f00;
 $color-red-scarlet:     #f20;
 $color-red-vermillion:  #f40;
@@ -45,7 +58,12 @@ $color-red-lonestar:    #600;
 $color-red-rosewood:    #500;
 $color-red-temptress:   #400;
 
+
+
+// -------------------------------------------------------------------------
 // Oranges
+// -------------------------------------------------------------------------
+
 $color-orange:               #f60;
 $color-orange-peel:          #fa0;
 $color-orange-pizazz:        #f90;
@@ -60,14 +78,24 @@ $color-orange-fuel:          #eca927;
 $color-orange-carrot:        #ed9121;
 $color-orange-roughy:        #c45719;
 
+
+
+// -------------------------------------------------------------------------
 // Yellows
+// -------------------------------------------------------------------------
+
 $color-yellow:            #ff0;
 $color-yellow-chartreuse: #df0;
 $color-yellow-turbo:      #fe0;
 $color-yellow-school-bus: #fd0;
 $color-yellow-supernova:  #fc0;
 
+
+
+// -------------------------------------------------------------------------
 // Greens
+// -------------------------------------------------------------------------
+
 $color-green:                 #090;
 $color-green-lime:            #0d0;
 $color-green-rio-grande:      #bbd009;
@@ -79,7 +107,12 @@ $color-green-camarone:        #051;
 $color-green-british-racing:  #042;
 $color-green-deep-fir:        #030;
 
+
+
+// -------------------------------------------------------------------------
 // Blues
+// -------------------------------------------------------------------------
+
 $color-blue:                  #00f;
 $color-blue-medium:           #00d;
 $color-blue-midnight:         #009;
@@ -99,7 +132,12 @@ $color-blue-endeavour:        #05a;
 $color-blue-orient:           #058;
 $color-blue-prussian:         #036;
 
+
+
+// -------------------------------------------------------------------------
 // Purples
+// -------------------------------------------------------------------------
+
 $color-purple:              #609;
 $color-purple-heart:        #63c;
 $color-purple-royal:        #639;

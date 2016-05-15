@@ -48,6 +48,7 @@ dl {
 	padding: 0;
 }
 
+.content-section,
 .entry__content,
 .widget__content {
 
@@ -87,9 +88,8 @@ dl {
 	ul,
 	ol,
 	dl {
-		@include h-spacing-left( 0.5 );
-
-		list-style-position: inside;
+		margin-left: 1.5em;
+		list-style-position: outside;
 	}
 
 	dt {

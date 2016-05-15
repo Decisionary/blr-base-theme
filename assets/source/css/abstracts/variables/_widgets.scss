@@ -1,0 +1,56 @@
+////
+/// @group Abstracts
+////
+
+
+
+// -------------------------------------------------------------------------
+// Content
+// -------------------------------------------------------------------------
+
+/// Default widget color.
+///
+/// @type {Color}
+$color-widget: $color-content !default;
+
+/// Default widget header color.
+///
+/// @type {Color}
+$color-widget-header: $color-widget !default;
+
+/// Default widget divider color.
+///
+/// @type {Color}
+$color-widget-divider: $color-widget !default;
+
+
+
+// -------------------------------------------------------------------------
+// Background
+// -------------------------------------------------------------------------
+
+/// Default widget background color.
+///
+/// @type {Color}
+$background-color-widget: $background-color-content !default;
+
+/// Default widget header color.
+///
+/// @type {Color}
+$background-color-widget-header: $background-color-widget !default;
+
+
+
+// -------------------------------------------------------------------------
+// Border
+// -------------------------------------------------------------------------
+
+/// Default widget border color.
+///
+/// @type {Color}
+$border-color-widget: $border-color-content !default;
+
+/// Default widget header color.
+///
+/// @type {Color}
+$border-color-widget-header: $border-color-widget !default;
