@@ -11,5 +11,14 @@ const js     = __requireTask( 'build/js' );
 const images = __requireTask( 'build/images' );
 const fonts  = __requireTask( 'build/fonts' );
 
+
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build';
+
+
 // Register the task.
-gulp.task( 'build', gulp.series( css.task, js.task, images.task, fonts.task ) );
+gulp.task( task, gulp.series( css.task, js.task, images.task, fonts.task ) );

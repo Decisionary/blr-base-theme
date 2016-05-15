@@ -9,5 +9,14 @@ const gulp = __require( 'gulp' );
 const lint   = __requireTask( 'qa/lint' );
 const test   = __requireTask( 'qa/test' );
 
+
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'qa';
+
+
 // Register the task.
-gulp.task( 'qa', gulp.parallel( lint.task, test.task ) );
+gulp.task( task, gulp.parallel( lint.task, test.task ) );

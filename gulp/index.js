@@ -2,7 +2,9 @@
 require( 'babel-polyfill' );
 
 const path    = require( 'path' );
-const gulpDir = process.env.gulpDir || path.resolve( './gulp' );
+const gulpDir = process.env.gulpDir
+	? process.env.gulpDir
+	: path.resolve( './gulp' );
 
 global.__require     = pkg  => require.main.require( pkg );
 global.__requireTask = task => require.main.require(

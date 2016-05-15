@@ -6,7 +6,8 @@
 const gulp = __require( 'gulp' );
 
 // SassDoc
-const shell = __require( 'gulp-shell' );
+const shell  = __require( 'gulp-shell' );
+const expect = __require( 'gulp-expect-file' );
 
 
 /**
@@ -23,7 +24,14 @@ export const task = 'docs/js';
  * @type {Object}
  */
 export const config = {
-	quiet: true,
+	expect: {
+		silent:           true,
+		checkRealFile:    true,
+		reportUnexpected: false,
+	},
+	jsDoc: {
+		quiet: true,
+	},
 };
 
 
@@ -32,8 +40,10 @@ export const config = {
  *
  * @return {Function}
  */
-export const callback = () => gulp.series( task );
-
+export const callback = () =>
+	gulp.src( 'assets/src/**/*.js' )
+		.pipe( expect.real( config.expect, '*.js' ) )
+		.pipe( shell( 'jsdoc -c jsdoc.conf.json', config.jsDoc ) );
 
 // Register the task.
-gulp.task( task, shell.task( 'jsdoc -c jsdoc.conf.json', config ) );
+gulp.task( task, callback );
