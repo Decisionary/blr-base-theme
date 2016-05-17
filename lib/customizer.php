@@ -44,10 +44,11 @@ function setup( $wp_customizer ) {
 	]);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_primary', [
-		'default' => Assets\image_url( apply_filters(
-			'blr/logo/primary',
-			"{$logo_base}-primary.png"
-		) ),
+		'default' => apply_filters(
+			'blr/logo-image-url',
+			Assets\image_url( "{$logo_base}-primary.png" ),
+			'primary'
+		),
 	]);
 
 	$wp_customizer->add_control(
@@ -66,10 +67,11 @@ function setup( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_search', [
-		'default' => Assets\image_url( apply_filters(
-			'blr/logo/search',
-			"{$logo_base}-search.png"
-		) ),
+		'default' => apply_filters(
+			'blr/logo-image-url',
+			Assets\image_url( "{$logo_base}-search.png" ),
+			'search'
+		),
 	]);
 
 	$wp_customizer->add_control(
@@ -88,10 +90,11 @@ function setup( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_footer', [
-		'default' => Assets\image_url( apply_filters(
-			'blr/logo/footer',
-			"{$logo_base}-footer.png"
-		) ),
+		'default' => apply_filters(
+			'blr/logo-image-url',
+			Assets\image_url( "{$logo_base}-footer.png" ),
+			'footer'
+		),
 	]);
 
 	$wp_customizer->add_control(
@@ -111,3 +114,17 @@ function setup( $wp_customizer ) {
 }
 
 add_action( 'customize_register', __NAMESPACE__ . '\\setup' );
+
+
+/**
+ * Make the logo image URLs relative.
+ *
+ * @param  string $url  The current logo image URL.
+ * @param  string $type The current logo type.
+ * @return string       The updated logo image URL.
+ */
+function make_logo_url_relative( $url, $type ) {
+	return wp_make_link_relative( $url );
+}
+
+add_filter( 'blr/logo-image-url', __NAMESPACE__ . '\\make_logo_url_relative' );
