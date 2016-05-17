@@ -99,8 +99,9 @@ class ThemeWrapper {
 		);
 
 		$this->templates = apply_filters(
-			'blr/wrap_' . $this->slug,
-			$this->templates
+			'blr/template/wrap',
+			$this->templates,
+			$this->slug
 		);
 
 		return locate_template( $this->templates );
