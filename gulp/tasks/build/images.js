@@ -38,8 +38,11 @@ export const config = {
  * @type {Object}
  */
 export const files = {
-	source: 'assets/source/images/*',
-	dest:   'assets/dist/images',
+	source: [
+		'../blr-base-theme/assets/source/images/*',
+		'assets/source/images/*',
+	],
+	dest: 'assets/dist/images',
 };
 
 

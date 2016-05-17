@@ -182,8 +182,38 @@ function display_breadcrumbs() {
  */
 function assets() {
 
-	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
+	$version  = $is_debug ? time() : null;
+
+	$load_comment_js = (
+		is_single()
+		&& comments_open()
+		&& get_option( 'thread_comments' )
+		&& apply_filters( 'blr/assets/load-comment-js', false )
+	);
+	if ( $load_comment_js ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	if ( file_exists( Assets\css_path( 'app.css' ) ) ) {
+
+		wp_enqueue_style(
+			'blr/main',
+			Assets\css_url( 'app.css' ),
+			apply_filters( 'blr/assets/css-deps', [] ),
+			$version
+		);
+	}
+
+	if ( file_exists( Assets\js_path( 'app.js' ) ) ) {
+
+		wp_enqueue_script(
+			'blr/main',
+			Assets\js_url( 'app.js' ),
+			apply_filters( 'blr/assets/js-deps', [ 'jquery' ] ),
+			$version,
+			true
+		);
 	}
 }
 

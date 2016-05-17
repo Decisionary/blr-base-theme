@@ -16,6 +16,11 @@ use BLR\Base_Theme\Assets;
  */
 function setup( $wp_customizer ) {
 
+	$logo_base = 'logo';
+	if ( defined( 'WP_PROJECT_TYPE' ) ) {
+		$logo_base .= '-' . strtolower( WP_PROJECT_TYPE );
+	}
+
 	$logo_button_labels = [
 		'select'       => __( 'Select logo', 'blr-base-theme' ),
 		'change'       => __( 'Change logo', 'blr-base-theme' ),
@@ -39,7 +44,10 @@ function setup( $wp_customizer ) {
 	]);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_primary', [
-		'default' => Assets\asset_url( 'images/logo-primary.png' ),
+		'default' => Assets\image_url( apply_filters(
+			'blr/logo/primary',
+			"{$logo_base}-primary.png"
+		) ),
 	]);
 
 	$wp_customizer->add_control(
@@ -58,7 +66,10 @@ function setup( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_search', [
-		'default' => Assets\asset_url( 'images/logo-search.png' ),
+		'default' => Assets\image_url( apply_filters(
+			'blr/logo/search',
+			"{$logo_base}-search.png"
+		) ),
 	]);
 
 	$wp_customizer->add_control(
@@ -77,7 +88,10 @@ function setup( $wp_customizer ) {
 	);
 
 	$wp_customizer->add_setting( 'blr_base_theme_logo_footer', [
-		'default' => Assets\asset_url( 'images/logo-footer.png' ),
+		'default' => Assets\image_url( apply_filters(
+			'blr/logo/footer',
+			"{$logo_base}-footer.png"
+		) ),
 	]);
 
 	$wp_customizer->add_control(

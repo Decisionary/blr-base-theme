@@ -21,6 +21,7 @@ export const task = 'build/fonts';
  */
 export const files = {
 	source: [
+		'../blr-base-theme/assets/source/fonts/*',
 		'assets/source/fonts/*',
 		'bower_components/font-awesome/fonts/fontawesome-webfont.*',
 	],
