@@ -131,4 +131,4 @@ function make_logo_url_relative( $url, $type ) {
 	return wp_make_link_relative( $url );
 }
 
-add_filter( 'blr/logo-image-url', __NAMESPACE__ . '\\make_logo_url_relative' );
+add_filter( 'blr/logo-image-url', __NAMESPACE__ . '\\make_logo_url_relative', 10, 2 );
