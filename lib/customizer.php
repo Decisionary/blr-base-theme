@@ -12,6 +12,8 @@ use BLR\Base_Theme\Assets;
 /**
  * Sets up our custom sections, settings, and controls for WP Customizer.
  *
+ * @since 0.1.0
+ *
  * @param \WP_Customize_Manager $wp_customizer The customizer instance.
  */
 function setup( $wp_customizer ) {
@@ -118,6 +120,8 @@ add_action( 'customize_register', __NAMESPACE__ . '\\setup' );
 
 /**
  * Make the logo image URLs relative.
+ *
+ * @since 0.6.2
  *
  * @param  string $url  The current logo image URL.
  * @param  string $type The current logo type.
