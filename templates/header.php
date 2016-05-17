@@ -8,19 +8,22 @@
 ?>
 
 <div class="branding branding--header">
-	<div class="logo logo--header">
-		<?php if ( get_theme_mod( 'blr_base_theme_logo_primary' ) ) : ?>
-			<img class="logo__image"
-				src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_primary' ) ) ?>"
-				alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-		<?php else : ?>
-			<span class="logo__text">
+	<?php if ( get_theme_mod( 'blr_base_theme_logo_primary' ) ) : ?>
+		<img
+			class="logo logo--header"
+			src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_primary' ) ) ?>"
+			alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
+		>
+	<?php else : ?>
+		<div class="logo logo--text logo--header">
+			<p>
 				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
-				<br>
+			</p>
+			<p>
 				<?php echo esc_html( get_bloginfo( 'description' ) ); ?>
-			</span>
-		<?php endif; ?>
-	</div>
+			</p>
+		</div>
+	<?php endif; ?>
 </div><!-- /.branding -->
 
 <div class="search search--header">
@@ -33,12 +36,12 @@
 	<?php endif; ?>
 
 	<?php echo get_search_form(); ?>
-
-	<div class="logo logo--search">
-		<?php if ( get_theme_mod( 'blr_base_theme_logo_search' ) ) : ?>
-			<img class="logo__image"
-				src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_search' ) ); ?>"
-				alt="Powered by BLR">
-		<?php endif; ?>
-	</div><!-- /.logo -->
 </div><!-- /.search -->
+
+<?php if ( get_theme_mod( 'blr_base_theme_logo_search' ) ) : ?>
+	<img
+		class="logo logo--search"
+		src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_search' ) ); ?>"
+		alt="Powered by BLR"
+	>
+<?php endif; ?>
