@@ -27,6 +27,7 @@
 	font-family: monospace, monospace;
 
 	%button + %button {
+		margin-top: 0;
 		margin-left: $padding-base;
 	}
 }
@@ -207,7 +208,23 @@
 	@extend %nav--horizontal;
 	@extend %nav--text;
 
+	%menu__item {
+
+		&:first-child {
+			%menu__link {
+				padding-left: 0;
+			}
+		}
+
+		&:last-child {
+			%menu__link {
+				padding-right: 0;
+			}
+		}
+	}
+
 	%menu__item + %menu__item {
+
 		%menu__link {
 			border-left: {
 				width: 1px;
