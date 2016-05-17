@@ -19,7 +19,7 @@ body {
 a {
 	text-decoration: $text-decoration-link;
 	color: $color-link;
-	font-size: $font-size-base;
+	font-size: inherit;
 
 	@include hover {
 		text-decoration: $text-decoration-link-hover;
@@ -53,6 +53,19 @@ a {
 		@include active {
 			text-decoration: $text-decoration-link-visited-active;
 			color: $color-link-visited-active;
+		}
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a {
+		@include style-link {
+			color: inherit;
 		}
 	}
 }

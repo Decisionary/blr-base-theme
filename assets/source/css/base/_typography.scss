@@ -70,19 +70,6 @@ dl {
 		+ dd {
 			@include v-spacing-top( $line-spacing-list-item );
 		}
-
-		// Inline elements.
-		+ a,
-		+ span,
-		+ strong,
-		+ em,
-		+ b,
-		+ i,
-		+ input,
-		+ button,
-		+ %button {
-			@include v-spacing-top( 0 );
-		}
 	}
 
 	ul,
