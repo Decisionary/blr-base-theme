@@ -61,3 +61,13 @@ Or, let's say you want to check to see if an asset file exists. You'd simply do:
 	if ( file_exists( Assets\asset_path( 'path/to/asset.file' ) ) {
 		// Do something.
 	}
+
+There are also specific path and URL functions for images, CSS, and JS. So in
+our first example with the template image, we could use the following instead:
+
+	$image_url = Assets\image_url( 'image-file.png' );
+
+These helper functions are especially useful when enqueueing custom CSS and JS:
+
+	wp_enqueue_style( 'custom', Assets\css_url( 'custom.css' ), [], null );
+	wp_enqueue_script( 'custom', Assets\js_url( 'custom.js' ), [], null, true );
