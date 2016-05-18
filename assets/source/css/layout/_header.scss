@@ -5,7 +5,7 @@
 ////
 
 .page-header-container {
-	background-color: $color-bg-header;
+	background-color: $background-color-header;
 	color: $color-header;
 }
 
@@ -14,20 +14,15 @@
 }
 
 .branding--header {
-	@include span( 50% );
+	@include span( 11 );
 }
 
 .search--header {
-	@include susy-clearfix;
-	@include span( last 50% );
-}
-
-.search--header {
-	float: right;
+	@include span( 11 );
 }
 
 .logo--search {
-	float: right;
-	margin-left: rem-calc( 30px );
-	width: rem-calc( 73px );
+	@include span( last 2 );
+
+	margin-top: rem-calc( 22px );
 }

@@ -7,18 +7,16 @@ const gulp = __require( 'gulp' );
 
 // Tasks
 const sass = __requireTask( 'docs/sass' );
+const js   = __requireTask( 'docs/js' );
+const php  = __requireTask( 'docs/php' );
 
 /**
- * Gulp callback for `docs` task.
+ * Task name.
  *
- * @param {Function} done Async callback.
+ * @type {String}
  */
-export const callback = done => {
+export const task = 'docs';
 
-	sass.callback();
-
-	done();
-};
 
 // Register the task.
-gulp.task( 'docs', callback );
+gulp.task( task, gulp.parallel( sass.task, js.task, php.task ) );

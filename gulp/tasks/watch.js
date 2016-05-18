@@ -13,35 +13,43 @@ const fonts  = __requireTask( 'build/fonts' );
 
 
 /**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'watch';
+
+
+/**
  * Get the watch path(s) for a task.
  *
- * @param  {Object} task The imported Gulp task.
- * @return {Mixed}       The path (or an array of paths) if found, null if not.
+ * @param  {Object} taskModule The imported Gulp task module.
+ * @return {String|Array|Bool} The path(s) if found, false if not.
  */
-export const getWatchFiles = task => {
+export const getWatchFiles = taskModule => {
 
-	if ( task.files.watch ) {
-		return task.files.watch;
+	if ( taskModule.files.watch ) {
+		return taskModule.files.watch;
 	}
 
-	if ( task.files.source ) {
-		return task.files.source;
+	if ( taskModule.files.source ) {
+		return taskModule.files.source;
 	}
 
-	return null;
+	return false;
 };
 
 /**
  * Registers a watch task for a particular set of files.
  *
- * @param  {Object} task The imported Gulp task module.
+ * @param {Object} taskModule The imported Gulp task module.
  */
-export const registerWatchTask = task => {
+export const registerWatchTask = taskModule => {
 
-	const watchFiles = getWatchFiles( task );
+	const watchFiles = getWatchFiles( taskModule );
 
 	if ( watchFiles ) {
-		gulp.watch( watchFiles, task.callback );
+		gulp.watch( watchFiles, taskModule.task );
 	}
 };
 
@@ -58,4 +66,4 @@ export const callback = () => {
 
 
 // Register the task.
-gulp.task( 'watch', callback );
+gulp.task( task, callback );

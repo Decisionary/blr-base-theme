@@ -6,9 +6,22 @@
 const gulp = __require( 'gulp' );
 
 
-// Task files.
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'build/fonts';
+
+
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
 export const files = {
 	source: [
+		'../blr-base-theme/assets/source/fonts/*',
 		'assets/source/fonts/*',
 		'bower_components/font-awesome/fonts/fontawesome-webfont.*',
 	],
@@ -27,4 +40,4 @@ export const callback = () =>
 
 
 // Register the task.
-gulp.task( 'build/fonts', callback );
+gulp.task( task, callback );

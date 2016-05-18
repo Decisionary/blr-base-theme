@@ -6,18 +6,16 @@
 const gulp = __require( 'gulp' );
 
 // Tasks
-const build = __requireTask( 'build' );
+__requireTask( 'build' );
 
 
 /**
- * Gulp callback for 'default' task.
+ * Task name.
  *
- * @param {Function} done Async callback.
+ * @type {String}
  */
-export const callback = done => {
-	build.callback( done );
-};
+export const task = 'default';
 
 
 // Register the task.
-gulp.task( 'default', callback );
+gulp.task( task, gulp.series( 'build' ) );

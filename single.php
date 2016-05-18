@@ -5,6 +5,14 @@
  * @package BLR\Base_Theme\Templates
  */
 
-$type = ( 'post' !== get_post_type() ? get_post_type() : get_post_format() );
+$type = ( 'post' === get_post_type() ? get_post_format() : get_post_type() );
 
-get_template_part( 'templates/content-single', $type );
+if ( have_posts() ) : the_post();
+
+	get_template_part( 'templates/content-single', $type );
+
+else :
+
+	get_template_part( 'templates/content-not-found', $type );
+
+endif;

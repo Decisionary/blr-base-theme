@@ -10,7 +10,9 @@ namespace BLR\Base_Theme\Setup;
 use BLR\Base_Theme\Assets;
 
 /**
- * Theme setup
+ * Theme setup.
+ *
+ * @since 0.1.0
  */
 function setup() {
 
@@ -53,7 +55,9 @@ function setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
 
 /**
- * Register sidebars
+ * Register sidebars.
+ *
+ * @since 0.1.0
  */
 function widgets_init() {
 
@@ -109,6 +113,8 @@ add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
 /**
  * Determine whether to show a specific sidebar.
  *
+ * @since 0.1.0
+ *
  * @param string $sidebar (optional) The sidebar ID. Defaults to 'sidebar-primary'.
  * @return bool
  */
@@ -130,6 +136,8 @@ function display_sidebar( $sidebar = 'sidebar-primary' ) {
 /**
  * Determine whether to show a specific nav menu.
  *
+ * @since 0.1.0
+ *
  * @param string $menu (optional) The nav menu ID. Defaults to 'nav-primary'.
  * @return bool
  */
@@ -144,18 +152,68 @@ function display_nav_menu( $menu = 'nav-primary' ) {
 	$display = apply_filters( 'blr-base-theme/display_nav_menu', $display, $menu );
 	$display = apply_filters( 'blr/display_nav_menu', $display, $menu );
 
-	return $display;	
+	return $display;
 }
 
 /**
- * Theme assets
+ * Determine whether to show the breadcrumbs section.
+ *
+ * @since 0.6.0
+ *
+ * @return bool
+ */
+function display_breadcrumbs() {
+
+	// Nav menu will be hidden if any of the following is true.
+	$hide_criteria = [
+		( ! is_callable( 'bcn_display' ) )
+	];
+
+	$display = ( ! in_array( true, $hide_criteria, true ) );
+	$display = apply_filters( 'blr/display_breadcrumbs', $display );
+
+	return $display;
+}
+
+/**
+ * Theme assets.
+ *
+ * @since 0.1.0
  */
 function assets() {
 
-	wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css' );
+	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
+	$version  = $is_debug ? time() : null;
 
-	if ( is_single() && comments_open() && get_option( 'thread_comments' ) ) {
+	$load_comment_js = (
+		is_single()
+		&& comments_open()
+		&& get_option( 'thread_comments' )
+		&& apply_filters( 'blr/assets/load-comment-js', false )
+	);
+	if ( $load_comment_js ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+
+	if ( file_exists( Assets\css_path( 'app.css' ) ) ) {
+
+		wp_enqueue_style(
+			'blr/main',
+			Assets\css_url( 'app.css' ),
+			apply_filters( 'blr/assets/css-deps', [] ),
+			$version
+		);
+	}
+
+	if ( file_exists( Assets\js_path( 'app.js' ) ) ) {
+
+		wp_enqueue_script(
+			'blr/main',
+			Assets\js_url( 'app.js' ),
+			apply_filters( 'blr/assets/js-deps', [ 'jquery' ] ),
+			$version,
+			true
+		);
 	}
 }
 

@@ -6,7 +6,7 @@
 .aligncenter,
 .alignleft,
 .alignright {
-	@extend %image-fluid;
+	@extend %image--fluid;
 
 	float: none;
 	margin: {
@@ -38,7 +38,7 @@
 
 // Captions
 .wp-caption {
-	@extend %image-thumbnail;
+	@extend %image--thumbnail;
 }
 
 .wp-caption-text {
@@ -47,5 +47,5 @@
 
 // Text meant only for screen readers
 .screen-reader-text {
-	@extend %sr-content-focusable;
+	@extend %sr-content--focusable;
 }

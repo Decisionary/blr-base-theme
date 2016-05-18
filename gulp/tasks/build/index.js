@@ -11,20 +11,14 @@ const js     = __requireTask( 'build/js' );
 const images = __requireTask( 'build/images' );
 const fonts  = __requireTask( 'build/fonts' );
 
+
 /**
- * Gulp callback for `build` task.
+ * Task name.
  *
- * @param {Function} done Async callback.
+ * @type {String}
  */
-export const callback = done => {
+export const task = 'build';
 
-	css.callback();
-	js.callback();
-	images.callback();
-	fonts.callback();
-
-	done();
-};
 
 // Register the task.
-gulp.task( 'build', callback );
+gulp.task( task, gulp.series( css.task, js.task, images.task, fonts.task ) );

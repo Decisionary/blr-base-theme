@@ -8,7 +8,7 @@
 
 html,
 body {
-	background-color: $color-bg-body;
+	background-color: $background-color-body;
 }
 
 body {
@@ -16,19 +16,10 @@ body {
 	font-size: $font-size-base;
 }
 
-// Suppress the focus outline on elements that cannot be accessed via keyboard.
-// This prevents an unwanted focus outline from appearing around elements that
-// might still respond to pointer events.
-//
-// Credit: https://github.com/suitcss/base
-[tabindex="-1"]:focus {
-	outline: none !important;
-}
-
 a {
 	text-decoration: $text-decoration-link;
 	color: $color-link;
-	font-size: $font-size-base;
+	font-size: inherit;
 
 	@include hover {
 		text-decoration: $text-decoration-link-hover;
@@ -66,83 +57,19 @@ a {
 	}
 }
 
-img {
-	@extend %image-fluid;
-
-	vertical-align: middle;
-}
-
-[role="button"] {
-	cursor: pointer;
-}
-
-// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
-a,
-area,
-button,
-[role="button"],
-input,
-label,
-select,
-summary,
-textarea {
-	touch-action: manipulation;
-}
-
-label {
-	display: inline-block;
-}
-
-
-button {
-	border: 0;
-	background: transparent;
-	padding: 0;
-
-	// Work around a Firefox/IE bug where the transparent `button` background
-	// results in a loss of the default `button` focus styles.
-	//
-	// Credit: https://github.com/suitcss/base/
-	&:focus {
-		outline: 1px dotted;
-		outline: 5px auto -webkit-focus-ring-color;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	a {
+		@include style-link {
+			color: inherit;
+		}
 	}
 }
 
-input,
-button,
-select,
-textarea {
-	border-radius: 0;
-	line-height: inherit;
-}
-
-textarea {
-	resize: vertical;
-}
-
-fieldset {
-	border: 0;
-	padding: 0;
-	min-width: 0;
-}
-
-// Fix font-size issue present in most browsers where the browser shrinks the
-// font size of any monospaced elements or any elements where the `font-family`
-// is set to `monospace`. We fix the issue by:
-//
-//   (1) Using either a custom font stack or just `monospace, monospace`.
-//   (2) Setting the font-size to `1em`.
-pre,
-code,
-kbd,
-samp,
-tt {
-	font-family: $font-family-mono; // (1)
-	font-size: 1em; // (2)
-}
-
-// Always hide an element with the `hidden` HTML attribute (from PureCSS).
-[hidden] {
-	display: none !important;
+img {
+	@extend %image--fluid;
 }

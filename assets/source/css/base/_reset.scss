@@ -1,0 +1,157 @@
+////
+/// Reset styles
+///
+/// @group Base
+////
+
+@include jigsass-normalize( 'all' );
+
+// Reset default padding and margins.
+body,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+th,
+td,
+figure,
+hr {
+	margin: 0;
+	padding: 0;
+}
+
+// Collapse table borders.
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// Indicate clickable elements.
+select,
+option,
+label,
+[role='button'] {
+	cursor: pointer;
+}
+
+// Indicate editable elements.
+textarea,
+[type='email'],
+[type='password'],
+[type='search'],
+[type='text'] {
+	@include hover-focus-active( true ) {
+		cursor: text;
+	}
+}
+
+// Indicate elements that provide additional info on hover.
+abbr,
+dfn {
+	&[title] {
+		cursor: help;
+	}
+}
+
+// 1. Remove buttons' default styling.
+// 2. Remove letter-spacing normal in some browsers.
+button,
+[type='button'],
+[role='button'],
+[type='reset'],
+[type='submit'] {
+	border: 0; // [1]
+	background-color: transparent; // [1]
+	padding: 0; // [1]
+	letter-spacing: inherit; // [2]
+	color: inherit; // [1]
+}
+
+// Work around a Firefox/IE bug where the transparent background results in a
+// loss of the default button focus styles.
+//
+// Credit: https://github.com/suitcss/base/
+button:focus {
+	outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+// 1. Remove default border radius for form elements.
+// 2. Normalize line height for form elements.
+input,
+button,
+select,
+textarea {
+	border-radius: 0; // [1]
+	line-height: inherit; // [2]
+}
+
+// Make sure textareas don't exceed the width of their containers.
+textarea {
+	resize: vertical;
+	max-width: 100%;
+}
+
+// Allow labels to have padding.
+label {
+	display: inline-block;
+}
+
+// Vertically center inline images.
+img {
+	vertical-align: middle;
+}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+	touch-action: manipulation;
+}
+
+// Remove underlines from potentially troublesome elements.
+u,
+ins {
+	text-decoration: none;
+}
+
+// Apply faux underlines to inserted text via `border-bottom`.
+ins {
+	border-bottom: 1px solid;
+}
+
+// Suppress the focus outline on elements that cannot be accessed via keyboard.
+// This prevents an unwanted focus outline from appearing around elements that
+// might still respond to pointer events.
+//
+// Credit: https://github.com/suitcss/base
+[tabindex="-1"]:focus {
+	outline: none !important;
+}
+
+// Always hide an element with the `hidden` HTML attribute (from PureCSS).
+[hidden] {
+	display: none !important;
+}

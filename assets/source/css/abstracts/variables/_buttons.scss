@@ -1,0 +1,274 @@
+////
+/// @group Abstracts
+////
+
+
+
+// -------------------------------------------------------------------------
+// Content
+// -------------------------------------------------------------------------
+
+/// Default button color.
+///
+/// @type {Color}
+$color-button-default: $color-base !default;
+
+/// Default button hover color.
+///
+/// @type {Color}
+$color-button-default-hover: $color-light !default;
+
+/// Default button focus color.
+///
+/// @type {Color}
+$color-button-default-focus: $color-button-default-hover !default;
+
+/// Default button active color.
+///
+/// @type {Color}
+$color-button-default-active: $color-button-default-hover !default;
+
+/// Primary branding button color.
+///
+/// @type {Color}
+$color-button-primary: $color-brand-primary !default;
+
+/// Primary branding button hover color.
+///
+/// @type {Color}
+$color-button-primary-hover: $color-button-default-hover !default;
+
+/// Primary branding button focus color.
+///
+/// @type {Color}
+$color-button-primary-focus: $color-button-primary-hover !default;
+
+/// Primary branding button active color.
+///
+/// @type {Color}
+$color-button-primary-active: $color-button-primary-hover !default;
+
+/// Secondary branding button color.
+///
+/// @type {Color}
+$color-button-secondary: $color-brand-secondary !default;
+
+/// Secondary branding button hover color.
+///
+/// @type {Color}
+$color-button-secondary-hover: $color-button-default-hover !default;
+
+/// Secondary branding button focus color.
+///
+/// @type {Color}
+$color-button-secondary-focus: $color-button-secondary-hover !default;
+
+/// Secondary branding button active color.
+///
+/// @type {Color}
+$color-button-secondary-active: $color-button-secondary-hover !default;
+
+/// Tertiary branding button color.
+///
+/// @type {Color}
+$color-button-tertiary: $color-brand-tertiary !default;
+
+/// Tertiary branding button hover color.
+///
+/// @type {Color}
+$color-button-tertiary-hover: $color-button-default-hover !default;
+
+/// Tertiary branding button focus color.
+///
+/// @type {Color}
+$color-button-tertiary-focus: $color-button-tertiary-hover !default;
+
+/// Tertiary branding button active color.
+///
+/// @type {Color}
+$color-button-tertiary-active: $color-button-tertiary-hover !default;
+
+/// Success state button color.
+///
+/// @type {Color}
+$color-button-success: $color-state-success !default;
+
+/// Success state button hover color.
+///
+/// @type {Color}
+$color-button-success-hover: $color-button-default-hover !default;
+
+/// Success state button focus color.
+///
+/// @type {Color}
+$color-button-success-focus: $color-button-success-hover !default;
+
+/// Success state button active color.
+///
+/// @type {Color}
+$color-button-success-active: $color-button-success-hover !default;
+
+/// Error state button color.
+///
+/// @type {Color}
+$color-button-error: $color-state-error !default;
+
+/// Error state button hover color.
+///
+/// @type {Color}
+$color-button-error-hover: $color-button-default-hover !default;
+
+/// Error state button focus color.
+///
+/// @type {Color}
+$color-button-error-focus: $color-button-error-hover !default;
+
+/// Error state button active color.
+///
+/// @type {Color}
+$color-button-error-active: $color-button-error-hover !default;
+
+/// Info state button color.
+///
+/// @type {Color}
+$color-button-info: $color-state-info !default;
+
+/// Info state button hover color.
+///
+/// @type {Color}
+$color-button-info-hover: $color-button-default-hover !default;
+
+/// Info state button focus color.
+///
+/// @type {Color}
+$color-button-info-focus: $color-button-info-hover !default;
+
+/// Info state button active color.
+///
+/// @type {Color}
+$color-button-info-active: $color-button-info-hover !default;
+
+/// Alert state button color.
+///
+/// @type {Color}
+$color-button-alert: $color-state-alert !default;
+
+/// Alert state button hover color.
+///
+/// @type {Color}
+$color-button-alert-hover: $color-button-default-hover !default;
+
+/// Alert state button focus color.
+///
+/// @type {Color}
+$color-button-alert-focus: $color-button-alert-hover !default;
+
+/// Alert state button active color.
+///
+/// @type {Color}
+$color-button-alert-active: $color-button-alert-hover !default;
+
+
+
+// -------------------------------------------------------------------------
+// Background
+// -------------------------------------------------------------------------
+
+/// Default button background color.
+///
+/// @type {Color}
+$background-color-button-default: $color-light !default;
+
+
+
+// -------------------------------------------------------------------------
+// Border
+// -------------------------------------------------------------------------
+
+/// Default button border width.
+///
+/// @type {Number}
+$border-width-button-default: 2px !default;
+
+/// Default button border style.
+///
+/// @type {String}
+$border-style-button-default: solid !default;
+
+/// Default button border color.
+///
+/// @type {Color}
+$border-color-button-default: $color-button-default !default;
+
+
+
+// -------------------------------------------------------------------------
+// Typography
+// -------------------------------------------------------------------------
+
+/// Button font stack.
+///
+/// @type {List}
+$font-family-button: $font-family-base !default;
+
+
+
+// -------------------------------------------------------------------------
+// Private Variables
+// -------------------------------------------------------------------------
+
+/// Button variants
+///
+/// @type {Map}
+/// @access private
+$button-variants: (
+	default: (
+		color:            $color-button-default,
+		color-hover:      $color-button-default-hover,
+		color-focus:      $color-button-default-focus,
+		color-active:     $color-button-default-active,
+		background-color: $background-color-button-default,
+	),
+	primary: (
+		color:        $color-button-primary,
+		color-hover:  $color-button-primary-hover,
+		color-focus:  $color-button-primary-focus,
+		color-active: $color-button-primary-active,
+	),
+	secondary: (
+		color:        $color-button-secondary,
+		color-hover:  $color-button-secondary-hover,
+		color-focus:  $color-button-secondary-focus,
+		color-active: $color-button-secondary-active,
+	),
+	tertiary: (
+		color:        $color-button-tertiary,
+		color-hover:  $color-button-tertiary-hover,
+		color-focus:  $color-button-tertiary-focus,
+		color-active: $color-button-tertiary-active,
+	),
+	success: (
+		color:        $color-button-success,
+		color-hover:  $color-button-success-hover,
+		color-focus:  $color-button-success-focus,
+		color-active: $color-button-success-active,
+	),
+	error: (
+		color:        $color-button-error,
+		color-hover:  $color-button-error-hover,
+		color-focus:  $color-button-error-focus,
+		color-active: $color-button-error-active,
+	),
+	info: (
+		color:        $color-button-info,
+		color-hover:  $color-button-info-hover,
+		color-focus:  $color-button-info-focus,
+		color-active: $color-button-info-active,
+	),
+	alert: (
+		color:        $color-button-alert,
+		color-hover:  $color-button-alert-hover,
+		color-focus:  $color-button-alert-focus,
+		color-active: $color-button-alert-active,
+	),
+);

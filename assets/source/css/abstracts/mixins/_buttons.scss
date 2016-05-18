@@ -3,10 +3,20 @@
 ///
 /// @param {String} $variant - The button variant.
 @mixin button-variant( $variant ) {
+
 	@if not map-has-key( $button-variants, $variant ) {
+
 		@warn "`#{$variant}` is not a valid button variant.";
+
 	} @else {
-		@include button-colors( map-get( $button-variants, $variant ) );
+
+		$theme: map-get( $button-variants, $variant );
+
+		@if 'default' != $variant {
+			$theme: map-extend( map-get( $button-variants, 'default' ), $theme );
+		}
+
+		@include button-colors( $theme );
 	}
 }
 
@@ -15,18 +25,29 @@
 /// @param {Map} $theme - The button colors you want to use.
 @mixin button-color( $theme ) {
 
-	$color:       map-get( $theme, 'color' );
-	$color-hover: map-get( $theme, 'color-hover' );
+	$color:        map-get( $theme, 'color' );
+	$color-hover:  map-get( $theme, 'color-hover' );
+	$color-focus:  map-get( $theme, 'color-focus' );
+	$color-active: map-get( $theme, 'color-active' );
 
 	@include style-link {
 		border-color: $color;
 		color: $color;
 
-		&:active,
-		&:focus,
-		&:hover {
+		@include hover-focus-active {
 			background-color: $color;
+		}
+
+		@include hover {
 			color: $color-hover;
+		}
+
+		@include focus {
+			color: $color-focus;
+		}
+
+		@include active {
+			color: $color-active;
 		}
 	}
 }

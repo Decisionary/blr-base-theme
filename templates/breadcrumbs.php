@@ -1,27 +1,42 @@
 <?php
 /**
- * Comments template.
+ * Breadcrumbs template.
  *
  * @package BLR\Base_Theme\Templates
  */
 
+$info = apply_filters( 'blr/breadcrumbs/info', [
+	'icon'  => '',
+	'title' => '',
+] );
 ?>
 
-<ul class="breadcrumbs">
-	<li class="breadcrumb">
-		<i class="breadcrumb__icon icon icon-home"></i>
-	</li>
-	<li class="breadcrumb">
-		<a class="breadcrumb__link">[Section]</a>
-	</li>
-	<li class="breadcrumb">
-		<ul class="sub-breadcrumbs">
-			<li class="sub-breadcrumb">
-				[Category]
+<ul class="breadcrumbs page-breadcrumbs">
+
+	<?php if ( ! empty( $info ) ) : ?>
+
+		<?php if ( ! empty( $info['icon'] ) ) : ?>
+			<li class="breadcrumb breadcrumb--icon">
+				<i class="icon icon-<?php echo esc_attr( $info['icon'] ); ?>"></i>
 			</li>
-			<li class="sub-breadcrumb is-active">
-				[Category Title]
+		<?php endif; ?>
+
+		<?php if ( ! empty( $info['title'] ) ) : ?>
+			<li class="breadcrumb breadcrumb--section">
+				<?php echo wp_kses_post( $info['title'] ); ?>
 			</li>
-		</ul>
+		<?php endif; ?>
+
+	<?php endif; ?>
+
+	<li class="breadcrumb breadcrumb--trail">
+
+		<?php if ( function_exists( 'bcn_display' ) ) : ?>
+
+			<?php bcn_display(); ?>
+
+		<?php endif; ?>
+
 	</li>
+
 </ul>

@@ -12,23 +12,24 @@ namespace BLR\Base_Theme\Wrapper;
  * Returns the main template file path.
  *
  * @since 0.1.0
+ * @since 0.6.0 Re-named function to `main_template_path()`.
  *
  * @return string
  */
-function template_path() {
+function main_template_path() {
 	return ThemeWrapper::$main_template;
 }
 
 /**
- * Returns the template file path for the specified sidebar.
+ * Wraps a template file and returns its path.
  *
- * @since 0.1.0
+ * @since 0.6.0
  *
- * @param  string $sidebar (optional) The sidebar ID. Defaults to 'sidebar-primary'.
+ * @param  string $template The template file (without the extension).
  * @return string
  */
-function sidebar_path( $sidebar = 'sidebar-primary' ) {
-	return new ThemeWrapper( "templates/{$sidebar}.php" );
+function template_path( $template ) {
+	return new ThemeWrapper( "templates/{$template}.php" );
 }
 
 /**
@@ -72,7 +73,8 @@ class ThemeWrapper {
 	 * @param string $template Optional. A template file to wrap.
 	 */
 	public function __construct( $template = 'base.php' ) {
-		$this->slug = basename( $template, '.php' );
+
+		$this->slug      = basename( $template, '.php' );
 		$this->templates = [ $template ];
 
 		if ( self::$base ) {
@@ -97,8 +99,9 @@ class ThemeWrapper {
 		);
 
 		$this->templates = apply_filters(
-			'blr/wrap_' . $this->slug,
-			$this->templates
+			'blr/template/wrap',
+			$this->templates,
+			$this->slug
 		);
 
 		return locate_template( $this->templates );

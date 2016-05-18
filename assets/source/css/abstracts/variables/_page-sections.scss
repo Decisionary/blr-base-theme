@@ -1,0 +1,98 @@
+////
+/// @group Abstracts
+////
+
+
+
+// -------------------------------------------------------------------------
+// Grid / Layout
+// -------------------------------------------------------------------------
+
+/// The number of columns the main content section spans with no sidebars.
+///
+/// @type {Number}
+$span-main-content: 24 !default;
+
+/// The number of columns the primary column spans.
+///
+/// @type {Number}
+$span-sidebar-primary: 5  !default;
+
+/// The number of columns the secondary column spans.
+///
+/// @type {Number}
+$span-sidebar-secondary: 7  !default;
+
+
+
+// -------------------------------------------------------------------------
+// Content
+// -------------------------------------------------------------------------
+
+/// Body text color.
+///
+/// @type {Color}
+$color-body: $color-base !default;
+
+/// Header text color.
+///
+/// @type {Color}
+$color-header: $color-base !default;
+
+/// Main content text color.
+///
+/// @type {Color}
+$color-content: $color-base !default;
+
+/// Footer text color.
+///
+/// @type {Color}
+$color-footer: $color-light !default;
+
+
+
+// -------------------------------------------------------------------------
+// Background
+// -------------------------------------------------------------------------
+
+/// Body background color.
+///
+/// @type {Color}
+$background-color-body: $color-brand-tertiary !default;
+
+/// Header background color.
+///
+/// @type {Color}
+$background-color-header: $color-light !default;
+
+/// Main content background color.
+///
+/// @type {Color}
+$background-color-content: $color-light !default;
+
+/// Footer background color.
+///
+/// @type {Color}
+$background-color-footer: $color-dark !default;
+
+
+
+// -------------------------------------------------------------------------
+// Border
+// -------------------------------------------------------------------------
+
+/// Main content border color.
+///
+/// @type {Color}
+$border-color-content: tint-or-shade( $background-color-content, 10% ) !default;
+
+
+
+// -------------------------------------------------------------------------
+// Typography
+// -------------------------------------------------------------------------
+
+/// Footer copyright info font size.
+///
+/// @type {Number}
+$font-size-footer-copyright: $font-size-small !default;

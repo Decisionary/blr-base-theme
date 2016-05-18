@@ -2,6 +2,23 @@
 /// @group Abstracts
 ////
 
+
+
+%content-section,
+%content-sub-section {
+	@include susy-clearfix;
+
+	display: block;
+}
+
+%content-section + %content-section {
+	@include v-spacing-top( $gutter-height );
+}
+
+%content-sub-section + %content-sub-section {
+	@include v-spacing-top;
+}
+
 %button-group {
 	@include susy-clearfix;
 
@@ -10,6 +27,7 @@
 	font-family: monospace, monospace;
 
 	%button + %button {
+		margin-top: 0;
 		margin-left: $padding-base;
 	}
 }
@@ -17,14 +35,15 @@
 %button {
 	@include style-link {
 		display: inline-block;
-		border: 2px solid transparent;
-		background-color: $color-light;
+		border: $border-width-button-default solid transparent;
+		background-color: $background-color-button-default;
 		cursor: pointer;
 		user-select: none;
 		padding: rem-calc( 5px ) rem-calc( 25px );
 		vertical-align: middle;
 		text-align: center;
 		text-decoration: none;
+		line-height: 1;
 		word-spacing: normal;
 		white-space: nowrap;
 		color: $color-base;
@@ -33,7 +52,7 @@
 	}
 }
 
-%button-block {
+%button--block {
 	@extend %button;
 
 	display: block;
@@ -43,6 +62,18 @@
 	}
 }
 
+%button--rounded {
+	@extend %button;
+
+	border-radius: rem-calc( 4px );
+}
+
+%button--pill {
+	@extend %button;
+
+	border-radius: rem-calc( 100px );
+}
+
 @each $key, $value in $button-variants {
 
 	%button--#{$key} {
@@ -50,9 +81,9 @@
 		@include button-color( $value );
 	}
 
-	%button-block--#{$key} {
-		@extend %button-block;
-		@include button-color( $value );
+	%button--block--#{$key} {
+		@extend %button--block;
+		@extend %button--#{$key};
 	}
 }
 
@@ -83,7 +114,7 @@
 	}
 }
 
-%nav-orient-horizontal {
+%nav--horizontal {
 
 	%menu__item {
 		position: relative;
@@ -98,7 +129,7 @@
 	}
 }
 
-%nav-orient-vertical {
+%nav--vertical {
 
 	%menu,
 	%menu__item {
@@ -111,7 +142,7 @@
 	}
 }
 
-%nav-style-block {
+%nav--block {
 
 	%menu__link {
 		padding: {
@@ -121,7 +152,7 @@
 	}
 }
 
-%nav-style-text {
+%nav--text {
 
 	%menu {
 		padding: {
@@ -138,8 +169,8 @@
 }
 
 %nav-bar {
-	@extend %nav-orient-horizontal;
-	@extend %nav-style-block;
+	@extend %nav--horizontal;
+	@extend %nav--block;
 
 	%sub-menu {
 		display: none;
@@ -174,10 +205,26 @@
 }
 
 %nav-links {
-	@extend %nav-orient-horizontal;
-	@extend %nav-style-text;
+	@extend %nav--horizontal;
+	@extend %nav--text;
+
+	%menu__item {
+
+		&:first-child {
+			%menu__link {
+				padding-left: 0;
+			}
+		}
+
+		&:last-child {
+			%menu__link {
+				padding-right: 0;
+			}
+		}
+	}
 
 	%menu__item + %menu__item {
+
 		%menu__link {
 			border-left: {
 				width: 1px;
@@ -188,8 +235,8 @@
 }
 
 %nav-section {
-	@extend %nav-orient-vertical;
-	@extend %nav-style-block;
+	@extend %nav--vertical;
+	@extend %nav--block;
 
 	padding: {
 		top: $padding-base;
@@ -204,18 +251,18 @@
 	}
 }
 
-%image-fluid {
+%image--fluid {
 	@include image-fluid;
 }
 
-%image-thumbnail {
+%image--thumbnail {
 	@include image-fluid;
 
 	transition: all 0.2s ease-in-out;
-	border: 1px solid $color-border-content;
+	border: 1px solid $border-color-content;
 	border-radius: 4px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-	background-color: $color-bg-content;
+	background-color: $background-color-content;
 	padding: $line-spacing-base;
 	line-height: 1;
 }
@@ -224,22 +271,8 @@
 	@include sr-content;
 }
 
-%sr-content-focusable {
+%sr-content--focusable {
 	@include sr-content( $is-focusable: true );
-}
-
-%content-section {
-	@include susy-clearfix;
-
-	+ %content-section {
-		@include v-spacing-top( $gutter-height );
-	}
-}
-
-%content-sub-section {
-	+ %content-sub-section {
-		@include v-spacing-top;
-	}
 }
 
 %widget {
@@ -261,8 +294,8 @@
 %widget--boxed {
 	@extend %widget;
 
-	border: 1px solid $color-border-widget;
-	background-color: $color-bg-widget;
+	border: 1px solid $border-color-widget;
+	background-color: $background-color-widget;
 	padding: {
 		top: $padding-base;
 		bottom: $padding-base;

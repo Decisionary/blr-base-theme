@@ -19,10 +19,8 @@ use BLR\Base_Theme\Setup;
 function body_class( $classes ) {
 
 	// Add page slug if it doesn't exist.
-	if ( is_single() || is_page() && ! is_front_page() ) {
-		if ( ! in_array( basename( get_permalink() ), $classes, true ) ) {
-			$classes[] = basename( get_permalink() );
-		}
+	if ( is_singular() && ! is_front_page() ) {
+		$classes[] = basename( get_permalink() );
 	}
 
 	// Add page layout classes.
@@ -33,6 +31,13 @@ function body_class( $classes ) {
 	if ( Setup\display_sidebar( 'sidebar-secondary' ) ) {
 		$classes[] = 'has-sidebar-secondary';
 	}
+
+	if ( Setup\display_breadcrumbs() ) {
+		$classes[] = 'has-breadcrumbs';
+	}
+
+	// Remove any duplicate entries.
+	$classes = array_unique( $classes );
 
 	return $classes;
 }

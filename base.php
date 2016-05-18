@@ -39,23 +39,28 @@ use BLR\Base_Theme\Wrapper;
 
 
 		<div class="page-content-container" role="document">
+
+			<?php if ( Setup\display_breadcrumbs() ) : ?>
+				<?php include Wrapper\template_path( 'breadcrumbs' ); ?>
+			<?php endif; ?>
+
 			<div class="page-content">
 
 				<?php do_action( 'content_before' ); ?>
 
 				<?php if ( Setup\display_sidebar( 'sidebar-primary' ) ) : ?>
 					<aside class="sidebar sidebar--primary" role="complementary">
-						<?php include Wrapper\sidebar_path( 'sidebar-primary' ); ?>
+						<?php include Wrapper\template_path( 'sidebar-primary' ); ?>
 					</aside><!-- /.sidebar -->
 				<?php endif ?>
 
 				<main class="main-content">
-					<?php include Wrapper\template_path(); ?>
+					<?php include Wrapper\main_template_path(); ?>
 				</main><!-- /.main-content -->
 
 				<?php if ( Setup\display_sidebar( 'sidebar-secondary' ) ) : ?>
 					<aside class="sidebar sidebar--secondary" role="complementary">
-						<?php include Wrapper\sidebar_path( 'sidebar-secondary' ); ?>
+						<?php include Wrapper\template_path( 'sidebar-secondary' ); ?>
 					</aside><!-- /.sidebar -->
 				<?php endif ?>
 
