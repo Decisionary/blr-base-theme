@@ -58,6 +58,10 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "jigsass-generic-normalize": "^1.0.6",
+    "jigsass-tools-maps": "^1.0.10",
+    "jigsass-tools-mq": "^1.5.2",
+    "jigsass-tools-selectors": "^0.9.1",
+    "jigsass-tools-typography": "^1.2.4",
     "require-dir": "^0.3.0",
     "sassdoc": "^2.1.20"
   }

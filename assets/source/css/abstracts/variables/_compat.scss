@@ -7,124 +7,144 @@
 /// Default button background color.
 ///
 /// @type {Color}
-$color-bg-button-default: $color-light !default;
+$color-bg-button-default: $background-color-button-default !default;
 
 /// Body background color.
 ///
 /// @type {Color}
-$color-bg-body: $color-brand-tertiary !default;
+$color-bg-body: $background-color-body !default;
 
 /// Header background color.
 ///
 /// @type {Color}
-$color-bg-header: $color-light !default;
+$color-bg-header: $background-color-header !default;
 
 /// Main content background color.
 ///
 /// @type {Color}
-$color-bg-content: $color-light !default;
+$color-bg-content: $background-color-content !default;
 
 /// Footer background color.
 ///
 /// @type {Color}
-$color-bg-footer: $color-dark !default;
+$color-bg-footer: $background-color-footer !default;
 
 /// Default nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-default: inherit !default;
+$color-bg-nav-default: $background-color-nav-default !default;
 
 /// Default nav menu background color - hover state.
 ///
 /// @type {Color}
-$color-bg-nav-default-hover: $color-bg-nav-default !default;
+$color-bg-nav-default-hover: $background-color-nav-default-hover !default;
 
 /// Default nav menu background color - focus state.
 ///
 /// @type {Color}
-$color-bg-nav-default-focus: $color-bg-nav-default !default;
+$color-bg-nav-default-focus: $background-color-nav-default !default;
 
 /// Default nav menu background color - active state.
 ///
 /// @type {Color}
-$color-bg-nav-default-active: $color-bg-nav-default !default;
+$color-bg-nav-default-active: $background-color-nav-default !default;
 
 /// Primary nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-primary: $color-dark !default;
+$color-bg-nav-primary: $background-color-nav-primary !default;
 
 /// Primary nav menu background color - hover state.
 ///
 /// @type {Color}
-$color-bg-nav-primary-hover: $color-black !default;
+$color-bg-nav-primary-hover: $background-color-nav-primary-hover !default;
 
 /// Primary nav menu background color - focus state.
 ///
 /// @type {Color}
-$color-bg-nav-primary-focus: $color-bg-nav-primary-hover !default;
+$color-bg-nav-primary-focus: $background-color-nav-primary-focus !default;
 
 /// Primary nav menu background color - active state.
 ///
 /// @type {Color}
-$color-bg-nav-primary-active: $color-bg-nav-primary-hover !default;
+$color-bg-nav-primary-active: $background-color-nav-primary-active !default;
 
 /// Search nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-search: $color-bg-header !default;
+$color-bg-nav-search: $background-color-nav-search !default;
 
 /// Search nav menu background color - hover state.
 ///
 /// @type {Color}
-$color-bg-nav-search-hover: $color-bg-nav-search !default;
+$color-bg-nav-search-hover: $background-color-nav-search-hover !default;
 
 /// Search nav menu background color - focus state.
 ///
 /// @type {Color}
-$color-bg-nav-search-focus: $color-bg-nav-search-hover !default;
+$color-bg-nav-search-focus: $background-color-nav-search-focus !default;
 
 /// Search nav menu background color - active state.
 ///
 /// @type {Color}
-$color-bg-nav-search-active: $color-bg-nav-search-hover !default;
+$color-bg-nav-search-active: $background-color-nav-search-active !default;
 
 /// Sidebar nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar: $color-brand-primary !default;
+$color-bg-nav-sidebar: $background-color-nav-sidebar !default;
 
 /// Sidebar nav menu background color - hover state.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar-hover: tint-or-shade( $color-bg-nav-sidebar, 20% ) !default;
+$color-bg-nav-sidebar-hover: $background-color-nav-sidebar-hover !default;
 
 /// Sidebar nav menu background color - focus state.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar-focus: $color-bg-nav-sidebar-hover !default;
+$color-bg-nav-sidebar-focus: $background-color-nav-sidebar-focus !default;
 
 /// Sidebar nav menu background color - active state.
 ///
 /// @type {Color}
-$color-bg-nav-sidebar-active: $color-dark !default;
+$color-bg-nav-sidebar-active: $background-color-nav-sidebar-active !default;
 
 /// Footer nav menu background color.
 ///
 /// @type {Color}
-$color-bg-nav-footer: $color-dark !default;
+$color-bg-nav-footer: $background-color-nav-footer !default;
 
 /// Footer nav menu background color - hover state.
 ///
 /// @type {Color}
-$color-bg-nav-footer-hover: $color-bg-nav-footer !default;
+$color-bg-nav-footer-hover: $background-color-nav-footer-hover !default;
 
 /// Footer nav menu background color - focus state.
 ///
 /// @type {Color}
-$color-bg-nav-footer-focus: $color-bg-nav-footer-hover !default;
+$color-bg-nav-footer-focus: $background-color-nav-footer-focus !default;
 
 /// Footer nav menu background color - active state.
 ///
 /// @type {Color}
-$color-bg-nav-footer-active: $color-bg-nav-footer-hover !default;
+$color-bg-nav-footer-active: $background-color-nav-footer-active !default;
+
+
+// -------------------------------------------------------------------------
+// Border
+// -------------------------------------------------------------------------
+
+/// Main content border color.
+///
+/// @type {Color}
+$color-border-content: $border-color-content !default;
+
+/// Default widget border color.
+///
+/// @type {Color}
+$color-border-widget: $border-color-widget !default;
+
+/// Default widget header color.
+///
+/// @type {Color}
+$color-border-widget-header: $border-color-widget-header !default;
