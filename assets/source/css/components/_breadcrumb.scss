@@ -7,19 +7,23 @@
 .breadcrumbs {
 	@extend %content-section;
 
-	display: table;
+	display: block;
+	border: 1px solid $border-color-content;
+	border-bottom: 0;
 	background-color: $background-color-content;
 	width: 100%;
 	list-style: none;
 }
 
 .breadcrumb {
-	display: table-cell;
-	border: 1px solid $border-color-content;
-	border-bottom: 0;
-	border-left: 0;
-	padding: rem-calc( 15px );
-	width: 1%;
+	display: block;
+	float: left;
+	border-left: 1px solid $border-color-content;
+	padding: 0 rem-calc( 15px );
+	min-width: rem-calc( 48px );
+	height: rem-calc( 48px );
+	line-height: rem-calc( 48px );
+	font-size: $font-size-large;
 
 	&:last-child {
 		width: auto;
@@ -33,9 +37,9 @@
 }
 
 .breadcrumb--icon {
-	border-left-width: 1px;
-	border-color: $color-brand-primary;
+	border-left: 0;
 	background-color: $color-brand-primary;
+	text-align: center;
 	color: contrast-color( $color-brand-primary );
 	font-size: rem-calc( 18px );
 }
