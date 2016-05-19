@@ -4,7 +4,9 @@
 /// @group Components
 ////
 
-.footer-copyright {
+// Footer site info.
+.site-info--footer {
+	margin-top: $margin-base;
 	color: $color-footer-copyright;
 	font-size: $font-size-footer-copyright;
 }

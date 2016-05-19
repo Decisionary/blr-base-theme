@@ -109,6 +109,11 @@ $color-base: $color-grey-mortar !default;
 /// @type {Color}
 $color-light: $color-white !default;
 
+/// Default medium-gray color.
+///
+/// @type {Color}
+$color-medium: $color-grey !default;
+
 /// Default dark color.
 ///
 /// @type {Color}
@@ -152,7 +157,7 @@ $color-state-alert: $color-orange-casablanca !default;
 
 
 // -------------------------------------------------------------------------
-// Content
+// Colors
 // -------------------------------------------------------------------------
 
 /// Link color.
