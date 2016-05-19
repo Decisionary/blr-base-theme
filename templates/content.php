@@ -10,7 +10,7 @@
 <article <?php post_class( 'entry' ); ?>>
 
 	<header class="entry__header">
-		<?php get_template_part( 'template/entry-title' ); ?>
+		<?php get_template_part( 'templates/entry-title' ); ?>
 		<?php get_template_part( 'templates/entry-meta' ); ?>
 	</header><!-- /.entry__header -->
 
