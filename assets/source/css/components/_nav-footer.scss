@@ -7,4 +7,6 @@
 .nav--footer {
 	@extend %nav-links;
 	@include nav-variant( footer );
+
+	margin-top: $margin-base;
 }

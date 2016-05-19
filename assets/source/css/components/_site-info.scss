@@ -1,5 +1,5 @@
 ////
-/// Footer Site Info
+/// Header / Footer Site Info
 ///
 /// @group Components
 ////
@@ -8,3 +8,26 @@
 	color: $color-footer-copyright;
 	font-size: $font-size-footer-copyright;
 }
+
+// Header site info.
+.site-info--header {
+	text-align: right;
+	}
+
+// Phone number.
+.site-info__phone-number {
+	font-size: $font-size-large;
+	font-weight: 600;
+	}
+
+// Social icons.
+.site-info__social-icons {
+	background: $background-color-body;
+	}
+
+// Footer site info.
+.site-info--footer {
+	margin-top: $margin-base;
+	color: $color-footer-copyright;
+	font-size: $font-size-footer-copyright;
+	}
