@@ -33,60 +33,12 @@ function setup( $wp_customizer ) {
 		'frame_button' => __( 'Choose logo', 'blr-base-theme' ),
 	];
 
-	$wp_customizer->add_setting( 'blr_base_theme_phone_number', [
-		'default' => '1-800-555-5555',
-	]);
-
-	$wp_customizer->add_control( 'phone_number_textbox', [
-		'label'    => __( 'Phone Number', 'blr-base-theme' ),
-		'section'  => 'title_tagline',
-		'priority' => 10,
-		'type'     => 'text',
-		'settings' => 'blr_base_theme_phone_number',
-	]);
-
-	$wp_customizer->add_setting( 'blr_base_theme_company_name', [
-		'default' => 'BLR&reg;&mdash;Business &amp; Legal Resources',
-	]);
-
-	$wp_customizer->add_control( 'address_1_textbox', [
-		'label'    => __( 'Address (Line 1)', 'blr-base-theme' ),
-		'section'  => 'title_tagline',
-		'priority' => 10,
-		'type'     => 'text',
-		'settings' => 'blr_base_theme_address_1',
-	]);
-
-	$wp_customizer->add_setting( 'blr_base_theme_address_1', [
-		'default' => '100 Winners Circle, Suite 300',
-	]);
-
-	$wp_customizer->add_control( 'address_1_textbox', [
-		'label'    => __( 'Address (Line 1)', 'blr-base-theme' ),
-		'section'  => 'title_tagline',
-		'priority' => 10,
-		'type'     => 'text',
-		'settings' => 'blr_base_theme_address_1',
-	]);
-
-	$wp_customizer->add_setting( 'blr_base_theme_address_2', [
-		'default' => 'Brentwood, TN 37027',
-	]);
-
-	$wp_customizer->add_control( 'address_2_textbox', [
-		'label'    => __( 'Address (Line 2)', 'blr-base-theme' ),
-		'section'  => 'title_tagline',
-		'priority' => 10,
-		'type'     => 'text',
-		'settings' => 'blr_base_theme_address_2',
-	]);
-
 	$wp_customizer->add_setting( 'blr_base_theme_copyright_text', [
-		'default' => 'Copyright &copy; ' . date( 'Y' ) . ' BLR&mdash;Business &amp; Legal Resources.  All rights reserved.',
+		'default' => 'Copyright &copy; ' . date( 'Y' ) . '&mdash; Business &amp Legal Resources.  All rights reserved.',
 	]);
 
 	$wp_customizer->add_control( 'copyright_textbox', [
-		'label'    => __( 'Copyright Text', 'blr-base-theme' ),
+		'label'    => __( 'Copyright text', 'blr-base-theme' ),
 		'section'  => 'title_tagline',
 		'priority' => 10,
 		'type'     => 'text',

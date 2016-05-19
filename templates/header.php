@@ -12,8 +12,6 @@ $logo_header_alt_text  = apply_filters( 'blr/logo-header/alt-text', get_bloginfo
 $logo_search_image_url = get_theme_mod( 'blr_base_theme_logo_search' );
 $logo_search_link_url  = apply_filters( 'blr/logo-search/link-url', '' );
 $logo_search_alt_text  = apply_filters( 'blr/logo-search/alt-text', 'Powered by BLR' );
-
-$phone_number = get_theme_mod( 'blr_base_theme_phone_number' );
 ?>
 
 <div class="branding branding--header">
@@ -45,31 +43,15 @@ $phone_number = get_theme_mod( 'blr_base_theme_phone_number' );
 </div><!-- /.branding -->
 
 <div class="search search--header">
-
-	<div class="site-info site-info--header" role="contentinfo">
-
-		<?php if ( ! empty( $phone_number ) ) : ?>
-			<p class="site-info__phone-number">
-				<?php echo wp_kses_post( $phone_number ); ?>
-			</p>
-		<?php endif; ?>
-
-		<?php if ( class_exists( 'ET_Monarch' ) && is_callable( [ ET_Monarch, 'display_widget' ] ) ) : ?>
-			<span class="site-info__social-icons">
-				<?php ET_Monarch::display_widget( 'shortcode' ); ?>
-			</span>
-		<?php endif; ?>
-
-		<?php if ( has_nav_menu( 'nav-search' ) ) : ?>
-			<nav class="nav nav--search">
-				<?php wp_nav_menu( [ 'theme_location' => 'nav-search' ] ); ?>
-			</nav><!-- /.nav -->
-		<?php endif; ?>
-
-	</div>
+	<?php if ( has_nav_menu( 'nav-search' ) ) : ?>
+		<nav class="nav nav--search">
+			<?php
+			wp_nav_menu( [ 'theme_location' => 'nav-search' ] );
+			?>
+		</nav><!-- /.nav -->
+	<?php endif; ?>
 
 	<?php echo get_search_form(); ?>
-
 </div><!-- /.search -->
 
 <?php if ( ! empty( $logo_search_image_url ) ) : ?>

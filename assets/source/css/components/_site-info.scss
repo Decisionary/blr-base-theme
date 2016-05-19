@@ -1,24 +1,10 @@
 ////
-/// Header / Footer Site Info
+/// Footer Site Info
 ///
 /// @group Components
 ////
 
-// Header site info.
-.site-info--header {
-	text-align: right;
-}
-
-// Phone number.
-.site-info__phone-number {
-	font-size: $font-size-large;
-	font-weight: 600;
-}
-
-// Social icons.
-.site-info__social-icons {
-	background: $background-color-body;
-}
+.footer-copyright {
 	color: $color-footer-copyright;
 	font-size: $font-size-footer-copyright;
 }
