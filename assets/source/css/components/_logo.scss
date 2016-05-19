@@ -6,5 +6,5 @@
 
 .logo,
 .logo__image {
-	display: inline-block;
+	@extend %image--fluid;
 }
