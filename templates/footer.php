@@ -6,6 +6,14 @@
  */
 
 use BLR\Base_Theme\Setup;
+
+$site_info_footer = array_filter( [
+	get_theme_mod( 'blr_base_theme_company_name' ),
+	get_theme_mod( 'blr_base_theme_address_1' ),
+	get_theme_mod( 'blr_base_theme_address_2' ),
+	get_theme_mod( 'blr_base_theme_phone_number' ),
+	get_theme_mod( 'blr_base_theme_copyright_text' ),
+] );
 ?>
 
 <?php if ( get_theme_mod( 'blr_base_theme_logo_footer' ) ) : ?>
@@ -16,24 +24,19 @@ use BLR\Base_Theme\Setup;
 	</div>
 <?php endif; ?>
 
+<?php if ( has_nav_menu( 'nav-footer' ) ) : ?>
+	<nav class="nav nav--footer">
+		<?php
+		wp_nav_menu( [ 'theme_location' => 'nav-footer' ] );
+		?>
+	</nav><!-- /.nav -->
+<?php endif; ?>
 
-<div class="site-info" role="contentinfo">
-
-	<?php if ( has_nav_menu( 'nav-footer' ) ) : ?>
-		<nav class="nav nav--footer">
-			<?php
-			wp_nav_menu( [ 'theme_location' => 'nav-footer' ] );
-			?>
-		</nav><!-- /.nav -->
-	<?php endif; ?>
-
-	<?php if ( get_theme_mod( 'blr_base_theme_copyright_text' ) ) : ?>
-		<p class="copyright">
-			<?php echo esc_html( get_theme_mod( 'blr_base_theme_copyright_text' ) ); ?>
-		</p>
-	<?php endif; ?>
-
-</div><!-- /.site-info -->
+<?php if ( ! empty( $site_info_footer ) ) : ?>
+	<div class="site-info site-info--footer" role="contentinfo">
+		<?php echo wp_kses_post( implode( ' | ', $site_info_footer ) ); ?>
+	</div><!-- /.site-info -->
+<?php endif; ?>
 
 <?php if ( Setup\display_sidebar( 'sidebar-footer' ) ) : ?>
 	<aside class="sidebar sidebar--footer" role="complementary">

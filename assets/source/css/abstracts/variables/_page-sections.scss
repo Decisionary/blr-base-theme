@@ -26,7 +26,7 @@ $span-sidebar-secondary: 7  !default;
 
 
 // -------------------------------------------------------------------------
-// Content
+// Colors
 // -------------------------------------------------------------------------
 
 /// Body text color.
@@ -49,10 +49,15 @@ $color-content: $color-base !default;
 /// @type {Color}
 $color-footer: $color-light !default;
 
+/// Footer copyright text color.
+///
+/// @type {Color}
+$color-footer-copyright: $color-medium !default;
+
 
 
 // -------------------------------------------------------------------------
-// Background
+// Background Colors
 // -------------------------------------------------------------------------
 
 /// Body background color.
@@ -78,7 +83,7 @@ $background-color-footer: $color-dark !default;
 
 
 // -------------------------------------------------------------------------
-// Border
+// Borders
 // -------------------------------------------------------------------------
 
 /// Main content border color.
@@ -91,6 +96,12 @@ $border-color-content: tint-or-shade( $background-color-content, 10% ) !default;
 // -------------------------------------------------------------------------
 // Typography
 // -------------------------------------------------------------------------
+
+/// Footer font size.
+///
+/// @type {Number}
+$font-size-footer: $font-size-small !default;
+
 
 /// Footer copyright info font size.
 ///
