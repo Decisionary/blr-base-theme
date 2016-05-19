@@ -7,7 +7,7 @@
 
 $type = ( 'post' === get_post_type() ? get_post_format() : get_post_type() );
 
-if ( have_posts() ) : the_post();
+if ( have_posts() ) :
 
 	get_template_part( 'templates/content-single', $type );
 

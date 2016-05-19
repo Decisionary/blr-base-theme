@@ -7,29 +7,26 @@
 
 ?>
 
-<?php while ( have_posts() ) : the_post(); ?>
+<?php while (have_posts()) : the_post(); ?>
+	<article <?php post_class( 'entry entry--single'); ?>>
+    <header class="entry__header">
+      <?php get_template_part( 'templates/entry-title', 'single' ); ?>
 
-	<article <?php post_class( 'entry entry--single' ); ?>>
+      <?php get_template_part( 'templates/entry-meta', 'single' ); ?>
+    </header>
 
-		<header class="entry__header">
-			<?php get_template_part( 'templates/entry-title', 'single' ); ?>
+    <div class="entry-content">
+      <?php the_content(); ?>
+    </div>
 
-			<?php get_template_part( 'templates/entry-meta', 'single' ); ?>
-		</header><!-- /.entry__header -->
-
-		
-
-		<footer class="entry__footer">
-			<?php
-			wp_link_pages([
-				'before' => '<nav class="pagination"><p>' . __( 'Pages:', 'blr-base-theme' ),
-				'after'  => '</p></nav>',
-			]);
-			?>
-		</footer><!-- /.entry__footer -->
-
-		<?php comments_template( '/templates/comments.php' ); ?>
-
-	</article>
-
+    <footer class="entry__footer">
+      <?php
+      wp_link_pages([
+	      'before' => '<nav class="pagination"><p>' . __( 'Pages:', 'blr-base-theme' ),
+	      'after'  => '</p></nav>',
+      ]);
+      ?>
+    </footer>
+		<?php comments_template('/templates/comments.php'); ?>
+  </article>
 <?php endwhile; ?>
