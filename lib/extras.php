@@ -69,3 +69,14 @@ function excerpt_more() {
 }
 
 add_filter( 'excerpt_more', __NAMESPACE__ . '\\excerpt_more' );
+
+add_filter('blr-base-theme/wrap_base', __NAMESPACE__ . '\\wrap_base_cpts'); // Add our function to the sage/wrap_base filter
+
+function wrap_base_cpts($templates) {
+	$cpt = get_post_type(); // Get the current post type
+	if ($cpt) {
+		array_unshift($templates, 'base-' . $cpt . '.php'); // Shift the template to the front of the array
+	}
+	return $templates; // Return our modified array with base-$cpt.php at the front of the queue
+}
+
