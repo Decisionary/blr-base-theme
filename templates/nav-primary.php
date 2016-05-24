@@ -6,4 +6,6 @@
  */
 
 wp_nav_menu( [ 'theme_location' => 'nav-primary' ] );
+
+do_action( 'blr/display-login-form' );
 ?>
