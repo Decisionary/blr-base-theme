@@ -120,12 +120,13 @@ add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
  */
 function display_sidebar( $sidebar = 'sidebar-primary' ) {
 
+  die(get_page_template());
 	// Sidebar will be hidden if any of the following is true.
 	$hide_criteria = [
 		( ! is_active_sidebar( $sidebar ) && 'sidebar-secondary' !== $sidebar ),
-            $sidebar == 'sidebar-primary' && is_page_template('sidebar-secondary'),
-            $sidebar == 'sidebar-secondary' && is_page_template('sidebar-primary'),
-            is_page_template('full-width'),
+            $sidebar == 'sidebar-primary' && is_page_template('page-sidebar-secondary'),
+            $sidebar == 'sidebar-secondary' && is_page_template('page-sidebar-primary'),
+            is_page_template('page-full-width'),
 		is_404(),
 	];
 
