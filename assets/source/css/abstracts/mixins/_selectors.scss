@@ -1,0 +1,59 @@
+
+/// Targets any kind of button.
+@mixin any-button {
+	button,
+	[class*="button"],
+	[type='button'],
+	[role='button'],
+	[type='reset'],
+	[type='submit'] {
+		@content;
+	}
+}
+
+/// Targets any kind of link.
+@mixin any-link {
+	:link,
+	:visited {
+		@content;
+	}
+}
+
+/// Targets any kind of text input.
+@mixin any-text-input {
+	textarea,
+	[type='text'],
+	[type='password'],
+	[type='date'],
+	[type='datetime'],
+	[type='datetime-local'],
+	[type='month'],
+	[type='week'],
+	[type='email'],
+	[type='number'],
+	[type='search'],
+	[type='tel'],
+	[type='time'],
+	[type='url'],
+	[type='color'] {
+		@content;
+	}
+}
+
+/// Targets any kind of list.
+@mixin any-list {
+	ul,
+	ol,
+	dl {
+		@content;
+	}
+}
+
+/// Targets any kind of list item.
+@mixin any-list-item {
+	li,
+	dt,
+	dd {
+		@content;
+	}
+}
