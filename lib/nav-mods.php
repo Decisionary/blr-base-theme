@@ -71,40 +71,122 @@ class Nav_Walker extends \Walker_Nav_Menu {
 	 */
 	public function menu_items( $items, $args ) {
 
+		// Make sure this action is only triggered once per menu.
+		$action = "blr/{$args->theme_location}/custom-menu-items";
+
+		if ( did_action( $action ) ) {
+			return $items;
+		}
+
+		do_action( $action );
+
+		// Customize `nav-primary` menu items.
 		if ( 'nav-primary' === $args->theme_location ) {
 
-			$trial_link  = apply_filters( 'blr/user-nav/trial-url', home_url( '/trial' ) );
-			$login_link  = apply_filters( 'blr/user-nav/login-url', home_url( '/login' ) );
-			$logout_link = apply_filters( 'blr/user-nav/logout-url', home_url( '/logout' ) );
+			// Trial link.
+			$trial_link_text = apply_filters(
+				'blr/user-nav/trial-link-text',
+				__( 'Free Trial', 'blr-base-theme' )
+			);
 
-			$action = 'nav-primary-custom-menu-items';
+			$trial_link_url = apply_filters(
+				'blr/user-nav/trial-link-url',
+				home_url( '/trial' )
+			);
 
-			if ( did_action( $action ) ) {
-				return $items;
+			$trial_link_class = apply_filters(
+				'blr/user-nav/trial-link-class',
+				'menu__link'
+			);
+
+			// Login link.
+			$login_link_text = apply_filters(
+				'blr/user-nav/login-link-text',
+				__( 'Sign In', 'blr-base-theme' )
+			);
+
+			$login_link_url = apply_filters(
+				'blr/user-nav/login-link-url',
+				wp_login_url( home_url( '/' ) )
+			);
+
+			$login_link_class = apply_filters(
+				'blr/user-nav/login-link-class',
+				'menu__link'
+			);
+
+			// Logout link.
+			$logout_link_text = apply_filters(
+				'blr/user-nav/logout-link-text',
+				__( 'Sign Out', 'blr-base-theme' )
+			);
+
+			$logout_link_url = apply_filters(
+				'blr/user-nav/logout-link-url',
+				wp_logout_url( home_url( '/' ) )
+			);
+
+			$logout_link_class = apply_filters(
+				'blr/user-nav/logout-link-class',
+				'menu__link'
+			);
+
+			// Maintain compatibility with deprecated filters.
+			$trial_link_url = apply_filters(
+				'blr/user-nav/trial-url',
+				$trial_link_url
+			);
+
+			$login_link_url = apply_filters(
+				'blr/user-nav/login-url',
+				$login_link_url
+			);
+
+			$logout_link_url = apply_filters(
+				'blr/user-nav/logout-url',
+				$logout_link_url
+			);
+
+			// Determine whether the user is currently logged in.
+			$is_logged_in = apply_filters(
+				'blr/is-user-logged-in',
+				is_user_logged_in()
+			);
+
+			// Automatically switch between login and logout link based on
+			// whether the user is currently logged in.
+			$login_logout_link_text  = $login_link_text;
+			$login_logout_link_url   = $login_link_url;
+			$login_logout_link_class = $login_link_class;
+
+			if ( $is_logged_in ) {
+				$login_logout_link_text  = $logout_link_text;
+				$login_logout_link_url   = $logout_link_url;
+				$login_logout_link_class = $logout_link_class;
 			}
 
-			do_action( $action );
-
-			$toggle_item = '<li class="menu__item">
+			// HTML content for the mobile nav menu toggle.
+			$toggle_button = '<li class="menu__item">
 				<a href="#" role="button" class="nav-toggle">
 					<span class="nav-toggle__icon"></span>
 				</a>
 			</li>';
 
+			// HTML content for the user menu.
 			$user_menu = '<ul class="menu menu--user">
 				<li class="menu__item menu__item--trial">
-					<a class="menu__link" href="' . esc_url( $trial_link ) . '">
-						Free Trial
+					<a class="' . $trial_link_class . '" href="' . esc_url( $trial_link_url ) . '">
+						' . $trial_link_text . '
 					</a>
 				</li>
 				<li class="menu__item menu__item--login">
-					<a class="menu__link" href="' . esc_url( $login_link ) . '">
-						Sign In
+					<a class="' . $login_logout_link_class . '" href="' . esc_url( $login_logout_link_url ) . '">
+						' . $login_logout_link_text . '
 					</a>
 				</li>
 			</ul>';
 
-			$items = $toggle_item . $items . $user_menu;
+			$items = $toggle_button . $items . $user_menu;
 		}
 
 		return $items;
