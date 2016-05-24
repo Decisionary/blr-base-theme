@@ -17,12 +17,30 @@
 	@include span( 11 );
 }
 
-.search--header {
-	@include span( 11 );
+.header--right-side {
+	@include span( last 13 );
+	@include nested( 13 ) {
+
+		.header--row {
+			@include break;
+		}
+
+		.header--top-row {
+			text-align: right;
+			@include span(first 11);
+			@include post( 2 );
+		}
+
+		.header--search {
+			@include span(first 11);
+		}
+
+		.header--right-logo {
+			@include span(last 2);
+		}
+	}
 }
 
-.logo--search {
-	@include span( last 2 );
 
-	margin-top: rem-calc( 22px );
-}
+
+
