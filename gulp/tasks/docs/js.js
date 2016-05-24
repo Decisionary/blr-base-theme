@@ -5,7 +5,7 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
-// SassDoc
+// Utilities
 const shell  = __require( 'gulp-shell' );
 const expect = __require( 'gulp-expect-file' );
 

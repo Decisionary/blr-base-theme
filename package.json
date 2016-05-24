@@ -63,6 +63,7 @@
     "jigsass-tools-selectors": "^0.9.1",
     "jigsass-tools-typography": "^1.2.4",
     "require-dir": "^0.3.0",
-    "sassdoc": "^2.1.20"
+    "sassdoc": "^2.1.20",
+    "style-sherpa": "^1.0.1"
   }
 }
