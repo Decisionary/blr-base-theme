@@ -2,7 +2,7 @@
 /// Targets any kind of button.
 @mixin any-button {
 	button,
-	[class*="button"],
+	[class*='button'],
 	[type='button'],
 	[role='button'],
 	[type='reset'],
