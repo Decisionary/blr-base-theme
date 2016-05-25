@@ -36,6 +36,10 @@ function body_class( $classes ) {
 		$classes[] = 'has-breadcrumbs';
 	}
 
+	if ( get_theme_mod( 'blr_base_theme_logo_search' ) ) {
+		$classes[] = 'has-header-right-logo';
+	}
+
 	// Remove any duplicate entries.
 	$classes = array_unique( $classes );
 
