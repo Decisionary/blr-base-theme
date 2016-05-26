@@ -68,10 +68,9 @@ $phone_number = get_theme_mod( 'blr_base_theme_phone_number' );
 			<?php endif; ?>
 			<?php echo get_search_form(); ?>
 		</div>
-		<!--Right logo-->
-		<div class="header--right-logo">
-			<?php if ( ! empty( $logo_search_image_url ) ) : ?>
-
+		<?php if ( ! empty( $logo_search_image_url ) ) : ?>
+			<!--Right logo-->
+			<div class="header--right-logo">
 				<?php if ( ! empty( $logo_search_link_url ) ) : ?>
 					<a class="logo logo--search" href="<?php echo esc_url( $logo_search_link_url ); ?>">
 				<?php else : ?>
@@ -89,8 +88,7 @@ $phone_number = get_theme_mod( 'blr_base_theme_phone_number' );
 				<?php else : ?>
 					</div><!-- /.logo -->
 				<?php endif; ?>
-
-			<?php endif; ?>
-		</div>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>

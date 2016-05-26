@@ -27,16 +27,27 @@
 
 		.header--top-row {
 			text-align: right;
-			@include span(first 11);
-			@include post( 2 );
+			@include span( 13 );
 		}
 
 		.header--search {
-			@include span(first 11);
+			@include span( 13 );
 		}
 
-		.header--right-logo {
-			@include span(last 2);
+		.has-header-right-logo & {
+
+			.header--top-row {
+				@include span(first 11);
+				@include post( 2 );
+			}
+
+			.header--search {
+				@include span(first 11);
+			}
+
+			.header--right-logo {
+				@include span(last 2);
+			}
 		}
 	}
 }
