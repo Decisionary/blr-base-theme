@@ -36,7 +36,7 @@ function body_class( $classes ) {
 		$classes[] = 'has-breadcrumbs';
 	}
 
-	if ( get_theme_mod( 'blr_base_theme_logo_search' ) ) {
+	if ( get_theme_mod( 'blr_base_theme_logo_primary_enabled', '1' ) ) {
 		$classes[] = 'has-header-right-logo';
 	}
 
@@ -74,17 +74,24 @@ function excerpt_more() {
 
 add_filter( 'excerpt_more', __NAMESPACE__ . '\\excerpt_more' );
 
-add_filter('blr-base-theme/wrap_base', __NAMESPACE__ . '\\wrap_base_cpts'); // Add our function to the sage/wrap_base filter
+// Add our function to the sage/wrap_base filter.
+add_filter( 'blr-base-theme/wrap_base', __NAMESPACE__ . '\\wrap_base_cpts' );
 
-function wrap_base_cpts($templates) {
+function wrap_base_cpts( $templates ) {
+
 	if ( is_a( get_queried_object(), 'WP_Term' ) ) {
 		return $templates;
 	}
 
-	$cpt = get_post_type(); // Get the current post type
-	if ($cpt) {
-		array_unshift($templates, 'base-' . $cpt . '.php'); // Shift the template to the front of the array
-	}
-	return $templates; // Return our modified array with base-$cpt.php at the front of the queue
-}
+	// Get the current post type.
+	$cpt = get_post_type();
 
+	if ( $cpt ) {
+
+		// Shift the template to the front of the array.
+		array_unshift( $templates, 'base-' . $cpt . '.php' );
+	}
+
+	// Return our modified array with base-$cpt.php at the front of the queue.
+	return $templates;
+}
