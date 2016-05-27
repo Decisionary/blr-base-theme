@@ -1,8 +1,8 @@
 <?php
 /**
- * Template Name: Secondary Sidebar
+ * Template Name: Full Width (no sidebars)
  *
- * @package BLR\Base_Theme\Templates
+ * @package BLR\Base_Theme\Page_Templates
  */
 
 while ( have_posts() ) : the_post(); ?>
