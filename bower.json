@@ -30,6 +30,7 @@
   ],
   "devDependencies": {
     "font-awesome": "^4.6.1",
-    "susy": "^2.2.12"
+    "susy": "^2.2.12",
+    "modular-scale": "^2.1.3"
   }
 }

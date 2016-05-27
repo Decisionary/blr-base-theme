@@ -206,10 +206,53 @@ $color-link-visited-active: $color-link-visited-hover !default;
 // Typography
 // -------------------------------------------------------------------------
 
+/// The modular scale base value.
+///
+/// @type {Number}
+$ms-base: rem-calc( 14px ) !default;
+
+/// The modular scale ratio.
+$ms-ratio: 1.125 !default;
+
+/// Small font size.
+///
+/// @type {Number}
+$font-size-small: ms( -1 ) !default;
+
+/// Default font size.
+///
+/// @type {Number}
+$font-size-base: ms( 0 ) !default;
+
+/// Large font size.
+///
+/// @type {Number}
+$font-size-large: ms( 1 ) !default;
+
+/// Larger font size.
+///
+/// @type {Number}
+$font-size-larger: ms( 2 ) !default;
+
+/// Largest font size.
+///
+/// @type {Number}
+$font-size-largest: ms( 3 ) !default;
+
+/// Title (h2) font size.
+///
+/// @type {Number}
+$font-size-title: $font-size-larger !default;
+
+/// Heading (h1) font size.
+///
+/// @type {Number}
+$font-size-heading: $font-size-largest !default;
+
 /// Default line height.
 ///
 /// @type {Number}
-$line-height-base: rem-calc( 20px ) !default;
+$line-height-base: $font-size-largest !default;
 
 /// Default line spacing.
 ///
@@ -226,31 +269,6 @@ $line-spacing-heading: $line-spacing-base !default;
 /// @type {Number}
 $line-spacing-list-item: 0.5 * $line-spacing-base !default;
 
-/// Default font size.
-///
-/// @type {Number}
-$font-size-base: rem-calc( 14px ) !default;
-
-/// Small font size.
-///
-/// @type {Number}
-$font-size-small: rem-calc( 12px ) !default;
-
-/// Large font size.
-///
-/// @type {Number}
-$font-size-large: rem-calc( 16px ) !default;
-
-/// Title font size.
-///
-/// @type {Number}
-$font-size-title: rem-calc( 18px ) !default;
-
-/// Heading font size.
-///
-/// @type {Number}
-$font-size-heading: rem-calc( 20px ) !default;
-
 /// Default sans-serif font stack.
 ///
 /// @type {List}
@@ -264,7 +282,7 @@ $font-family-serif: Georgia, Times, serif !default;
 /// Default monospace font stack.
 ///
 /// @type {List}
-$font-family-mono: monaco, Consolas, monospace, monospace !default;
+$font-family-mono: monaco, Consolas, monospace !default;
 
 /// Default font stack.
 ///
