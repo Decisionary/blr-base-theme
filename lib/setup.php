@@ -137,11 +137,11 @@ function display_sidebar( $sidebar = 'sidebar-primary' ) {
 	];
 
 	// Check default criteria for hiding sidebar.
-	$display = ( ! in_array( true, $hide_criteria['all'], true );
+	$display = ( ! in_array( true, $hide_criteria['all'], true ) );
 
 	// If specific criteria exist for the current sidebar, check that as well.
 	if ( isset( $hide_criteria[ $sidebar ] ) ) {
-		$display = ( $display && ! in_array( true, $hide_criteria[ $sidebar ], true );
+		$display = ( $display && ! in_array( true, $hide_criteria[ $sidebar ], true ) );
 	}
 
 	// Filter the current display value to allow for custom child theme layouts.
