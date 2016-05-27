@@ -67,10 +67,10 @@ $phone_number = get_theme_mod(
 			</p>
 		<?php endif; ?>
 		<!--Social Icons-->
-		<?php if ( class_exists( 'ET_Monarch' ) && is_callable( [ 'ET_Monarch', 'display_widget' ] ) ) : ?>
+		<?php if ( class_exists( 'ET_Monarch' ) ) : ?>
 			<span class="site-info__social-icons">
-			<?php ET_Monarch::display_widget( 'shortcode' ); ?>
-		</span>
+				<?php echo do_shortcode( '[et_social_follow icon_style="simple" icon_shape="rectangle" col_number="auto" spacing="true"]' ); ?>
+			</span>
 		<?php endif; ?>
 	</div>
 	<div class="header--row">

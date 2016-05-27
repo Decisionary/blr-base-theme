@@ -65,7 +65,7 @@ function widgets_init() {
 		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
 		'after_title'   => '</h3><div class="widget__content">',
-		'after_widget'  => '</div></section>',
+		'after_widget'  => '</section>',
 	];
 
 	register_sidebar(
