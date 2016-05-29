@@ -75,6 +75,11 @@ $background-color-header: $color-light !default;
 /// @type {Color}
 $background-color-content: $color-light !default;
 
+/// Alternate main content background color.
+///
+/// @type {Color}
+$background-color-content-alt: tint-or-shade( $background-color-content, 10% ) !default;
+
 /// Footer background color.
 ///
 /// @type {Color}
@@ -89,7 +94,7 @@ $background-color-footer: $color-dark !default;
 /// Main content border color.
 ///
 /// @type {Color}
-$border-color-content: tint-or-shade( $background-color-content, 10% ) !default;
+$border-color-content: $background-color-content-alt !default;
 
 
 

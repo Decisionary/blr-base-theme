@@ -65,7 +65,7 @@ function widgets_init() {
 		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
 		'after_title'   => '</h3><div class="widget__content">',
-		'after_widget'  => '</div></section>',
+		'after_widget'  => '</section>',
 	];
 
 	register_sidebar(
@@ -122,13 +122,32 @@ function display_sidebar( $sidebar = 'sidebar-primary' ) {
 
 	// Sidebar will be hidden if any of the following is true.
 	$hide_criteria = [
-		( ! is_active_sidebar( $sidebar ) && 'sidebar-secondary' !== $sidebar ),
-		is_404(),
+		'all' => [
+			is_404(),
+			( ! is_active_sidebar( $sidebar ) ),
+		],
+		'sidebar-primary' => [
+			is_page_template( 'page-templates/full-width.php' ),
+			is_page_template( 'page-templates/sidebar-secondary.php' ),
+		],
+		'sidebar-secondary' => [
+			is_page_template( 'page-templates/full-width.php' ),
+			is_page_template( 'page-templates/sidebar-primary.php' ),
+		],
 	];
 
-	$display = ( ! in_array( true, $hide_criteria, true ) );
+	// Check default criteria for hiding sidebar.
+	$display = ( ! in_array( true, $hide_criteria['all'], true ) );
+
+	// If specific criteria exist for the current sidebar, check that as well.
+	if ( isset( $hide_criteria[ $sidebar ] ) ) {
+		$display = ( $display && ! in_array( true, $hide_criteria[ $sidebar ], true ) );
+	}
+
+	// Filter the current display value to allow for custom child theme layouts.
 	$display = apply_filters( 'blr-base-theme/display_sidebar', $display, $sidebar );
 	$display = apply_filters( 'blr/display_sidebar', $display, $sidebar );
+	$display = apply_filters( 'blr/display/sidebar', $display, $sidebar );
 
 	return $display;
 }
@@ -151,6 +170,7 @@ function display_nav_menu( $menu = 'nav-primary' ) {
 	$display = ( ! in_array( true, $hide_criteria, true ) );
 	$display = apply_filters( 'blr-base-theme/display_nav_menu', $display, $menu );
 	$display = apply_filters( 'blr/display_nav_menu', $display, $menu );
+	$display = apply_filters( 'blr/display/nav-menu', $display, $menu );
 
 	return $display;
 }
@@ -171,6 +191,7 @@ function display_breadcrumbs() {
 
 	$display = ( ! in_array( true, $hide_criteria, true ) );
 	$display = apply_filters( 'blr/display_breadcrumbs', $display );
+	$display = apply_filters( 'blr/display/breadcrumbs', $display );
 
 	return $display;
 }
