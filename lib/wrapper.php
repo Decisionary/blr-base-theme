@@ -33,6 +33,66 @@ function template_path( $template ) {
 }
 
 /**
+ * Wraps a template file and includes it if the file exists. Also triggers the
+ * `blr/template/before/{$template}` and `blr/template/after/{$template}`
+ * actions for each template file.
+ *
+ * @since 0.7.1
+ *
+ * @param  string $template The template file (without the extension).
+ * @return string           The template path (or an empty string if no file was found).
+ */
+function get_template( $template ) {
+
+	// Get template file path.
+	$path = template_path( $template );
+
+	// See if template file exists.
+	if ( ! empty( $path ) ) {
+
+		// Trigger "before" actions.
+		do_action( 'blr/template/before', $template );
+		do_action( "blr/template/before/{$template}" );
+
+		// Include template file.
+		include( $path );
+
+		// Trigger "after" actions.
+		do_action( 'blr/template/after', $template );
+		do_action( "blr/template/after/{$template}" );
+	}
+
+	// Return the template path.
+	return $path;
+}
+
+/**
+ * Triggers a series of actions to indicate that a template file is about to be
+ * included. Useful for adding custom content in the child theme.
+ *
+ * @since 0.7.1
+ *
+ * @param  string $template The template file (without the extension).
+ */
+function before_template( $template ) {
+	do_action( 'blr/template/before', $template );
+	do_action( "blr/template/before/{$template}" );
+}
+
+/**
+ * Triggers a series of actions to indicate that a template file has just been
+ * included. Useful for adding custom content in the child theme.
+ *
+ * @since 0.7.1
+ *
+ * @param  string $template The template file (without the extension).
+ */
+function after_template( $template ) {
+	do_action( 'blr/template/after', $template );
+	do_action( "blr/template/after/{$template}" );
+}
+
+/**
  * Theme wrapper class.
  *
  * @since 0.1.0
@@ -94,7 +154,7 @@ class ThemeWrapper {
 	public function __toString() {
 
 		$this->templates = apply_filters(
-			'blr-base-theme/wrap_' . $this->slug,
+			"blr-base-theme/wrap_{$this->slug}",
 			$this->templates
 		);
 
@@ -102,6 +162,11 @@ class ThemeWrapper {
 			'blr/template/wrap',
 			$this->templates,
 			$this->slug
+		);
+
+		$this->templates = apply_filters(
+			"blr/template/wrap/{$this->slug}",
+			$this->templates
 		);
 
 		return locate_template( $this->templates );

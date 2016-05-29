@@ -17,22 +17,14 @@ use BLR\Base_Theme\Wrapper;
 
 		<header class="page-header-container">
 			<div class="page-header">
-				<?php
-				do_action( 'header_before' );
-				get_template_part( 'templates/header' );
-				do_action( 'header_after' );
-				?>
+				<?php Wrapper\get_template( 'templates/header' ); ?>
 			</div><!-- /.page-header -->
 		</header><!-- /.page-header-container -->
 
 		<?php if ( Setup\display_nav_menu( 'nav-primary' ) ) : ?>
 			<div class="page-nav-container">
 				<nav class="nav page-nav nav--primary">
-					<?php
-					do_action( 'nav_before' );
-					get_template_part( 'templates/nav-primary' );
-					do_action( 'nav_after' );
-					?>
+					<?php Wrapper\get_template( 'templates/nav-primary' ); ?>
 				</nav><!-- /.page-nav -->
 			</div><!-- /.page-nav-container -->
 		<?php endif; ?>
@@ -41,42 +33,41 @@ use BLR\Base_Theme\Wrapper;
 		<div class="page-content-container" role="document">
 
 			<?php if ( Setup\display_breadcrumbs() ) : ?>
-				<?php include Wrapper\template_path( 'breadcrumbs' ); ?>
+				<?php Wrapper\get_template( 'breadcrumbs' ); ?>
 			<?php endif; ?>
+
+			<?php Wrapper\before_template( 'page-content' ); ?>
 
 			<div class="page-content">
 
-				<?php do_action( 'content_before' ); ?>
-
 				<?php if ( Setup\display_sidebar( 'sidebar-primary' ) ) : ?>
 					<aside class="sidebar sidebar--primary" role="complementary">
-						<?php include Wrapper\template_path( 'sidebar-primary' ); ?>
+						<?php Wrapper\get_template( 'sidebar-primary' ); ?>
 					</aside><!-- /.sidebar -->
 				<?php endif ?>
 
 				<main class="main-content">
+					<?php Wrapper\before_template( 'page-content' ); ?>
 					<?php include Wrapper\main_template_path(); ?>
+					<?php Wrapper\after_template( 'page-content' ); ?>
 				</main><!-- /.main-content -->
 
 				<?php if ( Setup\display_sidebar( 'sidebar-secondary' ) ) : ?>
 					<aside class="sidebar sidebar--secondary" role="complementary">
-						<?php include Wrapper\template_path( 'sidebar-secondary' ); ?>
+						<?php Wrapper\get_template( 'sidebar-secondary' ); ?>
 					</aside><!-- /.sidebar -->
-				<?php endif ?>
-
-				<?php do_action( 'content_after' ); ?>
+				<?php endif; ?>
 
 			</div><!-- /.page-content -->
+
+			<?php Wrapper\after_template( 'page-content' ); ?>
+
 		</div><!-- /.page-content-container -->
 
 
 		<div class="page-footer-container">
 			<div class="page-footer">
-				<?php
-				do_action( 'footer_before' );
-				get_template_part( 'templates/footer' );
-				do_action( 'footer_after' );
-				?>
+				<?php Wrapper\get_template( 'templates/footer' ); ?>
 			</div><!-- /.page-footer -->
 		</div><!-- /.page-footer-container -->
 
