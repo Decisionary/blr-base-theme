@@ -23,22 +23,22 @@
 
 .search-form__input {
 	width: rem-calc( 300px );
-	height: rem-calc( 34px );
+	height: rem-calc( 38px );
 }
 
 .search-form__button {
 	position: absolute;
-	right: 0;
+	right: gutter();
 	outline: 0;
 	border: 0;
 	background-color: $color-base;
 	padding: 0;
-	width: rem-calc( 34px );
-	height: rem-calc( 34px );
+	width: rem-calc( 38px );
+	height: rem-calc( 38px );
 	text-align: center;
-	line-height: rem-calc( 34px );
+	line-height: rem-calc( 38px );
 	color: contrast-color( $color-base );
-	font-size: rem-calc( 20px );
+	font-size: rem-calc( 24px );
 }
 
 .search-form__icon {

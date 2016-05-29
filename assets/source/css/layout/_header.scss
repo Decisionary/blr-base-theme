@@ -14,44 +14,37 @@
 }
 
 .branding--header {
-	@include span( 11 );
+	@include span( first 11 );
 }
 
-.header--right-side {
+.site-info--header,
+.nav--search {
 	@include span( last 13 );
-	@include nested( 13 ) {
 
-		.header--row {
-			@include break;
-		}
+	text-align: right;
+}
 
-		.header--top-row {
-			text-align: right;
-			@include span( 13 );
-		}
+.header-search {
+	@include span( last 13 nest );
 
-		.header--search {
-			@include span( 13 );
-		}
-
-		.has-header-right-logo & {
-
-			.header--top-row {
-				@include span(first 11);
-				@include post( 2 );
-			}
-
-			.header--search {
-				@include span(first 11);
-			}
-
-			.header--right-logo {
-				@include span(last 2);
-			}
-		}
+	.search-form {
+		@include full;
 	}
 }
 
+.has-header-right-logo {
 
+	.site-info--header,
+	.nav--search {
+		@include span( last 11 );
+		@include post( 2 );
+	}
 
+	.search-form {
+		@include span( 11 of 13 );
+	}
 
+	.logo--search {
+		@include span( last 2 of 13 );
+	}
+}
