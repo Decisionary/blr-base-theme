@@ -1,0 +1,180 @@
+////
+/// @group Abstracts
+////
+
+
+
+/// Generates a selector that targets one or more interaction states.
+///
+/// @param {List}    $states [()] - The interaction states to target.
+/// @param {String}  $base [''] - A base selector to append each state to.
+/// @param {Boolean} $include-base [false] - Whether to include the base as a
+///                                          standalone part of the selector.
+///
+/// @return {List} The selector.
+@function interaction-states( $states: (), $base: '', $include-base: false ) {
+
+	$selector: ();
+	$all-states: (
+		'hover',
+		'focus',
+		'active',
+	);
+
+	@if not has-value( $states ) {
+		$states: $all-states;
+	}
+
+	@each $state in $states {
+		$selector: append( $selector, unquote( '#{$base}:#{$state}' ), comma );
+	}
+
+	@if $include-base {
+		$selector: join( $base, $selector, comma );
+	}
+
+	@return $selector;
+}
+
+
+/// Generates a selector that targets one or more link states.
+///
+/// @param {List}    $states [()] - The link states to target.
+/// @param {String}  $base [''] - A base selector to append each state to.
+/// @param {Boolean} $include-base [false] - Whether to include the base as a
+///                                          standalone part of the selector.
+///
+/// @return {List} The selector.
+@function link-states( $states: (), $base: '', $include-base: false ) {
+
+	$selector: ();
+	$all-states: (
+		'link',
+		'visited',
+	);
+
+	@if not has-value( $states ) {
+		$states: $all-states;
+	}
+
+	@each $state in $states {
+		$selector: append( $selector, unquote( '#{$base}:#{$state}' ), comma );
+	}
+
+	@if $include-base {
+		$selector: join( $base, $selector, comma );
+	}
+
+	@return $selector;
+}
+
+
+/// Generates a selector that targets both visited and unvisited links.
+///
+/// @return {List} The selector.
+@function any-link() {
+	@return link-states();
+}
+
+
+/// Generates a selector that targets any kind of button.
+///
+/// @return {List} The selector.
+@function any-button() {
+
+	$selector: (
+		'button',
+	);
+
+	$classes: (
+		'button',
+	);
+
+	$roles: (
+		'button',
+	);
+
+	$types: (
+		'button',
+		'reset',
+		'submit',
+	);
+
+	@each $class in $classes {
+		$selector: append( $selector, unquote( '[class*=\'#{$class}\']' ), comma );
+	}
+
+	@each $role in $roles {
+		$selector: append( $selector, unquote( '[role=\'#{$role}\']' ), comma );
+	}
+
+	@each $type in $types {
+		$selector: append( $selector, unquote( '[type=\'#{$type}\']' ), comma );
+	}
+
+	@return $selector;
+}
+
+
+/// Generates a selector that targets any kind of text input.
+///
+/// @return {List} The selector.
+@function any-text-input() {
+
+	$selector: (
+		'textarea',
+	);
+
+	$types: (
+		'text',
+		'password',
+		'date',
+		'datetime',
+		'datetime-local',
+		'month',
+		'week',
+		'email',
+		'number',
+		'search',
+		'tel',
+		'time',
+		'url',
+		'color',
+	);
+
+	@each $type in $types {
+		$selector: append( $selector, unquote( '[type=\'#{$type}\']' ), comma );
+	}
+
+	@return $selector;
+}
+
+
+/// Generates a selector that targets any kind of list.
+///
+/// @return {List} The selector.
+@function any-list() {
+
+	$selector: (
+		'ul',
+		'ol',
+		'dl',
+	);
+
+	@return $selector;
+}
+
+
+/// Generates a selector that targets any kind of list item.
+///
+/// @return {List} The selector.
+@function any-list-item() {
+
+	$selector: (
+		'li',
+		'dt',
+		'dd',
+	);
+
+	@return $selector;
+}

@@ -33,7 +33,7 @@
 }
 
 %button {
-	@include style-link {
+	@include include-any-link {
 		display: inline-block;
 		border: $border-width-button-default solid transparent;
 		background-color: $background-color-button-default;
@@ -42,13 +42,16 @@
 		padding: rem-calc( 5px ) rem-calc( 25px );
 		vertical-align: middle;
 		text-align: center;
-		text-decoration: none;
 		line-height: 1;
 		word-spacing: normal;
 		white-space: nowrap;
 		color: $color-base;
 		font-family: $font-family-button;
 		font-size: $font-size-large;
+
+		@include is-hover-focus-active {
+			text-decoration: none;
+		}
 	}
 }
 
@@ -162,7 +165,7 @@
 	}
 
 	%menu__link {
-		@include hover-focus-active {
+		@include is-hover-focus-active {
 			text-decoration: underline;
 		}
 	}

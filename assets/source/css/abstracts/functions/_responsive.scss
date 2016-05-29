@@ -2,9 +2,25 @@
 /// @group Abstracts
 ////
 
-// scss-lint:disable ZeroUnit
 
 
+/// Converts a unitless, pixel, or rem value to em for use in breakpoints.
+///
+/// @access private
+///
+/// @param {Number} $value - The value to convert.
+///
+/// @return {Number} The converted value.
+@function _bp-to-em( $value ) {
+
+	// Convert pixel / unitless values into rems.
+	@if unit( $value ) == 'px' or unitless( $value ) {
+		$value: rem-calc( $value, $base: 16px );
+	}
+
+	// Convert value into ems.
+	@return strip-unit( $value ) * 1em;
+}
 
 /// Takes a valid breakpoint name and returns its width.
 /// Returns null if the breakpoint is not defined.
@@ -20,50 +36,11 @@
 		@return null;
 	}
 
-	$width: map-get( $breakpoints, $breakpoint );
+	$width: _bp-to-em( map-get( $breakpoints, $breakpoint ) );
 
 	@if 'max' == $min-max {
-		$width: $width - 0.000001rem;
+		$width: $width - 0.000001em;
 	}
 
 	@return $width;
-}
-
-/// Converts pixel value into matching rem value.
-///
-/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
-///
-/// @param {Number} $value - Value to convert.
-/// @param {Number} $base [16px] - The base value to use for `1rem`.
-///
-/// @return {Number} The converted value.
-@function rem-calc( $value, $base: 16px ) {
-
-	// Check if the value is a number
-	@if type-of( $value ) != 'number' {
-		@warn inspect( $value ) + ' was passed to rem-calc() as the first argument, which is not a number.';
-		@return $value;
-	}
-
-	// Check if the base `rem` value is a number
-	@if type-of( $base ) != 'number' {
-		@warn inspect( $base ) + ' was passed to rem-calc() as the second argument, which is not a number.';
-		@return $value;
-	}
-
-	// If the base font size is a %, then multiply it by 16px
-	// This is because 100% font size = 16px in most all browsers
-	@if unit( $base ) == '%' {
-		$base: ( $base / 100% ) * 16px;
-	}
-
-	// Calculate rem value.
-	$value: strip-unit( $value ) / strip-unit( $base ) * 1rem;
-
-	// Turn 0rem into 0
-	@if $value == 0rem {
-		$value: 0;
-	}
-
-	@return $value;
 }

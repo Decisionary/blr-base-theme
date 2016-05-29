@@ -37,24 +37,24 @@
 	$border-color-focus:      map-get( $theme, 'border-color-focus' );
 	$border-color-active:     map-get( $theme, 'border-color-active' );
 
-	@include visited( true ) {
+	@include include-any-link {
 		border-color: $border-color;
 		background-color: $background-color;
 		color: $color;
 
-		@include hover {
+		@include is-hover {
 			border-color: $border-color-hover;
 			background-color: $background-color-hover;
 			color: $color-hover;
 		}
 
-		@include focus {
+		@include is-focus {
 			border-color: $border-color-focus;
 			background-color: $background-color-focus;
 			color: $color-focus;
 		}
 
-		@include active {
+		@include is-active {
 			border-color: $border-color-active;
 			background-color: $background-color-active;
 			color: $color-active;

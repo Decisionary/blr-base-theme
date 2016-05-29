@@ -1,59 +1,230 @@
+////
+/// @group Abstracts
+////
 
-/// Targets any kind of button.
-@mixin any-button {
-	button,
-	[class*='button'],
-	[type='button'],
-	[role='button'],
-	[type='reset'],
-	[type='submit'] {
+
+
+@mixin hover( $base: '', $include-base: false ) {
+	#{interaction-states( 'hover', $base, $include-base )} {
 		@content;
 	}
 }
 
+@mixin is-hover {
+	@include hover( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-hover {
+	@include hover( '&', true ) {
+		@content;
+	}
+}
+
+@mixin focus( $base: '', $include-base: false ) {
+	#{interaction-states( 'focus', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-focus {
+	@include focus( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-focus {
+	@include focus( '&', true ) {
+		@content;
+	}
+}
+
+@mixin active( $base: '', $include-base: false ) {
+	#{interaction-states( 'active', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-active {
+	@include active( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-active {
+	@include active( '&', true ) {
+		@content;
+	}
+}
+
+@mixin hover-focus( $base: '', $include-base: false ) {
+	#{interaction-states( 'hover' 'focus', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-hover-focus {
+	@include hover-focus( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-hover-focus {
+	@include hover-focus( '&', true ) {
+		@content;
+	}
+}
+
+@mixin hover-active( $base: '', $include-base: false ) {
+	#{interaction-states( 'hover' 'active', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-hover-active {
+	@include hover-active( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-hover-active {
+	@include hover-active( '&', true ) {
+		@content;
+	}
+}
+
+@mixin focus-active( $base: '', $include-base: false ) {
+	#{interaction-states( 'focus' 'active', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-focus-active {
+	@include focus-active( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-focus-active {
+	@include focus-active( '&', true ) {
+		@content;
+	}
+}
+
+@mixin hover-focus-active( $base: '', $include-base: false ) {
+	#{interaction-states( 'hover' 'focus' 'active', $base, $include-base )} {
+		@content;
+	}
+}
+
+@mixin is-hover-focus-active {
+	@include hover-focus-active( '&' ) {
+		@content;
+	}
+}
+
+@mixin include-hover-focus-active {
+	@include hover-focus-active( '&', true ) {
+		@content;
+	}
+}
+
+
 /// Targets any kind of link.
 @mixin any-link {
-	:link,
-	:visited {
+	#{any-link()} {
+		@content;
+	}
+}
+
+@mixin is-any-link {
+	#{link-states( null, '&' )} {
+		@content;
+	}
+}
+
+@mixin include-any-link {
+	#{link-states( null, '&', true )} {
+		@content;
+	}
+}
+
+/// Targets unvisited links.
+@mixin unvisited-link {
+	#{link-states( 'link' )} {
+		@content;
+	}
+}
+
+@mixin is-unvisited-link {
+	#{link-states( 'link', '&' )} {
+		@content;
+	}
+}
+
+@mixin include-unvisited-link {
+	#{link-states( 'link', '&', true )} {
+		@content;
+	}
+}
+
+/// Targets visited links.
+@mixin visited-link {
+	#{link-states( 'visited' )} {
+		@content;
+	}
+}
+
+@mixin is-unvisited-link {
+	#{link-states( 'visited', '&' )} {
+		@content;
+	}
+}
+
+@mixin include-unvisited-link {
+	#{link-states( 'visited', '&', true )} {
+		@content;
+	}
+}
+
+/// Deprecated - use `visited-link` instead.
+@mixin visited( $include-base: false ) {
+	@if $include-base {
+		@include include-visited-link {
+			@content;
+		}
+	} @else {
+		@include visited-link {
+			@content;
+		}
+	}
+}
+
+/// Targets any kind of button.
+@mixin any-button {
+	#{any-button()} {
 		@content;
 	}
 }
 
 /// Targets any kind of text input.
 @mixin any-text-input {
-	textarea,
-	[type='text'],
-	[type='password'],
-	[type='date'],
-	[type='datetime'],
-	[type='datetime-local'],
-	[type='month'],
-	[type='week'],
-	[type='email'],
-	[type='number'],
-	[type='search'],
-	[type='tel'],
-	[type='time'],
-	[type='url'],
-	[type='color'] {
+	#{any-text-input()} {
 		@content;
 	}
 }
 
 /// Targets any kind of list.
 @mixin any-list {
-	ul,
-	ol,
-	dl {
+	#{any-list()} {
 		@content;
 	}
 }
 
 /// Targets any kind of list item.
 @mixin any-list-item {
-	li,
-	dt,
-	dd {
+	#{any-list-item()} {
 		@content;
 	}
 }

@@ -16,44 +16,48 @@ body {
 	font-size: $font-size-base;
 }
 
-a {
+
+@include any-link {
+	font-size: inherit;
+}
+
+@include unvisited-link {
 	text-decoration: $text-decoration-link;
 	color: $color-link;
-	font-size: inherit;
 
-	@include hover {
+	@include is-hover {
 		text-decoration: $text-decoration-link-hover;
 		color: $color-link-hover;
 	}
 
-	@include focus {
+	@include is-focus {
 		text-decoration: $text-decoration-link-focus;
 		color: $color-link-focus;
 	}
 
-	@include active {
+	@include is-active {
 		text-decoration: $text-decoration-link-active;
 		color: $color-link-active;
 	}
+}
 
-	@include visited {
-		text-decoration: $text-decoration-link-visited;
-		color: $color-link-visited;
+@include visited-link {
+	text-decoration: $text-decoration-link-visited;
+	color: $color-link-visited;
 
-		@include hover {
-			text-decoration: $text-decoration-link-visited-hover;
-			color: $color-link-visited-hover;
-		}
+	@include is-hover {
+		text-decoration: $text-decoration-link-visited-hover;
+		color: $color-link-visited-hover;
+	}
 
-		@include focus {
-			text-decoration: $text-decoration-link-visited-focus;
-			color: $color-link-visited-focus;
-		}
+	@include is-focus {
+		text-decoration: $text-decoration-link-visited-focus;
+		color: $color-link-visited-focus;
+	}
 
-		@include active {
-			text-decoration: $text-decoration-link-visited-active;
-			color: $color-link-visited-active;
-		}
+	@include is-active {
+		text-decoration: $text-decoration-link-visited-active;
+		color: $color-link-visited-active;
 	}
 }
 
@@ -63,10 +67,8 @@ h3,
 h4,
 h5,
 h6 {
-	a {
-		@include style-link {
-			color: inherit;
-		}
+	@include style-link {
+		color: inherit;
 	}
 }
 

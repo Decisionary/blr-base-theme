@@ -2,7 +2,64 @@
 /// @group Abstracts
 ////
 
+// scss-lint:disable ZeroUnit
 
+
+
+/// Converts a pixel value to matching rem value. *Any* value passed, regardless
+/// of unit, is assumed to be a pixel value. By default, the base pixel value
+/// used to calculate the rem value is 16px.
+///
+/// @access private
+///
+/// @param {Number} $value - Pixel value to convert.
+/// @param {Number} $base [null] - Base for pixel conversion.
+///
+/// @return {Number} A number in rems, calculated based on the given value and
+///                  the base pixel value (rem values are passed through as is).
+@function _to-rem( $value, $base: null ) {
+
+	// Check if the value is a number
+	@if type-of( $value ) != 'number' {
+		@warn inspect( $value ) + ' was passed to rem-calc(), which is not a number.';
+		@return $value;
+	}
+
+	// Calculate rem if units for $value is not rem
+	@if unit( $value ) != 'rem' {
+		$value: strip-unit( $value ) / strip-unit( $base ) * 1rem;
+	}
+
+	// Turn 0rem into 0
+	@if $value == 0rem {
+		$value: 0;
+	}
+
+	@return $value;
+}
+
+
+/// Determine if a value is not falsey, in CSS terms. Falsey values are `null`, `none`, `0` with any unit, or an empty list.
+///
+/// @param {Mixed} $val - Value to check.
+///
+/// @return {Boolean} `true` if `$val` is not falsey.
+@function has-value( $val ) {
+
+	@if $val == null or $val == none {
+		@return false;
+	}
+
+	@if type-of( $val ) == 'number' and strip-unit( $val ) == 0 {
+		@return false;
+	}
+
+	@if type-of( $val ) == 'list' and length( $val ) == 0 {
+		@return false;
+	}
+
+	@return true;
+}
 
 /// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
 ///
@@ -16,159 +73,48 @@
 }
 
 
-/// Fetch a nested map value.
+/// Converts pixel value into matching rem value.
 ///
-/// @param {Map}     $map  - The map.
-/// @param {Arglist} $keys - A series of nested keys pointing to the value.
+/// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
 ///
-/// @return {*}
-@function map-deep-get( $map, $keys... ) {
+/// @param {Number|List} $values - One or more values to convert.
+/// @param {Number} $base [16px] - The base value to use for `1rem`.
+///
+/// @return {Number} The converted value.
+@function rem-calc( $values, $base: 16px ) {
 
-	@each $key in $keys {
-		$map: map-get( $map, $key );
+	$rem-values: ();
+	$count: length( $values );
+
+	// Check if the value is a number
+	@if type-of( $values ) != 'number' and type-of( $values ) != 'list' {
+		@warn inspect( $values ) + ' was passed to rem-calc() as the first argument, which is neither a number nor a list.';
+		@return $values;
 	}
 
-	@return $map;
-}
-
-
-/// Update a nested map value.
-///
-/// @param {Map}     $map   - The map.
-/// @param {Arglist} $keys  - A series of nested keys pointing to the value.
-/// @param {*}       $value - The new value.
-///
-/// @return {Map} - Updated map
-@function map-deep-set($map, $keys.../*, $value */) {
-
-	$map-list: ( $map, );
-	$result:   null;
-
-	@if length( $keys ) == 2 {
-		@return map-merge( $map, ( nth( $keys, 1 ): nth( $keys, -1 ) ) );
+	// Check if the base `rem` value is a number
+	@if type-of( $base ) != 'number' {
+		@warn inspect( $base ) + ' was passed to rem-calc() as the second argument, which is not a number.';
+		@return $values;
 	}
 
-	@for $i from 1 through length( $keys ) - 2 {
-		$map-list: append( $map-list, map-get( nth( $map-list, -1 ), nth( $keys, $i ) ) );
+	// If the base font size is a %, then multiply it by 16px
+	// This is because 100% font size = 16px in most all browsers
+	@if unit( $base ) == '%' {
+		$base: ( $base / 100% ) * 16px;
 	}
 
-	@for $i from length( $map-list ) through 1 {
-		$result: map-merge( nth( $map-list, $i ), ( nth( $keys, $i ): if( $i == length( $map-list ), nth( $keys, -1 ), $result ) ) );
+	// If a single value was passed, convert and return it.
+	@if $count == 1 {
+		@return _to-rem( $values, $base );
 	}
 
-	@return $result;
-}
-
-
-/// Check if all the specified keys exist within a map.
-///
-/// @param {Map}     $map  - The map.
-/// @param {Arglist} $keys - The keys to check for.
-///
-/// @return {Bool}
-@function map-has-keys( $map, $keys... ) {
-
-	@each $key in $keys {
-		@if not map-has-key( $map, $key ) {
-			@return false;
-		}
+	// If a list of values was passed, convert each value and then add the new
+	// value to a temporary list.
+	@for $i from 1 through $count {
+		$rem-values: append( $rem-values, _to-rem( nth( $values, $i ), $base ) );
 	}
 
-	@return true;
-}
-
-
-/// Check if all the specified keys exist within a map or any nested maps.
-///
-/// @param {Map}     $map  - The map.
-/// @param {Arglist} $keys - The keys to check for.
-///
-/// @return {Bool}
-@function map-has-nested-keys( $map, $keys... ) {
-
-	@each $key in $keys {
-		@if not map-has-key( $map, $key ) {
-			@return false;
-		}
-
-		$map: map-get( $map, $key );
-	}
-
-	@return true;
-}
-
-
-/// Equivalent of the `zip` function for maps.
-///
-/// @param {List} $keys   - A list to use for the map keys.
-/// @param {List} $values - A list to use for the map values.
-///
-/// @return {Map} The new map.
-@function map-zip( $keys, $values ) {
-
-	$num-keys:   length( $keys );
-	$num-values: length( $values );
-
-	$min: min( $num-keys, $num-values );
-	$map: ();
-
-	@if $num-keys != $num-values {
-		@warn "#{$num-keys} key(s) and #{$num-values} value(s) were passed to \
-			`map-zip`. The resulting map will only have #{$min} pairs.";
-	}
-
-	@if $min == 0 {
-		@return $map;
-	}
-
-	@for $i from 1 through $min {
-		$map: map-merge( $map, ( nth( $keys, $i ): nth( $values, $i ) ) );
-	}
-
-	@return $map;
-}
-
-
-/// Merges two maps together. Similar to jQuery's `extend` method.
-///
-/// @param {Map}     $map     - The base map.
-/// @param {ArgList} $maps    - A list of map(s) to merge into the base map.
-/// @param {Bool}    $shallow - True for shallow merge, false for deep merge.
-///                             Disabled by default.
-///
-/// @return {Map}
-@function map-extend( $map, $maps.../*, $shallow */ ) {
-
-	$shallow: nth( $maps, -1 ) == false;
-	$max:     if( $shallow, length( $maps ) - 1, length( $maps ) );
-
-	// Loop through all the maps.
-	@for $i from 1 through $max {
-
-		$current: nth( $maps, $i );
-
-		// See if we're doing a deep or shallow merge.
-		@if $shallow {
-
-			// Shallow - merge the current map into the base map.
-			$map: map-merge( $map, $current );
-		} @else {
-
-			// Deep - loop through each tuple in the current map.
-			@each $key, $value in $current {
-
-				// If the current value is a map, AND the current key exists in
-				// the base map, AND that value is *also* a map, then we merge
-				// the two nested maps recursively.
-				@if type-of( $value ) == 'map' and type-of( map-get( $map, $key ) ) == 'map' {
-					$value: map-extend(map-get($map, $key), $value, true);
-				}
-
-				// Otherwise just merge current tuple into the base map.
-				$map: map-merge( $map, ( $key: $value ) );
-			}
-		}
-	}
-
-	@return $map;
+	// Return the list of converted values.
+	@return $rem-values;
 }

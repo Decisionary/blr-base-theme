@@ -1,0 +1,162 @@
+////
+/// @group Abstracts
+////
+
+
+
+/// Fetch a nested map value.
+///
+/// @param {Map}     $map  - The map.
+/// @param {Arglist} $keys - A series of nested keys pointing to the value.
+///
+/// @return {*}
+@function map-deep-get( $map, $keys... ) {
+
+	@each $key in $keys {
+		$map: map-get( $map, $key );
+	}
+
+	@return $map;
+}
+
+
+/// Update a nested map value.
+///
+/// @param {Map}     $map   - The map.
+/// @param {Arglist} $keys  - A series of nested keys pointing to the value.
+/// @param {*}       $value - The new value.
+///
+/// @return {Map} - Updated map
+@function map-deep-set( $map, $keys.../*, $value */ ) {
+
+	$map-list: ( $map, );
+	$result:   null;
+
+	@if length( $keys ) == 2 {
+		@return map-merge( $map, ( nth( $keys, 1 ): nth( $keys, -1 ) ) );
+	}
+
+	@for $i from 1 through length( $keys ) - 2 {
+		$map-list: append( $map-list, map-get( nth( $map-list, -1 ), nth( $keys, $i ) ) );
+	}
+
+	@for $i from length( $map-list ) through 1 {
+		$result: map-merge( nth( $map-list, $i ), ( nth( $keys, $i ): if( $i == length( $map-list ), nth( $keys, -1 ), $result ) ) );
+	}
+
+	@return $result;
+}
+
+
+/// Check if all the specified keys exist within a map.
+///
+/// @param {Map}     $map  - The map.
+/// @param {Arglist} $keys - The keys to check for.
+///
+/// @return {Bool}
+@function map-has-keys( $map, $keys... ) {
+
+	@each $key in $keys {
+		@if not map-has-key( $map, $key ) {
+			@return false;
+		}
+	}
+
+	@return true;
+}
+
+
+/// Check if all the specified keys exist within a map or any nested maps.
+///
+/// @param {Map}     $map  - The map.
+/// @param {Arglist} $keys - The keys to check for.
+///
+/// @return {Bool}
+@function map-has-nested-keys( $map, $keys... ) {
+
+	@each $key in $keys {
+		@if not map-has-key( $map, $key ) {
+			@return false;
+		}
+
+		$map: map-get( $map, $key );
+	}
+
+	@return true;
+}
+
+
+/// Equivalent of the `zip` function for maps.
+///
+/// @param {List} $keys   - A list to use for the map keys.
+/// @param {List} $values - A list to use for the map values.
+///
+/// @return {Map} The new map.
+@function map-zip( $keys, $values ) {
+
+	$num-keys:   length( $keys );
+	$num-values: length( $values );
+
+	$min: min( $num-keys, $num-values );
+	$map: ();
+
+	@if $num-keys != $num-values {
+		@warn "#{$num-keys} key(s) and #{$num-values} value(s) were passed to \
+			`map-zip`. The resulting map will only have #{$min} pairs.";
+	}
+
+	@if $min == 0 {
+		@return $map;
+	}
+
+	@for $i from 1 through $min {
+		$map: map-merge( $map, ( nth( $keys, $i ): nth( $values, $i ) ) );
+	}
+
+	@return $map;
+}
+
+
+/// Merges two maps together. Similar to jQuery's `extend` method.
+///
+/// @param {Map}     $map     - The base map.
+/// @param {ArgList} $maps    - A list of map(s) to merge into the base map.
+/// @param {Bool}    $shallow - True for shallow merge, false for deep merge.
+///                             Disabled by default.
+///
+/// @return {Map}
+@function map-extend( $map, $maps.../*, $shallow */ ) {
+
+	$shallow: nth( $maps, -1 ) == false;
+	$max:     if( $shallow, length( $maps ) - 1, length( $maps ) );
+
+	// Loop through all the maps.
+	@for $i from 1 through $max {
+
+		$current: nth( $maps, $i );
+
+		// See if we're doing a deep or shallow merge.
+		@if $shallow {
+
+			// Shallow - merge the current map into the base map.
+			$map: map-merge( $map, $current );
+		} @else {
+
+			// Deep - loop through each tuple in the current map.
+			@each $key, $value in $current {
+
+				// If the current value is a map, AND the current key exists in
+				// the base map, AND that value is *also* a map, then we merge
+				// the two nested maps recursively.
+				@if type-of( $value ) == 'map' and type-of( map-get( $map, $key ) ) == 'map' {
+					$value: map-extend(map-get($map, $key), $value, true);
+				}
+
+				// Otherwise just merge current tuple into the base map.
+				$map: map-merge( $map, ( $key: $value ) );
+			}
+		}
+	}
+
+	@return $map;
+}
