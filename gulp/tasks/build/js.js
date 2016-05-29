@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const _ = __require( 'lodash' );
+
 // Files
 const size       = __require( 'gulp-size' );
 const rename     = __require( 'gulp-rename' );
@@ -42,12 +45,19 @@ export const config = {
  * @type {Object}
  */
 export const files = {
+	libs:   [],
 	source: [
 		'../blr-base-theme/assets/source/js/**/*.js',
 		'assets/source/js/**/*.js',
 	],
 	dest: 'assets/dist/js',
 };
+
+const taskConfig = ( ( global.gulpConfig || {} ).js || {} );
+
+if ( taskConfig.libs ) {
+	files.source = _.concat( _.toArray( taskConfig.libs ), files.source );
+}
 
 
 /**

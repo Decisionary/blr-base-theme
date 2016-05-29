@@ -6,20 +6,41 @@
  */
 
 use BLR\Base_Theme\Setup;
+use BLR\Base_Theme\Customizer;
 
+$logo_footer_enabled   = get_theme_mod( 'blr_base_theme_logo_footer_enabled', '1' );
+$logo_footer_image_url = get_theme_mod(
+	'blr_base_theme_logo_footer',
+	Customizer\get_default( 'blr_base_theme_logo_footer' )
+);
 $site_info_footer = array_filter( [
-	get_theme_mod( 'blr_base_theme_company_name' ),
-	get_theme_mod( 'blr_base_theme_address_1' ),
-	get_theme_mod( 'blr_base_theme_address_2' ),
-	get_theme_mod( 'blr_base_theme_phone_number' ),
-	get_theme_mod( 'blr_base_theme_copyright_text' ),
+	get_theme_mod(
+		'blr_base_theme_company_name',
+		Customizer\get_default( 'blr_base_theme_company_name' )
+	),
+	get_theme_mod(
+		'blr_base_theme_address_1',
+		Customizer\get_default( 'blr_base_theme_address_1' )
+	),
+	get_theme_mod(
+		'blr_base_theme_address_2',
+		Customizer\get_default( 'blr_base_theme_address_2' )
+	),
+	get_theme_mod(
+		'blr_base_theme_phone_number',
+		Customizer\get_default( 'blr_base_theme_phone_number' )
+	),
+	get_theme_mod(
+		'blr_base_theme_copyright_text',
+		Customizer\get_default( 'blr_base_theme_copyright_text' )
+	),
 ] );
 ?>
 
-<?php if ( get_theme_mod( 'blr_base_theme_logo_footer' ) ) : ?>
+<?php if ( ! empty( $logo_footer_enabled ) && ! empty( $logo_footer_image_url ) ) : ?>
 	<div class="logo logo--footer">
 		<img class="logo__image"
-			src="<?php echo esc_url( get_theme_mod( 'blr_base_theme_logo_footer' ) ) ?>"
+			src="<?php echo esc_url( $logo_footer_image_url ) ?>"
 			alt="BLR Footer Logo">
 	</div>
 <?php endif; ?>

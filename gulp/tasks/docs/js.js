@@ -42,7 +42,7 @@ export const config = {
  */
 export const callback = () =>
 	gulp.src( 'assets/src/**/*.js' )
-		.pipe( expect.real( config.expect, '*.js' ) )
+		.pipe( expect( config.expect, '*.js' ) )
 		.pipe( shell( 'jsdoc -c jsdoc.conf.json', config.jsDoc ) );
 
 // Register the task.
