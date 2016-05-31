@@ -8,6 +8,8 @@
 	@include susy-clearfix;
 
 	position: relative;
+	margin: 0 auto;
+	max-width: 90%;
 	text-align: right;
 }
 
@@ -15,6 +17,11 @@
 .search-form__input,
 .search-form__button {
 	display: inline-block;
+}
+
+.search-form__label,
+.search-form__input {
+	max-width: 100%;
 }
 
 .search-form__label {
@@ -28,7 +35,7 @@
 
 .search-form__button {
 	position: absolute;
-	right: gutter();
+	right: 0;
 	outline: 0;
 	border: 0;
 	background-color: $color-base;
@@ -39,6 +46,10 @@
 	line-height: rem-calc( 38px );
 	color: contrast-color( $color-base );
 	font-size: rem-calc( 24px );
+
+	.header-search & {
+		right: gutter();
+	}
 }
 
 .search-form__icon {

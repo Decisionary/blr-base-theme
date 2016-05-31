@@ -40,11 +40,13 @@
 		@include post( 2 );
 	}
 
-	.search-form {
-		@include span( 11 of 13 );
-	}
+	.header-search {
+		.search-form {
+			@include span( 11 of 13 );
+		}
 
-	.logo--search {
-		@include span( last 2 of 13 );
+		.logo--search {
+			@include span( last 2 of 13 );
+		}
 	}
 }
