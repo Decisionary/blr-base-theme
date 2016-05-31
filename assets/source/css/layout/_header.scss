@@ -34,7 +34,7 @@
 			@include span( 13 );
 		}
 
-		.has-header-right-logo & {
+		.has-search-logo & {
 
 			.header--top-row {
 				@include span(first 11);

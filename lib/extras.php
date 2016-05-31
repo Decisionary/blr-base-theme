@@ -37,7 +37,15 @@ function body_class( $classes ) {
 	}
 
 	if ( get_theme_mod( 'blr_base_theme_logo_primary_enabled', '1' ) ) {
-		$classes[] = 'has-header-right-logo';
+		$classes[] = 'has-primary-logo';
+	}
+
+	if ( get_theme_mod( 'blr_base_theme_logo_search_enabled', '1' ) ) {
+		$classes[] = 'has-search-logo';
+	}
+
+	if ( get_theme_mod( 'blr_base_theme_logo_footer_enabled', '1' ) ) {
+		$classes[] = 'has-footer-logo';
 	}
 
 	// Remove any duplicate entries.
