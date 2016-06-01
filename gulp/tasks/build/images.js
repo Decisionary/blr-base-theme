@@ -1,62 +1,57 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/build/images
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // Files
-const size = __require( 'gulp-size' );
+var size = __require('gulp-size');
 
 // Images
-const imagemin = __require( 'gulp-imagemin' );
-
+var imagemin = __require('gulp-imagemin');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'build/images';
-
+var task = exports.task = 'build/images';
 
 /**
  * Task config.
  *
  * @type {Object}
  */
-export const config = {
-	size: {
-		title: 'Images:',
-	},
+var config = exports.config = {
+  size: {
+    title: 'Images:'
+  }
 };
-
 
 /**
  * Task files.
  *
  * @type {Object}
  */
-export const files = {
-	source: [
-		'../blr-base-theme/assets/source/images/*',
-		'assets/source/images/*',
-	],
-	dest: 'assets/dist/images',
+var files = exports.files = {
+  source: ['../blr-base-theme/assets/source/images/*', 'assets/source/images/*'],
+  dest: 'assets/dist/images'
 };
-
 
 /**
  * Gulp callback for `build/images` task.
  *
  * @return {Function}
  */
-export const callback = () =>
-	gulp.src( files.source )
-		.pipe( imagemin() )
-		.pipe( size( config.size ) )
-		.pipe( gulp.dest( files.dest ) );
-
+var callback = exports.callback = function callback() {
+  return gulp.src(files.source).pipe(imagemin()).pipe(size(config.size)).pipe(gulp.dest(files.dest));
+};
 
 // Register the task.
-gulp.task( task, callback );
+gulp.task(task, callback);

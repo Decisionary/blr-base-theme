@@ -1,24 +1,27 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/build
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // Tasks
-const css    = __requireTask( 'build/css' );
-const js     = __requireTask( 'build/js' );
-const images = __requireTask( 'build/images' );
-const fonts  = __requireTask( 'build/fonts' );
-
+var css = __requireTask('build/css');
+var js = __requireTask('build/js');
+var images = __requireTask('build/images');
+var fonts = __requireTask('build/fonts');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'build';
-
+var task = exports.task = 'build';
 
 // Register the task.
-gulp.task( task, gulp.series( css.task, js.task, images.task, fonts.task ) );
+gulp.task(task, gulp.series(css.task, js.task, images.task, fonts.task));
