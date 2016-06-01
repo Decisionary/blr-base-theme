@@ -29,7 +29,7 @@
     "theme",
     "BLR"
   ],
-  "main": "gulpfile.babel.js",
+  "main": "gulpfile.js",
   "engines": {
     "node": "^5.10.0"
   },
