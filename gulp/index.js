@@ -1,7 +1,5 @@
 'use strict';
 
-require('babel-polyfill');
-
 var path = require('path');
 var gulpDir = process.env.gulpDir ? process.env.gulpDir : path.resolve('./gulp');
 

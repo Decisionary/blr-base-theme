@@ -1,6 +1,4 @@
 
-require( 'babel-polyfill' );
-
 const path    = require( 'path' );
 const gulpDir = process.env.gulpDir
 	? process.env.gulpDir
