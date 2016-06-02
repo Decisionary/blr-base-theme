@@ -33,12 +33,14 @@
   "engines": {
     "node": "^5.10.0"
   },
-  "scripts": {
-    "build": "gulp build",
-    "docs": "gulp docs",
-    "release": "gulp release",
-    "gulp-compile": "babel gulp-src -d gulp"
-  },
+    "scripts": {
+      "install-deps": "npm install && bower install",
+      "gulp-compile": "babel gulp-src -d gulp",
+      "watch": "gulp watch",
+      "build": "gulp build",
+      "docs": "gulp docs",
+      "release": "gulp release"
+    },
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.3.26",
