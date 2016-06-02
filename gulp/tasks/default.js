@@ -1,21 +1,24 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/default
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // Tasks
-__requireTask( 'build' );
-
+__requireTask('build');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'default';
-
+var task = exports.task = 'default';
 
 // Register the task.
-gulp.task( task, gulp.series( 'build' ) );
+gulp.task(task, gulp.series('build'));

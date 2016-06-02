@@ -1,19 +1,18 @@
+'use strict';
 
-require( 'babel-polyfill' );
+var path = require('path');
+var gulpDir = process.env.gulpDir ? process.env.gulpDir : path.resolve('./gulp');
 
-const path    = require( 'path' );
-const gulpDir = process.env.gulpDir
-	? process.env.gulpDir
-	: path.resolve( './gulp' );
+global.__require = function (pkg) {
+	return require.main.require(pkg);
+};
+global.__requireTask = function (task) {
+	return require.main.require(path.join(gulpDir, 'tasks', task));
+};
 
-global.__require     = pkg  => require.main.require( pkg );
-global.__requireTask = task => require.main.require(
-	path.join( gulpDir, 'tasks', task )
-);
+var requireDir = require.main.require('require-dir');
 
-const requireDir = require.main.require( 'require-dir' );
-
-module.exports = requireDir( gulpDir, {
-	recurse:   true,
-	camelcase: true,
-} );
+module.exports = requireDir(gulpDir, {
+	recurse: true,
+	camelcase: true
+});

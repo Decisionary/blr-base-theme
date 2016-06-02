@@ -1,43 +1,44 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/qa/test
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
-
+var gulp = __require('gulp');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'qa/test';
-
+var task = exports.task = 'qa/test';
 
 /**
  * Task files.
  *
  * @type {Object}
  */
-export const files = {};
-
+var files = exports.files = {};
 
 /**
  * Task config.
  *
  * @type {Object}
  */
-export const config = {};
-
+var config = exports.config = {};
 
 /**
  * Gulp callback for `qa/test` task.
  *
  * @return {Function}
  */
-export const callback = () =>
-	console.log( 'Unit test task - replace with actual code' );
-
+var callback = exports.callback = function callback() {
+  return console.log('Unit test task - replace with actual code');
+};
 
 // Register the task.
-gulp.task( task, callback );
+gulp.task(task, callback);

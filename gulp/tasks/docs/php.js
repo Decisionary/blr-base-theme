@@ -1,39 +1,42 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/docs/php
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // SassDoc
-const shell = __require( 'gulp-shell' );
-
+var shell = __require('gulp-shell');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'docs/php';
-
+var task = exports.task = 'docs/php';
 
 /**
  * Task config.
  *
  * @type {Object}
  */
-export const config = {
-	quiet: true,
+var config = exports.config = {
+  quiet: true
 };
-
 
 /**
  * Gulp callback for `docs/php` task.
  *
  * @return {Function}
  */
-export const callback = () => gulp.series( task );
-
+var callback = exports.callback = function callback() {
+  return gulp.series(task);
+};
 
 // Register the task.
-gulp.task( task, shell.task( 'phpdoc', config ) );
+gulp.task(task, shell.task('phpdoc', config));

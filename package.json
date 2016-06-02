@@ -29,16 +29,18 @@
     "theme",
     "BLR"
   ],
-  "main": "gulpfile.babel.js",
+  "main": "gulpfile.js",
   "engines": {
     "node": "^5.10.0"
   },
   "scripts": {
     "build": "gulp build",
     "docs": "gulp docs",
-    "release": "gulp release"
+    "release": "gulp release",
+    "gulp-compile": "babel gulp-src -d gulp"
   },
   "devDependencies": {
+    "babel-cli": "^6.9.0",
     "babel-core": "^6.3.26",
     "babel-eslint": "^6.0.4",
     "babel-polyfill": "^6.7.4",

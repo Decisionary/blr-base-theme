@@ -1,82 +1,71 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 /**
  * @module gulp/tasks/build/js
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // Utilities
-const _ = __require( 'lodash' );
+var _ = __require('lodash');
 
 // Files
-const size       = __require( 'gulp-size' );
-const rename     = __require( 'gulp-rename' );
-const concat     = __require( 'gulp-concat' );
-const sourcemaps = __require( 'gulp-sourcemaps' );
+var size = __require('gulp-size');
+var rename = __require('gulp-rename');
+var concat = __require('gulp-concat');
+var sourcemaps = __require('gulp-sourcemaps');
 
 // JS
-const babel  = __require( 'gulp-babel' );
-const uglify = __require( 'gulp-uglify' );
-
+var babel = __require('gulp-babel');
+var uglify = __require('gulp-uglify');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'build/js';
-
+var task = exports.task = 'build/js';
 
 /**
  * Task config.
  *
  * @type {Object}
  */
-export const config = {
+var config = exports.config = {
 	size: {
-		title: 'JS:',
-	},
+		title: 'JS:'
+	}
 };
-
 
 /**
  * Task files.
  *
  * @type {Object}
  */
-export const files = {
-	libs:   [],
-	source: [
-		'../blr-base-theme/assets/source/js/**/*.js',
-		'assets/source/js/**/*.js',
-	],
-	dest: 'assets/dist/js',
+var files = exports.files = {
+	libs: [],
+	source: ['../blr-base-theme/assets/source/js/**/*.js', 'assets/source/js/**/*.js'],
+	dest: 'assets/dist/js'
 };
 
-const taskConfig = ( ( global.gulpConfig || {} ).js || {} );
+var taskConfig = (global.gulpConfig || {}).js || {};
 
-if ( taskConfig.libs ) {
-	files.source = _.concat( _.toArray( taskConfig.libs ), files.source );
+if (taskConfig.libs) {
+	files.source = _.concat(_.toArray(taskConfig.libs), files.source);
 }
-
 
 /**
  * Gulp callback for `build/js` task.
  *
  * @return {Function}
  */
-export const callback = () =>
-	gulp.src( files.source )
-		.pipe( sourcemaps.init() )
-		.pipe( concat( 'app.js' ) )
-		.pipe( babel() )
-		.pipe( gulp.dest( files.dest ) )
-		.pipe( uglify() )
-		.pipe( size( config.size ) )
-		.pipe( rename( { suffix: '.min' } ) )
-		.pipe( sourcemaps.write( './maps' ) )
-		.pipe( gulp.dest( files.dest ) );
-
+var callback = exports.callback = function callback() {
+	return gulp.src(files.source).pipe(sourcemaps.init()).pipe(concat('app.js')).pipe(babel()).pipe(gulp.dest(files.dest)).pipe(uglify()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+};
 
 // Register the task.
-gulp.task( task, callback );
+gulp.task(task, callback);
