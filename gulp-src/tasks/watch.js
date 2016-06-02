@@ -49,7 +49,7 @@ export const registerWatchTask = taskModule => {
 	const watchFiles = getWatchFiles( taskModule );
 
 	if ( watchFiles ) {
-		gulp.watch( watchFiles, taskModule.task );
+		gulp.watch( watchFiles, gulp.series( taskModule.task ) );
 	}
 };
 
