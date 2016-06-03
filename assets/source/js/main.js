@@ -102,8 +102,8 @@
 					const firstSection = collapsibles.find( '.section' ).first();
 
 					if ( firstSection.hasClass( 'is-expanded' ) ) {
-						firstSection.find( '.section__title' ).addClass( 'is-expanded' );
-						firstSection.find( '.section__content' ).slideDown();
+						firstSection.children( '.section__title' ).addClass( 'is-expanded' );
+						firstSection.children( '.section__content' ).slideDown();
 					}
 
 					collapsibles.find( '.section__title' )
