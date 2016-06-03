@@ -27,6 +27,7 @@
 
 		.header--top-row {
 			text-align: right;
+			margin-bottom: $gutter-height * 0.5;
 			@include span( 13 );
 		}
 
