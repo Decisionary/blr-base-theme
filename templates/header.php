@@ -59,20 +59,23 @@ $phone_number = get_theme_mod(
 
 </div><!-- /.branding -->
 <div class="header--right-side" role="contentinfo">
-	<div class="header--row header--top-row">
-		<!--Phone Number-->
-		<?php if ( ! empty( $phone_number ) ) : ?>
-			<p class="site-info__phone-number">
-				<?php echo wp_kses_post( $phone_number ); ?>
-			</p>
-		<?php endif; ?>
-		<!--Social Icons-->
-		<?php if ( class_exists( 'ET_Monarch' ) ) : ?>
-			<span class="site-info__social-icons">
-				<?php echo do_shortcode( '[et_social_follow icon_style="simple" icon_shape="rectangle" col_number="auto" spacing="true"]' ); ?>
-			</span>
-		<?php endif; ?>
-	</div>
+	<?php if ( ! empty( $phone_number ) || class_exists( 'ET_Monarch' ) ) : ?>
+		<div class="header--row header--top-row">
+			<!--Phone Number-->
+			<?php if ( ! empty( $phone_number ) ) : ?>
+				<p class="site-info__phone-number">
+					<?php echo wp_kses_post( $phone_number ); ?>
+				</p>
+			<?php endif; ?>
+			<!--Social Icons-->
+			<?php if ( class_exists( 'ET_Monarch' ) ) : ?>
+				<span class="site-info__social-icons">
+					<?php echo do_shortcode( '[et_social_follow icon_style="simple" icon_shape="rectangle" col_number="auto" spacing="true"]' ); ?>
+				</span>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+
 	<div class="header--row">
 		<!--Search-->
 		<div class="header--search">
