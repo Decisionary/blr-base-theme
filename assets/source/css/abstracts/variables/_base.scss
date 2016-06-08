@@ -209,7 +209,11 @@ $color-link-visited-active: $color-link-visited-hover !default;
 /// The modular scale base value.
 ///
 /// @type {Number}
-$ms-base: rem-calc( 14px ) !default;
+$ms-base: 14px !default;
+
+@if unit( $ms-base ) != 'rem' {
+	$ms-base: rem-calc( $ms-base );
+}
 
 /// The modular scale ratio.
 $ms-ratio: 1.125 !default;
