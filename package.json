@@ -33,14 +33,14 @@
   "engines": {
     "node": "^5.10.0"
   },
-    "scripts": {
-      "install-deps": "npm install && bower install",
-      "gulp-compile": "babel gulp-src -d gulp",
-      "watch": "gulp watch",
-      "build": "gulp build",
-      "docs": "gulp docs",
-      "release": "gulp release"
-    },
+  "scripts": {
+    "install-deps": "npm install && bower install",
+    "gulp-compile": "babel gulp-src -d gulp",
+    "watch": "gulp watch",
+    "build": "gulp build",
+    "docs": "gulp docs",
+    "release": "gulp release"
+  },
   "devDependencies": {
     "babel-cli": "^6.9.0",
     "babel-core": "^6.3.26",
@@ -68,6 +68,7 @@
     "jigsass-tools-selectors": "^0.9.1",
     "jigsass-tools-typography": "^1.2.4",
     "lodash": "^4.13.1",
+    "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
     "sassdoc": "^2.1.20"
   }
