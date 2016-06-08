@@ -39,7 +39,7 @@ main,
 		}
 
 		.has-sidebar-secondary & {
-			@include span( last $span-main-content - $span-sidebar-combined );
+			@include span( first $span-main-content - $span-sidebar-combined );
 		}
 
 		.has-sidebar-primary.has-sidebar-secondary & {
