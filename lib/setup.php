@@ -197,11 +197,32 @@ function display_breadcrumbs() {
 }
 
 /**
+ * Ensure Open Sans is loaded regardless of whether it's included by WP.
+ *
+ * @since 0.7.1
+ */
+function include_open_sans() {
+	wp_deregister_style( 'open-sans' );
+	wp_enqueue_style(
+		'open-sans',
+		'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700',
+		[],
+		null
+	);
+}
+
+add_action( 'wp_loaded', __NAMESPACE__ . '\\include_open_sans' );
+
+/**
  * Theme assets.
  *
  * @since 0.1.0
  */
 function assets() {
+
+	// Prevent the Monarch plugin from loading extra copies of Open Sans.
+	wp_deregister_style( 'et-gf-open-sans' );
+	wp_deregister_style( 'et-open-sans-700' );
 
 	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
 	$version  = $is_debug ? time() : null;
