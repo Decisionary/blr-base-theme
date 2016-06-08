@@ -21,7 +21,7 @@
 	border-left: 1px solid $border-color-content;
 	padding: 0 rem-calc( 15px );
 	min-width: rem-calc( 48px );
-	height: rem-calc( 48px );
+	min-height: rem-calc( 48px );
 	line-height: rem-calc( 48px );
 	font-size: $font-size-large;
 
