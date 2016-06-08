@@ -9,6 +9,17 @@
 	@include span( 100% );
 }
 
+@include breakpoint( md ) {
+
+	.sidebar--primary {
+		@include span( first $span-sidebar-combined );
+	}
+
+	.sidebar--secondary {
+		@include span( first $span-sidebar-combined );
+	}
+}
+
 @include breakpoint( lg ) {
 
 	.sidebar--primary {
