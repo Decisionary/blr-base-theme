@@ -20,16 +20,17 @@
 }
 
 %button-group {
-	@include susy-clearfix;
-
-	text-align: center;
-	word-spacing: -1ch;
-	font-family: monospace, monospace;
-
-	%button + %button {
-		margin-top: 0;
-		margin-left: $padding-base;
-	}
+       
+        display: -js-flex; // for the flexbox polyfill
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 0.5em;
+        
+        %button { 
+           margin: 0.5em;
+           margin-bottom:0;
+        }
 }
 
 %button {
@@ -39,7 +40,7 @@
 		background-color: $background-color-button-default;
 		cursor: pointer;
 		user-select: none;
-		padding: rem-calc( 5px ) rem-calc( 25px );
+		padding: rem-calc( 5px ) rem-calc( 20px );
 		vertical-align: middle;
 		text-align: center;
 		text-decoration: none;
@@ -53,10 +54,10 @@
 }
 
 %button--block {
-	@extend %button;
-
+	@extend %button ;
+        
 	display: block;
-
+        
 	* + & {
 		@include v-spacing;
 	}
