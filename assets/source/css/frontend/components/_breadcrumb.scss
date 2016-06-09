@@ -7,7 +7,8 @@
 .breadcrumbs {
 	@extend %content-section;
 
-	display: block;
+	display: -js-flex;
+	display: flex;
 	border: 1px solid $border-color-content;
 	border-bottom: 0;
 	background-color: $background-color-content;
@@ -51,6 +52,9 @@
 }
 
 .breadcrumb--trail {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	[property="itemListElement"] > [property="name"] {
 		font-weight: bold;
 	}
