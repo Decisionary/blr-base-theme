@@ -7,6 +7,7 @@ const gulp = __require( 'gulp' );
 
 // Files
 const size       = __require( 'gulp-size' );
+const merge      = __require( 'merge-stream' );
 const rename     = __require( 'gulp-rename' );
 const concat     = __require( 'gulp-concat' );
 const sourcemaps = __require( 'gulp-sourcemaps' );
@@ -32,11 +33,18 @@ export const task = 'build/css';
  */
 export const config = {
 
+	paths: {
+		source: 'assets/source/css',
+		dest:   'assets/dist/css',
+	},
+
 	sass: {
 		outputStyle:  'expanded',
 		precision:    10,
 		includePaths: [
 			'../blr-base-theme/assets/source/css',
+			'../blr-base-theme/assets/source/css/frontend',
+			'../blr-base-theme/assets/source/css/admin',
 			'bower_components',
 			'node_modules',
 		],
@@ -65,25 +73,33 @@ export const config = {
  * @type {Object}
  */
 export const files = {
-	watch:  'assets/source/css/**/*.scss',
-	source: [
-		'assets/source/css/**/*.scss',
-		'!assets/source/css/**/_*.scss',
-	],
-	dest: 'assets/dist/css/',
+	watch:  `${ config.paths.source }/**/*.scss`,
+	dest:   config.paths.dest,
+	source: {
+		admin: [
+			`${ config.paths.source }/admin/**/*.scss`,
+			`!${ config.paths.source }/admin/**/_*.scss`,
+		],
+		frontend: [
+			`${ config.paths.source }/frontend/**/*.scss`,
+			`!${ config.paths.source }/frontend/**/_*.scss`,
+		],
+	},
 };
 
 
 /**
- * Gulp callback for `build/css` task.
+ * Compiles the CSS for a particular source.
  *
- * @return {Function}
+ * @param  {String|Array} source       A valid source path or array of paths.
+ * @param  {String}       destFileName The filename to use for the compiled file.
+ * @return {Stream}                    A Gulp stream.
  */
-export const callback = () =>
-	gulp.src( files.source )
+export const compile = ( source, destFileName ) =>
+	gulp.src( source )
 		.pipe( sourcemaps.init() )
 		.pipe( sass( config.sass ) )
-		.pipe( concat( 'app.css' ) )
+		.pipe( concat( destFileName ) )
 		.pipe( autoprefixer( config.autoprefixer ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( cssmin() )
@@ -91,6 +107,17 @@ export const callback = () =>
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( sourcemaps.write( './maps' ) )
 		.pipe( gulp.dest( files.dest ) );
+
+
+/**
+ * Gulp callback for `build/css` task.
+ *
+ * @return {Function}
+ */
+export const callback = () => merge(
+	compile( files.source.frontend, 'app.css'   ),
+	compile( files.source.admin,    'admin.css' )
+);
 
 
 // Register the task.
