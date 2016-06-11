@@ -50,20 +50,20 @@
 				}
 
 				// Hide / show the nav menu when the toggle button is clicked.
+				const $navMenu      = $nav.find( '.menu' ).first();
 				const $toggleButton = $nav.find( '.nav-toggle' ).first();
 
 				if ( $toggleButton.length ) {
 					$toggleButton.on( 'click', event => {
 						event.preventDefault();
 
-						$nav.slideToggle();
-						$toggleButton.toggleClass( 'active' )
-							.attr( 'aria-expanded', toggleAttr );
+						$toggleButton.toggleClass( 'active' );
+						$navMenu.slideToggle().attr( 'aria-expanded', toggleAttr );
 					} );
 				}
 
 				// Toggle sub-menus when the parent menu item is clicked.
-				const $menuLinks = $nav.find( '.menu > li > a' );
+				const $menuLinks = $navMenu.find( '> li > a' );
 
 				if ( $menuLinks.length ) {
 					$menuLinks.on( 'click', event => {
@@ -72,7 +72,7 @@
 						if ( $subMenu.length ) {
 							event.preventDefault();
 
-							let menuBlockHeight = $nav.outerHeight();
+							let menuBlockHeight = $navMenu.outerHeight();
 
 							if ( $subMenu.hasClass( 'is-expanded' ) ) {
 								menuBlockHeight -= $subMenu.outerHeight();
@@ -82,7 +82,7 @@
 								$subMenu.css( 'max-height', '0' );
 							}
 
-							$nav.css( 'max-height', menuBlockHeight );
+							$navMenu.css( 'max-height', menuBlockHeight );
 
 							$subMenu.slideToggle()
 								.parent()
@@ -96,6 +96,7 @@
 					} );
 				}
 
+				// Collapsible section groups (e.g. accordions).
 				const collapsibles = $( '.section-group.is-collapsible' );
 
 				if ( collapsibles.length ) {

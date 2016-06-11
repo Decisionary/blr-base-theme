@@ -1,0 +1,15 @@
+
+/// Checks if the specified key exists in the `$z-index-levels` map. Returns
+/// the value if so, `1` if not.
+///
+/// @param {String} $key - The key to check the z-index map for.
+///
+/// @return {Number}
+@function get-z-index( $key ) {
+
+	@if not map-has-key( $z-index-levels, $key ) {
+		@return 1;
+	}
+
+	@return map-get( $z-index-levels, $key );
+}

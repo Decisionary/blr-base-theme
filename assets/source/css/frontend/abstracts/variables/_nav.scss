@@ -5,6 +5,23 @@
 
 
 // -------------------------------------------------------------------------
+// Layout / Responsive
+// -------------------------------------------------------------------------
+
+/// The breakpoint at which to hide the mobile nav menu. Must be one of the
+/// following: xs, sm, md, lg, xl.
+///
+/// @type {String}
+$breakpoint-hide-mobile-nav: md;
+
+/// The height of the mobile nav menu when expanded.
+///
+/// @type {Number}
+$height-nav-mobile: 10em;
+
+
+
+// -------------------------------------------------------------------------
 // Colors
 // -------------------------------------------------------------------------
 

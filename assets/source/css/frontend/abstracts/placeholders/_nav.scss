@@ -1,0 +1,229 @@
+%nav {
+	@include susy-clearfix;
+	@include z-index( 'nav' );
+
+	display: block;
+	font-size: $font-size-nav;
+
+	%menu {
+		@include susy-clearfix;
+		@include list-unstyled;
+		@include z-index( 'nav-menu' );
+
+		display: block;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: block;
+		border-color: inherit;
+		line-height: 1;
+		font-size: inherit;
+	}
+
+	%menu__link {
+		@include style-link {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+}
+
+%nav--horizontal {
+
+	%menu__item {
+		position: relative;
+		float: left;
+	}
+
+	%menu__link {
+		padding: {
+			right: 0.5em;
+			left: 0.5em;
+		}
+	}
+}
+
+%nav--vertical {
+
+	%menu,
+	%menu__item {
+		float: none !important;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: block;
+	}
+}
+
+%nav--block {
+
+	%menu__link {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
+	}
+}
+
+%nav--text {
+
+	%menu {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
+	}
+
+	%menu__link {
+		@include hover-focus-active {
+			text-decoration: underline;
+		}
+	}
+}
+
+%nav-bar {
+	@extend %nav--horizontal;
+	@extend %nav--block;
+
+	position: relative;
+
+	%menu {
+		clear: left;
+		overflow-y: scroll;
+		transition: max-height 0.5s cubic-bezier( 0, 1, 0.5, 1 );
+		height: $height-nav-mobile;
+		max-height: 0;
+
+		@include nav-desktop-only {
+			float: left;
+			clear: none;
+			overflow-y: hidden;
+			height: auto;
+			max-height: inherit !important;
+		}
+	}
+
+	%menu__item {
+		float: none;
+
+		@include nav-desktop-only {
+			float: left;
+		}
+	}
+
+	%menu__link {
+
+		// Line the left edge of the menu items up with the left edge of the
+		// toggle button icon.
+		padding: {
+			right: 0.5rem;
+			left: 0.5rem;
+		}
+
+		@include nav-desktop-only {
+			padding: {
+				right: 0.75em;
+				left: 0.75em;
+			}
+		}
+	}
+
+	%menu--user {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		@include nav-desktop-only {
+			position: static;
+			float: right;
+		}
+
+		%menu__item {
+			float: left;
+		}
+	}
+
+	%sub-menu {
+		@include z-index( 'nav-sub-menu' );
+
+		display: none;
+		position: absolute;
+		padding: $margin-base 0;
+
+		%has-children {
+			@include icon( $fa-var-angle-right );
+		}
+
+		%sub-menu {
+			top: -1 * $margin-base;
+			left: 100%;
+		}
+
+		%menu__item,
+		%menu__link {
+			display: block;
+			width: 100%;
+		}
+
+		%menu__link {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	%menu__item:hover {
+		> %sub-menu {
+			display: block;
+		}
+	}
+}
+
+%nav-links {
+	@extend %nav--horizontal;
+	@extend %nav--text;
+
+	%menu__item {
+
+		&:first-child {
+			%menu__link {
+				padding-left: 0;
+			}
+		}
+
+		&:last-child {
+			%menu__link {
+				padding-right: 0;
+			}
+		}
+	}
+
+	%menu__item + %menu__item {
+
+		%menu__link {
+			border-left: {
+				width: 1px;
+				style: solid;
+			}
+		}
+	}
+}
+
+%nav-section {
+	@extend %nav--vertical;
+	@extend %nav--block;
+
+	padding: {
+		top: $padding-base;
+		bottom: $padding-base;
+	}
+
+	.menu__link {
+		padding: {
+			right: $padding-base;
+			left: $padding-base;
+		}
+	}
+}
