@@ -65,7 +65,7 @@ function widgets_init() {
 		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
 		'after_title'   => '</h3><div class="widget__content">',
-		'after_widget'  => '</div></section>',
+		'after_widget'  => '</section>',
 	];
 
 	register_sidebar(
@@ -122,13 +122,32 @@ function display_sidebar( $sidebar = 'sidebar-primary' ) {
 
 	// Sidebar will be hidden if any of the following is true.
 	$hide_criteria = [
-		( ! is_active_sidebar( $sidebar ) && 'sidebar-secondary' !== $sidebar ),
-		is_404(),
+		'all' => [
+			is_404(),
+			( ! is_active_sidebar( $sidebar ) ),
+		],
+		'sidebar-primary' => [
+			is_page_template( 'page-templates/full-width.php' ),
+			is_page_template( 'page-templates/sidebar-secondary.php' ),
+		],
+		'sidebar-secondary' => [
+			is_page_template( 'page-templates/full-width.php' ),
+			is_page_template( 'page-templates/sidebar-primary.php' ),
+		],
 	];
 
-	$display = ( ! in_array( true, $hide_criteria, true ) );
+	// Check default criteria for hiding sidebar.
+	$display = ( ! in_array( true, $hide_criteria['all'], true ) );
+
+	// If specific criteria exist for the current sidebar, check that as well.
+	if ( isset( $hide_criteria[ $sidebar ] ) ) {
+		$display = ( $display && ! in_array( true, $hide_criteria[ $sidebar ], true ) );
+	}
+
+	// Filter the current display value to allow for custom child theme layouts.
 	$display = apply_filters( 'blr-base-theme/display_sidebar', $display, $sidebar );
 	$display = apply_filters( 'blr/display_sidebar', $display, $sidebar );
+	$display = apply_filters( 'blr/display/sidebar', $display, $sidebar );
 
 	return $display;
 }
@@ -151,6 +170,7 @@ function display_nav_menu( $menu = 'nav-primary' ) {
 	$display = ( ! in_array( true, $hide_criteria, true ) );
 	$display = apply_filters( 'blr-base-theme/display_nav_menu', $display, $menu );
 	$display = apply_filters( 'blr/display_nav_menu', $display, $menu );
+	$display = apply_filters( 'blr/display/nav-menu', $display, $menu );
 
 	return $display;
 }
@@ -171,9 +191,27 @@ function display_breadcrumbs() {
 
 	$display = ( ! in_array( true, $hide_criteria, true ) );
 	$display = apply_filters( 'blr/display_breadcrumbs', $display );
+	$display = apply_filters( 'blr/display/breadcrumbs', $display );
 
 	return $display;
 }
+
+/**
+ * Ensure Open Sans is loaded regardless of whether it's included by WP.
+ *
+ * @since 0.7.1
+ */
+function include_open_sans() {
+	wp_deregister_style( 'open-sans' );
+	wp_enqueue_style(
+		'open-sans',
+		'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700',
+		[],
+		null
+	);
+}
+
+add_action( 'wp_loaded', __NAMESPACE__ . '\\include_open_sans' );
 
 /**
  * Theme assets.
@@ -181,6 +219,10 @@ function display_breadcrumbs() {
  * @since 0.1.0
  */
 function assets() {
+
+	// Prevent the Monarch plugin from loading extra copies of Open Sans.
+	wp_deregister_style( 'et-gf-open-sans' );
+	wp_deregister_style( 'et-open-sans-700' );
 
 	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
 	$version  = $is_debug ? time() : null;

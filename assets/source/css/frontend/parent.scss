@@ -15,12 +15,16 @@
 @import 'jigsass-tools-selectors/scss/index';
 @import 'jigsass-generic-normalize/scss/index';
 
-// Mixins & placeholders
+// Mixins
 @import 'abstracts/mixins';
+
+// Reset
+@import 'base/reset';
+
+// Placeholders
 @import 'abstracts/placeholders';
 
 // Base styles
-@import 'base/reset';
 @import 'base/defaults';
 @import 'base/typography';
 

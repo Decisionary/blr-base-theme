@@ -1,0 +1,33 @@
+////
+/// @group Abstracts
+////
+
+/// Social icons container background-color.
+///
+/// @type {Color}
+$background-color-social-icons: $background-color-content-alt !default;
+
+/// Social icons container horizontal padding.
+///
+/// @type {Number}
+$padding-horizontal-social-icons: 4px !default;
+
+/// Social icons container vertical padding.
+///
+/// @type {Number}
+$padding-vertical-social-icons: $padding-horizontal-social-icons !default;
+
+/// Social icon spacing.
+///
+/// @type {Number}
+$gutter-social-icon: $padding-horizontal-social-icons  !default;
+
+/// Social icon width.
+///
+/// @type {Number}
+$width-social-icon: 22px !default;
+
+/// Social icon height.
+///
+/// @type {Number}
+$height-social-icon: $width-social-icon !default;

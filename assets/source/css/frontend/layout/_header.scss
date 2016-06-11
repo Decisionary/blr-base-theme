@@ -1,0 +1,58 @@
+////
+/// Header
+///
+/// @group Layout
+////
+
+.page-header-container {
+	background-color: $background-color-header;
+	color: $color-header;
+}
+
+.page-header {
+	padding-bottom: ( $gutter-height * 0.75 );
+}
+
+.branding--header {
+	@include span( 11 );
+}
+
+.header--right-side {
+	@include span( last 13 );
+	@include nested( 13 ) {
+
+		.header--row {
+			@include break;
+		}
+
+		.header--top-row {
+			text-align: right;
+			margin-bottom: $gutter-height * 0.5;
+			@include span( 13 );
+		}
+
+		.header--search {
+			@include span( 13 );
+		}
+
+		.has-search-logo & {
+
+			.header--top-row {
+				@include span(first 11);
+				@include post( 2 );
+			}
+
+			.header--search {
+				@include span(first 11);
+			}
+
+			.header--right-logo {
+				@include span(last 2);
+			}
+		}
+	}
+}
+
+
+
+

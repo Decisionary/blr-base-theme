@@ -1,22 +1,26 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/docs
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // Tasks
-const sass = __requireTask( 'docs/sass' );
-const js   = __requireTask( 'docs/js' );
-const php  = __requireTask( 'docs/php' );
+var sass = __requireTask('docs/sass');
+var js = __requireTask('docs/js');
+var php = __requireTask('docs/php');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'docs';
-
+var task = exports.task = 'docs';
 
 // Register the task.
-gulp.task( task, gulp.parallel( sass.task, js.task, php.task ) );
+gulp.task(task, gulp.parallel(sass.task, js.task, php.task));

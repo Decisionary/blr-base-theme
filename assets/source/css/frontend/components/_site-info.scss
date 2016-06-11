@@ -1,0 +1,71 @@
+////
+/// Header / Footer Site Info
+///
+/// @group Components
+////
+
+.footer-copyright {
+	color: $color-footer-copyright;
+	font-size: $font-size-footer-copyright;
+}
+
+// Header site info.
+.site-info--header {
+	text-align: right;
+}
+
+// Phone number.
+.site-info__phone-number {
+	display: inline-block;
+	line-height: $height-social-icon + ( $padding-vertical-social-icons * 2 );
+	font-size: $font-size-large;
+	font-weight: 600;
+}
+
+// Social icons.
+// scss-lint:disable SelectorFormat, SelectorDepth, NestingDepth
+.site-info__social-icons {
+	display: block;
+	float: right;
+	margin-left: $gutter-width;
+	background: $background-color-social-icons;
+	padding: $padding-vertical-social-icons $padding-horizontal-social-icons;
+
+	// Specificity hack to override plugin styles.
+	.et_social_networks.et_social_networks {
+		display: block !important;
+
+		.et_social_icons_container {
+			@include susy-clearfix();
+
+			display: block !important;
+		}
+
+		li {
+			margin: 0 !important;
+			min-height: $height-social-icon !important;
+
+			+ li {
+				margin-left: $gutter-social-icon !important;
+			}
+		}
+
+		.et_social_icon {
+			&,
+			&::before,
+			&::after {
+				width: $width-social-icon !important;
+				height: $height-social-icon !important;
+				line-height: $height-social-icon !important;
+			}
+		}
+	}
+}
+// scss-lint:enable SelectorFormat, SelectorDepth, NestingDepth
+
+// Footer site info.
+.site-info--footer {
+	margin-top: $margin-base;
+	color: $color-footer-copyright;
+	font-size: $font-size-footer-copyright;
+}

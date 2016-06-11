@@ -32,6 +32,22 @@ main,
 	@extend %content-sub-section;
 }
 
+@include breakpoint( md ) {
+	main {
+		.has-sidebar-primary & {
+			@include span( last $span-main-content - $span-sidebar-combined );
+		}
+
+		.has-sidebar-secondary & {
+			@include span( first $span-main-content - $span-sidebar-combined );
+		}
+
+		.has-sidebar-primary.has-sidebar-secondary & {
+			@include span( last $span-main-content - $span-sidebar-combined );
+		}
+	}
+}
+
 @include breakpoint( lg ) {
 	main {
 		.has-sidebar-primary & {

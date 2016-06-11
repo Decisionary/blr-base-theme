@@ -2,7 +2,7 @@
   "private": true,
   "name": "@decisionary/blr-base-theme",
   "description": "A base theme for WordPress sites. Based on Sage by Roots.",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
   "repository": {
@@ -29,17 +29,22 @@
     "theme",
     "BLR"
   ],
-  "main": "gulpfile.babel.js",
+  "main": "gulpfile.js",
   "engines": {
     "node": "^5.10.0"
   },
   "scripts": {
+    "install-deps": "npm install && bower install",
+    "gulp-compile": "babel gulp-src -d gulp",
+    "gulp": "gulp",
+    "watch": "gulp watch",
     "build": "gulp build",
     "docs": "gulp docs",
     "release": "gulp release"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-cli": "^6.9.0",
     "babel-core": "^6.3.26",
     "babel-eslint": "^6.0.4",
     "babel-polyfill": "^6.7.4",
@@ -50,6 +55,8 @@
     "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-expect-file": "0.0.7",
     "gulp-imagemin": "^2.4.0",
     "gulp-postcss": "^6.1.1",
     "gulp-rename": "^1.2.2",
@@ -70,6 +77,8 @@
     "postcss-pseudo-class-any-button": "^0.1.3",
     "postcss-pseudo-content-insert": "^0.3.0",
     "postcss-pxtorem": "^3.3.1",
+    "lodash": "^4.13.1",
+    "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
     "sassdoc": "^2.1.20"
   }

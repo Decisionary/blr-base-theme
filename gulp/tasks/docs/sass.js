@@ -1,55 +1,55 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * @module gulp/tasks/docs/sass
  */
 
 // Gulp
-const gulp = __require( 'gulp' );
+var gulp = __require('gulp');
 
 // SassDoc
-const sassdoc = __require( 'sassdoc' );
-
+var sassdoc = __require('sassdoc');
 
 /**
  * Task name.
  *
  * @type {String}
  */
-export const task = 'docs/sass';
-
+var task = exports.task = 'docs/sass';
 
 /**
  * Task config.
  *
  * @type {Object}
  */
-export const config = {
-	basePath: 'https://github.com/Decisionary/blr-base-theme/tree/master',
-	dest:     'docs/sass',
-	display:  {
-		access: [ 'public' ],
-	},
+var config = exports.config = {
+  basePath: 'https://github.com/Decisionary/blr-base-theme/tree/master',
+  dest: 'docs/sass',
+  display: {
+    access: ['public']
+  }
 };
-
 
 /**
  * Task files.
  *
  * @type {Object}
  */
-export const files = {
-	source: 'assets/source/css/**/*.scss',
+var files = exports.files = {
+  source: 'assets/source/css/**/*.scss'
 };
-
 
 /**
  * Gulp callback for `docs/sass` task.
  *
  * @return {Function}
  */
-export const callback = () =>
-	gulp.src( files.source )
-		.pipe( sassdoc( config ) );
-
+var callback = exports.callback = function callback() {
+  return gulp.src(files.source).pipe(sassdoc(config));
+};
 
 // Register the task.
-gulp.task( task, callback );
+gulp.task(task, callback);
