@@ -80,7 +80,6 @@ config.postcss.plugins = [
 	__require( 'postcss-flexibility' ),
 	__require( 'postcss-em-media-query' ),
 	__require( 'postcss-nested-ancestors' ),
-	__require( 'postcss-pseudo-content-insert' ),
 	__require( 'postcss-pseudo-class-any-button' ),
 ];
 

@@ -64,7 +64,7 @@ var config = exports.config = {
 
 };
 
-config.postcss.plugins = [__require('autoprefixer')(config.autoprefixer), __require('postcss-pxtorem')(config.pxtorem), __require('css-mqpacker'), __require('postcss-flexibility'), __require('postcss-em-media-query'), __require('postcss-nested-ancestors'), __require('postcss-pseudo-content-insert'), __require('postcss-pseudo-class-any-button')];
+config.postcss.plugins = [__require('autoprefixer')(config.autoprefixer), __require('postcss-pxtorem')(config.pxtorem), __require('css-mqpacker'), __require('postcss-flexibility'), __require('postcss-em-media-query'), __require('postcss-nested-ancestors'), __require('postcss-pseudo-class-any-button')];
 
 /**
  * Task files.
