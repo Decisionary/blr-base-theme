@@ -39,7 +39,10 @@
     "watch": "gulp watch",
     "build": "gulp build",
     "docs": "gulp docs",
-    "release": "gulp release"
+    "release": "gulp release",
+    "release:major": "gulp release --major",
+    "release:minor": "gulp release --minor",
+    "release:patch": "gulp release --patch"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -70,6 +73,8 @@
     "lodash": "^4.13.1",
     "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
-    "sassdoc": "^2.1.20"
+    "sassdoc": "^2.1.20",
+    "semver": "^5.1.0",
+    "yargs": "^4.7.1"
   }
 }
