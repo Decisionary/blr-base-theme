@@ -12,9 +12,9 @@ const concat     = __require( 'gulp-concat' );
 const sourcemaps = __require( 'gulp-sourcemaps' );
 
 // CSS / Sass
-const sass         = __require( 'gulp-sass' );
-const cssmin       = __require( 'gulp-cssmin' );
-const autoprefixer = __require( 'gulp-autoprefixer' );
+const sass    = __require( 'gulp-sass' );
+const postcss = __require( 'gulp-postcss' );
+const cssmin  = __require( 'gulp-cssmin' );
 
 
 /**
@@ -42,6 +42,8 @@ export const config = {
 		],
 	},
 
+	postcss: {},
+
 	autoprefixer: {
 		browsers: [
 			'last 2 versions',
@@ -52,11 +54,27 @@ export const config = {
 		],
 	},
 
+	pxtorem: {
+		unitPrecision: 10,
+		propWhiteList: [],
+	},
+
 	size: {
 		title: 'Sass:',
 	},
 
 };
+
+config.postcss.plugins = [
+	__require( 'autoprefixer' )( config.autoprefixer ),
+	__require( 'postcss-pxtorem' )( config.pxtorem ),
+	__require( 'css-mqpacker' ),
+	__require( 'postcss-flexibility' ),
+	__require( 'postcss-em-media-query' ),
+	__require( 'postcss-nested-ancestors' ),
+	__require( 'postcss-pseudo-content-insert' ),
+	__require( 'postcss-pseudo-class-any-button' ),
+];
 
 
 /**
@@ -84,7 +102,7 @@ export const callback = () =>
 		.pipe( sourcemaps.init() )
 		.pipe( sass( config.sass ) )
 		.pipe( concat( 'app.css' ) )
-		.pipe( autoprefixer( config.autoprefixer ) )
+		.pipe( postcss( config.postcss.plugins ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( cssmin() )
 		.pipe( size( config.size ) )
