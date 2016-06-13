@@ -14,7 +14,7 @@ $logout_link = apply_filters( 'blr/user-nav/logout-url', home_url( '/logout' ) )
 	<span class="nav-toggle__icon"></span>
 </button>
 
-<? wp_nav_menu( [ 'theme_location' => 'nav-primary' ] ); ?>
+<?php wp_nav_menu( [ 'theme_location' => 'nav-primary' ] ); ?>
 
 <ul class="menu--user">
 	<li class="menu__item menu__item--trial">
