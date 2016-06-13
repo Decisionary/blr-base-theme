@@ -24,12 +24,12 @@ main,
 
 .content-section {
 	@extend %content-section;
-}
 
-.entry__header,
-.entry__content,
-.entry__footer {
-	@extend %content-sub-section;
+	.entry__header,
+	.entry__content,
+	.entry__footer {
+		@extend %content-sub-section;
+	}
 }
 
 @include breakpoint( md ) {
