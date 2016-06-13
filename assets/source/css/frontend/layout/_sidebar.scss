@@ -9,6 +9,25 @@
 	@include span( 100% );
 }
 
+@include breakpoint( md ) {
+
+	.sidebar--primary {
+		@include span( first $span-sidebar-combined );
+	}
+
+	.sidebar--secondary {
+		.has-sidebar-primary & {
+			@include span( first $span-sidebar-combined );
+		}
+		.has-sidebar-secondary & {
+			@include span( last $span-sidebar-combined );
+		}
+		.has-sidebar-primary.has-sidebar-secondary & {
+			@include span( first $span-sidebar-combined );
+		}
+	}
+}
+
 @include breakpoint( lg ) {
 
 	.sidebar--primary {
@@ -16,6 +35,10 @@
 	}
 
 	.sidebar--secondary {
-		@include span( $span-sidebar-secondary );
+		.has-sidebar-primary &,
+		.has-sidebar-secondary &,
+		.has-sidebar-primary.has-sidebar-secondary & {
+			@include span( $span-sidebar-secondary );
+		}
 	}
 }
