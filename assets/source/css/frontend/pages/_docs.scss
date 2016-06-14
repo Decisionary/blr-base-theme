@@ -1,0 +1,112 @@
+
+/// Theme colors
+///
+/// @type {Map}
+/// @access private
+$_theme-colors: (
+	base:      $color-base,
+	light:     $color-light,
+	medium:    $color-medium,
+	dark:      $color-dark,
+	primary:   $color-brand-primary,
+	secondary: $color-brand-secondary,
+	tertiary:  $color-brand-tertiary,
+	success:   $color-state-success,
+	error:     $color-state-error,
+	info:      $color-state-info,
+	alert:     $color-state-alert,
+);
+
+%color-swatch {
+	display: block;
+	line-height: 2.5rem;
+
+	&::before {
+		display: block;
+		float: left;
+		margin-right: 0.625rem;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 2px;
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+		width: 2.5rem;
+		height: 2.5rem;
+		content: '';
+	}
+}
+
+.docs-page {
+
+	// Page layout
+	.page-title {
+		margin: 3.75rem 0;
+		text-align: center;
+	}
+
+	* + .content-section {
+		margin-top: 2.5rem;
+		border-top: 1px solid #ccc;
+		padding-top: 2.5rem;
+	}
+
+	.content-section {
+		* + h2,
+		* + h3 {
+			margin-top: 1.25rem;
+		}
+	}
+
+	// Breadcrumbs
+	.breadcrumb--current {
+		font-weight: 600;
+	}
+
+	// Color swatches
+	@each $key, $value in $_theme-colors {
+		.color-swatch--#{$key} {
+			@extend %color-swatch;
+
+			&::before {
+				background-color: $value;
+			}
+		}
+	}
+
+	// Code examples
+	* + .ss-code {
+		margin-top: 1.25rem;
+	}
+
+	.ss-code {
+		border-radius: 2px;
+		box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+		background: rgba( 0, 0, 0, 0.02 );
+		padding: 1.25rem;
+
+		code {
+			display: block;
+			overflow-x: scroll;
+		}
+	}
+
+	.ss-code-live {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1.25rem 0;
+
+		.button--block {
+			margin-bottom: 0 !important;
+		}
+
+		[class*="grid-col"] {
+			margin-top: 0 !important;
+			border: 10px solid #fff;
+			border-top-width: 5px;
+			border-bottom-width: 5px;
+			background: rgba( 255, 0, 0, 0.25 );
+			padding: 0.625rem;
+			text-align: center;
+			color: #333;
+		}
+	}
+}
