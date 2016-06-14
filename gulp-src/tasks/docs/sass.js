@@ -5,8 +5,14 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const path = __require( 'path' );
+
 // SassDoc
 const sassdoc = __require( 'sassdoc' );
+
+const currentDir  = path.basename( process.cwd() );
+const isBaseTheme = ( 'blr-base-theme' === currentDir );
 
 
 /**
@@ -37,8 +43,14 @@ export const config = {
  * @type {Object}
  */
 export const files = {
-	source: 'assets/source/css/**/*.scss',
+	source: [
+		'assets/source/css/**/*.scss',
+	],
 };
+
+if ( ! isBaseTheme ) {
+	files.source.unshift( '../blr-base-theme/assets/source/css/**/*.scss' );
+}
 
 
 /**

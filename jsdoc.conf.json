@@ -1,16 +1,21 @@
 {
 	"source": {
-		"include": [ "assets/source/js", "gulp/tasks" ]
+		"include": [
+			"README.md",
+			"assets/source/js/",
+			"gulp-src/tasks"
+		]
 	},
 	"plugins": [ "plugins/markdown" ],
 	"templates": {
+		"theme": "cosmo",
 		"cleverLinks": true,
 		"monospaceLinks": true,
-		"default": {
-			"includeDate": false
-		}
+		"includeDate": false,
+		"linenums": true
 	},
 	"opts": {
+		"template": "./node_modules/ink-docstrap/template",
 		"destination": "./docs/js",
 		"recurse": true
 	}

@@ -5,7 +5,7 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
-// SassDoc
+// Utilities
 const shell = __require( 'gulp-shell' );
 
 
@@ -23,7 +23,9 @@ export const task = 'docs/php';
  * @type {Object}
  */
 export const config = {
-	quiet: true,
+	phpDoc: {
+		quiet: true,
+	},
 };
 
 
@@ -36,4 +38,4 @@ export const callback = () => gulp.series( task );
 
 
 // Register the task.
-gulp.task( task, shell.task( 'phpdoc', config ) );
+gulp.task( task, shell.task( 'phpdoc', config.phpDoc ) );

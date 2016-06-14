@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
-// SassDoc
+// Utilities
 var shell = __require('gulp-shell');
 
 /**
@@ -26,7 +26,9 @@ var task = exports.task = 'docs/php';
  * @type {Object}
  */
 var config = exports.config = {
-  quiet: true
+  phpDoc: {
+    quiet: true
+  }
 };
 
 /**
@@ -39,4 +41,4 @@ var callback = exports.callback = function callback() {
 };
 
 // Register the task.
-gulp.task(task, shell.task('phpdoc', config));
+gulp.task(task, shell.task('phpdoc', config.phpDoc));
