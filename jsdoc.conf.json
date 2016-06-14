@@ -8,14 +8,12 @@
 	},
 	"plugins": [ "plugins/markdown" ],
 	"templates": {
-		"theme": "cosmo",
 		"cleverLinks": true,
 		"monospaceLinks": true,
 		"includeDate": false,
 		"linenums": true
 	},
 	"opts": {
-		"template": "./node_modules/ink-docstrap/template",
 		"destination": "./docs/js",
 		"recurse": true
 	}
