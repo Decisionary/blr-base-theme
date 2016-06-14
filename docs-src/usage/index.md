@@ -126,7 +126,7 @@ BLR Base Theme provides the following Gulp tasks to the child theme:
 
 # Theme Assets
 
-## Theme CSS & JS
+## CSS & JS
 
 BLR Base Theme automatically enqueues the main theme CSS (`app.css`) and JS
 (`app.js`) files for you if they exist. By default the theme CSS has no
@@ -165,8 +165,6 @@ function customize_theme_css_deps( $deps ) {
 
 add_filter( 'blr/assets/css-deps', 'customize_theme_css_deps' );
 ```
-
-
 
 ## Helper Functions
 
@@ -260,8 +258,8 @@ The `breakpoint` mixin accepts a 2nd argument that determines whether to use
 
 # Grid System
 
-BLR Base Theme includes the Susy grid system, as well as some basic helper
-classes for quick prototyping:
+BLR Base Theme includes the [Susy grid system](http://susy.oddbird.net/), as
+well as some basic helper classes for quick prototyping:
 
 ```html_example
 <div class="grid">
@@ -382,9 +380,8 @@ used to create different types of buttons.
 ```
 
 Each of these placeholders also corresponds to a CSS class that you can use.
-The placeholder method is recommended as it's easier to maintain; that being
-said, having classes is useful for prototyping, and we realize there are some
-situations where using placeholders may not be feasible.
+The placeholder method is recommended as it's easier to maintain, though the
+helper classes are useful for prototyping or placeholder content.
 
 ```html_example
 <button class="button--primary button--block">This is a full-width button</button>

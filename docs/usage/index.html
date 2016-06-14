@@ -110,11 +110,6 @@
 									</a>
 								</li>
 								<li class="menu__item">
-									<a class="menu__link" href="#page-6" role="menuitem">
-										Page 6
-									</a>
-								</li>
-								<li class="menu__item">
 									<a class="menu__link" href="#breakpoints" role="menuitem">
 										Breakpoints
 									</a>
@@ -154,7 +149,7 @@
 maintain them and keep them as close to the implementation as possible.</p>
 <p>BLR Base Theme is a work in progress.  If there is something not implemented
 that you believe will be useful for other BLR WordPress implementations, please
-feel free to reach out to Jc <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x6a;&#x63;&#x40;&#x64;&#101;&#99;&#x69;&#115;&#105;&#x6f;&#110;&#97;&#114;&#x79;&#x74;&#x65;&#x63;&#x68;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#x63;&#x40;&#x64;&#101;&#99;&#x69;&#115;&#105;&#x6f;&#110;&#97;&#114;&#x79;&#x74;&#x65;&#x63;&#x68;&#x2e;&#x63;&#x6f;&#109;</a>, add an issue on GitHub,
+feel free to reach out to Jc <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x6a;&#x63;&#64;&#x64;&#101;&#99;&#x69;&#x73;&#105;&#111;&#x6e;&#x61;&#x72;&#x79;&#116;&#101;&#x63;&#x68;&#x2e;&#99;&#111;&#x6d;">&#x6a;&#x63;&#64;&#x64;&#101;&#99;&#x69;&#x73;&#105;&#111;&#x6e;&#x61;&#x72;&#x79;&#116;&#101;&#x63;&#x68;&#x2e;&#99;&#111;&#x6d;</a>, add an issue on GitHub,
 or submit a pull request to have the change included in the Base Theme.</p>
 
 						</section>
@@ -216,7 +211,7 @@ reading.</li>
 
 						</section>
 						<section class="content-section" id="theme-assets">
-							<h1>Theme Assets</h1><h2>Theme CSS &amp; JS</h2><p>BLR Base Theme automatically enqueues the main theme CSS (<code>app.css</code>) and JS
+							<h1>Theme Assets</h1><h2>CSS &amp; JS</h2><p>BLR Base Theme automatically enqueues the main theme CSS (<code>app.css</code>) and JS
 (<code>app.js</code>) files for you if they exist. By default the theme CSS has no
 dependencies, while the theme JS has one dependency (jQuery). If your theme CSS
 or JS has any other dependencies, you can use the <code>blr/assets/css-deps</code> and
@@ -244,10 +239,7 @@ before the theme CSS:</p>
     <span class="hljs-keyword">return</span> <span class="hljs-variable">$deps</span>;
 }
 
-add_filter( <span class="hljs-string">'blr/assets/css-deps'</span>, <span class="hljs-string">'customize_theme_css_deps'</span> );</code></pre></div>
-						</section>
-						<section class="content-section" id="page-6">
-							<h2>Helper Functions</h2><p>BLR Base Theme also provides some handy asset-related helper functions. For
+add_filter( <span class="hljs-string">'blr/assets/css-deps'</span>, <span class="hljs-string">'customize_theme_css_deps'</span> );</code></pre></div><h2>Helper Functions</h2><p>BLR Base Theme also provides some handy asset-related helper functions. For
 example, let&#39;s say you&#39;re putting together some custom template files for your
 theme and you need to add some placeholder content, including some images:</p>
 <div class="ss-code"><pre><code class="php"><span class="hljs-preprocessor">&lt;?php</span>
@@ -299,8 +291,8 @@ breakpoints in a media query:</p>
 }</code></pre></div>
 						</section>
 						<section class="content-section" id="grid-system">
-							<h1>Grid System</h1><p>BLR Base Theme includes the Susy grid system, as well as some basic helper
-classes for quick prototyping:</p>
+							<h1>Grid System</h1><p>BLR Base Theme includes the <a href="http://susy.oddbird.net/">Susy grid system</a>, as
+well as some basic helper classes for quick prototyping:</p>
 <div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-6"</span>&gt;</span>
         1/4
@@ -432,9 +424,8 @@ used to create different types of buttons.</p>
 <span class="hljs-class">.my-button</span> {
     <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %button--pill;</span>
 }</code></pre></div><p>Each of these placeholders also corresponds to a CSS class that you can use.
-The placeholder method is recommended as it&#39;s easier to maintain; that being
-said, having classes is useful for prototyping, and we realize there are some
-situations where using placeholders may not be feasible.</p>
+The placeholder method is recommended as it&#39;s easier to maintain, though the
+helper classes are useful for prototyping or placeholder content.</p>
 <div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--block"</span>&gt;</span>This is a full-width button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--rounded"</span>&gt;</span>This is a rounded button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--pill"</span>&gt;</span>This is a pill-shaped button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>

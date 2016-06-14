@@ -19,17 +19,17 @@ $_theme-colors: (
 
 %color-swatch {
 	display: block;
-	line-height: 2.5rem;
+	line-height: rem-calc( 40px );
 
 	&::before {
 		display: block;
 		float: left;
-		margin-right: 0.625rem;
+		margin-right: $margin-base;
 		border: 1px solid rgba(0, 0, 0, 0.2);
 		border-radius: 2px;
 		box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-		width: 2.5rem;
-		height: 2.5rem;
+		width: rem-calc( 40px );
+		height: rem-calc( 40px );
 		content: '';
 	}
 }
@@ -37,21 +37,16 @@ $_theme-colors: (
 .docs-page {
 
 	// Page layout
-	.page-title {
-		margin: 3.75rem 0;
-		text-align: center;
-	}
-
 	* + .content-section {
-		margin-top: 2.5rem;
+		margin-top: rem-calc( 40px );
 		border-top: 1px solid #ccc;
-		padding-top: 2.5rem;
+		padding-top: rem-calc( 40px );
 	}
 
 	.content-section {
 		* + h2,
 		* + h3 {
-			margin-top: 1.25rem;
+			margin-top: $gutter-height;
 		}
 	}
 
@@ -73,18 +68,22 @@ $_theme-colors: (
 
 	// Code examples
 	* + .ss-code {
-		margin-top: 1.25rem;
+		margin-top: $gutter-height;
 	}
 
 	.ss-code {
 		border-radius: 2px;
 		box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
 		background: rgba( 0, 0, 0, 0.02 );
-		padding: 1.25rem;
+		padding: $gutter-height $gutter-width;
 
 		code {
 			display: block;
 			overflow-x: scroll;
+		}
+
+		+ p {
+			margin-top: $gutter-height;
 		}
 	}
 
@@ -92,7 +91,7 @@ $_theme-colors: (
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		padding: 1.25rem 0;
+		padding: $gutter-height 0;
 
 		.button--block {
 			margin-bottom: 0 !important;
@@ -100,11 +99,11 @@ $_theme-colors: (
 
 		[class*="grid-col"] {
 			margin-top: 0 !important;
-			border: 10px solid #fff;
-			border-top-width: 5px;
-			border-bottom-width: 5px;
+			border: gutters() solid #fff;
+			border-top-width: 0.5 * gutters();
+			border-bottom-width: 0.5 * gutters();
 			background: rgba( 255, 0, 0, 0.25 );
-			padding: 0.625rem;
+			padding: 10px;
 			text-align: center;
 			color: #333;
 		}
