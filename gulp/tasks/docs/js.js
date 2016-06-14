@@ -60,7 +60,7 @@ if (!isBaseTheme) {
  * @return {Function}
  */
 var callback = exports.callback = function callback() {
-  return gulp.src(files.source).pipe(expect(config.expect, '*.js')).pipe(shell('jsdoc -c jsdoc.conf.json', config.jsDoc));
+  return gulp.src(files.source).pipe(expect(config.expect, '*.js')).pipe(shell('./node_modules/.bin/jsdoc -c jsdoc.conf.json', config.jsDoc));
 };
 
 // Register the task.
