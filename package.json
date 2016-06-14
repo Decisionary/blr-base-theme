@@ -34,7 +34,7 @@
     "node": "^5.10.0"
   },
   "scripts": {
-    "install-deps": "npm install && bower install",
+    "install-deps": "npm install && bower install && composer install",
     "gulp-compile": "babel gulp-src -d gulp",
     "watch": "gulp watch",
     "build": "gulp build",

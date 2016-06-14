@@ -41,4 +41,4 @@ var callback = exports.callback = function callback() {
 };
 
 // Register the task.
-gulp.task(task, shell.task('phpdoc', config.phpDoc));
+gulp.task(task, shell.task('./vendor/bin/phpdoc', config.phpDoc));
