@@ -2,7 +2,7 @@
   "private": true,
   "name": "@decisionary/blr-base-theme",
   "description": "A base theme for WordPress sites. Based on Sage by Roots.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://github.com/Decisionary/blr-base-theme",
   "repository": {
@@ -63,7 +63,6 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
-    "ink-docstrap": "^1.2.1",
     "jigsass-generic-normalize": "^1.0.6",
     "jigsass-tools-maps": "^1.0.10",
     "jigsass-tools-mq": "^1.5.2",
@@ -72,6 +71,7 @@
     "lodash": "^4.13.1",
     "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
-    "sassdoc": "^2.1.20"
+    "sassdoc": "^2.1.20",
+    "style-sherpa": "^1.0.1"
   }
 }
