@@ -55,6 +55,7 @@
 
 %button--block {
 	@extend %button;
+
 	display: block;
 
 	* + & {
