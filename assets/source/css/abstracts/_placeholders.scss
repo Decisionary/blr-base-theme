@@ -54,10 +54,9 @@
 }
 
 %button--block {
-	@extend %button ;
-        
+	@extend %button;
 	display: block;
-        
+
 	* + & {
 		@include v-spacing;
 	}
