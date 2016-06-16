@@ -16,7 +16,6 @@
 	%menu__item,
 	%menu__link {
 		display: block;
-		border-color: inherit;
 		line-height: 1;
 		font-size: inherit;
 	}
@@ -89,43 +88,136 @@
 
 	position: relative;
 
+	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
+
 	%menu {
-		clear: left;
-		overflow-y: scroll;
-		transition: max-height 0.5s cubic-bezier( 0, 1, 0.5, 1 );
-		height: $height-nav-mobile;
-		max-height: 0;
+		background-color: $background-color-nav-dropdown;
+		color: $color-nav-dropdown;
+
+		@include nav-mobile-only {
+			position: absolute;
+			right: 0;
+			left: 0;
+			clear: left;
+			transition: max-height 0.25s ease-in-out;
+			box-shadow: rgba( 0, 0, 0, 0.6 ) 0 15px 30px;
+			max-height: 0;
+			overflow: hidden;
+
+			&[aria-expanded="true"] {
+				max-height: none;
+			}
+
+			> %menu__item:first-child {
+				border-top: 0;
+			}
+		}
 
 		@include nav-desktop-only {
 			float: left;
 			clear: none;
-			overflow-y: hidden;
-			height: auto;
-			max-height: inherit !important;
+			background-color: transparent;
+			color: inherit;
 		}
 	}
 
 	%menu__item {
-		float: none;
+		@include nav-mobile-only {
+			float: none;
+			border-top: 1px solid transparentize( $color-nav-dropdown, 0.5 );
+		}
 
 		@include nav-desktop-only {
-			float: left;
+			&:hover {
+				> %sub-menu {
+					display: block;
+				}
+			}
 		}
 	}
 
 	%menu__link {
 
-		// Line the left edge of the menu items up with the left edge of the
-		// toggle button icon.
-		padding: {
-			right: 0.5rem;
-			left: 0.5rem;
+		// 1. Line the left edge of the menu items up with the left edge of the
+		//    toggle button icon.
+		@include nav-mobile-only {
+			padding: {
+				right: 0.5rem; // 1
+				left: 0.5rem; // 1
+			}
+			width: 75%;
+			width: calc( 100% - 3em );
 		}
+	}
+
+	%sub-menu {
+		@include z-index( 'nav-sub-menu' );
+
+		display: none;
+		background-color: $background-color-nav-dropdown;
+		width: 100%;
+		color: contrast-color( $background-color-nav-dropdown );
 
 		@include nav-desktop-only {
-			padding: {
-				right: 0.75em;
-				left: 0.75em;
+			position: absolute;
+			box-shadow: rgba( 0, 0, 0, 0.5 ) 4px 4px 6px;
+			padding: $margin-base 0;
+			width: auto;
+
+			%sub-menu {
+				top: -1 * $margin-base;
+				left: 100%;
+			}
+		}
+
+		@include nav-mobile-only {
+			text-indent: $gutter-width;
+
+			%sub-menu {
+				text-indent: 2 * $gutter-width;
+
+				%sub-menu {
+					text-indent: 3 * $gutter-width;
+
+					%sub-menu {
+						text-indent: 4 * $gutter-width;
+					}
+				}
+			}
+		}
+
+		%menu__link {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	%has-children {
+
+		&::after {
+			@include icon();
+
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 3em;
+			text-indent: 0;
+			line-height: 2;
+			content: $fa-var-angle-right;
+
+			@include nav-desktop-only {
+				display: none;
+			}
+		}
+
+		&[aria-expanded="true"] {
+			&::after {
+				content: $fa-var-angle-down;
+			}
+
+			> %sub-menu {
+				display: block;
 			}
 		}
 	}
@@ -142,41 +234,11 @@
 
 		%menu__item {
 			float: left;
-		}
-	}
-
-	%sub-menu {
-		@include z-index( 'nav-sub-menu' );
-
-		display: none;
-		position: absolute;
-		padding: $margin-base 0;
-
-		%has-children {
-			@include icon( $fa-var-angle-right );
-		}
-
-		%sub-menu {
-			top: -1 * $margin-base;
-			left: 100%;
-		}
-
-		%menu__item,
-		%menu__link {
-			display: block;
-			width: 100%;
+			border-top: 0;
 		}
 
 		%menu__link {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-	}
-
-	%menu__item:hover {
-		> %sub-menu {
-			display: block;
+			width: auto;
 		}
 	}
 }

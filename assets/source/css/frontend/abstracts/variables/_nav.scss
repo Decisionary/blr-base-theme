@@ -14,11 +14,6 @@
 /// @type {String}
 $breakpoint-hide-mobile-nav: md;
 
-/// The height of the mobile nav menu when expanded.
-///
-/// @type {Number}
-$height-nav-mobile: 10em;
-
 
 
 // -------------------------------------------------------------------------
@@ -131,102 +126,112 @@ $color-nav-footer-active: $color-nav-footer-hover !default;
 // Background Colors
 // -------------------------------------------------------------------------
 
-/// Default nav menu background color.
+/// Nav bar background color.
+///
+/// @type {Color}
+$background-color-nav-bar: $color-dark !default;
+
+/// Nav dropdown background color.
+///
+/// @type {Color}
+$background-color-nav-dropdown: $color-light !default;
+
+/// Default nav menu item background color.
 ///
 /// @type {Color}
 $background-color-nav-default: inherit !default;
 
-/// Default nav menu background color - hover state.
+/// Default nav menu item background color - hover state.
 ///
 /// @type {Color}
 $background-color-nav-default-hover: $background-color-nav-default !default;
 
-/// Default nav menu background color - focus state.
+/// Default nav menu item background color - focus state.
 ///
 /// @type {Color}
 $background-color-nav-default-focus: $background-color-nav-default !default;
 
-/// Default nav menu background color - active state.
+/// Default nav menu item background color - active state.
 ///
 /// @type {Color}
 $background-color-nav-default-active: $background-color-nav-default !default;
 
-/// Primary nav menu background color.
+/// Primary nav menu item background color.
 ///
 /// @type {Color}
 $background-color-nav-primary: $color-dark !default;
 
-/// Primary nav menu background color - hover state.
+/// Primary nav menu item background color - hover state.
 ///
 /// @type {Color}
 $background-color-nav-primary-hover: $color-black !default;
 
-/// Primary nav menu background color - focus state.
+/// Primary nav menu item background color - focus state.
 ///
 /// @type {Color}
 $background-color-nav-primary-focus: $background-color-nav-primary-hover !default;
 
-/// Primary nav menu background color - active state.
+/// Primary nav menu item background color - active state.
 ///
 /// @type {Color}
 $background-color-nav-primary-active: $background-color-nav-primary-hover !default;
 
-/// Search nav menu background color.
+/// Search nav menu item background color.
 ///
 /// @type {Color}
 $background-color-nav-search: $background-color-header !default;
 
-/// Search nav menu background color - hover state.
+/// Search nav menu item background color - hover state.
 ///
 /// @type {Color}
 $background-color-nav-search-hover: $background-color-nav-search !default;
 
-/// Search nav menu background color - focus state.
+/// Search nav menu item background color - focus state.
 ///
 /// @type {Color}
 $background-color-nav-search-focus: $background-color-nav-search-hover !default;
 
-/// Search nav menu background color - active state.
+/// Search nav menu item background color - active state.
 ///
 /// @type {Color}
 $background-color-nav-search-active: $background-color-nav-search-hover !default;
 
-/// Sidebar nav menu background color.
+/// Sidebar nav menu item background color.
 ///
 /// @type {Color}
 $background-color-nav-sidebar: $color-brand-primary !default;
 
-/// Sidebar nav menu background color - hover state.
+/// Sidebar nav menu item background color - hover state.
 ///
 /// @type {Color}
 $background-color-nav-sidebar-hover: tint-or-shade( $background-color-nav-sidebar, 20% ) !default;
 
-/// Sidebar nav menu background color - focus state.
+/// Sidebar nav menu item background color - focus state.
 ///
 /// @type {Color}
 $background-color-nav-sidebar-focus: $background-color-nav-sidebar-hover !default;
 
-/// Sidebar nav menu background color - active state.
+/// Sidebar nav menu item background color - active state.
 ///
 /// @type {Color}
 $background-color-nav-sidebar-active: $color-dark !default;
 
-/// Footer nav menu background color.
+/// Footer nav menu item background color.
 ///
 /// @type {Color}
 $background-color-nav-footer: $color-dark !default;
 
-/// Footer nav menu background color - hover state.
+/// Footer nav menu item background color - hover state.
 ///
 /// @type {Color}
 $background-color-nav-footer-hover: $background-color-nav-footer !default;
 
-/// Footer nav menu background color - focus state.
+/// Footer nav menu item background color - focus state.
 ///
 /// @type {Color}
 $background-color-nav-footer-focus: $background-color-nav-footer-hover !default;
 
-/// Footer nav menu background color - active state.
+/// Footer nav menu item background color - active state.
 ///
 /// @type {Color}
 $background-color-nav-footer-active: $background-color-nav-footer-hover !default;
