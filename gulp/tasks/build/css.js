@@ -10,6 +10,9 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
+// Utilities
+var path = __require('path');
+
 // Files
 var size = __require('gulp-size');
 var merge = __require('merge-stream');
@@ -21,6 +24,9 @@ var sourcemaps = __require('gulp-sourcemaps');
 var sass = __require('gulp-sass');
 var cssmin = __require('gulp-cssmin');
 var autoprefixer = __require('gulp-autoprefixer');
+
+var currentDir = path.basename(process.cwd());
+var isBaseTheme = 'blr-base-theme' === currentDir;
 
 /**
  * Task name.
@@ -44,7 +50,7 @@ var config = exports.config = {
 	sass: {
 		outputStyle: 'expanded',
 		precision: 10,
-		includePaths: ['../blr-base-theme/assets/source/css', '../blr-base-theme/assets/source/css/frontend', '../blr-base-theme/assets/source/css/admin', 'bower_components', 'node_modules']
+		includePaths: ['bower_components', 'node_modules']
 	},
 
 	autoprefixer: {
@@ -56,6 +62,10 @@ var config = exports.config = {
 	}
 
 };
+
+if (!isBaseTheme) {
+	config.sass.includePaths.unshift('../blr-base-theme/assets/source/css', '../blr-base-theme/assets/source/css/frontend', '../blr-base-theme/assets/source/css/admin', '../blr-base-theme/bower_components', '../blr-base-theme/node_modules');
+}
 
 /**
  * Task files.

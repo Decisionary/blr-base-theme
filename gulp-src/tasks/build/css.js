@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const path   = __require( 'path' );
+
 // Files
 const size       = __require( 'gulp-size' );
 const merge      = __require( 'merge-stream' );
@@ -16,6 +19,9 @@ const sourcemaps = __require( 'gulp-sourcemaps' );
 const sass         = __require( 'gulp-sass' );
 const cssmin       = __require( 'gulp-cssmin' );
 const autoprefixer = __require( 'gulp-autoprefixer' );
+
+const currentDir  = path.basename( process.cwd() );
+const isBaseTheme = ( 'blr-base-theme' === currentDir );
 
 
 /**
@@ -42,9 +48,6 @@ export const config = {
 		outputStyle:  'expanded',
 		precision:    10,
 		includePaths: [
-			'../blr-base-theme/assets/source/css',
-			'../blr-base-theme/assets/source/css/frontend',
-			'../blr-base-theme/assets/source/css/admin',
 			'bower_components',
 			'node_modules',
 		],
@@ -65,6 +68,16 @@ export const config = {
 	},
 
 };
+
+if ( ! isBaseTheme ) {
+	config.sass.includePaths.unshift(
+		'../blr-base-theme/assets/source/css',
+		'../blr-base-theme/assets/source/css/frontend',
+		'../blr-base-theme/assets/source/css/admin',
+		'../blr-base-theme/bower_components',
+		'../blr-base-theme/node_modules'
+	);
+}
 
 
 /**

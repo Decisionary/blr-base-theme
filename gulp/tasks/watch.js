@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 /**
  * @module gulp/tasks/watch
@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", {
 
 // Gulp
 var gulp = __require('gulp');
+
+// Utilities
+var _ = __require('lodash');
 
 // Tasks
 var css = __requireTask('build/css');
@@ -24,6 +27,23 @@ var fonts = __requireTask('build/fonts');
 var task = exports.task = 'watch';
 
 /**
+ * Task config.
+ *
+ * @type {Object}
+ */
+var config = exports.config = {
+	watch: {
+		atomic: 500,
+		interval: 500,
+		usePolling: true,
+		useFsEvents: false,
+		ignoreInitial: true,
+		followSymlinks: false,
+		awaitWriteFinish: true
+	}
+};
+
+/**
  * Get the watch path(s) for a task.
  *
  * @param  {Object} taskModule The imported Gulp task module.
@@ -31,15 +51,15 @@ var task = exports.task = 'watch';
  */
 var getWatchFiles = exports.getWatchFiles = function getWatchFiles(taskModule) {
 
-  if (taskModule.files.watch) {
-    return taskModule.files.watch;
-  }
+	if (!_.isEmpty(taskModule.files.watch)) {
+		return taskModule.files.watch;
+	}
 
-  if (taskModule.files.source) {
-    return taskModule.files.source;
-  }
+	if (!_.isEmpty(taskModule.files.source)) {
+		return taskModule.files.source;
+	}
 
-  return false;
+	return false;
 };
 
 /**
@@ -49,21 +69,21 @@ var getWatchFiles = exports.getWatchFiles = function getWatchFiles(taskModule) {
  */
 var registerWatchTask = exports.registerWatchTask = function registerWatchTask(taskModule) {
 
-  var watchFiles = getWatchFiles(taskModule);
+	var watchFiles = getWatchFiles(taskModule);
 
-  if (watchFiles) {
-    gulp.watch(watchFiles, gulp.series(taskModule.task));
-  }
+	if (watchFiles) {
+		gulp.watch(watchFiles, config.watch, gulp.series(taskModule.task));
+	}
 };
 
 /**
  * Gulp callback for `watch` task.
  */
 var callback = exports.callback = function callback() {
-  registerWatchTask(css);
-  registerWatchTask(js);
-  registerWatchTask(images);
-  registerWatchTask(fonts);
+	registerWatchTask(css);
+	registerWatchTask(js);
+	registerWatchTask(images);
+	registerWatchTask(fonts);
 };
 
 // Register the task.

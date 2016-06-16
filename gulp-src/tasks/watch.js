@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const _ = __require( 'lodash' );
+
 // Tasks
 const css    = __requireTask( 'build/css' );
 const js     = __requireTask( 'build/js' );
@@ -21,6 +24,24 @@ export const task = 'watch';
 
 
 /**
+ * Task config.
+ *
+ * @type {Object}
+ */
+export const config = {
+	watch: {
+		atomic:           500,
+		interval:         500,
+		usePolling:       true,
+		useFsEvents:      false,
+		ignoreInitial:    true,
+		followSymlinks:   false,
+		awaitWriteFinish: true,
+	},
+};
+
+
+/**
  * Get the watch path(s) for a task.
  *
  * @param  {Object} taskModule The imported Gulp task module.
@@ -28,16 +49,17 @@ export const task = 'watch';
  */
 export const getWatchFiles = taskModule => {
 
-	if ( taskModule.files.watch ) {
+	if ( ! _.isEmpty( taskModule.files.watch ) ) {
 		return taskModule.files.watch;
 	}
 
-	if ( taskModule.files.source ) {
+	if ( ! _.isEmpty( taskModule.files.source ) ) {
 		return taskModule.files.source;
 	}
 
 	return false;
 };
+
 
 /**
  * Registers a watch task for a particular set of files.
@@ -49,7 +71,7 @@ export const registerWatchTask = taskModule => {
 	const watchFiles = getWatchFiles( taskModule );
 
 	if ( watchFiles ) {
-		gulp.watch( watchFiles, gulp.series( taskModule.task ) );
+		gulp.watch( watchFiles, config.watch, gulp.series( taskModule.task ) );
 	}
 };
 
