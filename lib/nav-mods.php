@@ -52,11 +52,6 @@ class Nav_Walker extends \Walker_Nav_Menu {
 
 		$element->is_sub_menu_item = ( $depth > 0 );
 
-		$element->is_active = (
-			! empty( $element->url )
-			&& $this->url_compare( $this->archive_url, $element->url )
-		);
-
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}
 
@@ -130,11 +125,6 @@ class Nav_Walker extends \Walker_Nav_Menu {
 
 		// Add base menu item class.
 		$classes[] = 'menu__item';
-
-		// Add active class in cases where WP doesn't set it properly.
-		if ( $item->is_active ) {
-			$classes[] = 'is-active';
-		}
 
 		// Add `is-sub-menu-item` class.
 		if ( $item->is_sub_menu_item ) {
