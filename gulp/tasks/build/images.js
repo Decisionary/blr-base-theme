@@ -10,6 +10,9 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
+// Utilities
+var _ = __require('lodash');
+
 // Files
 var size = __require('gulp-size');
 
@@ -40,9 +43,17 @@ var config = exports.config = {
  * @type {Object}
  */
 var files = exports.files = {
-  source: ['../blr-base-theme/assets/source/images/*', 'assets/source/images/*'],
-  dest: 'assets/dist/images'
+
+  source: [__config.paths.assets.source + '/images/*'],
+
+  dest: __config.paths.assets.dist + '/images'
+
 };
+
+// Includes.
+if (!_.isEmpty(__config.includes.images)) {
+  files.source = _.concat(_.toArray(__config.includes.images), files.source);
+}
 
 /**
  * Gulp callback for `build/images` task.
