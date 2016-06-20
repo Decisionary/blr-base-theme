@@ -19,8 +19,6 @@ includes:
   js:
     admin:
     frontend:
-      - 'bower_components/cookies-js/dist/cookies.js'
-      - 'bower_components/flexibility/dist/flexibility.js'
 
   # Web fonts; will be copied to the fonts folder in your dist path.
   fonts:
