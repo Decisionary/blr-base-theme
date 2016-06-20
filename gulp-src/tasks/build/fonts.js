@@ -35,7 +35,7 @@ export const files = {
 // Includes.
 if ( ! _.isEmpty( __config.includes.fonts ) ) {
 	files.source = _.concat(
-		_.toArray( __config.includes.fonts ),
+		__config.includes.fonts,
 		files.source
 	);
 }

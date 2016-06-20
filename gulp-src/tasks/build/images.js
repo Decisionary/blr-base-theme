@@ -53,7 +53,7 @@ export const files = {
 // Includes.
 if ( ! _.isEmpty( __config.includes.images ) ) {
 	files.source = _.concat(
-		_.toArray( __config.includes.images ),
+		__config.includes.images,
 		files.source
 	);
 }
