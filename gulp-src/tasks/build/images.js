@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const _ = __require( 'lodash' );
+
 // Files
 const size = __require( 'gulp-size' );
 
@@ -38,12 +41,22 @@ export const config = {
  * @type {Object}
  */
 export const files = {
+
 	source: [
-		'../blr-base-theme/assets/source/images/*',
-		'assets/source/images/*',
+		`${ __config.paths.assets.source }/images/*`,
 	],
-	dest: 'assets/dist/images',
+
+	dest: `${ __config.paths.assets.dist }/images`,
+
 };
+
+// Includes.
+if ( ! _.isEmpty( __config.includes.images ) ) {
+	files.source = _.concat(
+		__config.includes.images,
+		files.source
+	);
+}
 
 
 /**

@@ -33,33 +33,16 @@ export const task = 'build/css';
  */
 export const config = {
 
-	paths: {
-		source: 'assets/source/css',
-		dest:   'assets/dist/css',
-	},
-
 	sass: {
 		outputStyle:  'expanded',
 		precision:    10,
-		includePaths: [
-			'../blr-base-theme/assets/source/css',
-			'../blr-base-theme/assets/source/css/frontend',
-			'../blr-base-theme/assets/source/css/admin',
-			'bower_components',
-			'node_modules',
-		],
+		includePaths: __config.includes.sass,
 	},
 
 	postcss: {},
 
 	autoprefixer: {
-		browsers: [
-			'last 2 versions',
-			'android 4',
-			'opera 12',
-			'ie > 8',
-			'> 1%',
-		],
+		browsers: __config.compat.browsers,
 	},
 
 	pxtorem: {
@@ -90,18 +73,22 @@ config.postcss.plugins = [
  * @type {Object}
  */
 export const files = {
-	watch:  `${ config.paths.source }/**/*.scss`,
-	dest:   config.paths.dest,
+
+	watch: `${ __config.paths.assets.source }/css/**/*.scss`,
+
+	dest: `${ __config.paths.assets.dist }/css`,
+
 	source: {
 		admin: [
-			`${ config.paths.source }/admin/**/*.scss`,
-			`!${ config.paths.source }/admin/**/_*.scss`,
+			`${ __config.paths.assets.source }/css/admin/**/*.scss`,
+			`!${ __config.paths.assets.source }/css/admin/**/_*.scss`,
 		],
 		frontend: [
-			`${ config.paths.source }/frontend/**/*.scss`,
-			`!${ config.paths.source }/frontend/**/_*.scss`,
+			`${ __config.paths.assets.source }/css/frontend/**/*.scss`,
+			`!${ __config.paths.assets.source }/css/frontend/**/_*.scss`,
 		],
 	},
+
 };
 
 

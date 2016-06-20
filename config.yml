@@ -1,0 +1,38 @@
+
+# Paths
+paths:
+
+  # The base source and dist paths to use for all assets.
+  assets:
+    source: 'assets/source'
+    dist:   'assets/dist'
+
+# Libraries, imports, included files, etc.
+includes:
+
+  # Sass libraries; can be loaded with @import.
+  sass:
+    - 'bower_components'
+    - 'node_modules'
+
+  # JS libraries; will be prepended to either `admin.js` or `app.js`.
+  js:
+    admin:
+    frontend:
+
+  # Web fonts; will be copied to the fonts folder in your dist path.
+  fonts:
+    - 'bower_components/font-awesome/fonts/fontawesome-webfont.*'
+
+  # Images; will be optimized and copied to the images folder in your dist path.
+  images:
+
+# Compatibility & support
+compat:
+
+  # Autoprefixer will make sure your CSS works with these browsers
+  browsers:
+    - 'last 2 versions'
+    - 'android 4'
+    - 'ie >= 8'
+    - '> 1%'
