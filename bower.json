@@ -29,6 +29,8 @@
     "tests"
   ],
   "devDependencies": {
+    "cookies-js": "^1.2.2",
+    "flexibility": "^1.0.6",
     "font-awesome": "^4.6.1",
     "html5shiv": "^3.7.3",
     "Placeholder": "UmbraEngineering/Placeholder",

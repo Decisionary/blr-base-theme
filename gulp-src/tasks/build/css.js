@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const _ = __require( 'lodash' );
+
 // Files
 const size       = __require( 'gulp-size' );
 const merge      = __require( 'merge-stream' );
@@ -57,56 +60,81 @@ export const config = {
 		lineBreak: true,
 	},
 
+	oldie: {
+		rgba: {
+			filter: true,
+		},
+	},
+
 	size: {
 		title: 'Sass:',
 	},
 
 };
 
-config.postcss.plugins = [
+const postcssPlugins = {
 
-	// Automatically add vendor prefixes.
-	__require( 'autoprefixer' )( config.autoprefixer ),
+	// Default plugins.
+	defaults: [
 
-	// Enables the `initial` keyword.
-	// Resets any property to its default value (e.g. `border: initial`).
-	__require( 'postcss-initial' ),
+		// Automatically add vendor prefixes.
+		__require( 'autoprefixer' )( config.autoprefixer ),
 
-	// Enables the `:matches()` pseudo-class.
-	// Converts any selector that uses `:matches()` into separate selectors.
-	// e.g. `a:matches( .b, .c ) { ... }` becomes `a.b, a.c { ... }`.
-	__require( 'postcss-selector-matches' )( config.selectorMatches ),
+		// Enables the `initial` keyword.
+		// Resets any property to its default value (e.g. `border: initial`).
+		__require( 'postcss-initial' ),
 
-	// Enables the `:enter` psuedo-class.
-	// Targets `:focus` and `:hover`.
-	__require( 'postcss-pseudo-class-enter' ),
+		// Enables the `:matches()` pseudo-class.
+		// Converts any selector that uses `:matches()` into separate selectors.
+		// e.g. `a:matches( .b, .c ) { ... }` becomes `a.b, a.c { ... }`.
+		__require( 'postcss-selector-matches' )( config.selectorMatches ),
 
-	// Enables the `:any-link` pseudo-class.
-	// Targets `:link` and `:visited`.
-	__require( 'postcss-pseudo-class-any-link' ),
+		// Enables the `:enter` psuedo-class.
+		// Targets `:focus` and `:hover`.
+		__require( 'postcss-pseudo-class-enter' ),
 
-	// Enables the `:any-button` pseudo-class.
-	// Targets `button` elements and `button`, `reset`, and `submit` inputs.
-	__require( 'postcss-pseudo-class-any-button' ),
+		// Enables the `:any-link` pseudo-class.
+		// Targets `:link` and `:visited`.
+		__require( 'postcss-pseudo-class-any-link' ),
 
-	// Combines media query blocks whenever possible.
-	__require( 'css-mqpacker' ),
+		// Enables the `:any-button` pseudo-class.
+		// Targets `button` elements and `button`, `reset`, and `submit` inputs.
+		__require( 'postcss-pseudo-class-any-button' ),
 
-	// Converts `px` values in media queries to `em` values.
-	__require( 'postcss-em-media-query' ),
+		// Combines media query blocks whenever possible.
+		__require( 'css-mqpacker' ),
 
-	// Adds equivalent rem values for all pixel values. The original pixel
-	// values are left intact as IE 8 doesn't support rems and IE 9 & 10 don't
-	// support rems in the `font` shorthand property or in pseudo elements.
-	__require( 'postcss-pxtorem' )( config.pxtorem ),
+		// Converts `px` values in media queries to `em` values.
+		__require( 'postcss-em-media-query' ),
 
-	// Adds `-js-display` rules where needed `for` the Flexibility polyfill.
-	// Required for IE 8 and IE 9 support.
-	__require( 'postcss-flexibility' ),
+		// Adds equivalent rem values for all pixel values. The original pixel
+		// values are kept since IE 8 doesn't support rems and IE 9 & 10 don't
+		// support rems in the `font` shorthand property or in pseudo elements.
+		__require( 'postcss-pxtorem' )( config.pxtorem ),
 
-	// Automatically fixes many common flexbox issues.
-	__require( 'postcss-flexbugs-fixes' ),
-];
+		// Adds `-js-display` rules where needed `for` the Flexibility polyfill.
+		// Required for IE 8 and IE 9 support.
+		__require( 'postcss-flexibility' ),
+
+		// Automatically fixes many common flexbox issues.
+		__require( 'postcss-flexbugs-fixes' ),
+	],
+
+	// IE 8 compatibility plugins.
+	oldie: [
+
+		// - Flattens media queries.
+		// - Removes the `:not()` pseudo-class.
+		// - Converts `:root` to `html`.
+		// - Converts `rem` values to `px` values.
+		// - Converts `opacity` rules to `filter` rules.
+		// - Converts `::` pseudo-elements to the old `:` style.
+		// - Converts `:nth-child()` to `:first-child + * + ...`.
+		// - Converts `rgba()` colors to `filter` gradients and/or hex colors.
+		__require( 'oldie' )( config.oldie ),
+	],
+
+};
 
 
 /**
@@ -144,26 +172,17 @@ export const files = {
  */
 export const compile = ( source, destFileName, oldie = false ) => {
 
-	const postcssPlugins = config.postcss.plugins;
+	let plugins = postcssPlugins.defaults;
 
 	if ( oldie ) {
-
-		// - Flattens media queries, replaces `:root` with `html`.
-		// - Converts `rem` values to `px` values.
-		// - Converts `opacity` rules to `filter` rules.
-		// - Converts `::` pseudo-elements to the old `:` style.
-		// - Converts `rgba` colors to `filter` gradients for background colors
-		//   and hex colors everywhere else.
-		// - Removes the `:not()` pseudo-class.
-		// - Converts `:nth-child()` to `:first-child + * + ...`.
-		postcssPlugins.push( __require( 'oldie' ) );
+		plugins = _.concat( plugins, postcssPlugins.oldie );
 	}
 
 	return gulp.src( source )
 		.pipe( sourcemaps.init() )
 		.pipe( sass( config.sass ) )
 		.pipe( concat( destFileName ) )
-		.pipe( postcss( postcssPlugins ) )
+		.pipe( postcss( plugins ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( cssmin() )
 		.pipe( size( config.size ) )

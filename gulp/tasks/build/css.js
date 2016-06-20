@@ -10,6 +10,9 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
+// Utilities
+var _ = __require('lodash');
+
 // Files
 var size = __require('gulp-size');
 var merge = __require('merge-stream');
@@ -60,44 +63,79 @@ var config = exports.config = {
 		lineBreak: true
 	},
 
+	oldie: {
+		rgba: {
+			filter: true
+		}
+	},
+
 	size: {
 		title: 'Sass:'
 	}
 
 };
 
-config.postcss.plugins = [
+var postcssPlugins = {
 
-// Automatically add vendor prefixes.
-__require('autoprefixer')(config.autoprefixer),
+	// Default plugins.
+	defaults: [
 
-// Enables the `:matches()` pseudo-class.
-__require('postcss-selector-matches')(config.selectorMatches),
+	// Automatically add vendor prefixes.
+	__require('autoprefixer')(config.autoprefixer),
 
-// Enables the `:any-link` pseudo-class. Matches `:link` and `:visited`.
-__require('postcss-pseudo-class-any-link'),
+	// Enables the `initial` keyword.
+	// Resets any property to its default value (e.g. `border: initial`).
+	__require('postcss-initial'),
 
-// Enables the `:enter` psuedo-class. Matches `:focus` and `:hover`.
-__require('postcss-pseudo-class-enter'),
+	// Enables the `:matches()` pseudo-class.
+	// Converts any selector that uses `:matches()` into separate selectors.
+	// e.g. `a:matches( .b, .c ) { ... }` becomes `a.b, a.c { ... }`.
+	__require('postcss-selector-matches')(config.selectorMatches),
 
-// Enables the `:any-button` pseudo-class. Matches `button` elements and
-// `button`, `reset`, and `submit` input types.
-__require('postcss-pseudo-class-any-button'),
+	// Enables the `:enter` psuedo-class.
+	// Targets `:focus` and `:hover`.
+	__require('postcss-pseudo-class-enter'),
 
-// Combines media query blocks whenever possible.
-__require('css-mqpacker'),
+	// Enables the `:any-link` pseudo-class.
+	// Targets `:link` and `:visited`.
+	__require('postcss-pseudo-class-any-link'),
 
-// Converts `px` values in media queries to `em` values.
-__require('postcss-em-media-query'),
+	// Enables the `:any-button` pseudo-class.
+	// Targets `button` elements and `button`, `reset`, and `submit` inputs.
+	__require('postcss-pseudo-class-any-button'),
 
-// Add equivalent `rem` values for all `px` values.
-// e.g. `16px` becomes `1rem`, `12px` becomes `0.75rem`, etc.
-__require('postcss-pxtorem')(config.pxtorem),
+	// Combines media query blocks whenever possible.
+	__require('css-mqpacker'),
 
-// Adds a `-js-display: flex;` rule wherever `display: flex;` is used;
-// this activates the Flexibility polyfill.
-// Required for IE 8 / IE 9 support.
-__require('postcss-flexibility')];
+	// Converts `px` values in media queries to `em` values.
+	__require('postcss-em-media-query'),
+
+	// Adds equivalent rem values for all pixel values. The original pixel
+	// values are kept since IE 8 doesn't support rems and IE 9 & 10 don't
+	// support rems in the `font` shorthand property or in pseudo elements.
+	__require('postcss-pxtorem')(config.pxtorem),
+
+	// Adds `-js-display` rules where needed `for` the Flexibility polyfill.
+	// Required for IE 8 and IE 9 support.
+	__require('postcss-flexibility'),
+
+	// Automatically fixes many common flexbox issues.
+	__require('postcss-flexbugs-fixes')],
+
+	// IE 8 compatibility plugins.
+	oldie: [
+
+	// - Flattens media queries.
+	// - Removes the `:not()` pseudo-class.
+	// - Converts `:root` to `html`.
+	// - Converts `rem` values to `px` values.
+	// - Converts `opacity` rules to `filter` rules.
+	// - Converts `::` pseudo-elements to the old `:` style.
+	// - Converts `:nth-child()` to `:first-child + * + ...`.
+	// - Converts `rgba()` colors to `filter` gradients and/or hex colors.
+	__require('oldie')(config.oldie)]
+
+};
 
 /**
  * Task files.
@@ -129,13 +167,13 @@ var compile = exports.compile = function compile(source, destFileName) {
 	var oldie = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
 
 
-	var postcssPlugins = config.postcss.plugins;
+	var plugins = postcssPlugins.defaults;
 
 	if (oldie) {
-		postcssPlugins.push(__require('oldie'));
+		plugins = _.concat(plugins, postcssPlugins.oldie);
 	}
 
-	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(postcss(postcssPlugins)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(postcss(plugins)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
 };
 
 /**

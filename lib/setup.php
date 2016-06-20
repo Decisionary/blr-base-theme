@@ -225,7 +225,9 @@ function assets() {
 	wp_deregister_style( 'et-open-sans-700' );
 
 	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
-	$version  = $is_debug ? time() : null;
+	$version  = $is_debug ? time()    : null;
+	$css_ext  = $is_debug ? 'min.css' : 'css';
+	$js_ext   = $is_debug ? 'min.js'  : 'js';
 
 	$load_comment_js = (
 		is_single()
@@ -237,25 +239,54 @@ function assets() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	if ( file_exists( Assets\css_path( 'app.css' ) ) ) {
+	// Frontend CSS.
+	if ( file_exists( Assets\css_path( "app.{$css_ext}" ) ) ) {
 
 		wp_enqueue_style(
 			'blr/main',
-			Assets\css_url( 'app.css' ),
+			Assets\css_url( "app.{$css_ext}" ),
 			apply_filters( 'blr/assets/css-deps', [] ),
 			$version
 		);
 	}
 
-	if ( file_exists( Assets\js_path( 'app.js' ) ) ) {
+	// Frontend CSS for IE < 9.
+	if ( file_exists( Assets\css_path( "app.oldie.{$css_ext}" ) ) ) {
+
+		wp_enqueue_style(
+			'blr/oldie',
+			Assets\css_url( "app.oldie.{$css_ext}" ),
+			apply_filters( 'blr/assets/css-deps', [] ),
+			$version
+		);
+
+		wp_style_add_data( 'blr/oldie', 'conditional', 'lt IE 9' );
+	}
+
+	// Frontend JS.
+	if ( file_exists( Assets\js_path( "app.{$js_ext}" ) ) ) {
 
 		wp_enqueue_script(
 			'blr/main',
-			Assets\js_url( 'app.js' ),
+			Assets\js_url( "app.{$js_ext}" ),
 			apply_filters( 'blr/assets/js-deps', [ 'jquery' ] ),
 			$version,
 			true
 		);
+	}
+
+	// Frontend JS for IE < 9.
+	if ( file_exists( Assets\js_path( "oldie.{$js_ext}" ) ) ) {
+
+		wp_enqueue_script(
+			'blr/oldie',
+			Assets\js_url( "oldie.{$js_ext}" ),
+			apply_filters( 'blr/assets/js-deps', [ 'jquery' ] ),
+			$version,
+			true
+		);
+
+		wp_script_add_data( 'blr/oldie', 'conditional', 'lt IE 9' );
 	}
 }
 
