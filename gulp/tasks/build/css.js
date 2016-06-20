@@ -20,7 +20,7 @@ var sourcemaps = __require('gulp-sourcemaps');
 // CSS / Sass
 var sass = __require('gulp-sass');
 var cssmin = __require('gulp-cssmin');
-var autoprefixer = __require('gulp-autoprefixer');
+var postcss = __require('gulp-postcss');
 
 /**
  * Task name.
@@ -47,8 +47,15 @@ var config = exports.config = {
 		includePaths: ['../blr-base-theme/assets/source/css', '../blr-base-theme/assets/source/css/frontend', '../blr-base-theme/assets/source/css/admin', 'bower_components', 'node_modules']
 	},
 
+	postcss: {},
+
 	autoprefixer: {
 		browsers: ['last 2 versions', 'android 4', 'opera 12', 'ie > 8', '> 1%']
+	},
+
+	pxtorem: {
+		unitPrecision: 10,
+		propWhiteList: []
 	},
 
 	size: {
@@ -56,6 +63,8 @@ var config = exports.config = {
 	}
 
 };
+
+config.postcss.plugins = [__require('autoprefixer')(config.autoprefixer), __require('postcss-pxtorem')(config.pxtorem), __require('css-mqpacker'), __require('postcss-flexibility'), __require('postcss-em-media-query'), __require('postcss-nested-ancestors'), __require('postcss-pseudo-class-any-button')];
 
 /**
  * Task files.
@@ -79,7 +88,7 @@ var files = exports.files = {
  * @return {Stream}                    A Gulp stream.
  */
 var compile = exports.compile = function compile(source, destFileName) {
-	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(autoprefixer(config.autoprefixer)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(postcss(config.postcss.plugins)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
 };
 
 /**
