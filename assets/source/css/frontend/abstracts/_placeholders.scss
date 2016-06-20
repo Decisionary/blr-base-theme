@@ -20,15 +20,16 @@
 }
 
 %button-group {
-	@include susy-clearfix;
 
-	text-align: center;
-	word-spacing: -1ch;
-	font-family: monospace, monospace;
+	display: -js-flex; // for the flexbox polyfill
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 0.5em;
 
-	%button + %button {
-		margin-top: 0;
-		margin-left: $padding-base;
+	%button {
+		margin: 0.5em;
+		margin-bottom: 0;
 	}
 }
 
@@ -39,7 +40,7 @@
 		background-color: $background-color-button-default;
 		cursor: pointer;
 		user-select: none;
-		padding: 5px 25px;
+		padding: 5px 20px;
 		vertical-align: middle;
 		text-align: center;
 		text-decoration: none;
