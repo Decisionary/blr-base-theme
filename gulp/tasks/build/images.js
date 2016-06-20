@@ -52,7 +52,7 @@ var files = exports.files = {
 
 // Includes.
 if (!_.isEmpty(__config.includes.images)) {
-  files.source = _.concat(_.toArray(__config.includes.images), files.source);
+  files.source = _.concat(__config.includes.images, files.source);
 }
 
 /**
