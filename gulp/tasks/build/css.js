@@ -49,8 +49,15 @@ var config = exports.config = {
 	},
 
 	pxtorem: {
+		replace: false,
+		mediaQuery: false,
+		minPixelValue: 4,
 		unitPrecision: 10,
 		propWhiteList: []
+	},
+
+	selectorMatches: {
+		lineBreak: true
 	},
 
 	size: {
@@ -59,7 +66,38 @@ var config = exports.config = {
 
 };
 
-config.postcss.plugins = [__require('autoprefixer')(config.autoprefixer), __require('postcss-pxtorem')(config.pxtorem), __require('css-mqpacker'), __require('postcss-flexibility'), __require('postcss-em-media-query'), __require('postcss-nested-ancestors'), __require('postcss-pseudo-class-any-button')];
+config.postcss.plugins = [
+
+// Automatically add vendor prefixes.
+__require('autoprefixer')(config.autoprefixer),
+
+// Enables the `:matches()` pseudo-class.
+__require('postcss-selector-matches')(config.selectorMatches),
+
+// Enables the `:any-link` pseudo-class. Matches `:link` and `:visited`.
+__require('postcss-pseudo-class-any-link'),
+
+// Enables the `:enter` psuedo-class. Matches `:focus` and `:hover`.
+__require('postcss-pseudo-class-enter'),
+
+// Enables the `:any-button` pseudo-class. Matches `button` elements and
+// `button`, `reset`, and `submit` input types.
+__require('postcss-pseudo-class-any-button'),
+
+// Combines media query blocks whenever possible.
+__require('css-mqpacker'),
+
+// Converts `px` values in media queries to `em` values.
+__require('postcss-em-media-query'),
+
+// Add equivalent `rem` values for all `px` values.
+// e.g. `16px` becomes `1rem`, `12px` becomes `0.75rem`, etc.
+__require('postcss-pxtorem')(config.pxtorem),
+
+// Adds a `-js-display: flex;` rule wherever `display: flex;` is used;
+// this activates the Flexibility polyfill.
+// Required for IE 8 / IE 9 support.
+__require('postcss-flexibility')];
 
 /**
  * Task files.
@@ -84,10 +122,20 @@ var files = exports.files = {
  *
  * @param  {String|Array} source       A valid source path or array of paths.
  * @param  {String}       destFileName The filename to use for the compiled file.
+ * @param  {Boolean}      oldie        Optional. Set to true for IE 8 support.
  * @return {Stream}                    A Gulp stream.
  */
 var compile = exports.compile = function compile(source, destFileName) {
-	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(postcss(config.postcss.plugins)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+	var oldie = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+
+
+	var postcssPlugins = config.postcss.plugins;
+
+	if (oldie) {
+		postcssPlugins.push(__require('oldie'));
+	}
+
+	return gulp.src(source).pipe(sourcemaps.init()).pipe(sass(config.sass)).pipe(concat(destFileName)).pipe(postcss(postcssPlugins)).pipe(gulp.dest(files.dest)).pipe(cssmin()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
 };
 
 /**
@@ -96,7 +144,7 @@ var compile = exports.compile = function compile(source, destFileName) {
  * @return {Function}
  */
 var callback = exports.callback = function callback() {
-	return merge(compile(files.source.frontend, 'app.css'), compile(files.source.admin, 'admin.css'));
+	return merge(compile(files.source.frontend, 'app.css'), compile(files.source.admin, 'admin.css'), compile(files.source.frontend, 'app.oldie.css', true), compile(files.source.admin, 'admin.oldie.css', true));
 };
 
 // Register the task.

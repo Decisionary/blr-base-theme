@@ -20,8 +20,6 @@
 }
 
 %button-group {
-
-	display: -js-flex; // for the flexbox polyfill
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

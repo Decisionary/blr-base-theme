@@ -7,7 +7,6 @@
 .breadcrumbs {
 	@extend %content-section;
 
-	display: -js-flex;
 	display: flex;
 	border: 1px solid $border-color-content;
 	border-bottom: 0;
