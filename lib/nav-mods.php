@@ -25,7 +25,6 @@ class Nav_Walker extends \Walker_Nav_Menu {
 	public function __construct() {
 
 		add_filter( 'nav_menu_item_id', '__return_null' );
-		add_filter( 'wp_nav_menu_items', [ $this, 'menu_items' ], 10, 2 );
 		add_filter( 'nav_menu_css_class', [ $this, 'menu_item_classes' ], 10, 2 );
 		add_filter( 'nav_menu_link_attributes', [ $this, 'menu_link_atts' ], 10, 2 );
 
@@ -53,56 +52,6 @@ class Nav_Walker extends \Walker_Nav_Menu {
 		$element->is_sub_menu_item = ( $depth > 0 );
 
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
-	}
-
-	/**
-	 * Filter nav menu items.
-	 *
-	 * @since 0.5.1
-	 *
-	 * @param  string $items Nav menu items.
-	 * @param  object $args  Nav menu args.
-	 * @return string        Updated nav menu items.
-	 */
-	public function menu_items( $items, $args ) {
-
-		if ( 'nav-primary' === $args->theme_location ) {
-
-			$trial_link  = apply_filters( 'blr/user-nav/trial-url', home_url( '/trial' ) );
-			$login_link  = apply_filters( 'blr/user-nav/login-url', home_url( '/login' ) );
-			$logout_link = apply_filters( 'blr/user-nav/logout-url', home_url( '/logout' ) );
-
-			$action = 'nav-primary-custom-menu-items';
-
-			if ( did_action( $action ) ) {
-				return $items;
-			}
-
-			do_action( $action );
-
-			$toggle_item = '<li class="menu__item">
-				<a href="#" role="button" class="nav-toggle">
-					<span class="nav-toggle__icon"></span>
-				</a>
-			</li>';
-
-			$user_menu = '<ul class="menu menu--user">
-				<li class="menu__item menu__item--trial">
-					<a class="menu__link" href="' . esc_url( $trial_link ) . '">
-						Free Trial
-					</a>
-				</li>
-				<li class="menu__item menu__item--login">
-					<a class="menu__link" href="' . esc_url( $login_link ) . '">
-						Sign In
-					</a>
-				</li>
-			</ul>';
-
-			$items = $toggle_item . $items . $user_menu;
-		}
-
-		return $items;
 	}
 
 	/**
