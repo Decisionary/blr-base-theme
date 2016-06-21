@@ -65,7 +65,7 @@ function widgets_init() {
 		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
 		'after_title'   => '</h3><div class="widget__content">',
-		'after_widget'  => '</section>',
+		'after_widget'  => '</div></section>',
 	];
 
 	register_sidebar(
@@ -225,9 +225,9 @@ function assets() {
 	wp_deregister_style( 'et-open-sans-700' );
 
 	$is_debug = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
-	$version  = $is_debug ? time()    : null;
-	$css_ext  = $is_debug ? 'min.css' : 'css';
-	$js_ext   = $is_debug ? 'min.js'  : 'js';
+	$version  = $is_debug ? time() : null;
+	$css_ext  = $is_debug ? 'css'  : 'min.css';
+	$js_ext   = $is_debug ? 'js'   : 'min.js';
 
 	$load_comment_js = (
 		is_single()

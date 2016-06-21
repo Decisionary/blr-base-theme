@@ -31,10 +31,13 @@
 	@include susy-clearfix;
 	@include container;
 
+	width: 100%;
+	max-width: none; // Required for layout to work in IE 8.
+
 	@each $key, $value in $breakpoints {
 		@if $value > 0 {
 			@include breakpoint( $key ) {
-				max-width: map-get( $container-widths, $key );
+				width: map-get( $container-widths, $key );
 			}
 		}
 	}

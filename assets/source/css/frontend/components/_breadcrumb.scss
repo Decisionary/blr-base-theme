@@ -17,13 +17,14 @@
 
 .breadcrumb {
 	display: block;
-	float: left;
-	border-left: 1px solid $border-color-content;
 	padding: 0 15px;
-	min-width: 48px;
 	height: 48px;
 	line-height: 48px;
 	font-size: $font-size-large;
+
+	+ .breadcrumb {
+		border-left: 1px solid $border-color-content;
+	}
 
 	&:last-child {
 		width: auto;
@@ -37,7 +38,6 @@
 }
 
 .breadcrumb--icon {
-	border-left: 0;
 	background-color: $color-brand-primary;
 	text-align: center;
 	color: contrast-color( $color-brand-primary );
@@ -51,9 +51,10 @@
 }
 
 .breadcrumb--trail {
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+
 	[property="itemListElement"] > [property="name"] {
 		font-weight: bold;
 	}
