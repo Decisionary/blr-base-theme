@@ -5,6 +5,9 @@
 To compile the documentation for BLR Base Theme, run the following commands:
 
 ```sh
+# Replace with the actual path to the blr-base-theme folder.
+cd /path/to/blr-base-theme
+
 npm run install-deps
 npm run build
 npm run docs
