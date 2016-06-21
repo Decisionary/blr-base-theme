@@ -283,7 +283,7 @@ function assets() {
 			Assets\js_url( "oldie.{$js_ext}" ),
 			apply_filters( 'blr/assets/js-deps', [ 'jquery' ] ),
 			$version,
-			true
+			false
 		);
 
 		wp_script_add_data( 'blr/oldie', 'conditional', 'lt IE 9' );
