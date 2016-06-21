@@ -1,4 +1,5 @@
 ---
   globals:
-    __require: false
+    __config:      false
+    __require:     false
     __requireTask: false
