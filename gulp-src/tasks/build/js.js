@@ -6,7 +6,8 @@
 const gulp = __require( 'gulp' );
 
 // Utilities
-const _ = __require( 'lodash' );
+const _      = __require( 'lodash' );
+const gulpif = __require( 'gulp-if' );
 
 // Files
 const size       = __require( 'gulp-size' );
@@ -93,7 +94,7 @@ export const compile = ( source, destFileName ) =>
 	gulp.src( source )
 		.pipe( sourcemaps.init() )
 		.pipe( concat( destFileName ) )
-		.pipe( babel() )
+		.pipe( gulpif( 'oldie.js' !== destFileName, babel() ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( uglify() )
 		.pipe( size( config.size ) )

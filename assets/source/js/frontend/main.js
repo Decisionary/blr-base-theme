@@ -42,6 +42,11 @@
 
 			onReady() {
 
+				// Initialize the placeholder polyfill if needed.
+				if ( ( document.placeholderPolyfill || {} ).active ) {
+					document.placeholderPolyfill();
+				}
+
 				// Make sure the nav menu block exists.
 				const $nav = $( '.nav--primary' );
 

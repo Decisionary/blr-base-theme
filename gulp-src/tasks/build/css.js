@@ -64,6 +64,9 @@ export const config = {
 		rgba: {
 			filter: true,
 		},
+		media: {
+			width: 1124,
+		},
 	},
 
 	size: {

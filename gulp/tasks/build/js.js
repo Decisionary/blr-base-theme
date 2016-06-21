@@ -12,6 +12,7 @@ var gulp = __require('gulp');
 
 // Utilities
 var _ = __require('lodash');
+var gulpif = __require('gulp-if');
 
 // Files
 var size = __require('gulp-size');
@@ -81,7 +82,7 @@ if (!_.isEmpty(__config.includes.js.frontend)) {
  * @return {Stream}                    A Gulp stream.
  */
 var compile = exports.compile = function compile(source, destFileName) {
-	return gulp.src(source).pipe(sourcemaps.init()).pipe(concat(destFileName)).pipe(babel()).pipe(gulp.dest(files.dest)).pipe(uglify()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+	return gulp.src(source).pipe(sourcemaps.init()).pipe(concat(destFileName)).pipe(gulpif('oldie.js' !== destFileName, babel())).pipe(gulp.dest(files.dest)).pipe(uglify()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
 };
 
 /**

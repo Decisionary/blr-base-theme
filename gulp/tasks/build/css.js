@@ -66,6 +66,9 @@ var config = exports.config = {
 	oldie: {
 		rgba: {
 			filter: true
+		},
+		media: {
+			width: 1124
 		}
 	},
 
