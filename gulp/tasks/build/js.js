@@ -38,11 +38,6 @@ var task = exports.task = 'build/js';
  */
 var config = exports.config = {
 
-	paths: {
-		source: 'assets/source/js',
-		dest: 'assets/dist/js'
-	},
-
 	size: {
 		title: 'JS:'
 	}
@@ -55,28 +50,26 @@ var config = exports.config = {
  * @type {Object}
  */
 var files = exports.files = {
-	watch: config.paths.source + '/**/*.js',
-	dest: config.paths.dest,
-	libs: {
-		admin: [],
-		frontend: []
-	},
+
+	watch: __config.paths.assets.source + '/js/**/*.js',
+
+	dest: __config.paths.assets.dist + '/js',
+
 	source: {
-		admin: ['../blr-base-theme/assets/source/js/admin/**/*.js', config.paths.source + '/admin/**/*.js'],
-		frontend: ['../blr-base-theme/assets/source/js/frontend/**/*.js', config.paths.source + '/frontend/**/*.js']
+		admin: [__config.paths.assets.source + '/js/admin/**/*.js'],
+		frontend: [__config.paths.assets.source + '/js/frontend/**/*.js']
 	}
+
 };
 
-var taskConfig = (global.gulpConfig || {}).js || {};
+// Admin includes.
+if (!_.isEmpty(__config.includes.js.admin)) {
+	files.source.admin = _.concat(__config.includes.js.admin, files.source.admin);
+}
 
-if (taskConfig.libs) {
-	if (taskConfig.libs.admin) {
-		files.source.admin = _.concat(_.toArray(taskConfig.libs.admin), files.source.admin);
-	}
-
-	if (taskConfig.libs.frontend) {
-		files.source.frontend = _.concat(_.toArray(taskConfig.libs.frontend), files.source.frontend);
-	}
+// Frontend includes.
+if (!_.isEmpty(__config.includes.js.frontend)) {
+	files.source.frontend = _.concat(__config.includes.js.frontend, files.source.frontend);
 }
 
 /**

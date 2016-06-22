@@ -48,6 +48,10 @@ function body_class( $classes ) {
 		$classes[] = 'has-footer-logo';
 	}
 
+	if ( isset( $_REQUEST['print'] ) ) {
+		$classes[] = 'printer-friendly';
+	}
+
 	// Remove any duplicate entries.
 	$classes = array_unique( $classes );
 
