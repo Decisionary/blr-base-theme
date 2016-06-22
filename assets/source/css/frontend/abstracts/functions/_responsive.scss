@@ -6,26 +6,44 @@
 
 
 
-/// Takes a valid breakpoint name and returns its width.
-/// Returns null if the breakpoint is not defined.
+/// Takes either a breakpoint name or a numeric value and returns a breakpoint
+/// width for use in media queries. Returns false if breakpoint name is not
+/// defined in the `$breakpoints` map or if its value is set to `disabled`.
 ///
-/// @param {String} $breakpoint - The breakpoint to get the width for.
+/// @param {String|Number} $breakpoint - The breakpoint name or width.
 /// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
 ///
-/// @return {Number}
+/// @return {Number|Boolean}
 @function get-breakpoint( $breakpoint, $min-max: 'min' ) {
 
-	@if not map-has-key( $breakpoints, $breakpoint ) {
-		@warn "`#{$breakpoint}` is not a valid breakpoint name.";
-		@return null;
+	// Return breakpoint if it's already a number value.
+	@if type-of( $breakpoint ) == 'number' {
+		@return $breakpoint;
 	}
 
+	// Return false if breakpoint isn't defined in the `$breakpoints` map.
+	@if not map-has-key( $breakpoints, $breakpoint ) {
+		@warn "`#{$breakpoint}` is not a valid breakpoint name.";
+		@return false;
+	}
+
+	// Get the breakpoint width.
 	$width: map-get( $breakpoints, $breakpoint );
 
+	// Return false if the breakpoint is disabled.
+	@if $width == 'disabled' {
+		@return false;
+	}
+
+	// If breakpoint width is negative, flip it to a positive value.
+	$width: abs( $width );
+
+	// Make sure `min-width` and `max-width` media queries don't overlap.
 	@if 'max' == $min-max {
 		$width: $width - 0.000001rem;
 	}
 
+	// Return the breakpoint width.
 	@return $width;
 }
 

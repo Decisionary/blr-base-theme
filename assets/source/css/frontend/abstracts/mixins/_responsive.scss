@@ -10,9 +10,32 @@
 	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
 	$width: get-breakpoint( $breakpoint, $min-max );
 
-	@if $width {
-		@media( $type: $width ) {
+	// Make sure breakpoint is both valid and enabled.
+	@if $width != false {
+
+		// Wrap nested content in a media query if breakpoint width > 0.
+		@if $width == 0 {
 			@content;
+		} @else {
+			@media( $type: $width ) {
+				@content;
+			}
+		}
+	}
+}
+
+@mixin blr-container {
+	@include susy-clearfix;
+
+	margin-right: auto;
+	margin-left: auto;
+	width: 100%;
+
+	@each $key, $value in $container-widths {
+		@if $value != 'disabled' and $value != 0 {
+			@include breakpoint( $key ) {
+				width: abs( $value );
+			}
 		}
 	}
 }
