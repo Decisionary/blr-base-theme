@@ -8,6 +8,22 @@
 // Grid / Layout
 // -------------------------------------------------------------------------
 
+/// Default theme features.
+///
+/// @type {Map}
+/// @access private
+$_theme-features: (
+	responsive: (
+		combine-sidebars: true,
+	),
+);
+
+/// Allows the child theme to enable / disable default theme features.
+///
+/// @type {Map}
+$theme-features: $_theme-features !default;
+$theme-features: map-extend( $_theme-features, $theme-features );
+
 /// Z-index map.
 ///
 /// @type {Map}
