@@ -4,6 +4,39 @@
 
 
 
+$_blr-placeholders: ();
+
+/// Stores a placeholder for later use.
+///
+/// @param {String} $key - A key used to identify the placeholder.
+/// @return {String} A unique placeholder name.
+@function blr-placeholder-set( $key ) {
+
+	$id: blr-placeholder-get( $key );
+
+	@if not $id {
+		$id: unique-id();
+		$_blr-placeholders: map-merge( $_blr-placeholders, ( $key: $id ) ) !global;
+	}
+
+	@return $id;
+}
+
+
+/// Returns a stored placeholder if it exists, or false if not.
+///
+/// @param {String} $key - A key used to identify the placeholder.
+/// @return {String | Boolean} The placeholder name if it exists; false if not.
+@function blr-placeholder-get( $key ) {
+
+	@if map-has-key( $_blr-placeholders, $key ) {
+		@return map-get( $_blr-placeholders, $key );
+	}
+
+	@return false;
+}
+
+
 /// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
 ///
 /// @source https://github.com/zurb/foundation-sites/blob/develop/scss/util/_unit.scss
