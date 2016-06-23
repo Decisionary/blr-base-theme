@@ -1,3 +1,53 @@
+////
+/// @group Abstracts
+////
+
+
+
+/// Checks to see if a placeholder exists for the specified key; if not, one is
+/// created. The new or existing placeholder is then extended.
+///
+/// @param {String} $key - A key used to identify the placeholder.
+///
+/// @content The placeholder content.
+@mixin blr-extend( $key ) {
+
+	// See if a placeholder already exists for the specified key.
+	$placeholder-name: blr-placeholder-get( $key );
+
+	// If not, create a new placeholder using the nested `@content`.
+	@if not $placeholder-name {
+
+		$placeholder-name: blr-placeholder-set( $key );
+
+		@at-root %#{ $placeholder-name } {
+			@content;
+		}
+	}
+
+	// Extend the placeholder.
+	@extend %#{ $placeholder-name };
+}
+
+/// Wraps the static portion of a dynamic mixin. If `$extend` is true, the
+/// static content is grouped into a placeholder and extended. If `$extend` is
+/// false, the static content is output directly. This way you get the benefits
+/// of both mixins and placeholders, and anyone using your mixin can opt out of
+/// using the placeholder if they so desire.
+///
+/// @param {String}  $key    - A key used to identify the placeholder.
+/// @param {Boolean} $extend - Whether to use a placeholder or output the content directly.
+///
+/// @content Your mixin's static content.
+@mixin blr-mixin-dryer( $key, $extend: true ) {
+	@if $extend {
+		@include blr-extend( $key ) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
 
 /// Takes a CSS property, an rgba color, and optional background color, and
 /// calculates a fallback color to use in browsers that don't support rgba.
