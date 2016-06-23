@@ -20,37 +20,19 @@
 }
 
 %button-group {
-       
-        display: -js-flex; // for the flexbox polyfill
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-bottom: 0.5em;
-        
-        %button { 
-           margin: 0.5em;
-           margin-bottom:0;
-        }
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 0.5em;
+
+	%button {
+		margin: 0.5em;
+		margin-bottom: 0;
+	}
 }
 
 %button {
-	@include style-link {
-		display: inline-block;
-		border: $border-width-button-default solid transparent;
-		background-color: $background-color-button-default;
-		cursor: pointer;
-		user-select: none;
-		padding: rem-calc( 5px ) rem-calc( 20px );
-		vertical-align: middle;
-		text-align: center;
-		text-decoration: none;
-		line-height: 1;
-		word-spacing: normal;
-		white-space: nowrap;
-		color: $color-base;
-		font-family: $font-family-button;
-		font-size: $font-size-large;
-	}
+	@include blr-extend( 'button' );
 }
 
 %button--block {
