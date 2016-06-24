@@ -51,11 +51,17 @@ $_breakpoints: (
 $breakpoints: $_breakpoints !default;
 $breakpoints: map-extend( $_breakpoints, $breakpoints );
 
+/// Default container widths.
+///
+/// @type {Map}
+/// @access private
+$_container-widths: map-extend( $_breakpoints, ( xs: 100% ) );
+
 /// Container widths.
 ///
 /// @type {Map}
-$container-widths: $breakpoints !default;
-$container-widths: map-extend( $breakpoints, $container-widths );
+$container-widths: $_container-widths !default;
+$container-widths: map-extend( $_container-widths, $container-widths );
 
 /// The number of columns to use for the grid.
 ///
