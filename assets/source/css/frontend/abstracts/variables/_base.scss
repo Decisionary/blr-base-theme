@@ -55,7 +55,7 @@ $breakpoints: map-extend( $_breakpoints, $breakpoints );
 ///
 /// @type {Map}
 /// @access private
-$_container-widths: map-extend( $_breakpoints, ( xs: 100% ) );
+$_container-widths: map-extend( $breakpoints, ( xs: 100% ) );
 
 /// Container widths.
 ///
