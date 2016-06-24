@@ -68,6 +68,7 @@
     "jigsass-tools-mq": "^1.5.2",
     "jigsass-tools-selectors": "^0.9.1",
     "jigsass-tools-typography": "^1.2.4",
+    "js-yaml": "^3.6.1",
     "jsdoc": "^3.4.0",
     "lodash": "^4.13.1",
     "merge-stream": "^1.0.0",

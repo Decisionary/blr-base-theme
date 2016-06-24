@@ -50,52 +50,42 @@
 				}
 
 				// Hide / show the nav menu when the toggle button is clicked.
+				const $navMenu      = $nav.find( '.menu' ).first();
 				const $toggleButton = $nav.find( '.nav-toggle' ).first();
 
 				if ( $toggleButton.length ) {
 					$toggleButton.on( 'click', event => {
 						event.preventDefault();
 
-						$nav.slideToggle();
-						$toggleButton.toggleClass( 'active' )
-							.attr( 'aria-expanded', toggleAttr );
+						$toggleButton.toggleClass( 'active' );
+						$navMenu.slideToggle();
 					} );
 				}
 
 				// Toggle sub-menus when the parent menu item is clicked.
-				const $menuLinks = $nav.find( '.menu > li > a' );
+				$navMenu.on( 'click', '.menu__item', event => {
+					event.stopPropagation();
 
-				if ( $menuLinks.length ) {
-					$menuLinks.on( 'click', event => {
-						const $subMenu = $( event.currentTarget ).siblings( '.sub-menu' );
+					const $target  = $( event.target );
+					const $subMenu = $target.children( '.sub-menu' );
 
-						if ( $subMenu.length ) {
-							event.preventDefault();
+					if ( $subMenu.length ) {
 
-							let menuBlockHeight = $nav.outerHeight();
+						let menuBlockHeight = $navMenu.outerHeight();
 
-							if ( $subMenu.hasClass( 'is-expanded' ) ) {
-								menuBlockHeight -= $subMenu.outerHeight();
-							} else {
-								$subMenu.css( 'max-height', 'none' );
-								menuBlockHeight += $subMenu.outerHeight();
-								$subMenu.css( 'max-height', '0' );
-							}
-
-							$nav.css( 'max-height', menuBlockHeight );
-
-							$subMenu.slideToggle()
-								.parent()
-								.attr( 'aria-expanded', toggleAttr )
-								.siblings()
-								.removeClass( 'is-expanded' )
-								.attr( 'aria-expanded', false )
-								.find( '.menu' )
-								.slideUp();
+						if ( 'true' === $target.attr( 'aria-expanded' ) ) {
+							menuBlockHeight -= $subMenu.outerHeight();
+							$target.attr( 'aria-expanded', 'false' );
+						} else {
+							$target.attr( 'aria-expanded', 'true' );
+							menuBlockHeight += $subMenu.outerHeight();
 						}
-					} );
-				}
 
+						$navMenu.css( 'max-height', menuBlockHeight );
+					}
+				} );
+
+				// Collapsible section groups (e.g. accordions).
 				const collapsibles = $( '.section-group.is-collapsible' );
 
 				if ( collapsibles.length ) {
