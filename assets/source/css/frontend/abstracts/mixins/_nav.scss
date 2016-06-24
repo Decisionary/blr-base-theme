@@ -8,7 +8,7 @@
 	@include susy-clearfix;
 
 	@if not $variant or not map-has-key( $nav-variants, $variant ) {
-		@warn "`#{$variant} is not a valid nav menu variant.`"
+		@warn "`#{$variant} is not a valid nav menu variant.`";
 	} @else {
 		$theme: map-get( $nav-variants, $variant );
 
