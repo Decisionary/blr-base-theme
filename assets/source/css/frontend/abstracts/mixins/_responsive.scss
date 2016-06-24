@@ -1,7 +1,7 @@
 
 /// Media query helper mixin.
 ///
-/// @param {String} $breakpoint - The breakpoint you want to target.
+/// @param {String} $breakpoint      - The breakpoint you want to target.
 /// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
 ///
 /// @content The styles you want to apply the media query to.
@@ -24,17 +24,20 @@
 	}
 }
 
+/// Responsive container helper mixin.
 @mixin blr-container {
 	@include susy-clearfix;
 
 	margin-right: auto;
 	margin-left: auto;
-	width: 100%;
 
-	@each $key, $value in $container-widths {
-		@if $value != 'disabled' and $value != 0 {
-			@include breakpoint( $key ) {
-				width: abs( $value );
+	@each $breakpoint in map-keys( $container-widths ) {
+
+		$width: blr-container( $breakpoint );
+
+		@if $width {
+			@include breakpoint( $breakpoint ) {
+				width: $width;
 			}
 		}
 	}
