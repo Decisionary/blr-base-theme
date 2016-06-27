@@ -17,10 +17,10 @@ Ideally this should be done from the Vagrant guest OS. If you would prefer to
 run the commands from your host OS, make sure Composer is installed and is in
 your `$PATH` before running these commands.
 
-Once the documentation is compiled, open any of the following pages in your
-browser:
+Once the documentation is compiled, open any of the following files locally
+in your browser:
 
-[Usage Docs & Style Guide](docs/usage/index.html)
-[Sass Docs](docs/sass/index.html)
-[JS Docs](docs/js/index.html)
-[PHP Docs](docs/php/index.html)
+- docs/usage/index.html (Usage Docs & Style Guide)
+- docs/sass/index.html (Sass Docs)
+- docs/js/index.html (JavaScript Docs)
+- docs/php/index.html (PHP Docs)
