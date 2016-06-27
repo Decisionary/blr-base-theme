@@ -28,16 +28,7 @@
 .page-breadcrumbs,
 .page-content,
 .page-footer {
-	@include susy-clearfix;
-	@include container;
-
-	@each $key, $value in $breakpoints {
-		@if $value > 0 {
-			@include breakpoint( $key ) {
-				max-width: map-get( $container-widths, $key );
-			}
-		}
-	}
+	@include blr-container;
 }
 
 .page-header,

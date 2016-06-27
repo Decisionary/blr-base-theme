@@ -8,6 +8,22 @@
 // Grid / Layout
 // -------------------------------------------------------------------------
 
+/// Default theme features.
+///
+/// @type {Map}
+/// @access private
+$_theme-features: (
+	responsive: (
+		combine-sidebars: true,
+	),
+);
+
+/// Allows the child theme to enable / disable default theme features.
+///
+/// @type {Map}
+$theme-features: $_theme-features !default;
+$theme-features: map-extend( $_theme-features, $theme-features );
+
 /// Z-index map.
 ///
 /// @type {Map}
@@ -35,11 +51,17 @@ $_breakpoints: (
 $breakpoints: $_breakpoints !default;
 $breakpoints: map-extend( $_breakpoints, $breakpoints );
 
+/// Default container widths.
+///
+/// @type {Map}
+/// @access private
+$_container-widths: map-extend( $breakpoints, ( xs: 100% ) );
+
 /// Container widths.
 ///
 /// @type {Map}
-$container-widths: $breakpoints !default;
-$container-widths: map-extend( $breakpoints, $container-widths );
+$container-widths: $_container-widths !default;
+$container-widths: map-extend( $_container-widths, $container-widths );
 
 /// The number of columns to use for the grid.
 ///

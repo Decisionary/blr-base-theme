@@ -9,21 +9,27 @@
 	@include span( 100% );
 }
 
-@include breakpoint( md ) {
+@if map-deep-get( $theme-features, responsive, combine-sidebars ) {
 
-	.sidebar--primary {
-		@include span( first $span-sidebar-combined );
-	}
+	@include breakpoint( md ) {
 
-	.sidebar--secondary {
-		.has-sidebar-primary & {
+		.sidebar--primary {
 			@include span( first $span-sidebar-combined );
 		}
-		.has-sidebar-secondary & {
-			@include span( last $span-sidebar-combined );
-		}
-		.has-sidebar-primary.has-sidebar-secondary & {
-			@include span( first $span-sidebar-combined );
+
+		.sidebar--secondary {
+			.has-sidebar-primary & {
+				@include span( first $span-sidebar-combined );
+			}
+
+			.has-sidebar-secondary & {
+				@include span( last $span-sidebar-combined );
+			}
+
+			.has-sidebar-primary.has-sidebar-secondary & {
+				@include span( first $span-sidebar-combined );
+				clear: left;
+			}
 		}
 	}
 }
@@ -39,6 +45,7 @@
 		.has-sidebar-secondary &,
 		.has-sidebar-primary.has-sidebar-secondary & {
 			@include span( $span-sidebar-secondary );
+			clear: none;
 		}
 	}
 }
