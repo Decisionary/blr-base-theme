@@ -34,23 +34,28 @@ main,
 	}
 }
 
-@include breakpoint( md ) {
-	main {
-		.has-sidebar-primary & {
-			@include span( last $span-main-content - $span-sidebar-combined );
-		}
+@if map-deep-get( $theme-features, responsive, combine-sidebars ) {
 
-		.has-sidebar-secondary & {
-			@include span( first $span-main-content - $span-sidebar-combined );
-		}
+	@include breakpoint( md ) {
 
-		.has-sidebar-primary.has-sidebar-secondary & {
-			@include span( last $span-main-content - $span-sidebar-combined );
+		main {
+			.has-sidebar-primary & {
+				@include span( last $span-main-content - $span-sidebar-combined );
+			}
+
+			.has-sidebar-secondary & {
+				@include span( first $span-main-content - $span-sidebar-combined );
+			}
+
+			.has-sidebar-primary.has-sidebar-secondary & {
+				@include span( last $span-main-content - $span-sidebar-combined );
+			}
 		}
 	}
 }
 
 @include breakpoint( lg ) {
+
 	main {
 		.has-sidebar-primary & {
 			@include span( $span-main-content - $span-sidebar-primary );
