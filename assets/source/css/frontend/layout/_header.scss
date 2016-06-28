@@ -10,7 +10,10 @@
 }
 
 .page-header {
-	padding-bottom: ( $gutter-height * 0.75 );
+	padding: {
+		top: $padding-base;
+		bottom: $padding-base;
+	}
 }
 
 .branding--header {
@@ -52,7 +55,3 @@
 		}
 	}
 }
-
-
-
-

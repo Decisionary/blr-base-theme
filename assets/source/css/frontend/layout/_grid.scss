@@ -9,7 +9,10 @@
 // Grid helper classes.
 .grid,
 .grid-row {
-	@extend %content-section;
+	@include container;
+
+	display: block;
+	width: 100%;
 }
 
 .grid-col {

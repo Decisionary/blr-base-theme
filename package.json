@@ -34,7 +34,7 @@
     "node": "^5.10.0"
   },
   "scripts": {
-    "install-deps": "npm install && bower install",
+    "install-deps": "npm install && bower install && composer install",
     "gulp-compile": "babel gulp-src -d gulp",
     "gulp": "gulp",
     "watch": "gulp watch",
@@ -91,6 +91,7 @@
     "postcss-pxtorem": "^3.3.1",
     "postcss-selector-matches": "^2.0.1",
     "require-dir": "^0.3.0",
-    "sassdoc": "^2.1.20"
+    "sassdoc": "^2.1.20",
+    "style-sherpa": "^1.0.1"
   }
 }

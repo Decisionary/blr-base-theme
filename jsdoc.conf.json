@@ -1,14 +1,17 @@
 {
 	"source": {
-		"include": [ "assets/source/js", "gulp/tasks" ]
+		"include": [
+			"README.md",
+			"assets/source/js/",
+			"gulp-src/tasks"
+		]
 	},
 	"plugins": [ "plugins/markdown" ],
 	"templates": {
 		"cleverLinks": true,
 		"monospaceLinks": true,
-		"default": {
-			"includeDate": false
-		}
+		"includeDate": false,
+		"linenums": true
 	},
 	"opts": {
 		"destination": "./docs/js",
