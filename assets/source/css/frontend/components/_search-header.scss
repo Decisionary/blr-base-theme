@@ -19,11 +19,21 @@
 
 .search-form__label {
 	float: right;
+	text-align: right;
+	@include span( full );
+	@include breakpoint( md ) {
+		float: right;
+		text-align: right;
+		width: 300px;
+	}
 }
 
 .search-form__input {
-	width: 300px;
 	height: 34px;
+	@include span( full );
+	@include breakpoint( md ) {
+		width: 300px;
+	}
 }
 
 .search-form__button {
