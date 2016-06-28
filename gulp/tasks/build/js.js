@@ -12,6 +12,7 @@ var gulp = __require('gulp');
 
 // Utilities
 var _ = __require('lodash');
+var gulpif = __require('gulp-if');
 
 // Files
 var size = __require('gulp-size');
@@ -57,7 +58,8 @@ var files = exports.files = {
 
 	source: {
 		admin: [__config.paths.assets.source + '/js/admin/**/*.js'],
-		frontend: [__config.paths.assets.source + '/js/frontend/**/*.js']
+		frontend: [__config.paths.assets.source + '/js/frontend/**/*.js'],
+		oldie: __config.includes.js.oldie
 	}
 
 };
@@ -80,7 +82,7 @@ if (!_.isEmpty(__config.includes.js.frontend)) {
  * @return {Stream}                    A Gulp stream.
  */
 var compile = exports.compile = function compile(source, destFileName) {
-	return gulp.src(source).pipe(sourcemaps.init()).pipe(concat(destFileName)).pipe(babel()).pipe(gulp.dest(files.dest)).pipe(uglify()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
+	return gulp.src(source).pipe(sourcemaps.init()).pipe(concat(destFileName)).pipe(gulpif('oldie.js' !== destFileName, babel())).pipe(gulp.dest(files.dest)).pipe(uglify()).pipe(size(config.size)).pipe(rename({ suffix: '.min' })).pipe(sourcemaps.write('./maps')).pipe(gulp.dest(files.dest));
 };
 
 /**
@@ -89,7 +91,7 @@ var compile = exports.compile = function compile(source, destFileName) {
  * @return {Function}
  */
 var callback = exports.callback = function callback() {
-	return merge(compile(files.source.frontend, 'app.js'), compile(files.source.admin, 'admin.js'));
+	return merge(compile(files.source.frontend, 'app.js'), compile(files.source.admin, 'admin.js'), compile(files.source.oldie, 'oldie.js'));
 };
 
 // Register the task.
