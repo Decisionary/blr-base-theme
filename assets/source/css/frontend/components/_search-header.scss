@@ -20,19 +20,19 @@
 .search-form__label {
 	float: right;
 	text-align: right;
-	@include span(full);
+	@include span( full );
 	@include breakpoint ( md ) {
 		float: right;
 		text-align: right;
-		width: rem-calc(300px);
+		width: 300px;
 	}
 }
 
 .search-form__input {
-	height: rem-calc( 34px );
-	@include span(full );
+	height: 34px;
+	@include span( full );
 	@include breakpoint ( md ) {
-		width: rem-calc(300px);
+		width: 300px;
 	}
 }
 
@@ -43,12 +43,12 @@
 	border: 0;
 	background-color: $color-base;
 	padding: 0;
-	width: rem-calc( 34px );
-	height: rem-calc( 34px );
+	width: 34px;
+	height: 34px;
 	text-align: center;
-	line-height: rem-calc( 34px );
+	line-height: 34px;
 	color: contrast-color( $color-base );
-	font-size: rem-calc( 20px );
+	font-size: 20px;
 }
 
 .search-form__icon {

@@ -19,6 +19,12 @@ includes:
   js:
     admin:
     frontend:
+      - bower_components/cookies-js/dist/cookies.js
+      - bower_components/flexibility/dist/flexibility.js
+    oldie:
+      - bower_components/html5shiv/dist/html5shiv.js
+      - bower_components/respond/dest/respond.src.js
+      - bower_components/Placeholder/src/simple.js
 
   # Web fonts; will be copied to the fonts folder in your dist path.
   fonts:
