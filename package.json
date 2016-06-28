@@ -35,6 +35,7 @@
   },
   "scripts": {
     "install-deps": "npm install && bower install",
+    "sync-deps": "gulp deps/sync",
     "gulp-compile": "babel gulp-src -d gulp",
     "watch": "gulp watch",
     "build": "gulp build",

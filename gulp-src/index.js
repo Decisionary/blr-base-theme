@@ -64,6 +64,23 @@ const loadConfig = () => {
 	defaults.includes.js.admin    = _.toArray( defaults.includes.js.admin );
 	defaults.includes.js.frontend = _.toArray( defaults.includes.js.frontend );
 
+	// Get paths to `package.json`, `bower.json`, and `composer.json` for
+	// both the base theme and the child theme.
+	defaults.paths.deps = {
+		npm: {
+			baseTheme:  path.join( baseThemePath, 'package.json' ),
+			childTheme: path.resolve( './package.json' ),
+		},
+		bower: {
+			baseTheme:  path.join( baseThemePath, 'bower.json' ),
+			childTheme: path.resolve( './bower.json' ),
+		},
+		composer: {
+			baseTheme:  path.join( baseThemePath, 'composer.json' ),
+			childTheme: path.resolve( './composer.json' ),
+		},
+	};
+
 	// Return the default config if we're in the base theme folder.
 	if ( isBaseTheme ) {
 		return defaults;
