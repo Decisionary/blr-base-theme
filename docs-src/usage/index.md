@@ -361,7 +361,10 @@ used to create different types of buttons.
 	@extend %button;
 }
 
-// Regular button using mixin
+// Regular button using mixin.
+.my-button {
+	@include button;
+}
 
 // Full-width button.
 .my-button {
