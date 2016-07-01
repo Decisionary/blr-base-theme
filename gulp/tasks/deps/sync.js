@@ -122,7 +122,8 @@ var syncDeps = exports.syncDeps = function syncDeps() {
 	}
 
 	// Update child theme npm / bower / composer JSON file.
-	var childJSON = JSON.stringify(_.merge(childData, sortObject(allDeps)), null, __config.formatting.json.spaces);
+	var jsonSpaces = 2;
+	var childJSON = JSON.stringify(_.merge(childData, sortObject(allDeps)), null, jsonSpaces);
 
 	fs.writeFileSync(paths.childTheme, childJSON + '\n');
 
