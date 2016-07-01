@@ -6,7 +6,8 @@
 const gulp = __require( 'gulp' );
 
 // Utilities
-const _ = __require( 'lodash' );
+const _      = __require( 'lodash' );
+const gulpif = __require( 'gulp-if' );
 
 // Files
 const size       = __require( 'gulp-size' );
@@ -60,6 +61,7 @@ export const files = {
 		frontend: [
 			`${ __config.paths.assets.source }/js/frontend/**/*.js`,
 		],
+		oldie: __config.includes.js.oldie,
 	},
 
 };
@@ -92,7 +94,7 @@ export const compile = ( source, destFileName ) =>
 	gulp.src( source )
 		.pipe( sourcemaps.init() )
 		.pipe( concat( destFileName ) )
-		.pipe( babel() )
+		.pipe( gulpif( 'oldie.js' !== destFileName, babel() ) )
 		.pipe( gulp.dest( files.dest ) )
 		.pipe( uglify() )
 		.pipe( size( config.size ) )
@@ -108,7 +110,8 @@ export const compile = ( source, destFileName ) =>
  */
 export const callback = () => merge(
 	compile( files.source.frontend, 'app.js'   ),
-	compile( files.source.admin,    'admin.js' )
+	compile( files.source.admin,    'admin.js' ),
+	compile( files.source.oldie,    'oldie.js' )
 );
 
 

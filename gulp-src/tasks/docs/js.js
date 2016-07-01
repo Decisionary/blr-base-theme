@@ -5,9 +5,13 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
-// SassDoc
+// Utilities
+const path   = __require( 'path' );
 const shell  = __require( 'gulp-shell' );
 const expect = __require( 'gulp-expect-file' );
+
+const currentDir  = path.basename( process.cwd() );
+const isBaseTheme = ( 'blr-base-theme' === currentDir );
 
 
 /**
@@ -34,6 +38,21 @@ export const config = {
 	},
 };
 
+/**
+ * Task files.
+ *
+ * @type {Object}
+ */
+export const files = {
+	source: [
+		'assets/source/js/**/*.js',
+	],
+};
+
+if ( ! isBaseTheme ) {
+	files.source.unshift( '../blr-base-theme/assets/source/js/**/*.js' );
+}
+
 
 /**
  * Gulp callback for `docs/js` task.
@@ -41,9 +60,9 @@ export const config = {
  * @return {Function}
  */
 export const callback = () =>
-	gulp.src( 'assets/src/**/*.js' )
+	gulp.src( files.source )
 		.pipe( expect( config.expect, '*.js' ) )
-		.pipe( shell( 'jsdoc -c jsdoc.conf.json', config.jsDoc ) );
+		.pipe( shell( './node_modules/.bin/jsdoc -c jsdoc.conf.json', config.jsDoc ) );
 
 // Register the task.
 gulp.task( task, callback );

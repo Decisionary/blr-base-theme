@@ -10,7 +10,7 @@ $background-color-social-icons: $background-color-content-alt !default;
 /// Social icons container horizontal padding.
 ///
 /// @type {Number}
-$padding-horizontal-social-icons: rem-calc( 4px ) !default;
+$padding-horizontal-social-icons: 4px !default;
 
 /// Social icons container vertical padding.
 ///
@@ -25,7 +25,7 @@ $gutter-social-icon: $padding-horizontal-social-icons  !default;
 /// Social icon width.
 ///
 /// @type {Number}
-$width-social-icon: rem-calc( 22px ) !default;
+$width-social-icon: 22px !default;
 
 /// Social icon height.
 ///

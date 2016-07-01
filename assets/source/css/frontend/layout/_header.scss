@@ -10,15 +10,30 @@
 }
 
 .page-header {
-	padding-bottom: ( $gutter-height * 0.75 );
+	padding: {
+		top: $padding-base;
+		bottom: $padding-base;
+	}
 }
 
 .branding--header {
-	@include span( 11 );
+	@include span( full );
+	text-align: $mobile-header-alignment;
+	@include breakpoint( sm ) {
+		text-align: left;
+		@include span( 11 );
+	}
 }
 
 .header--right-side {
-	@include span( last 13 );
+	@include span( full );
+	@include break;
+	text-align: $mobile-header-alignment;
+	@include breakpoint( sm ) {
+		@include span( last 13 );
+		@include nobreak;
+		text-align: right;
+	}
 	@include nested( 13 ) {
 
 		.header--row {
@@ -26,9 +41,15 @@
 		}
 
 		.header--top-row {
-			text-align: right;
+			@include span( full );
+			text-align: $mobile-header-alignment;
+
+			@include breakpoint( sm ) {
+				text-align: right;
+				@include span( 13 );
+			}
 			margin-bottom: $gutter-height * 0.5;
-			@include span( 13 );
+
 		}
 
 		.header--search {
@@ -38,21 +59,30 @@
 		.has-search-logo & {
 
 			.header--top-row {
-				@include span(first 11);
-				@include post( 2 );
+				@include span( full );
+				text-align: $mobile-header-alignment;
+
+				@include breakpoint( sm ) {
+					@include span( first 11 );
+					@include post( 2 );
+					text-align: right;
+				}
 			}
 
 			.header--search {
-				@include span(first 11);
+				@include span( first 10 );
+				@include breakpoint( md ) {
+					@include span( first 11 );
+				}
 			}
 
 			.header--right-logo {
-				@include span(last 2);
+				text-align: left;
+				@include span( last 3 );
+				@include breakpoint( md ) {
+					@include span( last 2 );
+				}
 			}
 		}
 	}
 }
-
-
-
-

@@ -7,7 +7,6 @@
 .breadcrumbs {
 	@extend %content-section;
 
-	display: -js-flex;
 	display: flex;
 	border: 1px solid $border-color-content;
 	border-bottom: 0;
@@ -17,13 +16,14 @@
 
 .breadcrumb {
 	display: block;
-	float: left;
-	border-left: 1px solid $border-color-content;
-	padding: 0 rem-calc( 15px );
-	min-width: rem-calc( 48px );
-	height: rem-calc( 48px );
-	line-height: rem-calc( 48px );
+	padding: 0 15px;
+	height: 48px;
+	line-height: 48px;
 	font-size: $font-size-large;
+
+	+ .breadcrumb {
+		border-left: 1px solid $border-color-content;
+	}
 
 	&:last-child {
 		width: auto;
@@ -37,11 +37,10 @@
 }
 
 .breadcrumb--icon {
-	border-left: 0;
 	background-color: $color-brand-primary;
 	text-align: center;
 	color: contrast-color( $color-brand-primary );
-	font-size: rem-calc( 18px );
+	font-size: 18px;
 }
 
 .breadcrumb--section {
@@ -51,9 +50,10 @@
 }
 
 .breadcrumb--trail {
-	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+
 	[property="itemListElement"] > [property="name"] {
 		font-weight: bold;
 	}
