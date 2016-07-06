@@ -50,8 +50,6 @@
 
 			options = $.extend( {}, defaults, options );
 
-			console.log( options );
-
 			const $nav    = $( element );
 			const $button = $nav.find( options.button );
 			const $menu   = $nav.find( options.menu );
@@ -133,8 +131,6 @@
 			// Temporarily make the element visible to get the size.
 			$el.css( 'max-height', 'none' );
 			const height = $el.outerHeight();
-
-			console.log( height );
 
 			// Hide the element again.
 			$el.css( 'max-height', '0' );
