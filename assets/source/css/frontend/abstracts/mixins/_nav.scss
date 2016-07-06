@@ -61,8 +61,8 @@
 
 /// Creates a hamburger-style nav menu icon.
 ///
-/// @param {Color} $color [$color-base] - The icon color.
-@mixin nav-menu-icon( $color: $color-base ) {
+/// @param {Color} $color [currentColor] - The icon color.
+@mixin nav-menu-icon( $color: currentColor ) {
 	display: block;
 	position: relative;
 	transition: background 0.2s ease-out;
@@ -89,7 +89,7 @@
 		bottom: -5px;
 	}
 
-	.active {
+	[aria-expanded="true"] & {
 		background: transparent;
 
 		&::before,
@@ -109,8 +109,8 @@
 
 /// Creates a hamburger-style nav menu toggle button.
 ///
-/// @param {Color} $color [$color-base] - The icon color.
-@mixin nav-toggle-button( $color: $color-base ) {
+/// @param {Color} $color [currentColor] - The icon color.
+@mixin nav-toggle-button( $color: currentColor ) {
 	display: inline-block;
 	appearance: none;
 	user-select: none;
