@@ -85,17 +85,17 @@
 
 				if ( $subMenu.length ) {
 
-					let navHeight = $nav.outerHeight();
+					let menuHeight = $menu.outerHeight();
 
 					if ( 'true' === $target.attr( 'aria-expanded' ) ) {
-						navHeight -= $subMenu.outerHeight();
+						menuHeight -= $subMenu.outerHeight();
 						$target.attr( 'aria-expanded', 'false' );
 					} else {
 						$target.attr( 'aria-expanded', 'true' );
-						navHeight += $subMenu.outerHeight();
+						menuHeight += $subMenu.outerHeight();
 					}
 
-					$nav.css( 'max-height', navHeight );
+					$menu.css( 'max-height', menuHeight );
 				}
 			} );
 		} );
