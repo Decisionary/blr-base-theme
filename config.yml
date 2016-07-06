@@ -1,5 +1,5 @@
 
-# Paths
+# Paths.
 paths:
 
   # The base source and dist paths to use for all assets.
@@ -33,12 +33,18 @@ includes:
   # Images; will be optimized and copied to the images folder in your dist path.
   images:
 
-# Compatibility & support
+# Compatibility & support.
 compat:
 
-  # Autoprefixer will make sure your CSS works with these browsers
+  # Autoprefixer will make sure your CSS works with these browsers.
   browsers:
     - 'last 2 versions'
     - 'android 4'
     - 'ie >= 8'
     - '> 1%'
+
+# Dependencies; will be synced and installed when the `deps/sync` task is run.
+deps:
+  npm: true
+  bower: true
+  composer: true

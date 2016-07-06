@@ -102,7 +102,9 @@ The following page templates are provided by default:
 
 
 
-# Gulp Tasks
+# Gulp
+
+## Tasks
 
 BLR Base Theme provides the following Gulp tasks to the child theme:
 
@@ -112,15 +114,86 @@ BLR Base Theme provides the following Gulp tasks to the child theme:
 - `build` - Compiles all theme assets.
 - `build/css` - Compiles Sass files into CSS.
 - `build/js` - Compiles JS files.
-- `build/images` - Optimizes images.
+- `build/images` - Copies images from `assest/source/images`, optimizes them,
+  and outputs the optimized versions into `assets/dist/images`.
 - `build/fonts` - Copies FontAwesome fonts, along with any fonts found in
   `/assets/source/fonts`.
 - `docs` - Compiles the documentation for BLR Base Theme.
 - `docs/js` - Compiles JavaScript docs.
 - `docs/sass` - Compiles Sass docs.
 - `docs/php` - Compiles PHP docs.
-- `docs/usage` - Compiles the Usage & Style Guide page that you're currently
-  reading.
+- `docs/usage` - Compiles Usage docs and the Style Guide page.
+
+## Development
+
+The Gulp development files can be found in the `gulp-src` folder. The tasks
+are divided up into individual files within `gulp-src/tasks`, where each file
+is a module that exports a `task` name and a `callback` function. Some tasks
+also export a `config` object. The tasks utilize new features and syntax from
+ES6, meaning the Gulp files must be compiled after any changes are made. To do
+so, run the following command from the `blr-base-theme` folder:
+
+```sh
+npm run gulp-compile
+```
+
+### Importing Node Modules and Tasks
+
+Since the Gulp tasks are designed to be used by a child theme, the process for
+requiring node modules is slightly different - you need to use `__require()`
+instead of `require()` or `import`. Since the Gulp tasks are all modules, they
+can also be imported pretty easily with the `__requireTask()` function. For
+example, if you wanted to import the `build/css` task module you would use
+`__requireTask( 'build/css' )`.
+
+### Adding a Task
+
+When adding a new task, use the following as a starting point for the module:
+
+```
+/**
+ * @module gulp/tasks/new-task
+ */
+
+// Gulp
+const gulp = __require( 'gulp' );
+
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'new-task';
+
+
+/**
+ * Task callback.
+ *
+ * Add documentation here to explain what the callback is doing and why.
+ *
+ * @return {Function}
+ */
+export const callback = function() {
+	// Code goes here.
+};
+
+
+// Register the task.
+gulp.task( task, callback );
+```
+
+If you prefer using arrow functions you can do this as well:
+
+```
+/**
+ * Task callback.
+ *
+ * @return {Function}
+ */
+export const callback = () => {
+	// Code goes here.
+};
+```
 
 
 
@@ -212,15 +285,13 @@ wp_enqueue_style( 'custom', Assets\css_url( 'custom.css' ), [], null );
 wp_enqueue_script( 'custom', Assets\js_url( 'custom.js' ), [], null, true );
 ```
 
-
-
 # Breakpoints
 
 BLR Base Theme comes with the following breakpoints pre-defined:
 
 ```scss
 $_breakpoints: (
-	xs: 0,
+	xs: 0px,
 	sm: 572px,
 	md: 756px,
 	lg: 940px,
