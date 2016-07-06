@@ -289,10 +289,12 @@
 	@extend %nav--vertical;
 	@extend %nav--block;
 
-	@include nav-desktop-only {
-		padding: {
-			top: $padding-base;
-			bottom: $padding-base;
+	%menu {
+		@include nav-desktop-only {
+			padding: {
+				top: $padding-base;
+				bottom: $padding-base;
+			}
 		}
 	}
 

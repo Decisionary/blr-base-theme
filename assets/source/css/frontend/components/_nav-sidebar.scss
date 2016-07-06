@@ -10,10 +10,12 @@
 	@include nav-variant( sidebar, none );
 
 	.widget__title {
-		float: left;
-		padding-right: $padding-base;
-		padding-left: $padding-base;
 		line-height: 32px;
 		color: $color-nav-sidebar;
+
+		@include nav-desktop-only {
+			padding: $padding-base $padding-base 0;
+			line-height: 1;
+		}
 	}
 }

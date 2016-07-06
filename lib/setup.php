@@ -137,6 +137,9 @@ function widget_args( $instance, $widget, $args ) {
 			</button>';
 		$args['after_widget'] = '</nav>';
 
+		// Remove the '.widget__content' div.
+		$args['after_title'] = '</h3>';
+
 		// Display the widget.
 		$widget->widget( $args, $instance );
 
