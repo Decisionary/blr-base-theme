@@ -27,3 +27,7 @@
 .has-children {
 	@extend %has-children;
 }
+
+.nav-toggle {
+	@include nav-toggle-button;
+}
