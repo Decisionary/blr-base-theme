@@ -33,19 +33,21 @@
 	 *
 	 * @since 0.5.1
 	 *
-	 * @param  {Object} options       Plugin options.
-	 * @param  {String} options.button A jQuery selector that targets the toggle button.
-	 * @param  {String} options.menu   A jQuery selector that targets the menu container.
-	 * @param  {String} options.items  A jQuery selector that targets the menu items.
+	 * @param  {Object} options         Plugin options.
+	 * @param  {String} options.button  A jQuery selector that targets the toggle button.
+	 * @param  {String} options.menu    A jQuery selector that targets the menu container.
+	 * @param  {String} options.subMenu A jQuery selector that targets the sub-menu container.
+	 * @param  {String} options.items   A jQuery selector that targets the menu items.
 	 * @return {Object}
 	 */
 	$.fn.collapsibleNav = function( options = {} ) {
 		return this.each( ( index, element ) => {
 
 			const defaults = {
-				button: '.nav-toggle',
-				menu:   '.menu',
-				items:  '.menu__item',
+				button:  '.nav-toggle',
+				menu:    '.menu',
+				subMenu: '.sub-menu',
+				items:   '.menu__item',
 			};
 
 			options = $.extend( {}, defaults, options );
@@ -70,7 +72,7 @@
 			}
 
 			// Bail if we don't have a menu item selector.
-			if ( ! options.items ) {
+			if ( ! options.items || ! options.subMenu ) {
 				return;
 			}
 
@@ -79,7 +81,7 @@
 				event.stopPropagation();
 
 				const $target  = $( event.target );
-				const $subMenu = $target.children( '.sub-menu' );
+				const $subMenu = $target.children( options.subMenu );
 
 				if ( $subMenu.length ) {
 
