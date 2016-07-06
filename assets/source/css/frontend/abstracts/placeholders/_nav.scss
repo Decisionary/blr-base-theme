@@ -85,8 +85,9 @@
 %nav--collapsible {
 
 	%menu {
+		clear: left;
+
 		@include nav-mobile-only {
-			clear: left;
 			transition: max-height 0.25s ease-in-out;
 			max-height: 0;
 			overflow: hidden;
@@ -97,8 +98,6 @@
 		}
 
 		@include nav-desktop-only {
-			float: left;
-			clear: none;
 			max-height: none !important;
 		}
 	}
@@ -121,6 +120,8 @@
 	@extend %nav--block;
 	@extend %nav--collapsible;
 
+	@include z-index( 'nav-bar' );
+
 	position: relative;
 
 	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
@@ -128,6 +129,7 @@
 	%menu {
 		@include nav-mobile-only {
 			position: absolute;
+			top: 32px;
 			right: 0;
 			left: 0;
 			box-shadow: rgba( 0, 0, 0, 0.6 ) 0 15px 30px;
@@ -137,6 +139,11 @@
 			> %menu__item:first-child {
 				border-top: 0;
 			}
+		}
+
+		@include nav-desktop-only {
+			float: left;
+			clear: none;
 		}
 	}
 

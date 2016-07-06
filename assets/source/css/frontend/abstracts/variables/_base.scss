@@ -29,8 +29,9 @@ $theme-features: map-extend( $_theme-features, $theme-features );
 /// @type {Map}
 $z-index-levels: (
 	nav: 10,
-	nav-menu: 20,
-	nav-sub-menu: 30,
+	nav-bar: 20,
+	nav-menu: 30,
+	nav-sub-menu: 40,
 );
 
 /// Default breakpoints.
