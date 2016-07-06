@@ -8,4 +8,12 @@
 	@extend %nav-section;
 	@extend %nav--collapsible;
 	@include nav-variant( sidebar, none );
+
+	.widget__title {
+		float: left;
+		padding-right: $padding-base;
+		padding-left: $padding-base;
+		line-height: 32px;
+		color: $color-nav-sidebar;
+	}
 }
