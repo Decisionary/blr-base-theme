@@ -12,6 +12,18 @@
 	@extend %button;
 }
 
+.button--block {
+	@extend %button--block;
+}
+
+.button--rounded {
+	@extend %button--rounded;
+}
+
+.button--pill {
+	@extend %button--pill;
+}
+
 @each $key, $value in $button-variants {
 	.button--#{$key} {
 		@extend %button--#{$key};

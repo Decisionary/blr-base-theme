@@ -1,7 +1,7 @@
 
 /// Media query helper mixin.
 ///
-/// @param {String} $breakpoint - The breakpoint you want to target.
+/// @param {String} $breakpoint      - The breakpoint you want to target.
 /// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
 ///
 /// @content The styles you want to apply the media query to.
@@ -10,9 +10,35 @@
 	$type:  if( 'max' == $min-max, 'max-width', 'min-width' );
 	$width: get-breakpoint( $breakpoint, $min-max );
 
-	@if $width {
-		@media( $type: $width ) {
+	// Make sure breakpoint is both valid and enabled.
+	@if $width != false {
+
+		// Wrap nested content in a media query if breakpoint width > 0.
+		@if $width == 0 {
 			@content;
+		} @else {
+			@media( $type: $width ) {
+				@content;
+			}
+		}
+	}
+}
+
+/// Responsive container helper mixin.
+@mixin blr-container {
+	@include susy-clearfix;
+
+	margin-right: auto;
+	margin-left: auto;
+
+	@each $breakpoint in map-keys( $container-widths ) {
+
+		$width: blr-container( $breakpoint );
+
+		@if $width {
+			@include breakpoint( $breakpoint ) {
+				width: $width;
+			}
 		}
 	}
 }

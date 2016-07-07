@@ -13,17 +13,23 @@
 /// @type {Number}
 $span-main-content: 24 !default;
 
-/// The number of columns the primary column spans.
+/// The number of columns the primary sidebar section spans.
 ///
 /// @type {Number}
-$span-sidebar-primary: 5  !default;
+$span-sidebar-primary: 5 !default;
 
-/// The number of columns the secondary column spans.
+/// The number of columns the secondary sidebar section spans.
 ///
 /// @type {Number}
-$span-sidebar-secondary: 7  !default;
+$span-sidebar-secondary: 7 !default;
 
-$span-sidebar-combined: 8  !default;
+/// The number of columns the combined sidebar section spans.
+///
+/// @type {Number}
+$span-sidebar-combined: 8 !default;
+
+/// The alignment of header in mobile view
+$mobile-header-alignment: left !default;
 
 
 

@@ -10,9 +10,13 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
-// SassDoc
+// Utilities
+var path = __require('path');
 var shell = __require('gulp-shell');
 var expect = __require('gulp-expect-file');
+
+var currentDir = path.basename(process.cwd());
+var isBaseTheme = 'blr-base-theme' === currentDir;
 
 /**
  * Task name.
@@ -38,12 +42,25 @@ var config = exports.config = {
 };
 
 /**
+ * Task files.
+ *
+ * @type {Object}
+ */
+var files = exports.files = {
+  source: ['assets/source/js/**/*.js']
+};
+
+if (!isBaseTheme) {
+  files.source.unshift('../blr-base-theme/assets/source/js/**/*.js');
+}
+
+/**
  * Gulp callback for `docs/js` task.
  *
  * @return {Function}
  */
 var callback = exports.callback = function callback() {
-  return gulp.src('assets/src/**/*.js').pipe(expect(config.expect, '*.js')).pipe(shell('jsdoc -c jsdoc.conf.json', config.jsDoc));
+  return gulp.src(files.source).pipe(expect(config.expect, '*.js')).pipe(shell('./node_modules/.bin/jsdoc -c jsdoc.conf.json', config.jsDoc));
 };
 
 // Register the task.

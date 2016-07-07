@@ -22,11 +22,8 @@
 
 .menu__link {
 	@extend %menu__link;
+}
 
-	.sub-menu > .has-children > &::after {
-		@include icon();
-
-		margin-left: 1em;
-		content: $fa-var-angle-right;
-	}
+.has-children {
+	@extend %has-children;
 }

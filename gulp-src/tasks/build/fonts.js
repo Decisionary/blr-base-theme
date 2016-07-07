@@ -5,6 +5,9 @@
 // Gulp
 const gulp = __require( 'gulp' );
 
+// Utilities
+const _ = __require( 'lodash' );
+
 
 /**
  * Task name.
@@ -20,13 +23,22 @@ export const task = 'build/fonts';
  * @type {Object}
  */
 export const files = {
+
 	source: [
-		'../blr-base-theme/assets/source/fonts/*',
-		'assets/source/fonts/*',
-		'bower_components/font-awesome/fonts/fontawesome-webfont.*',
+		`${ __config.paths.assets.source }/fonts/*`,
 	],
-	dest: 'assets/dist/fonts',
+
+	dest: `${ __config.paths.assets.dist }/fonts`,
+
 };
+
+// Includes.
+if ( ! _.isEmpty( __config.includes.fonts ) ) {
+	files.source = _.concat(
+		__config.includes.fonts,
+		files.source
+	);
+}
 
 
 /**
