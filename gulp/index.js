@@ -93,7 +93,7 @@ var loadConfig = function loadConfig() {
 	// If custom config is found, merge it with default config.
 	// If not, just use default config.
 	if (config) {
-		config = _.merge(config, defaults);
+		config = _.merge(defaults, config);
 	} else {
 		config = defaults;
 	}
