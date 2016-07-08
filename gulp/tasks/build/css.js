@@ -107,9 +107,6 @@ var postcssPlugins = {
 	// Targets `button` elements and `button`, `reset`, and `submit` inputs.
 	__require('postcss-pseudo-class-any-button'),
 
-	// Combines media query blocks whenever possible.
-	__require('css-mqpacker'),
-
 	// Converts `px` values in media queries to `em` values.
 	__require('postcss-em-media-query'),
 
