@@ -124,8 +124,6 @@
 
 	position: relative;
 
-	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
-
 	%menu {
 		@include nav-mobile-only {
 			position: absolute;
@@ -150,7 +148,7 @@
 	%menu__item {
 		@include nav-mobile-only {
 			float: none;
-			border-top: 1px solid transparentize( $color-nav-dropdown, 0.5 );
+			border-top: 1px solid $border-color-nav-dropdown-items;
 		}
 
 		@include nav-desktop-only {
