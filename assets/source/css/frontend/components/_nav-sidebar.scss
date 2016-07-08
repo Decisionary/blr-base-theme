@@ -6,5 +6,16 @@
 
 .nav--sidebar {
 	@extend %nav-section;
+	@extend %nav--collapsible;
 	@include nav-variant( sidebar, none );
+
+	.widget__title {
+		line-height: 32px;
+		color: $color-nav-sidebar;
+
+		@include nav-desktop-only {
+			padding: $padding-base $padding-base 0;
+			line-height: 1;
+		}
+	}
 }
