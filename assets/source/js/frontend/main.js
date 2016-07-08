@@ -47,48 +47,19 @@
 					document.placeholderPolyfill();
 				}
 
-				// Make sure the nav menu block exists.
-				const $nav = $( '.nav--primary' );
+				// Make the primary nav collapsible if it exists.
+				const $navPrimary = $( '.nav--primary' );
 
-				if ( ! $nav.length ) {
-					return;
+				if ( $navPrimary.length ) {
+					$navPrimary.collapsibleNav();
 				}
 
-				// Hide / show the nav menu when the toggle button is clicked.
-				const $navMenu      = $nav.find( '.menu' ).first();
-				const $toggleButton = $nav.find( '.nav-toggle' ).first();
+				// Make the sidebar nav collapsible if it exists.
+				const $navSidebar = $( '.nav--sidebar' );
 
-				if ( $toggleButton.length ) {
-					$toggleButton.on( 'click', event => {
-						event.preventDefault();
-
-						$toggleButton.toggleClass( 'active' );
-						$navMenu.slideToggle();
-					} );
+				if ( $navSidebar.length ) {
+					$navSidebar.collapsibleNav();
 				}
-
-				// Toggle sub-menus when the parent menu item is clicked.
-				$navMenu.on( 'click', '.menu__item', event => {
-					event.stopPropagation();
-
-					const $target  = $( event.target );
-					const $subMenu = $target.children( '.sub-menu' );
-
-					if ( $subMenu.length ) {
-
-						let menuBlockHeight = $navMenu.outerHeight();
-
-						if ( 'true' === $target.attr( 'aria-expanded' ) ) {
-							menuBlockHeight -= $subMenu.outerHeight();
-							$target.attr( 'aria-expanded', 'false' );
-						} else {
-							$target.attr( 'aria-expanded', 'true' );
-							menuBlockHeight += $subMenu.outerHeight();
-						}
-
-						$navMenu.css( 'max-height', menuBlockHeight );
-					}
-				} );
 
 				// Collapsible section groups (e.g. accordions).
 				const collapsibles = $( '.section-group.is-collapsible' );

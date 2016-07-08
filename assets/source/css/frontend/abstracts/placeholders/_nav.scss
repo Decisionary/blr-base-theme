@@ -82,31 +82,59 @@
 	}
 }
 
-%nav-bar {
-	@extend %nav--horizontal;
-	@extend %nav--block;
-
-	position: relative;
-
-	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
+%nav--collapsible {
 
 	%menu {
-		background-color: $background-color-nav-dropdown;
-		color: $color-nav-dropdown;
+		clear: left;
 
 		@include nav-mobile-only {
-			position: absolute;
-			right: 0;
-			left: 0;
-			clear: left;
 			transition: max-height 0.25s ease-in-out;
-			box-shadow: rgba( 0, 0, 0, 0.6 ) 0 15px 30px;
 			max-height: 0;
 			overflow: hidden;
 
 			&[aria-expanded="true"] {
 				max-height: none;
 			}
+		}
+
+		@include nav-desktop-only {
+			max-height: none !important;
+		}
+	}
+
+	%menu__link {
+
+		// 1. Line the left edge of the menu items up with the left edge of the
+		//    toggle button icon.
+		@include nav-mobile-only {
+			padding: {
+				right: 0.5rem; // 1
+				left: 0.5rem; // 1
+			}
+		}
+	}
+}
+
+%nav-bar {
+	@extend %nav--horizontal;
+	@extend %nav--block;
+	@extend %nav--collapsible;
+
+	@include z-index( 'nav-bar' );
+
+	position: relative;
+
+	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
+
+	%menu {
+		@include nav-mobile-only {
+			position: absolute;
+			top: 32px;
+			right: 0;
+			left: 0;
+			box-shadow: rgba( 0, 0, 0, 0.6 ) 0 15px 30px;
+			background-color: $background-color-nav-dropdown;
+			color: $color-nav-dropdown;
 
 			> %menu__item:first-child {
 				border-top: 0;
@@ -116,8 +144,6 @@
 		@include nav-desktop-only {
 			float: left;
 			clear: none;
-			background-color: transparent;
-			color: inherit;
 		}
 	}
 
@@ -133,20 +159,6 @@
 					display: block;
 				}
 			}
-		}
-	}
-
-	%menu__link {
-
-		// 1. Line the left edge of the menu items up with the left edge of the
-		//    toggle button icon.
-		@include nav-mobile-only {
-			padding: {
-				right: 0.5rem; // 1
-				left: 0.5rem; // 1
-			}
-			width: 75%;
-			width: calc( 100% - 3em );
 		}
 	}
 
@@ -277,12 +289,16 @@
 	@extend %nav--vertical;
 	@extend %nav--block;
 
-	padding: {
-		top: $padding-base;
-		bottom: $padding-base;
+	%menu {
+		@include nav-desktop-only {
+			padding: {
+				top: $padding-base;
+				bottom: $padding-base;
+			}
+		}
 	}
 
-	.menu__link {
+	%menu__link {
 		padding: {
 			right: $padding-base;
 			left: $padding-base;

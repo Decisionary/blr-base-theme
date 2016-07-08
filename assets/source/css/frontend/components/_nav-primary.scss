@@ -13,10 +13,6 @@
 	@extend %nav-bar;
 	@include nav-variant( primary );
 
-	.nav-toggle {
-		@include nav-toggle-button( $color-nav-primary );
-	}
-
 	.menu--user {
 		@extend %menu--user;
 

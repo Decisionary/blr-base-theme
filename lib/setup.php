@@ -114,6 +114,49 @@ function widgets_init() {
 
 add_action( 'widgets_init', __NAMESPACE__ . '\\widgets_init' );
 
+
+/**
+ * Customize the widget args for specific widgets.
+ *
+ * @since 0.2.0
+ *
+ * @see https://coderwall.com/p/hynjha/widget-title-on-before_widget-tag-class
+ *
+ * @param array      $instance Widget instance data.
+ * @param \WP_Widget $widget   Widget class instance.
+ * @param array      $args     Widget args.
+ *
+ * @return \WP_Widget|bool $instance The original widget instance or false if modified.
+ */
+function widget_args( $instance, $widget, $args ) {
+
+	// See if the current widget is a nav menu widget.
+	if ( 'nav_menu' === $widget->id_base ) {
+
+		// Wrap the built-in nav menu widget in a `<nav>` element and add the
+		// nav toggle button.
+		$args['before_widget'] = '<nav class="widget nav nav--sidebar">
+			<button class="nav-toggle" aria-label="Toggle Navigation">
+				<span class="nav-toggle__icon"></span>
+			</button>';
+		$args['after_widget'] = '</nav>';
+
+		// Remove the '.widget__content' div.
+		$args['after_title'] = '</h3>';
+
+		// Display the widget.
+		$widget->widget( $args, $instance );
+
+		// Return false to short-circuit the original widget display callback.
+		return false;
+	}
+
+	// Return the original widget instance for all other widgets.
+	return $instance;
+}
+
+add_filter( 'widget_display_callback', __NAMESPACE__ . '\\widget_args', 10, 3 );
+
 /**
  * Determine whether to show a specific sidebar.
  *

@@ -114,9 +114,10 @@
 	display: inline-block;
 	appearance: none;
 	user-select: none;
+	float: left;
 	border: 0;
 	background: transparent;
-	padding: 0.9375em 0.5em;
+	padding: 15px 8px;
 
 	&__icon {
 		@include nav-menu-icon( $color );

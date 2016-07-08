@@ -28,57 +28,76 @@
 	};
 
 	/**
-	 * Sets up click handlers for a toggle button and associated collapsible
-	 * elements - nav menu items, accordion items, etc.
+	 * Sets up click handlers for a toggle button that hides / shows menu items
+	 * for the current nav menu.
 	 *
 	 * @since 0.5.1
 	 *
-	 * @param  {Object} options Plugin options.
+	 * @param  {Object} options         Plugin options.
+	 * @param  {String} options.button  A jQuery selector that targets the toggle button.
+	 * @param  {String} options.menu    A jQuery selector that targets the menu container.
+	 * @param  {String} options.subMenu A jQuery selector that targets the sub-menu container.
+	 * @param  {String} options.items   A jQuery selector that targets the menu items.
 	 * @return {Object}
 	 */
-	$.fn.slideToggleButton = function( options ) {
+	$.fn.collapsibleNav = function( options = {} ) {
 		return this.each( ( index, element ) => {
-			const $button    = $( element );
-			const $container = $( options.container );
-			const $items     = $( options.items );
 
-			$button.on( 'click', event => {
-				event.preventDefault();
+			const defaults = {
+				button:  '.nav-toggle',
+				menu:    '.menu',
+				subMenu: '.sub-menu',
+				items:   '.menu__item',
+			};
 
-				$container.slideToggle();
-				$button.toggleClass( 'is-active' ).attr( 'aria-expanded', toggleAttr );
-			} );
+			options = $.extend( {}, defaults, options );
 
-			if ( $items.length ) {
-				$items.on( 'click', event => {
-					const $subMenu = $( event.currentTarget ).siblings( '.sub-menu' );
+			const $nav    = $( element );
+			const $button = $nav.find( options.button );
+			const $menu   = $nav.find( options.menu );
 
-					if ( $subMenu.length ) {
-						event.preventDefault();
+			// Make sure we have a toggle button and a nav menu to toggle.
+			if ( ! $button.length || ! $menu.length ) {
+				return;
+			}
 
-						let containerHeight = $container.outerHeight();
+			// Hide / show the nav menu when the toggle button is clicked.
+			if ( $button.length ) {
+				$button.on( 'click', event => {
+					event.preventDefault();
 
-						if ( $subMenu.hasClass( 'is-expanded' ) ) {
-							containerHeight -= $container.outerHeight();
-						} else {
-							$container.css( 'max-height', 'none' );
-							containerHeight += $container.outerHeight();
-							$container.css( 'max-height', '0' );
-						}
-
-						$container.css( 'max-height', containerHeight );
-
-						$subMenu.slideToggle()
-							.parent()
-							.attr( 'aria-expanded', toggleAttr )
-							.siblings()
-							.removeClass( 'is-expanded' )
-							.attr( 'aria-expanded', false )
-							.find( '.menu' )
-							.slideUp();
-					}
+					$nav.attr( 'aria-expanded', toggleAttr );
+					$menu.slideToggle();
 				} );
 			}
+
+			// Bail if we don't have a menu item selector.
+			if ( ! options.items || ! options.subMenu ) {
+				return;
+			}
+
+			// Toggle sub-menus when the parent menu item is clicked.
+			$menu.on( 'click', options.items, event => {
+				event.stopPropagation();
+
+				const $target  = $( event.target );
+				const $subMenu = $target.children( options.subMenu );
+
+				if ( $subMenu.length ) {
+
+					let menuHeight = $menu.outerHeight();
+
+					if ( 'true' === $target.attr( 'aria-expanded' ) ) {
+						menuHeight -= $subMenu.outerHeight();
+						$target.attr( 'aria-expanded', 'false' );
+					} else {
+						$target.attr( 'aria-expanded', 'true' );
+						menuHeight += $subMenu.outerHeight();
+					}
+
+					$menu.css( 'max-height', menuHeight );
+				}
+			} );
 		} );
 	};
 
@@ -94,7 +113,9 @@
 			const $el = $( element );
 
 			// Trigger the slide up transition.
-			$el.css( 'max-height', '0' ).removeClass( 'is-expanded' );
+			$el.css( 'max-height', '0' )
+				.removeClass( 'is-expanded' )
+				.attr( 'aria-expanded', 'false' );
 		} );
 	};
 
@@ -113,8 +134,6 @@
 			$el.css( 'max-height', 'none' );
 			const height = $el.outerHeight();
 
-			console.log( height );
-
 			// Hide the element again.
 			$el.css( 'max-height', '0' );
 
@@ -122,7 +141,9 @@
 			const timeout = 1;
 
 			setTimeout( () => {
-				$el.css( 'max-height', height ).addClass( 'is-expanded' );
+				$el.css( 'max-height', height )
+					.addClass( 'is-expanded' )
+					.attr( 'aria-expanded', 'true' );
 			}, timeout );
 		} );
 	};
