@@ -10,6 +10,9 @@ Object.defineProperty(exports, "__esModule", {
 // Gulp
 var gulp = __require('gulp');
 
+// Utilities
+var _ = __require('lodash');
+
 /**
  * Task name.
  *
@@ -23,9 +26,17 @@ var task = exports.task = 'build/fonts';
  * @type {Object}
  */
 var files = exports.files = {
-  source: ['../blr-base-theme/assets/source/fonts/*', 'assets/source/fonts/*', 'bower_components/font-awesome/fonts/fontawesome-webfont.*'],
-  dest: 'assets/dist/fonts'
+
+  source: [__config.paths.assets.source + '/fonts/*'],
+
+  dest: __config.paths.assets.dist + '/fonts'
+
 };
+
+// Includes.
+if (!_.isEmpty(__config.includes.fonts)) {
+  files.source = _.concat(__config.includes.fonts, files.source);
+}
 
 /**
  * Gulp callback for `build/fonts` task.

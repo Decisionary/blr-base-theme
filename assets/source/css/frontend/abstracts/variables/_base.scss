@@ -8,12 +8,30 @@
 // Grid / Layout
 // -------------------------------------------------------------------------
 
+/// Default theme features.
+///
+/// @type {Map}
+/// @access private
+$_theme-features: (
+	responsive: (
+		combine-sidebars: true,
+	),
+);
+
+/// Allows the child theme to enable / disable default theme features.
+///
+/// @type {Map}
+$theme-features: $_theme-features !default;
+$theme-features: map-extend( $_theme-features, $theme-features );
+
 /// Z-index map.
 ///
 /// @type {Map}
 $z-index-levels: (
 	nav: 10,
-	nav-menu: 20,
+	nav-bar: 20,
+	nav-menu: 30,
+	nav-sub-menu: 40,
 );
 
 /// Default breakpoints.
@@ -21,11 +39,11 @@ $z-index-levels: (
 /// @type {Map}
 /// @access private
 $_breakpoints: (
-	xs: 0,
-	sm: rem-calc( 572px ),
-	md: rem-calc( 756px ),
-	lg: rem-calc( 940px ),
-	xl: rem-calc( 1124px ),
+	xs: 0px,
+	sm: 572px,
+	md: 756px,
+	lg: 940px,
+	xl: 1124px,
 );
 
 /// Breakpoints
@@ -34,11 +52,17 @@ $_breakpoints: (
 $breakpoints: $_breakpoints !default;
 $breakpoints: map-extend( $_breakpoints, $breakpoints );
 
+/// Default container widths.
+///
+/// @type {Map}
+/// @access private
+$_container-widths: map-extend( $breakpoints, ( xs: 100% ) );
+
 /// Container widths.
 ///
 /// @type {Map}
-$container-widths: $breakpoints !default;
-$container-widths: map-extend( $breakpoints, $container-widths );
+$container-widths: $_container-widths !default;
+$container-widths: map-extend( $_container-widths, $container-widths );
 
 /// The number of columns to use for the grid.
 ///
@@ -48,17 +72,17 @@ $grid-cols: 24 !default;
 /// The width of the grid.
 ///
 /// @type {Number}
-$grid-width: rem-calc( 1124px ) !default;
+$grid-width: 1124px !default;
 
 /// The width of a grid column.
 ///
 /// @type {Number}
-$grid-col-width: rem-calc( 26px ) !default;
+$grid-col-width: 26px !default;
 
 /// The width of the gutter between grid columns.
 ///
 /// @type {Number}
-$gutter-width: rem-calc( 20px ) !default;
+$gutter-width: 20px !default;
 
 /// The height of the gutter between grid rows.
 ///
@@ -68,12 +92,12 @@ $gutter-height: $gutter-width !default;
 /// Default padding.
 ///
 /// @type {Number}
-$padding-base: rem-calc( 15px ) !default;
+$padding-base: 15px !default;
 
 /// Default margin.
 ///
 /// @type {Number}
-$margin-base: rem-calc( 10px ) !default;
+$margin-base: 10px !default;
 
 /// Default global Susy config.
 ///
@@ -209,7 +233,7 @@ $color-link-visited-active: $color-link-visited-hover !default;
 /// Default line height.
 ///
 /// @type {Number}
-$line-height-base: rem-calc( 20px ) !default;
+$line-height-base: 20px !default;
 
 /// Default line spacing.
 ///
@@ -229,27 +253,27 @@ $line-spacing-list-item: 0.5 * $line-spacing-base !default;
 /// Default font size.
 ///
 /// @type {Number}
-$font-size-base: rem-calc( 14px ) !default;
+$font-size-base: 14px !default;
 
 /// Small font size.
 ///
 /// @type {Number}
-$font-size-small: rem-calc( 12px ) !default;
+$font-size-small: 12px !default;
 
 /// Large font size.
 ///
 /// @type {Number}
-$font-size-large: rem-calc( 16px ) !default;
+$font-size-large: 16px !default;
 
 /// Title font size.
 ///
 /// @type {Number}
-$font-size-title: rem-calc( 18px ) !default;
+$font-size-title: 18px !default;
 
 /// Heading font size.
 ///
 /// @type {Number}
-$font-size-heading: rem-calc( 20px ) !default;
+$font-size-heading: 20px !default;
 
 /// Default sans-serif font stack.
 ///

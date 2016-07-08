@@ -42,60 +42,26 @@
 
 			onReady() {
 
-				// Make sure the nav menu block exists.
-				const $nav = $( '.nav--primary' );
-
-				if ( ! $nav.length ) {
-					return;
+				// Initialize the placeholder polyfill if needed.
+				if ( ( document.placeholderPolyfill || {} ).active ) {
+					document.placeholderPolyfill();
 				}
 
-				// Hide / show the nav menu when the toggle button is clicked.
-				const $toggleButton = $nav.find( '.nav-toggle' ).first();
+				// Make the primary nav collapsible if it exists.
+				const $navPrimary = $( '.nav--primary' );
 
-				if ( $toggleButton.length ) {
-					$toggleButton.on( 'click', event => {
-						event.preventDefault();
-
-						$nav.slideToggle();
-						$toggleButton.toggleClass( 'active' )
-							.attr( 'aria-expanded', toggleAttr );
-					} );
+				if ( $navPrimary.length ) {
+					$navPrimary.collapsibleNav();
 				}
 
-				// Toggle sub-menus when the parent menu item is clicked.
-				const $menuLinks = $nav.find( '.menu > li > a' );
+				// Make the sidebar nav collapsible if it exists.
+				const $navSidebar = $( '.nav--sidebar' );
 
-				if ( $menuLinks.length ) {
-					$menuLinks.on( 'click', event => {
-						const $subMenu = $( event.currentTarget ).siblings( '.sub-menu' );
-
-						if ( $subMenu.length ) {
-							event.preventDefault();
-
-							let menuBlockHeight = $nav.outerHeight();
-
-							if ( $subMenu.hasClass( 'is-expanded' ) ) {
-								menuBlockHeight -= $subMenu.outerHeight();
-							} else {
-								$subMenu.css( 'max-height', 'none' );
-								menuBlockHeight += $subMenu.outerHeight();
-								$subMenu.css( 'max-height', '0' );
-							}
-
-							$nav.css( 'max-height', menuBlockHeight );
-
-							$subMenu.slideToggle()
-								.parent()
-								.attr( 'aria-expanded', toggleAttr )
-								.siblings()
-								.removeClass( 'is-expanded' )
-								.attr( 'aria-expanded', false )
-								.find( '.menu' )
-								.slideUp();
-						}
-					} );
+				if ( $navSidebar.length ) {
+					$navSidebar.collapsibleNav();
 				}
 
+				// Collapsible section groups (e.g. accordions).
 				const collapsibles = $( '.section-group.is-collapsible' );
 
 				if ( collapsibles.length ) {

@@ -10,9 +10,12 @@
 		<template name="responsive-twig" />
 	</transformations>
 	<files>
-		<directory>lib</directory>
+		<directory>./</directory>
+		<ignore>assets/*</ignore>
+		<ignore>docs/*</ignore>
 		<ignore>test/*</ignore>
 		<ignore>bower_components/*</ignore>
 		<ignore>node_modules/*</ignore>
+		<ignore>vendor/*</ignore>
 	</files>
 </phpdoc>

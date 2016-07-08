@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Usage Docs &amp; Style Guide | BLR Base Theme</title>
+		<link rel="stylesheet" href="../../assets/dist/css/app.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+	</head>
+	<body class="has-sidebar-primary docs-page">
+
+		<header class="page-header-container">
+			<div class="page-header">
+				<div class="branding branding--header">
+					<a class="logo logo--header" href="../usage/index.html">
+						<img class="logo__image" src="../../assets/dist/images/logo-blr-primary.png" alt="Training Today">
+					</a><!-- /.logo -->
+				</div><!-- /.branding -->
+			</div><!-- /.page-header -->
+		</header><!-- /.page-header-container -->
+
+		<div class="page-nav-container">
+			<nav class="nav page-nav nav--primary">
+				<ul class="menu">
+					<li class="menu__item is-active">
+						<a class="menu__link" href="../usage/index.html" role="menuitem">
+							Usage
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="../php/index.html" class="menu__link" role="menuitem" target="_blank">
+							PHP
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="../sass/index.html" class="menu__link" role="menuitem" target="_blank">
+							Sass
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="../js/index.html" class="menu__link" role="menuitem" target="_blank">
+							JavaScript
+						</a>
+					</li>
+				</ul>
+			</nav><!-- /.page-nav -->
+		</div><!-- /.page-nav-container -->
+
+		<div class="page-content-container">
+
+			<ul class="breadcrumbs page-breadcrumbs">
+				<li class="breadcrumb breadcrumb--icon">
+					<i class="icon icon-book"></i>
+				</li>
+				<li class="breadcrumb breadcrumb--current">
+					Usage Docs &amp; Style Guide
+				</li>
+			</ul><!-- /.page-breadcrumbs -->
+
+			<div class="page-content">
+				<aside class="sidebar sidebar--primary" role="complementary">
+					<nav class="nav nav--sidebar">
+						<ul class="menu">
+								<li class="menu__item">
+									<a class="menu__link" href="#status-and-changes" role="menuitem">
+										Status and Changes
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#theme-mods" role="menuitem">
+										Theme Mods
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#page-templates" role="menuitem">
+										Page Templates
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#gulp" role="menuitem">
+										Gulp
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#theme-assets" role="menuitem">
+										Theme Assets
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#grid-system" role="menuitem">
+										Grid System
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#theme-colors" role="menuitem">
+										Theme Colors
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#buttons" role="menuitem">
+										Buttons
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#button-colors" role="menuitem">
+										Button Colors
+									</a>
+								</li>
+								<li class="menu__item">
+									<a class="menu__link" href="#button-styles" role="menuitem">
+										Button Styles
+									</a>
+								</li>
+						</ul>
+					</nav>
+				</aside><!-- /.sidebar -->
+
+				<main class="main-content">
+						<section class="content-section" id="status-and-changes">
+							<h1>Status and Changes</h1><p>These documents are a work in progress, and may be out of date.  We intend to
+maintain them and keep them as close to the implementation as possible.</p>
+<p>BLR Base Theme is a work in progress.  If there is something not implemented
+that you believe will be useful for other BLR WordPress implementations, please
+feel free to reach out to Jc <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#99;&#x40;&#x64;&#x65;&#99;&#x69;&#115;&#x69;&#111;&#x6e;&#97;&#x72;&#121;&#x74;&#x65;&#99;&#104;&#46;&#99;&#x6f;&#109;">&#x6a;&#99;&#x40;&#x64;&#x65;&#99;&#x69;&#115;&#x69;&#111;&#x6e;&#97;&#x72;&#121;&#x74;&#x65;&#99;&#104;&#46;&#99;&#x6f;&#109;</a>, add an issue on GitHub,
+or submit a pull request to have the change included in the Base Theme.</p>
+
+						</section>
+						<section class="content-section" id="theme-mods">
+							<h1>Theme Mods</h1><p>The following theme mods are most easily accessed and edited through the
+&#39;customizer&#39; interface on the front end of the site:</p>
+<h2>Site Info</h2><h3>Phone Number</h3><p>Displayed in the header and in the footer along with the copyright text.</p>
+<h3>Address</h3><p>Displayed in the footer along with the copyright text.</p>
+<h3>Copyright Text</h3><p>This is the text that is displayed in the footer, beneath the footer
+navigation.</p>
+<h2>Logos</h2><h3>Primary Logo</h3><p>Displayed in the header on the left, this is the primary logo for the site.</p>
+<h3>Search Logo</h3><p>Sets the &#39;search logo&#39; in the header.  Often used for a &#39;powered by BLR|HCPro&#39;
+badge.</p>
+<h3>Footer Logo</h3><p>Usually an HCPro or BLR logo, this is displayed in the footer.</p>
+<h2>Nav Menus</h2><h3>Primary Nav</h3><p>The primary header nav bar.</p>
+<h3>Search Nav</h3><p>A horizontal nav menu that is displayed in the header above the search bar.</p>
+<h3>Sidebar Nav</h3><p>A vertical nav menu that is displayed in the primary sidebar.</p>
+<h3>Footer Nav</h3><p>A horizontal nav menu that is displayed in the footer below the logo and above
+the contact info and copyright text.</p>
+<h2>Sidebars and Widgets</h2><h3>Pre-Header Sidebar</h3><p>A horizontal widget area that is displayed above the header.</p>
+<h3>Primary Sidebar</h3><p>The left column in a multi-column layout, most often used for navigation items
+and menus. Menus placed in this column will receive the color-block treatment
+seen on PQSH and TTMARK for their section pages.</p>
+<h3>Secondary Sidebar</h3><p>The right column in a multi-column layout, wide enough for ad placement.</p>
+<h3>Footer Sidebar</h3><p>A horizontal widget area that is displayed in the footer below the contact info
+and copyright text.</p>
+<h3>Post-Footer Sidebar</h3><p>A horizontal widget area that is displayed below the footer.</p>
+
+						</section>
+						<section class="content-section" id="page-templates">
+							<h1>Page Templates</h1><p>The following page templates are provided by default:</p>
+<ul>
+<li>Default - A three-column layout that includes both sidebars.</li>
+<li>Full Width - A full-width, one-column layout with no sidebars.</li>
+<li>Sidebar Primary - A two-column layout that includes the primary sidebar.</li>
+<li>Sidebar Secondary - A two-column layout that includes the secondary sidebar.</li>
+</ul>
+
+						</section>
+						<section class="content-section" id="gulp">
+							<h1>Gulp</h1><h2>Tasks</h2><p>BLR Base Theme provides the following Gulp tasks to the child theme:</p>
+<ul>
+<li><code>watch</code> - Watches asset files for changes and re-compiles them when updated.</li>
+<li><code>release</code> - Compiles assets and documentation. We&#39;re working on an update to
+this task that will automatically increment the theme version number as well.</li>
+<li><code>build</code> - Compiles all theme assets.</li>
+<li><code>build/css</code> - Compiles Sass files into CSS.</li>
+<li><code>build/js</code> - Compiles JS files.</li>
+<li><code>build/images</code> - Copies images from <code>assest/source/images</code>, optimizes them,
+and outputs the optimized versions into <code>assets/dist/images</code>.</li>
+<li><code>build/fonts</code> - Copies FontAwesome fonts, along with any fonts found in
+<code>/assets/source/fonts</code>.</li>
+<li><code>docs</code> - Compiles the documentation for BLR Base Theme.</li>
+<li><code>docs/js</code> - Compiles JavaScript docs.</li>
+<li><code>docs/sass</code> - Compiles Sass docs.</li>
+<li><code>docs/php</code> - Compiles PHP docs.</li>
+<li><code>docs/usage</code> - Compiles Usage docs and the Style Guide page.</li>
+</ul>
+<h2>Development</h2><p>The Gulp development files can be found in the <code>gulp-src</code> folder. The tasks
+are divided up into individual files within <code>gulp-src/tasks</code>, where each file
+is a module that exports a <code>task</code> name and a <code>callback</code> function. Some tasks
+also export a <code>config</code> object. The tasks utilize new features and syntax from
+ES6, meaning the Gulp files must be compiled after any changes are made. To do
+so, run the following command from the <code>blr-base-theme</code> folder:</p>
+<div class="ss-code"><pre><code class="sh">npm run gulp-compile</code></pre></div><h3>Importing Node Modules and Tasks</h3><p>Since the Gulp tasks are designed to be used by a child theme, the process for
+requiring node modules is slightly different - you need to use <code>__require()</code>
+instead of <code>require()</code> or <code>import</code>. Since the Gulp tasks are all modules, they
+can also be imported pretty easily with the <code>__requireTask()</code> function. For
+example, if you wanted to import the <code>build/css</code> task module you would use
+<code>__requireTask( &#39;build/css&#39; )</code>.</p>
+<h3>Adding a Task</h3><p>When adding a new task, use the following as a starting point for the module:</p>
+<div class="ss-code"><pre><code class="html">/**
+ * @module gulp/tasks/new-task
+ */
+
+// Gulp
+const gulp = __require( 'gulp' );
+
+/**
+ * Task name.
+ *
+ * @type {String}
+ */
+export const task = 'new-task';
+
+
+/**
+ * Task callback.
+ *
+ * Add documentation here to explain what the callback is doing and why.
+ *
+ * @return {Function}
+ */
+export const callback = function() {
+    // Code goes here.
+};
+
+
+// Register the task.
+gulp.task( task, callback );</code></pre></div><p>If you prefer using arrow functions you can do this as well:</p>
+<div class="ss-code"><pre><code class="html">/**
+ * Task callback.
+ *
+ * @return {Function}
+ */
+export const callback = () =&gt; {
+    // Code goes here.
+};</code></pre></div>
+						</section>
+						<section class="content-section" id="theme-assets">
+							<h1>Theme Assets</h1><h2>CSS &amp; JS</h2><p>BLR Base Theme automatically enqueues the main theme CSS (<code>app.css</code>) and JS
+(<code>app.js</code>) files for you if they exist. By default the theme CSS has no
+dependencies, while the theme JS has one dependency (jQuery). If your theme CSS
+or JS has any other dependencies, you can use the <code>blr/assets/css-deps</code> and
+<code>blr/assets/js-deps</code> filters to add them. For example, let&#39;s say you&#39;re using
+Underscore in your theme JS. To add Underscore as a dependency, you&#39;d do
+something like this:</p>
+<div class="ss-code"><pre><code class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customize_theme_js_deps</span><span class="hljs-params">( <span class="hljs-variable">$deps</span> )</span> </span>{
+
+    <span class="hljs-keyword">if</span> ( ! in_array( <span class="hljs-string">'underscore'</span>, <span class="hljs-variable">$deps</span>, <span class="hljs-keyword">true</span> ) ) {
+        <span class="hljs-variable">$deps</span>[] = <span class="hljs-string">'underscore'</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$deps</span>;
+}
+
+add_filter( <span class="hljs-string">'blr/assets/js-deps'</span>, <span class="hljs-string">'customize_theme_js_deps'</span> );</code></pre></div><p>The method for updating CSS dependencies is the same. For example, let&#39;s say
+you enqueued the Bootstrap CSS and wanted to make sure that it was loaded
+before the theme CSS:</p>
+<div class="ss-code"><pre><code class="php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customize_theme_css_deps</span><span class="hljs-params">( <span class="hljs-variable">$deps</span> )</span> </span>{
+
+    <span class="hljs-keyword">if</span> ( ! in_array( <span class="hljs-string">'bootstrap'</span>, <span class="hljs-variable">$deps</span>, <span class="hljs-keyword">true</span> ) ) {
+        <span class="hljs-variable">$deps</span>[] = <span class="hljs-string">'bootstrap'</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$deps</span>;
+}
+
+add_filter( <span class="hljs-string">'blr/assets/css-deps'</span>, <span class="hljs-string">'customize_theme_css_deps'</span> );</code></pre></div><h2>Helper Functions</h2><p>BLR Base Theme also provides some handy asset-related helper functions. For
+example, let&#39;s say you&#39;re putting together some custom template files for your
+theme and you need to add some placeholder content, including some images:</p>
+<div class="ss-code"><pre><code class="php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">BLR</span>\<span class="hljs-title">Base_Theme</span>\<span class="hljs-title">Assets</span>;
+
+<span class="hljs-variable">$image_url</span> = Assets\asset_url( <span class="hljs-string">'images/image-file.png'</span> );
+<span class="hljs-preprocessor">?&gt;</span>
+
+&lt;img alt=<span class="hljs-string">"Placeholder Image"</span> src=<span class="hljs-string">"&lt;?php echo esc_url( $image_url ); ?&gt;"</span>&gt;
+
+&lt;p&gt;
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed <span class="hljs-keyword">do</span> eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+&lt;/p&gt;</code></pre></div><p>Or, let&#39;s say you want to check to see if an asset file exists. You&#39;d simply do:</p>
+<div class="ss-code"><pre><code class="php"><span class="hljs-keyword">use</span> <span class="hljs-title">BLR</span>\<span class="hljs-title">Base_Theme</span>\<span class="hljs-title">Assets</span>;
+
+<span class="hljs-keyword">if</span> ( file_exists( Assets\asset_path( <span class="hljs-string">'path/to/asset.file'</span> ) ) {
+    <span class="hljs-comment">// Do something.</span>
+}</code></pre></div><p>There are also specific path and URL functions for images, CSS, and JS. So in
+our first example with the template image, we could use the following instead:</p>
+<div class="ss-code"><pre><code class="php"><span class="hljs-variable">$image_url</span> = Assets\image_url( <span class="hljs-string">'image-file.png'</span> );</code></pre></div><p>These helper functions are especially useful when enqueueing custom CSS and JS:</p>
+<div class="ss-code"><pre><code class="php">wp_enqueue_style( <span class="hljs-string">'custom'</span>, Assets\css_url( <span class="hljs-string">'custom.css'</span> ), [], <span class="hljs-keyword">null</span> );
+wp_enqueue_script( <span class="hljs-string">'custom'</span>, Assets\js_url( <span class="hljs-string">'custom.js'</span> ), [], <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span> );</code></pre></div><h1>Breakpoints</h1><p>BLR Base Theme comes with the following breakpoints pre-defined:</p>
+<div class="ss-code"><pre><code class="scss">$_breakpoints<span class="hljs-value">: (
+    xs: <span class="hljs-number">0px</span>,
+    sm: <span class="hljs-number">572px</span>,
+    md: <span class="hljs-number">756px</span>,
+    lg: <span class="hljs-number">940px</span>,
+    xl: <span class="hljs-number">1124px</span>,
+);</span></code></pre></div><p>It also includes a <code>breakpoint</code> mixin that can be used to target any of these
+breakpoints in a media query:</p>
+<div class="ss-code"><pre><code class="scss"><span class="hljs-comment">// Applies to viewports that are 572px or more.</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">include</span><span class="hljs-preprocessor"> breakpoint</span>(<span class="hljs-preprocessor"> sm</span> ) {</span>
+    <span class="hljs-class">.example</span> {
+        <span class="hljs-attribute">display</span><span class="hljs-value">: block;</span>
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div><p>The <code>breakpoint</code> mixin accepts a 2nd argument that determines whether to use
+<code>min-width</code> or <code>max-width</code> for the media query:</p>
+<div class="ss-code"><pre><code class="scss"><span class="hljs-comment">// Applies to viewports that are 571px or less.</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">include</span><span class="hljs-preprocessor"> breakpoint</span>(<span class="hljs-preprocessor"> sm</span>, <span class="hljs-string">'max'</span> ) {</span>
+    <span class="hljs-class">.example</span> {
+        <span class="hljs-attribute">display</span><span class="hljs-value">: none;</span>
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div>
+						</section>
+						<section class="content-section" id="grid-system">
+							<h1>Grid System</h1><p>BLR Base Theme includes the <a href="http://susy.oddbird.net/">Susy grid system</a>, as
+well as some basic helper classes for quick prototyping:</p>
+<div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-6"</span>&gt;</span>
+        1/4
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-12"</span>&gt;</span>
+        1/2
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-6"</span>&gt;</span>
+        1/4
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-8"</span>&gt;</span>
+        1/3
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-8"</span>&gt;</span>
+        1/3
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grid-col--span-8"</span>&gt;</span>
+        1/3
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre></div>
+
+<div class="ss-code-live"><div class="grid">
+    <div class="grid-col--span-6">
+        1/4
+    </div>
+    <div class="grid-col--span-12">
+        1/2
+    </div>
+    <div class="grid-col--span-6">
+        1/4
+    </div>
+    <div class="grid-col--span-8">
+        1/3
+    </div>
+    <div class="grid-col--span-8">
+        1/3
+    </div>
+    <div class="grid-col--span-8">
+        1/3
+    </div>
+</div></div>
+						</section>
+						<section class="content-section" id="theme-colors">
+							<h1>Theme Colors</h1><p>The following color variables are made available to the child theme:</p>
+<p><span class="color-swatch--base"><code>$color-base</code></span>
+<span class="color-swatch--light"><code>$color-light</code></span>
+<span class="color-swatch--medium"><code>$color-medium</code></span>
+<span class="color-swatch--dark"><code>$color-dark</code></span>
+<span class="color-swatch--primary"><code>$color-primary</code></span>
+<span class="color-swatch--secondary"><code>$color-secondary</code></span>
+<span class="color-swatch--tertiary"><code>$color-tertiary</code></span>
+<span class="color-swatch--success"><code>$color-success</code></span>
+<span class="color-swatch--error"><code>$color-error</code></span>
+<span class="color-swatch--info"><code>$color-info</code></span>
+<span class="color-swatch--alert"><code>$color-alert</code></span></p>
+
+						</section>
+						<section class="content-section" id="buttons">
+							<h1>Buttons</h1><p>BLR Base Theme allows for buttons in both <code>&lt;button&gt;</code> and <code>&lt;a&gt;</code> elements.
+Regardless of which method you pick, the buttons should appear identical,
+giving you flexibility in implementation. That being said, if your button does
+not actually link to another page you should use a <code>&lt;button&gt;</code> element. When you
+do need to use an <code>&lt;a&gt;</code> element, you should add the <code>button</code> ARIA role for
+accessibility purposes.</p>
+<div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary"</span>&gt;</span>This is a button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary"</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"..."</span>&gt;</span>This is a button link.<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></code></pre></div>
+
+<div class="ss-code-live"><button class="button--primary">This is a button</button>
+<a class="button--primary" role="button" href="...">This is a button link.</a></div>
+						</section>
+						<section class="content-section" id="button-colors">
+							<h1>Button Colors</h1><p>Buttons come in the following colors:</p>
+<div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--default"</span>&gt;</span>Default text color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary"</span>&gt;</span>Primary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--secondary"</span>&gt;</span>Secondary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--tertiary"</span>&gt;</span>Tertiary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--success"</span>&gt;</span>Success state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--error"</span>&gt;</span>Error state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--info"</span>&gt;</span>Info state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--alert"</span>&gt;</span>Alert state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></code></pre></div>
+
+<div class="ss-code-live"><button class="button--default">Default text color</button>
+<button class="button--primary">Primary branding color</button>
+<button class="button--secondary">Secondary branding color</button>
+<button class="button--tertiary">Tertiary branding color</button>
+<button class="button--success">Success state color</button>
+<button class="button--error">Error state color</button>
+<button class="button--info">Info state color</button>
+<button class="button--alert">Alert state color</button></div><p>Each button color also has a corresponding solid version:</p>
+<div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--default--solid"</span>&gt;</span>Default text color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary--solid"</span>&gt;</span>Primary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--secondary--solid"</span>&gt;</span>Secondary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--tertiary--solid"</span>&gt;</span>Tertiary branding color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--success--solid"</span>&gt;</span>Success state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--error--solid"</span>&gt;</span>Error state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--info--solid"</span>&gt;</span>Info state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--alert--solid"</span>&gt;</span>Alert state color<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></code></pre></div>
+
+<div class="ss-code-live"><button class="button--default--solid">Default text color</button>
+<button class="button--primary--solid">Primary branding color</button>
+<button class="button--secondary--solid">Secondary branding color</button>
+<button class="button--tertiary--solid">Tertiary branding color</button>
+<button class="button--success--solid">Success state color</button>
+<button class="button--error--solid">Error state color</button>
+<button class="button--info--solid">Info state color</button>
+<button class="button--alert--solid">Alert state color</button></div>
+						</section>
+						<section class="content-section" id="button-styles">
+							<h1>Button Styles</h1><p>BLR Base Theme includes a number of Sass placeholders and mixins that can be
+used to create different types of buttons.</p>
+<div class="ss-code"><pre><code class="scss"><span class="hljs-comment">// Regular button using placeholder.</span>
+<span class="hljs-class">.my-button</span> {
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %button;</span>
+}
+
+<span class="hljs-comment">// Regular button using mixin.</span>
+<span class="hljs-class">.my-button</span> {
+    <span class="hljs-at_rule">@<span class="hljs-keyword">include</span><span class="hljs-preprocessor"> button</span>;</span>
+}
+
+<span class="hljs-comment">// Full-width button.</span>
+<span class="hljs-class">.my-button</span> {
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %button--block;</span>
+}
+
+<span class="hljs-comment">// Button with slightly rounded corners.</span>
+<span class="hljs-class">.my-button</span> {
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %button--rounded;</span>
+}
+
+<span class="hljs-comment">// Pill-shaped button with completely round corners.</span>
+<span class="hljs-class">.my-button</span> {
+    <span class="hljs-at_rule">@<span class="hljs-keyword">extend</span> %button--pill;</span>
+}</code></pre></div><p>Each of these placeholders also corresponds to a CSS class that you can use.
+The placeholder method is recommended as it&#39;s easier to maintain, though the
+helper classes are useful for prototyping or placeholder content.</p>
+<div class="ss-code"><pre><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--block"</span>&gt;</span>This is a full-width button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--rounded"</span>&gt;</span>This is a rounded button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary button--pill"</span>&gt;</span>This is a pill-shaped button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary--solid button--block"</span>&gt;</span>This is a full-width button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary--solid button--rounded"</span>&gt;</span>This is a rounded button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"button--primary--solid button--pill"</span>&gt;</span>This is a pill-shaped button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></code></pre></div>
+
+<div class="ss-code-live"><button class="button--primary button--block">This is a full-width button</button>
+<button class="button--primary button--rounded">This is a rounded button</button>
+<button class="button--primary button--pill">This is a pill-shaped button</button>
+<button class="button--primary--solid button--block">This is a full-width button</button>
+<button class="button--primary--solid button--rounded">This is a rounded button</button>
+<button class="button--primary--solid button--pill">This is a pill-shaped button</button></div>
+						</section>
+				</main><!-- /.main-content -->
+			</div><!-- /.page-content -->
+		</div><!-- /.page-content-container-->
+	</body>
+</html>

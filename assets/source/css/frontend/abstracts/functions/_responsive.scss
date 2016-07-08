@@ -5,29 +5,158 @@
 // scss-lint:disable ZeroUnit
 
 
-
-/// Takes a valid breakpoint name and returns its width.
-/// Returns null if the breakpoint is not defined.
+/// Validates a breakpoint width.
 ///
-/// @param {String} $breakpoint - The breakpoint to get the width for.
-/// @param {String} $min-max ['min'] - Set to 'max' for a `max-width` media query.
+/// @access private
 ///
-/// @return {Number}
-@function get-breakpoint( $breakpoint, $min-max: 'min' ) {
+/// @param {Number} $width           - The breakpoint width to validate.
+/// @param {String} $min-max ['min'] - Set to 'max' if using the breakpoint in a `max-width` media query.
+///
+/// @return {Number | Bool} - The breakpoint width if valid; false if not.
+@function _blr-validate-breakpoint-width( $width, $min-max: 'min' ) {
 
-	@if not map-has-key( $breakpoints, $breakpoint ) {
-		@warn "`#{$breakpoint}` is not a valid breakpoint name.";
-		@return null;
+	// Return false if breakpoint is disabled.
+	@if $width == 'disabled' {
+		@return false;
 	}
 
-	$width: map-get( $breakpoints, $breakpoint );
+	// Throw error if breakpoint width is not a number.
+	@if type-of( $width ) != 'number' {
+		@error "`#{$width}` is not a valid breakpoint width (must be a number).";
+	}
 
-	@if 'max' == $min-max {
-		$width: $width - 0.000001rem;
+	// Warn if breakpoint width is unitless and convert to px.
+	@if unitless( $width ) {
+		@warn "Breakpoint width is unitless, converting to `#{$width}px`.";
+		$width: 1px * $width;
+	}
+
+	// Throw error if breakpoint width has an invalid unit type.
+	@if not index( ( 'px', 'em', 'rem' ), unit( $width ) ) {
+		@error "`#{$width}` is not a valid breakpoint width (must be a px, em, or rem value).";
+	}
+
+	// Throw error if breakpoint width is negative.
+	@if $width < 0 {
+		@error "#{$width} is not a valid breakpoint width (cannot be negative).";
+	}
+
+	// Check if breakpoint width will be used in a `max-width` media query.
+	@if $min-max == 'max' {
+
+		// Throw error if breakpoint width is 0.
+		@if $width == 0 {
+			@error "#{$width} is not a valid breakpoint max-width (must be greater than 0).";
+		}
+
+		// Make sure we subtract the corrent unit type to get the max-width.
+		@if unit( $width ) == 'px' {
+			$width: $width - 1px;
+		} @else if unit( $width ) == 'em' {
+			$width: $width - 0.01em;
+		} @else if unit( $width ) == 'rem' {
+			$width: $width - 0.01rem;
+		}
 	}
 
 	@return $width;
 }
+
+
+/// Validates a container width.
+///
+/// @access private
+///
+/// @param {Number} $width - The container width to validate.
+///
+/// @return {Number | Bool} - The container width if valid; false if not.
+@function _blr-validate-container-width( $width ) {
+
+	// Return false if container width is disabled.
+	@if $width == 'disabled' {
+		@return false;
+	}
+
+	// Throw error if container width is not a number.
+	@if type-of( $width ) != 'number' {
+		@error "#{$width} is not a valid container width (must be a number).";
+	}
+
+	// Warn if container width is unitless and convert to px.
+	@if unitless( $width ) {
+		@warn "Container width is unitless, converting to `#{$width}px`.";
+		$width: 1px * $width;
+	}
+
+	// Throw error if container width is negative or zero.
+	@if $width <= 0 {
+		@error "#{$width} is not a valid container width (must be greater than 0).";
+	}
+
+	@return $width;
+}
+
+
+/// Takes either a breakpoint name or a numeric value and returns a breakpoint
+/// width for use in media queries. Returns false if the breakpoint is disabled
+/// or the breakpoint width is undefined or invalid.
+///
+/// @param {String | Number} $breakpoint      - The breakpoint name or width.
+/// @param {String}          $min-max ['min'] - Set to 'max' if using the breakpoint in a `max-width` media query.
+///
+/// @return {Number | Bool}
+@function get-breakpoint( $breakpoint, $min-max: 'min' ) {
+
+	// Warn and return false if `$breakpoint` is not a number or a string.
+	@if not index( ( 'number', 'string' ), type-of( $breakpoint ) ) {
+		@warn "get-breakpoint() :: `$breakpoint` must be a string or number (#{ inspect( $breakpoint ) } was passed).";
+		@return false;
+	}
+
+	// Warn and return false if a breakpoint name was passed and it isn't
+	// defined in the `$breakpoints` map.
+	@if type-of( $breakpoint ) == 'string' and not map-has-key( $breakpoints, $breakpoint ) {
+		@warn "get-breakpoint() :: `#{$breakpoint}` is not a valid breakpoint name.";
+		@return false;
+	}
+
+	// If a breakpoint width was passed directly, use it.
+	// Otherwise get the width from the `$breakpoints` map.
+	$width: if( type-of( $breakpoint ) == 'number', $breakpoint, map-get( $breakpoints, $breakpoint ) );
+
+	// Validate the breakpoint width;
+	$width: _blr-validate-breakpoint-width( $width, $min-max );
+
+	// Return the breakpoint width if valid or false if not.
+	@return $width;
+}
+
+
+/// Responsive container helper function. Takes a breakpoint and returns its
+/// corresponding container width. Returns false if the breakpoint is disabled
+/// or the container width is undefined or invalid.
+///
+/// @param {String} $breakpoint [''] - A breakpoint to get the corresponding grid container width for.
+///
+/// @return {Number | Bool} The container width if valid and enabled; false if not.
+@function blr-container( $breakpoint ) {
+
+	// Return false if no container width is found for the specified breakpoint.
+	@if not map-has-key( $container-widths, $breakpoint ) {
+		@warn "blr-responsive-container() :: No container width is defined for breakpoint `#{$breakpoint}`.";
+		@return false;
+	}
+
+	// Get the container width.
+	$width: map-get( $container-widths, $breakpoint );
+
+	// Validate the container width.
+	$width: _blr-validate-container-width( $width );
+
+	// Return the container width if valid or false if not.
+	@return $width;
+}
+
 
 /// Converts pixel value into matching rem value.
 ///

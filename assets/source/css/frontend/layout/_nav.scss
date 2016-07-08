@@ -22,11 +22,12 @@
 
 .menu__link {
 	@extend %menu__link;
+}
 
-	.sub-menu > .has-children > &::after {
-		@include icon();
+.has-children {
+	@extend %has-children;
+}
 
-		margin-left: 1em;
-		content: $fa-var-angle-right;
-	}
+.nav-toggle {
+	@include nav-toggle-button;
 }

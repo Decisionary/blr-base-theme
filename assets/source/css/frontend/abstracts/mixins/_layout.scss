@@ -1,0 +1,8 @@
+
+/// Checks if the specified key exists in the `$z-index-levels` map. If so,
+/// sets the z-index to the value of that key; if not, sets the z-index to 1.
+///
+/// @param {String} $key - The key to check the z-index map for.
+@mixin z-index( $key ) {
+	z-index: get-z-index( $key );
+}

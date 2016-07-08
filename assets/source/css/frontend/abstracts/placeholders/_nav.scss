@@ -1,0 +1,307 @@
+%nav {
+	@include susy-clearfix;
+	@include z-index( 'nav' );
+
+	display: block;
+	font-size: $font-size-nav;
+
+	%menu {
+		@include susy-clearfix;
+		@include list-unstyled;
+		@include z-index( 'nav-menu' );
+
+		display: block;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: block;
+		line-height: 1;
+		font-size: inherit;
+	}
+
+	%menu__link {
+		@include style-link {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+}
+
+%nav--horizontal {
+
+	%menu__item {
+		position: relative;
+		float: left;
+	}
+
+	%menu__link {
+		padding: {
+			right: 0.5em;
+			left: 0.5em;
+		}
+	}
+}
+
+%nav--vertical {
+
+	%menu,
+	%menu__item {
+		float: none !important;
+	}
+
+	%menu__item,
+	%menu__link {
+		display: block;
+	}
+}
+
+%nav--block {
+
+	%menu__link {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
+	}
+}
+
+%nav--text {
+
+	%menu {
+		padding: {
+			top: 0.5em;
+			bottom: 0.5em;
+		}
+	}
+
+	%menu__link {
+		@include hover-focus-active {
+			text-decoration: underline;
+		}
+	}
+}
+
+%nav--collapsible {
+
+	%menu {
+		clear: left;
+
+		@include nav-mobile-only {
+			transition: max-height 0.25s ease-in-out;
+			max-height: 0;
+			overflow: hidden;
+
+			&[aria-expanded="true"] {
+				max-height: none;
+			}
+		}
+
+		@include nav-desktop-only {
+			max-height: none !important;
+		}
+	}
+
+	%menu__link {
+
+		// 1. Line the left edge of the menu items up with the left edge of the
+		//    toggle button icon.
+		@include nav-mobile-only {
+			padding: {
+				right: 0.5rem; // 1
+				left: 0.5rem; // 1
+			}
+		}
+	}
+}
+
+%nav-bar {
+	@extend %nav--horizontal;
+	@extend %nav--block;
+	@extend %nav--collapsible;
+
+	@include z-index( 'nav-bar' );
+
+	position: relative;
+
+	$color-nav-dropdown: contrast-color( $background-color-nav-dropdown );
+
+	%menu {
+		@include nav-mobile-only {
+			position: absolute;
+			top: 32px;
+			right: 0;
+			left: 0;
+			box-shadow: rgba( 0, 0, 0, 0.6 ) 0 15px 30px;
+			background-color: $background-color-nav-dropdown;
+			color: $color-nav-dropdown;
+
+			> %menu__item:first-child {
+				border-top: 0;
+			}
+		}
+
+		@include nav-desktop-only {
+			float: left;
+			clear: none;
+		}
+	}
+
+	%menu__item {
+		@include nav-mobile-only {
+			float: none;
+			border-top: 1px solid transparentize( $color-nav-dropdown, 0.5 );
+		}
+
+		@include nav-desktop-only {
+			&:hover {
+				> %sub-menu {
+					display: block;
+				}
+			}
+		}
+	}
+
+	%sub-menu {
+		@include z-index( 'nav-sub-menu' );
+
+		display: none;
+		background-color: $background-color-nav-dropdown;
+		width: 100%;
+		color: contrast-color( $background-color-nav-dropdown );
+
+		@include nav-desktop-only {
+			position: absolute;
+			box-shadow: rgba( 0, 0, 0, 0.5 ) 4px 4px 6px;
+			padding: $margin-base 0;
+			width: auto;
+
+			%sub-menu {
+				top: -1 * $margin-base;
+				left: 100%;
+			}
+		}
+
+		@include nav-mobile-only {
+			text-indent: $gutter-width;
+
+			%sub-menu {
+				text-indent: 2 * $gutter-width;
+
+				%sub-menu {
+					text-indent: 3 * $gutter-width;
+
+					%sub-menu {
+						text-indent: 4 * $gutter-width;
+					}
+				}
+			}
+		}
+
+		%menu__link {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	%has-children {
+
+		&::after {
+			@include icon();
+
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 3em;
+			text-indent: 0;
+			line-height: 2;
+			content: $fa-var-angle-right;
+
+			@include nav-desktop-only {
+				display: none;
+			}
+		}
+
+		&[aria-expanded="true"] {
+			&::after {
+				content: $fa-var-angle-down;
+			}
+
+			> %sub-menu {
+				display: block;
+			}
+		}
+	}
+
+	%menu--user {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		@include nav-desktop-only {
+			position: static;
+			float: right;
+		}
+
+		%menu__item {
+			float: left;
+			border-top: 0;
+		}
+
+		%menu__link {
+			width: auto;
+		}
+	}
+}
+
+%nav-links {
+	@extend %nav--horizontal;
+	@extend %nav--text;
+
+	%menu__item {
+
+		&:first-child {
+			%menu__link {
+				padding-left: 0;
+			}
+		}
+
+		&:last-child {
+			%menu__link {
+				padding-right: 0;
+			}
+		}
+	}
+
+	%menu__item + %menu__item {
+
+		%menu__link {
+			border-left: {
+				width: 1px;
+				style: solid;
+			}
+		}
+	}
+}
+
+%nav-section {
+	@extend %nav--vertical;
+	@extend %nav--block;
+
+	%menu {
+		@include nav-desktop-only {
+			padding: {
+				top: $padding-base;
+				bottom: $padding-base;
+			}
+		}
+	}
+
+	%menu__link {
+		padding: {
+			right: $padding-base;
+			left: $padding-base;
+		}
+	}
+}
