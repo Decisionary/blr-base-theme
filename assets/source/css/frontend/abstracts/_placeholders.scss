@@ -113,17 +113,18 @@
 
 %widget {
 	@extend %content-section;
+	@extend %text-content;
 
 	position: relative;
 	color: $color-widget;
 
 	> * {
 		@extend %content-sub-section;
-		@extend %text-content;
 	}
 
 	ul {
-		list-style-position: inside;
+		margin-left: 0;
+		list-style: none;
 	}
 
 	%widget__title {
