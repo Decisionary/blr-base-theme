@@ -25,9 +25,14 @@
 		@error "`#{$width}` is not a valid breakpoint width (must be a number).";
 	}
 
-	// Warn if breakpoint width is unitless and convert to px.
+	// Convert breakpoint to px if unitless.
 	@if unitless( $width ) {
-		@warn "Breakpoint width is unitless, converting to `#{$width}px`.";
+
+		// Warn if breakpoint is > 0.
+		@if $width > 0 {
+			@warn "Breakpoint width is unitless, converting to `#{$width}px`.";
+		}
+
 		$width: 1px * $width;
 	}
 

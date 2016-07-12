@@ -61,14 +61,10 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup' );
  */
 function widgets_init() {
 
-	// There is an issue where the opening `.widget__content` div is not
-	// included if the widgets doesn't have a title. If we can't find a way to
-	// reliably wrap the widget content in this `.widget__content` div we'll
-	// probably need to remove it and find another way to style the widgets.
 	$defaults = [
 		'before_widget' => '<section class="widget--boxed %1$s %2$s">',
 		'before_title'  => '<h3 class="widget__title">',
-		'after_title'   => '</h3><div class="widget__content">',
+		'after_title'   => '</h3>',
 		'after_widget'  => '</section>',
 	];
 
@@ -140,9 +136,6 @@ function widget_args( $instance, $widget, $args ) {
 				<span class="nav-toggle__icon"></span>
 			</button>';
 		$args['after_widget'] = '</nav>';
-
-		// Remove the '.widget__content' div.
-		$args['after_title'] = '</h3>';
 
 		// Display the widget.
 		$widget->widget( $args, $instance );

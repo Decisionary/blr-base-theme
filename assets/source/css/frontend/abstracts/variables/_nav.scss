@@ -20,6 +20,11 @@ $breakpoint-hide-mobile-nav: md;
 // Colors
 // -------------------------------------------------------------------------
 
+/// Nav dropdown text color.
+///
+/// @type {Color}
+$color-nav-dropdown: $color-dark !default;
+
 /// Default nav menu item color.
 ///
 /// @type {Color}
@@ -235,6 +240,17 @@ $background-color-nav-footer-focus: $background-color-nav-footer-hover !default;
 ///
 /// @type {Color}
 $background-color-nav-footer-active: $background-color-nav-footer-hover !default;
+
+
+
+// -------------------------------------------------------------------------
+// Border Colors
+// -------------------------------------------------------------------------
+
+/// Nav dropdown menu item border color.
+///
+/// @type {Color}
+$border-color-nav-dropdown-items: transparentize( $color-nav-dropdown, 0.5 ) !default;
 
 
 
