@@ -118,6 +118,10 @@
 	position: relative;
 	color: $color-widget;
 
+	%widget__title {
+		color: $color-widget-header;
+	}
+
 	> * {
 		@extend %content-sub-section;
 	}
@@ -125,10 +129,6 @@
 	ul {
 		margin-left: 0;
 		list-style: none;
-	}
-
-	%widget__title {
-		color: $color-widget-header;
 	}
 }
 
