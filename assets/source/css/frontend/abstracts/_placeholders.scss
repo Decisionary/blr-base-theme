@@ -2,6 +2,7 @@
 /// @group Abstracts
 ////
 
+@import 'abstracts/placeholders/typography';
 @import 'abstracts/placeholders/nav';
 
 %content-section,
@@ -112,17 +113,22 @@
 
 %widget {
 	@extend %content-section;
+	@extend %text-content;
 
 	position: relative;
 	color: $color-widget;
 
-	%widget__title,
-	%widget__content {
+	%widget__title {
+		color: $color-widget-header;
+	}
+
+	> * {
 		@extend %content-sub-section;
 	}
 
-	%widget__title {
-		color: $color-widget-header;
+	ul {
+		margin-left: 0;
+		list-style: none;
 	}
 }
 
@@ -152,8 +158,7 @@
 		content: '';
 	}
 
-	%widget__title,
-	%widget__content {
+	> * {
 		padding: {
 			right: $padding-base;
 			left: $padding-base;
