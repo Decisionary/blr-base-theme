@@ -1,9 +1,14 @@
 
-/* eslint-disable */
+/* eslint-disable no-var */
 
 var path = require( 'path' );
 
-/* eslint-enable */
+// Get the path to the `blr-base-theme` folder.
+var baseThemePath = (
+	'blr-base-theme' === path.basename( process.cwd() )
+	? process.cwd()
+	: path.resolve( '../blr-base-theme' )
+);
 
 
 module.exports = {
@@ -38,10 +43,22 @@ module.exports = {
 				},
 			},
 			{
+				test:   /\.coffee$/,
+				loader: 'coffee-loader',
+			},
+			{
 				test:   /\.json?$/,
 				loader: 'json',
 			},
 		],
+		resolve: {
+			extensions: [
+				'',
+				'.js',
+				'.json',
+				'.coffee',
+			],
+		},
 	},
 
 };
