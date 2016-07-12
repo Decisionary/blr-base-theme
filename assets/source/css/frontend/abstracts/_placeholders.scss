@@ -2,40 +2,8 @@
 /// @group Abstracts
 ////
 
+@import 'abstracts/placeholders/typography';
 @import 'abstracts/placeholders/nav';
-
-%text-content {
-	* {
-		// Default line spacing.
-		+ * {
-			@include v-spacing-top;
-		}
-
-		// Sub-headings.
-		+ h2,
-		+ h3 {
-			@include v-spacing-top( $line-spacing-heading );
-		}
-
-		// List items.
-		+ li,
-		+ dt,
-		+ dd {
-			@include v-spacing-top( $line-spacing-list-item );
-		}
-	}
-
-	ul,
-	ol,
-	dl {
-		margin-left: 1.5em;
-		list-style-position: outside;
-	}
-
-	dt {
-		font-weight: bold;
-	}
-}
 
 %content-section,
 %content-sub-section {
