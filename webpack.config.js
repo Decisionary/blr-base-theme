@@ -3,30 +3,75 @@
 
 var path = require( 'path' );
 
+// Get the path to the current folder.
+var currentPath = process.cwd();
+
 // Get the path to the `blr-base-theme` folder.
 var baseThemePath = (
-	'blr-base-theme' === path.basename( process.cwd() )
-	? process.cwd()
+	'blr-base-theme' === path.basename( currentPath )
+	? currentPath
 	: path.resolve( '../blr-base-theme' )
 );
 
+// Store base / child theme paths for later use.
+var paths = {
+	baseTheme: {
+		source: path.join( baseThemePath, 'assets/source/js' ),
+		dist:   path.join( baseThemePath, 'assets/dist/js' ),
+	},
+	childTheme: {
+		source: path.join( currentPath, 'assets/source/js' ),
+		dist:   path.join( currentPath, 'assets/dist/js' ),
+	},
+};
 
+
+// Webpack config.
 module.exports = {
 
-	context: path.join( __dirname, 'assets/source/js' ),
+	// Base directory to check when resolving `entry` paths.
+	context: paths.childTheme.source,
 
+	// Source files.
 	entry: {
 		frontend: './frontend',
 		admin:    './admin',
 	},
 
+	// Output file / path settings.
 	output: {
-		path:          path.join( __dirname, 'assets/dist/js' ),
+		path:          paths.childTheme.dist,
 		filename:      '[name].js',
 		chunkFilename: '[name].chunk.js',
 	},
 
+	// Determines how module imports are resolved.
+	resolve: {
+
+		// Paths to search when importing modules.
+		root: [
+			paths.childTheme.source,
+			paths.baseTheme.source,
+		],
+
+		// Set up an alias for importing from the base theme specifically.
+		alias: {
+			baseTheme: paths.baseTheme.source,
+		},
+
+		// Extensions to look for when none is specified (e.g. `@import 'path/to/module'`).
+		extensions: [
+			'',
+			'.js',
+			'.json',
+			'.coffee',
+		],
+	},
+
+	// Module settings.
 	module: {
+
+		// Module loader plugins.
 		loaders: [
 			{
 				test:   /\.js$/,
@@ -47,18 +92,10 @@ module.exports = {
 				loader: 'coffee-loader',
 			},
 			{
-				test:   /\.json?$/,
+				test:   /\.json$/,
 				loader: 'json',
 			},
 		],
-		resolve: {
-			extensions: [
-				'',
-				'.js',
-				'.json',
-				'.coffee',
-			],
-		},
 	},
 
 };
